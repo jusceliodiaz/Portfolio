@@ -867,7 +867,7 @@
       /* ── Leistungen ────────────────────────────────────────────────── */
       .skills {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         border-top: 1px solid var(--line-strong);
       }
 
@@ -1067,6 +1067,15 @@
         }
         .award-links a:last-child {
           border-bottom: none;
+        }
+        .skills {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .skill:nth-child(2n) {
+          border-right: none;
+        }
+        .skill:nth-child(-n + 2) {
+          border-bottom: 1px solid var(--line-strong);
         }
       }
 
@@ -1777,8 +1786,7 @@
             Immersive Web3-Arbeiten
           </h2>
           <span class="idx"
-            ><b>04</b> /
-            <span data-de="Web3" data-en="Web3">Web3</span></span
+            ><b>04</b> / <span data-de="Web3" data-en="Web3">Web3</span></span
           >
         </div>
       </div>
@@ -1853,13 +1861,13 @@
         >
           <div class="no">W3—03</div>
           <div class="body">
-            <h3>
-              The Clinique Lab <span class="arrow">↗</span>
-            </h3>
+            <h3>The Clinique Lab <span class="arrow">↗</span></h3>
             <div class="tags">
               <span>Unreal Engine</span>
               <span>Look-Dev</span>
-              <span data-de="Rigging &amp; Animation" data-en="Rigging &amp; Animation"
+              <span
+                data-de="Rigging &amp; Animation"
+                data-en="Rigging &amp; Animation"
                 >Rigging &amp; Animation</span
               >
             </div>
@@ -1870,9 +1878,9 @@
             data-en="Forbes: “Why Clinique's Next Move In The Metaverse Is A Winning Formula For Web3 Retail.” I worked on this project as an Unreal Artist across every stage — look-dev, modeling, shading, animation, rigging/skinning and programming."
           >
             Forbes: „Why Clinique's Next Move In The Metaverse Is A Winning
-            Formula For Web3 Retail“. Ich arbeitete an diesem Projekt als
-            Unreal Artist — von Look-Dev über Modeling und Shading bis zu
-            Animation, Rigging/Skinning und Programmierung.
+            Formula For Web3 Retail“. Ich arbeitete an diesem Projekt als Unreal
+            Artist — von Look-Dev über Modeling und Shading bis zu Animation,
+            Rigging/Skinning und Programmierung.
           </div>
           <div class="visual">
             <img
@@ -1929,9 +1937,7 @@
         >
           <div class="no">W3—05</div>
           <div class="body">
-            <h3>
-              Play Macy's Parade Game! <span class="arrow">↗</span>
-            </h3>
+            <h3>Play Macy's Parade Game! <span class="arrow">↗</span></h3>
             <div class="tags">
               <span>Browser Game</span>
               <span data-de="Gamification" data-en="Gamification"
@@ -1971,7 +1977,9 @@
           <div class="body">
             <h3>NRW-Forum Düsseldorf <span class="arrow">↗</span></h3>
             <div class="tags">
-              <span data-de="Digitale Installation" data-en="Digital Installation"
+              <span
+                data-de="Digitale Installation"
+                data-en="Digital Installation"
                 >Digitale Installation</span
               >
               <span>Web Experience</span>
@@ -1983,9 +1991,9 @@
             data-de="Digitale Installation und Web-Erfahrung für das NRW-Forum Düsseldorf — die Ausstellung des Museums in ein interaktives Online-Format übersetzt."
             data-en="Digital installation and web experience developed for NRW-Forum Düsseldorf, translating the museum's exhibition into an interactive online format."
           >
-            Digitale Installation und Web-Erfahrung für das NRW-Forum
-            Düsseldorf — die Ausstellung des Museums in ein interaktives
-            Online-Format übersetzt.
+            Digitale Installation und Web-Erfahrung für das NRW-Forum Düsseldorf
+            — die Ausstellung des Museums in ein interaktives Online-Format
+            übersetzt.
           </div>
           <div class="visual">
             <img
@@ -2005,8 +2013,13 @@
     <section id="showreel">
       <div class="wrap reel">
         <div class="sec-head rv">
-          <h2 data-de="In Bewegung" data-en="In Motion">In Bewegung</h2>
-          <span class="idx"><b>05</b> / Showreel</span>
+          <h2
+            data-de="In Bewegung"
+            data-en="Unreal Engine Cinematics &amp; Realtime Work"
+          >
+            In Bewegung
+          </h2>
+          <span class="idx"><b>05</b> /UE Showreel</span>
         </div>
         <div class="reel-frame rv">
           <iframe
@@ -2144,6 +2157,52 @@
             </li>
           </ul>
         </div>
+        <div class="skill rv">
+          <span
+            class="mono"
+            data-de="K—04 / Künstliche Intelligenz"
+            data-en="K—04 / Artificial Intelligence"
+            >K—04 / Künstliche Intelligenz</span
+          >
+          <h3
+            data-de="Generative KI &amp; KI-gestützte Entwicklung"
+            data-en="Generative AI &amp; AI-Assisted Development"
+          >
+            Generative KI &amp; KI-gestützte Entwicklung
+          </h3>
+          <ul>
+            <li
+              data-de="KI-Bildgenerierung — Seedance, Kling, Nano Banana 2"
+              data-en="AI image generation — Seedance, Kling, Nano Banana 2"
+            >
+              KI-Bildgenerierung — Seedance, Kling, Nano Banana 2
+            </li>
+            <li
+              data-de="Prompt Engineering für Konzept &amp; Look-Dev"
+              data-en="Prompt engineering for concept &amp; look-dev"
+            >
+              Prompt Engineering für Konzept &amp; Look-Dev
+            </li>
+            <li
+              data-de="Agentisches Coding — Claude Code, GitHub Copilot"
+              data-en="Agentic coding — Claude Code, GitHub Copilot"
+            >
+              Agentisches Coding — Claude Code, GitHub Copilot
+            </li>
+            <li
+              data-de="KI-gestützte Pipeline- &amp; Workflow-Automatisierung"
+              data-en="AI-assisted pipeline &amp; workflow automation"
+            >
+              KI-gestützte Pipeline- &amp; Workflow-Automatisierung
+            </li>
+            <li
+              data-de="API-Integration — Claude, OpenAI, Gemini"
+              data-en="API integration — Claude, OpenAI, Gemini"
+            >
+              API-Integration — Claude, OpenAI, Gemini
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -2152,10 +2211,10 @@
       <div class="wrap contact-in">
         <span
           class="mono rv"
-          data-de="06 / Kontakt — Lassen Sie uns sprechen"
-          data-en="06 / Contact — Let's talk"
+          data-de="07 / Kontakt — Lassen Sie uns sprechen"
+          data-en="07 / Contact — Let's talk"
         >
-          06 / Kontakt — Lassen Sie uns sprechen
+          07 / Kontakt — Lassen Sie uns sprechen
         </span>
         <h2 class="rv">
           <span data-de="Ein Projekt im Kopf?" data-en="Got a project in mind?"
