@@ -957,8 +957,9 @@
       .compare-buttons {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         gap: 8px;
-        padding-top: 18px;
+        padding-bottom: 18px;
       }
 
       .compare-buttons button {
@@ -1830,38 +1831,6 @@
       </div>
       <div class="wrap compare-wrap">
         <div class="compare rv">
-          <div class="compare-stage" id="compareStage">
-            <img
-              class="compare-img"
-              id="compareBase"
-              src="images/compare/beauty.jpg"
-              alt="Beauty pass"
-            />
-            <div class="compare-clip" id="compareClip">
-              <img
-                class="compare-img"
-                id="compareOverlay"
-                src="images/compare/clay.jpg"
-                alt="Selected pass"
-              />
-            </div>
-            <div class="compare-handle" id="compareHandle">
-              <span class="compare-grip">↔</span>
-            </div>
-            <span class="compare-tag left" id="compareTagLeft"
-              >Unreal Engine</span
-            >
-            <span class="compare-tag right">Beauty</span>
-          </div>
-          <div class="compare-cap">
-            <span
-              class="mono"
-              data-de="Ziehen zum Vergleichen der Passes"
-              data-en="Drag to compare passes"
-              >Ziehen zum Vergleichen der Passes</span
-            >
-            <span class="mono">01–05 / CGI Breakdown</span>
-          </div>
           <div class="compare-buttons" id="compareButtons">
             <button
               type="button"
@@ -1899,6 +1868,38 @@
             >
               05 · Blender
             </button>
+          </div>
+          <div class="compare-stage" id="compareStage">
+            <img
+              class="compare-img"
+              id="compareBase"
+              src="images/compare/beauty.jpg"
+              alt="Beauty pass"
+            />
+            <div class="compare-clip" id="compareClip">
+              <img
+                class="compare-img"
+                id="compareOverlay"
+                src="images/compare/clay.jpg"
+                alt="Selected pass"
+              />
+            </div>
+            <div class="compare-handle" id="compareHandle">
+              <span class="compare-grip">↔</span>
+            </div>
+            <span class="compare-tag left" id="compareTagLeft"
+              >Unreal Engine</span
+            >
+            <span class="compare-tag right">Beauty</span>
+          </div>
+          <div class="compare-cap">
+            <span
+              class="mono"
+              data-de="Ziehen zum Vergleichen der Passes"
+              data-en="Drag to compare passes"
+              >Ziehen zum Vergleichen der Passes</span
+            >
+            <span class="mono">01–05 / CGI Breakdown</span>
           </div>
         </div>
         <div class="static-boxes">
