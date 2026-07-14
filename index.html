@@ -864,6 +864,130 @@
         flex-wrap: wrap;
       }
 
+      /* ── Automotive Case ──────────────────────────────────────────── */
+      .compare-wrap {
+        max-width: calc(var(--maxw) * 1.2);
+      }
+
+      .compare-stage {
+        position: relative;
+        border: 1px solid var(--line-strong);
+        aspect-ratio: 16/9;
+        background: var(--ink);
+        overflow: hidden;
+        cursor: ew-resize;
+        user-select: none;
+        touch-action: none;
+      }
+
+      .compare-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        pointer-events: none;
+      }
+
+      .compare-clip {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        clip-path: inset(0 50% 0 0);
+      }
+
+      .compare-handle {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 2px;
+        background: var(--paper);
+        transform: translateX(-1px);
+        pointer-events: none;
+      }
+
+      .compare-handle .compare-grip {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--paper);
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+      }
+
+      .compare-tag {
+        position: absolute;
+        top: 14px;
+        font-family: "IBM Plex Mono";
+        font-size: 0.64rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        background: var(--ink);
+        color: var(--paper);
+        padding: 6px 10px;
+        pointer-events: none;
+      }
+
+      .compare-tag.left {
+        left: 14px;
+      }
+
+      .compare-tag.right {
+        right: 14px;
+      }
+
+      .compare-cap {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding-top: 14px;
+        flex-wrap: wrap;
+      }
+
+      .compare-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding-top: 18px;
+      }
+
+      .compare-buttons button {
+        font-family: "IBM Plex Mono";
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background: none;
+        border: 1px solid var(--line);
+        color: var(--ink-soft);
+        padding: 8px 14px;
+        cursor: pointer;
+        transition:
+          background var(--ease) 0.2s,
+          color var(--ease) 0.2s,
+          border-color var(--ease) 0.2s;
+      }
+
+      .compare-buttons button:hover {
+        border-color: var(--ink);
+        color: var(--ink);
+      }
+
+      .compare-buttons button.active {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: var(--paper);
+      }
+
       /* ── Leistungen ────────────────────────────────────────────────── */
       .skills {
         display: grid;
@@ -1202,21 +1326,27 @@
               ><span class="n">02</span
               ><span data-de="Projekte" data-en="Projects">Projekte</span></a
             >
-            <a href="#galerie"
+            <a href="#automotive"
               ><span class="n">03</span
+              ><span data-de="Automotive" data-en="Automotive"
+                >Automotive</span
+              ></a
+            >
+            <a href="#galerie"
+              ><span class="n">04</span
               ><span data-de="Galerie" data-en="Gallery">Galerie</span></a
             >
             <a href="#web3"
-              ><span class="n">04</span
+              ><span class="n">05</span
               ><span data-de="Web3" data-en="Web3">Web3</span></a
             >
-            <a href="#showreel"><span class="n">05</span>Showreel</a>
+            <a href="#showreel"><span class="n">06</span>Showreel</a>
             <a href="#leistungen"
-              ><span class="n">06</span
+              ><span class="n">07</span
               ><span data-de="Leistungen" data-en="Skills">Leistungen</span></a
             >
             <a href="#kontakt" class="cta"
-              ><span class="n">07</span
+              ><span class="n">08</span
               ><span data-de="Kontakt" data-en="Contact">Kontakt</span></a
             >
           </nav>
@@ -1661,6 +1791,95 @@
       </div>
     </section>
 
+    <!-- ── Automotive Case ──────────────────────────────────────────── -->
+    <section id="automotive">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <h2>AI Automotive Case</h2>
+          <span class="idx"
+            ><b>03</b> /
+            <span data-de="Render-Passes" data-en="Render Passes"
+              >Render-Passes</span
+            ></span
+          >
+        </div>
+      </div>
+      <div class="wrap compare-wrap">
+        <div class="compare rv">
+          <div class="compare-stage" id="compareStage">
+            <img
+              class="compare-img"
+              id="compareBase"
+              src="images/compare/beauty.jpg"
+              alt="Beauty pass"
+            />
+            <div class="compare-clip" id="compareClip">
+              <img
+                class="compare-img"
+                id="compareOverlay"
+                src="images/compare/clay.jpg"
+                alt="Selected pass"
+              />
+            </div>
+            <div class="compare-handle" id="compareHandle">
+              <span class="compare-grip">↔</span>
+            </div>
+            <span class="compare-tag left" id="compareTagLeft"
+              >Unreal Engine</span
+            >
+            <span class="compare-tag right">Beauty</span>
+          </div>
+          <div class="compare-cap">
+            <span
+              class="mono"
+              data-de="Ziehen zum Vergleichen der Passes"
+              data-en="Drag to compare passes"
+              >Ziehen zum Vergleichen der Passes</span
+            >
+            <span class="mono">01–05 / CGI Breakdown</span>
+          </div>
+          <div class="compare-buttons" id="compareButtons">
+            <button
+              type="button"
+              class="active"
+              data-pass="unreal"
+              data-src="images/compare/clay.jpg"
+            >
+              01 · Unreal Engine
+            </button>
+            <button
+              type="button"
+              data-pass="clay2"
+              data-src="images/compare/clay2.jpg"
+            >
+              02 · color Clay
+            </button>
+            <button
+              type="button"
+              data-pass="normal"
+              data-src="images/compare/normal.jpg"
+            >
+              03 · Normal
+            </button>
+            <button
+              type="button"
+              data-pass="lines"
+              data-src="images/compare/lines.jpg"
+            >
+              04 · Lines
+            </button>
+            <button
+              type="button"
+              data-pass="blender"
+              data-src="images/compare/blender.jpg"
+            >
+              05 · Blender
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── Galerie ───────────────────────────────────────────────── -->
     <section id="galerie">
       <div class="wrap">
@@ -1669,7 +1888,7 @@
             Aktuelle Arbeiten
           </h2>
           <span class="idx"
-            ><b>03</b> /
+            ><b>04</b> /
             <span data-de="Galerie" data-en="Gallery">Galerie</span></span
           >
         </div>
@@ -1786,7 +2005,7 @@
             Immersive Web3-Arbeiten
           </h2>
           <span class="idx"
-            ><b>04</b> / <span data-de="Web3" data-en="Web3">Web3</span></span
+            ><b>05</b> / <span data-de="Web3" data-en="Web3">Web3</span></span
           >
         </div>
       </div>
@@ -2019,7 +2238,7 @@
           >
             In Bewegung
           </h2>
-          <span class="idx"><b>05</b> /UE Showreel</span>
+          <span class="idx"><b>06</b> /UE Showreel</span>
         </div>
         <div class="reel-frame rv">
           <iframe
@@ -2049,7 +2268,7 @@
         <div class="sec-head rv">
           <h2 data-de="Kompetenzen" data-en="Skills">Kompetenzen</h2>
           <span class="idx"
-            ><b>06</b> /
+            ><b>07</b> /
             <span data-de="Leistungen" data-en="Skills">Leistungen</span></span
           >
         </div>
@@ -2211,10 +2430,10 @@
       <div class="wrap contact-in">
         <span
           class="mono rv"
-          data-de="07 / Kontakt — Lassen Sie uns sprechen"
-          data-en="07 / Contact — Let's talk"
+          data-de="08 / Kontakt — Lassen Sie uns sprechen"
+          data-en="08 / Contact — Let's talk"
         >
-          07 / Kontakt — Lassen Sie uns sprechen
+          08 / Kontakt — Lassen Sie uns sprechen
         </span>
         <h2 class="rv">
           <span data-de="Ein Projekt im Kopf?" data-en="Got a project in mind?"
@@ -2325,6 +2544,51 @@
         { threshold: 0.12 },
       );
       document.querySelectorAll(".rv").forEach((el) => io.observe(el));
+
+      // ── Automotive Case — Pass Comparator ────────────────────────────
+      const compareStage = document.getElementById("compareStage");
+      if (compareStage) {
+        const compareClip = document.getElementById("compareClip");
+        const compareHandle = document.getElementById("compareHandle");
+        const compareOverlay = document.getElementById("compareOverlay");
+        const compareTagLeft = document.getElementById("compareTagLeft");
+        const compareButtons = document.getElementById("compareButtons");
+        let dragging = false;
+
+        function setSplit(percent) {
+          const p = Math.min(98, Math.max(2, percent));
+          compareClip.style.clipPath = `inset(0 ${100 - p}% 0 0)`;
+          compareHandle.style.left = `${p}%`;
+        }
+
+        function percentFromEvent(clientX) {
+          const rect = compareStage.getBoundingClientRect();
+          return ((clientX - rect.left) / rect.width) * 100;
+        }
+
+        compareStage.addEventListener("pointerdown", (e) => {
+          dragging = true;
+          compareStage.setPointerCapture(e.pointerId);
+          setSplit(percentFromEvent(e.clientX));
+        });
+        compareStage.addEventListener("pointermove", (e) => {
+          if (dragging) setSplit(percentFromEvent(e.clientX));
+        });
+        ["pointerup", "pointercancel", "pointerleave"].forEach((evt) =>
+          compareStage.addEventListener(evt, () => (dragging = false)),
+        );
+
+        compareButtons.querySelectorAll("button").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            compareButtons
+              .querySelectorAll("button")
+              .forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            compareOverlay.src = btn.dataset.src;
+            compareTagLeft.textContent = btn.textContent.split("·")[1].trim();
+          });
+        });
+      }
     </script>
   </body>
 </html>
