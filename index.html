@@ -988,6 +988,26 @@
         color: var(--paper);
       }
 
+      .static-boxes {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--pad);
+        margin-top: clamp(28px, 4vh, 44px);
+      }
+
+      .static-box {
+        border: 1px solid var(--line-strong);
+        aspect-ratio: 4/3;
+        overflow: hidden;
+      }
+
+      .static-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
       /* ── Leistungen ────────────────────────────────────────────────── */
       .skills {
         display: grid;
@@ -1230,6 +1250,10 @@
         }
         .lang-sw {
           border-left: 1px solid var(--line);
+        }
+
+        .static-boxes {
+          grid-template-columns: 1fr;
         }
 
         .hero-meta {
@@ -1876,6 +1900,50 @@
               05 · Blender
             </button>
           </div>
+        </div>
+        <div class="static-boxes">
+          <figure class="static-box rv">
+            <img
+              src="images/automotive/static-4.png"
+              alt="Automotive Case — Still 4"
+              loading="lazy"
+            />
+          </figure>
+          <figure class="static-box rv">
+            <img
+              src="images/automotive/static-1.jpg"
+              alt="Automotive Case — Still 1"
+              loading="lazy"
+            />
+          </figure>
+          <figure class="static-box rv">
+            <img
+              src="images/automotive/static-5.png"
+              alt="Automotive Case — Still 5"
+              loading="lazy"
+            />
+          </figure>
+          <figure class="static-box rv">
+            <img
+              src="images/automotive/static-2.jpg"
+              alt="Automotive Case — Still 2"
+              loading="lazy"
+            />
+          </figure>
+          <figure class="static-box rv">
+            <img
+              src="images/automotive/static-3.png"
+              alt="Automotive Case — Still 3"
+              loading="lazy"
+            />
+          </figure>
+          <figure class="static-box rv">
+            <img
+              src="images/automotive/static-6.png"
+              alt="Automotive Case — Still 6"
+              loading="lazy"
+            />
+          </figure>
         </div>
       </div>
     </section>
