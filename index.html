@@ -25,7 +25,7 @@
     />
     <meta
       property="og:image"
-      content="https://schmidtjuscelio.vercel.app/images/portfolio/6.jpg"
+      content="https://schmidtjuscelio.vercel.app/images/6.jpg"
     />
 
     <!-- Twitter / X -->
@@ -41,7 +41,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://schmidtjuscelio.vercel.app/images/portfolio/6.jpg"
+      content="https://schmidtjuscelio.vercel.app/images/6.jpg"
     />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -771,11 +771,68 @@
       }
 
       /* ── Galerie ───────────────────────────────────────────────────── */
+      .gal-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 0 0 clamp(20px, 3vh, 32px);
+      }
+
+      .gal-filters button {
+        font-family: "IBM Plex Mono";
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border: 1px solid var(--line-strong);
+        background: transparent;
+        color: var(--ink-soft);
+        padding: 8px 16px;
+        cursor: pointer;
+        transition:
+          background 0.3s var(--ease),
+          color 0.3s var(--ease),
+          border-color 0.3s var(--ease);
+      }
+
+      .gal-filters button:hover {
+        border-color: var(--signal);
+        color: var(--signal);
+      }
+
+      .gal-filters button.active {
+        background: var(--signal);
+        border-color: var(--signal);
+        color: var(--paper);
+      }
+
+      .gal-hint {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "IBM Plex Mono";
+        font-size: 0.76rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        padding: 4px 0 clamp(20px, 3vh, 32px);
+      }
+
+      .gal-hint svg {
+        width: 16px;
+        height: 16px;
+        flex: none;
+        stroke: var(--signal);
+      }
+
       .gal {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         gap: 0;
         border-top: 1px solid var(--line-strong);
+      }
+
+      .gal figure.gal-hidden {
+        display: none;
       }
 
       .gal figure {
@@ -1467,71 +1524,71 @@
       <div class="hero-strip" aria-hidden="true">
         <div class="strip-track">
           <figure>
-            <img src="images/portfolio/2.jpg" alt="" loading="lazy" />
+            <img src="images/2.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/3.jpg" alt="" loading="lazy" />
+            <img src="images/3.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/4.jpg" alt="" loading="lazy" />
+            <img src="images/4.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/6.jpg" alt="" loading="lazy" />
+            <img src="images/6.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/10.jpg" alt="" loading="lazy" />
+            <img src="images/10.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/13.jpg" alt="" loading="lazy" />
+            <img src="images/13.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/27.jpg" alt="" loading="lazy" />
+            <img src="images/27.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/30.jpg" alt="" loading="lazy" />
+            <img src="images/30.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/31.jpg" alt="" loading="lazy" />
+            <img src="images/31.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/33.jpeg" alt="" loading="lazy" />
+            <img src="images/33.jpeg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/34.jpeg" alt="" loading="lazy" />
+            <img src="images/34.jpeg" alt="" loading="lazy" />
           </figure>
           <!-- Duplikat für nahtlose Schleife -->
           <figure>
-            <img src="images/portfolio/2.jpg" alt="" loading="lazy" />
+            <img src="images/2.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/3.jpg" alt="" loading="lazy" />
+            <img src="images/3.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/4.jpg" alt="" loading="lazy" />
+            <img src="images/4.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/6.jpg" alt="" loading="lazy" />
+            <img src="images/6.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/10.jpg" alt="" loading="lazy" />
+            <img src="images/10.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/13.jpg" alt="" loading="lazy" />
+            <img src="images/13.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/27.jpg" alt="" loading="lazy" />
+            <img src="images/27.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/30.jpg" alt="" loading="lazy" />
+            <img src="images/30.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/31.jpg" alt="" loading="lazy" />
+            <img src="images/31.jpg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/33.jpeg" alt="" loading="lazy" />
+            <img src="images/33.jpeg" alt="" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/portfolio/34.jpeg" alt="" loading="lazy" />
+            <img src="images/34.jpeg" alt="" loading="lazy" />
           </figure>
         </div>
       </div>
@@ -1689,7 +1746,7 @@
             Kundenpräsentationen.
           </div>
           <div class="visual">
-            <img src="images/hero/h7.jpg" alt="City Explorer" loading="lazy" />
+            <img src="images/h7.jpg" alt="City Explorer" loading="lazy" />
             <span class="lbl" data-de="Live-Demo" data-en="Live Demo"
               >Live-Demo</span
             >
@@ -1721,7 +1778,7 @@
             Erlebnis vereint.
           </div>
           <div class="visual">
-            <img src="images/hero/h4.jpg" alt="Walkthrough" loading="lazy" />
+            <img src="images/h4.jpg" alt="Walkthrough" loading="lazy" />
             <span class="lbl" data-de="Live-Demo" data-en="Live Demo"
               >Live-Demo</span
             >
@@ -1823,35 +1880,35 @@
               type="button"
               class="active"
               data-pass="unreal"
-              data-src="images/compare/clay.jpg"
+              data-src="images/clay.jpg"
             >
               01 · Unreal Engine
             </button>
             <button
               type="button"
               data-pass="clay2"
-              data-src="images/compare/clay2.jpg"
+              data-src="images/clay2.jpg"
             >
               02 · color Clay
             </button>
             <button
               type="button"
               data-pass="normal"
-              data-src="images/compare/normal.jpg"
+              data-src="images/normal.jpg"
             >
               03 · Normal
             </button>
             <button
               type="button"
               data-pass="lines"
-              data-src="images/compare/lines.jpg"
+              data-src="images/lines.jpg"
             >
               04 · Lines
             </button>
             <button
               type="button"
               data-pass="blender"
-              data-src="images/compare/blender.jpg"
+              data-src="images/blender.jpg"
             >
               05 · Blender
             </button>
@@ -1860,14 +1917,14 @@
             <img
               class="compare-img"
               id="compareBase"
-              src="images/compare/beauty.jpg"
+              src="images/beauty.jpg"
               alt="Beauty pass"
             />
             <div class="compare-clip" id="compareClip">
               <img
                 class="compare-img"
                 id="compareOverlay"
-                src="images/compare/clay.jpg"
+                src="images/clay.jpg"
                 alt="Selected pass"
               />
             </div>
@@ -1889,22 +1946,6 @@
             <span class="mono">01–05 / CGI Breakdown</span>
           </div>
         </div>
-        <div class="static-boxes">
-          <figure class="static-box rv">
-            <img
-              src="images/automotive/static-1.jpg"
-              alt="Automotive Case — Still 1"
-              loading="lazy"
-            />
-          </figure>
-          <figure class="static-box rv">
-            <img
-              src="images/automotive/static-2.jpg"
-              alt="Automotive Case — Still 2"
-              loading="lazy"
-            />
-          </figure>
-        </div>
       </div>
     </section>
 
@@ -1920,82 +1961,221 @@
             <span data-de="Galerie" data-en="Gallery">Galerie</span></span
           >
         </div>
+        <div class="gal-filters rv" role="group" aria-label="Filter">
+          <button
+            type="button"
+            class="active"
+            data-filter="all"
+            data-de="Alle"
+            data-en="All"
+          >
+            Alle
+          </button>
+          <button
+            type="button"
+            data-filter="automotive"
+            data-de="Automotive"
+            data-en="Automotive"
+          >
+            Automotive
+          </button>
+          <button
+            type="button"
+            data-filter="archviz"
+            data-de="Archviz + Virtual Production"
+            data-en="Archviz + Virtual Production"
+          >
+            Archviz + Virtual Production
+          </button>
+          <button
+            type="button"
+            data-filter="unreal-engine"
+            data-de="Unreal Engine"
+            data-en="Unreal Engine"
+          >
+            Unreal Engine
+          </button>
+        </div>
+        <p class="gal-hint rv">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+            <path
+              d="M6 3l12 7.2-5.4 1.3L15 18l-2.3 1.2-2.5-6.4L6 15V3z"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span data-de="Hover für Render-Passes" data-en="Hover for render passes"
+            >Hover für Render-Passes</span
+          >
+        </p>
       </div>
       <div class="gal">
-        <figure class="rv wide">
-          <img src="images/portfolio/2.jpg" alt="" loading="lazy" />
+        <!-- ══════════════════════════════════════════════════════════
+             ★ IMAGEM 1 DA GALERIA (primeiro quadro, canto superior esquerdo) ★
+             Imagem principal: images/35.jpg
+             Passes de hover:  images/35b.jpg, images/35c.jpg
+             Para trocar: basta substituir os três caminhos abaixo.
+             ══════════════════════════════════════════════════════════ -->
+        <figure
+          class="rv"
+          data-cat="automotive unreal-engine"
+          data-hover-imgs="images/35.jpg,images/35b.jpg,images/35c.jpg"
+        >
+          <img src="images/35.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/3.jpg" alt="" loading="lazy" />
+        <!-- ══════════════════════════════════════════════════════ -->
+
+        <figure
+          class="rv wide"
+          data-cat="automotive unreal-engine"
+          data-hover-imgs="images/2.jpg,images/2b.jpg,images/2c.jpg"
+        >
+          <img src="images/2.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/4.jpg" alt="" loading="lazy" />
+        <figure
+          class="rv"
+          data-cat="automotive unreal-engine"
+          data-hover-imgs="images/3.jpg,images/3b.jpg,images/3c.jpg"
+        >
+          <img src="images/3.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/5.jpg" alt="" loading="lazy" />
+        <figure
+          class="rv"
+          data-cat="automotive unreal-engine"
+          data-hover-imgs="images/5.jpg,images/5b.jpg"
+        >
+          <img src="images/5.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/7.jpg" alt="" loading="lazy" />
+        <figure
+          class="rv"
+          data-cat=""
+          data-hover-imgs="images/7.jpg,images/7a.jpg,images/7b.jpg"
+        >
+          <img src="images/7.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/10.jpg" alt="" loading="lazy" />
+        <figure
+          class="rv"
+          data-cat=""
+          data-hover-imgs="images/10.jpg,images/10b.jpg,images/10bc.jpg"
+        >
+          <img src="images/10.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/11.jpg" alt="" loading="lazy" />
+        <figure class="rv" data-cat="automotive unreal-engine">
+          <img src="images/11.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/12.jpg" alt="" loading="lazy" />
+        <figure class="rv" data-cat="archviz">
+          <img src="images/12.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv wide">
-          <img src="images/portfolio/14.jpg" alt="" loading="lazy" />
+        <figure
+          class="rv wide"
+          data-cat="automotive unreal-engine"
+          data-hover-imgs="images/14.jpg,images/14b.jpg"
+        >
+          <img src="images/14.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/16.jpg" alt="" loading="lazy" />
+        <figure class="rv" data-cat="automotive unreal-engine">
+          <img src="images/16.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/17.jpg" alt="" loading="lazy" />
+        <figure class="rv" data-cat="">
+          <img src="images/17.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/19.jpg" alt="" loading="lazy" />
+        <figure
+          class="rv"
+          data-cat="automotive unreal-engine"
+          data-hover-imgs="images/18.jpg,images/18b.jpg"
+        >
+          <img src="images/18.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/20.jpg" alt="" loading="lazy" />
+        <figure class="rv" data-cat="automotive unreal-engine">
+          <img src="images/19.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/21.jpg" alt="" loading="lazy" />
+        <figure class="rv" data-cat="archviz unreal-engine">
+          <img src="images/20.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/22.jpg" alt="" loading="lazy" />
+        <figure class="rv" data-cat="archviz unreal-engine">
+          <img src="images/21.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/23.jpg" alt="" loading="lazy" />
+        <figure class="rv" data-cat="archviz">
+          <img src="images/22.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/24.jpg" alt="" loading="lazy" />
+        <figure class="rv" data-cat="archviz">
+          <img src="images/23.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/25.jpg" alt="" loading="lazy" />
+        <figure class="rv" data-cat="archviz">
+          <img src="images/24.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/26.jpg" alt="" loading="lazy" />
+        <figure class="rv" data-cat="archviz">
+          <img src="images/25.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/27.jpg" alt="" loading="lazy" />
+        <figure class="rv" data-cat="archviz">
+          <img src="images/26.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/28.jpg" alt="" loading="lazy" />
+        <figure
+          class="rv"
+          data-cat="unreal-engine"
+          data-hover-imgs="images/27.jpg,images/27b.jpg,images/27c.jpg"
+        >
+          <img src="images/27.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/29.jpg" alt="" loading="lazy" />
+        <figure
+          class="rv"
+          data-cat="automotive unreal-engine"
+          data-hover-imgs="images/28.jpg,images/28b.jpg"
+        >
+          <img src="images/28.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/30.jpg" alt="" loading="lazy" />
+        <figure class="rv" data-cat="archviz unreal-engine">
+          <img src="images/29.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/31.jpg" alt="" loading="lazy" />
+        <figure
+          class="rv"
+          data-cat="automotive"
+          data-hover-imgs="images/30.jpg,images/30a.jpg,images/30b.jpg"
+        >
+          <img src="images/30.jpg" alt="" loading="lazy" />
         </figure>
-        <figure class="rv">
-          <img src="images/portfolio/32.jpg" alt="" loading="lazy" />
+        <figure
+          class="rv"
+          data-cat="automotive"
+          data-hover-imgs="images/31.jpg,images/31b.jpg"
+        >
+          <img src="images/31.jpg" alt="" loading="lazy" />
+        </figure>
+        <figure class="rv" data-cat="archviz">
+          <img src="images/32.jpg" alt="" loading="lazy" />
+        </figure>
+        <figure
+          class="rv"
+          data-cat="automotive"
+          data-hover-imgs="images/33.jpeg,images/33b.jpg,images/33c.jpg"
+        >
+          <img src="images/33.jpeg" alt="" loading="lazy" />
+        </figure>
+        <figure class="rv" data-cat="automotive">
+          <img src="images/static-1.jpg" alt="" loading="lazy" />
+        </figure>
+        <figure class="rv" data-cat="automotive">
+          <img src="images/static-2.jpg" alt="" loading="lazy" />
+        </figure>
+        <figure
+          class="rv"
+          data-cat="automotive"
+          data-hover-imgs="images/beauty.jpg,images/clay.jpg,images/lines.jpg"
+        >
+          <img src="images/beauty.jpg" alt="" loading="lazy" />
+        </figure>
+        <figure
+          class="rv"
+          data-cat="automotive unreal-engine"
+          data-hover-imgs="images/8.jpg,images/8b.jpg,images/8c.jpg"
+        >
+          <img src="images/8.jpg" alt="" loading="lazy" />
+        </figure>
+        <figure
+          class="rv"
+          data-cat="automotive"
+          data-hover-imgs="images/34.jpeg,images/34b.jpg,images/34c.jpg"
+        >
+          <img src="images/34.jpeg" alt="" loading="lazy" />
         </figure>
       </div>
     </section>
@@ -2038,7 +2218,7 @@
           </div>
           <div class="visual">
             <img
-              src="images/web3/joytopia.jpg"
+              src="images/joytopia.jpg"
               alt="Meet the Dee — Joytopia"
               loading="lazy"
             />
@@ -2068,7 +2248,7 @@
           </div>
           <div class="visual">
             <img
-              src="images/web3/mstylelab.jpg"
+              src="images/mstylelab.jpg"
               alt="Macy's Mstylelab"
               loading="lazy"
             />
@@ -2106,7 +2286,7 @@
           </div>
           <div class="visual">
             <img
-              src="images/web3/clinique.jpg"
+              src="images/clinique.jpg"
               alt="The Clinique Lab"
               loading="lazy"
             />
@@ -2144,7 +2324,7 @@
           </div>
           <div class="visual">
             <img
-              src="images/web3/nars.jpg"
+              src="images/nars.jpg"
               alt="Journee's Maison Explicit for NARS"
               loading="lazy"
             />
@@ -2179,7 +2359,7 @@
           </div>
           <div class="visual">
             <img
-              src="images/web3/macys-game.jpg"
+              src="images/macys-game.jpg"
               alt="Macy's Parade Game"
               loading="lazy"
             />
@@ -2219,7 +2399,7 @@
           </div>
           <div class="visual">
             <img
-              src="images/web3/nrw-forum.jpg"
+              src="images/nrw-forum.jpg"
               alt="NRW-Forum Düsseldorf"
               loading="lazy"
             />
@@ -2533,6 +2713,47 @@
         .forEach((a) =>
           a.addEventListener("click", () => mainNav.classList.remove("open")),
         );
+
+      // ── Galerie-Filter ────────────────────────────────────────────
+      const galFilters = document.querySelectorAll(".gal-filters button");
+      const galFigures = document.querySelectorAll(".gal figure[data-cat]");
+
+      galFilters.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          galFilters.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          const filter = btn.dataset.filter;
+          galFigures.forEach((fig) => {
+            const match =
+              filter === "all" || fig.dataset.cat.split(" ").includes(filter);
+            fig.classList.toggle("gal-hidden", !match);
+          });
+        });
+      });
+
+      // ── Galerie-Hover-Passes ──────────────────────────────────────
+      // Reihe die Passes in data-hover-imgs kommagetrennt auf, z.B.:
+      // data-hover-imgs="images/beauty.jpg,images/clay.jpg,images/lines.jpg"
+      document.querySelectorAll(".gal figure[data-hover-imgs]").forEach((fig) => {
+        const img = fig.querySelector("img");
+        const frames = fig.dataset.hoverImgs.split(",").map((s) => s.trim());
+        const original = img.getAttribute("src");
+        let timer = null;
+        let step = 0;
+
+        fig.addEventListener("mouseenter", () => {
+          step = 0;
+          timer = setInterval(() => {
+            step = (step + 1) % frames.length;
+            img.setAttribute("src", frames[step]);
+          }, 700);
+        });
+
+        fig.addEventListener("mouseleave", () => {
+          clearInterval(timer);
+          img.setAttribute("src", original);
+        });
+      });
 
       // ── Scroll-Reveal ─────────────────────────────────────────────
       const io = new IntersectionObserver(
