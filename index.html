@@ -21,7 +21,7 @@
 
     <meta
       name="description"
-      content="Juscélio Schmidt — Realtime & Technical Artist für Kunden in Deutschland, Italien, den Niederlanden und Europa. Hochwertige Echtzeit-Erlebnisse für Architektur, Pixel-Streaming und virtuelle Produktion mit Unreal Engine. Remote, präzise, kinoreif."
+      content="Juscélio Schmidt — Realtime & Technical Artist für Deutschland, Italien, Niederlande & Europa. Echtzeit-Erlebnisse für Architektur und virtuelle Produktion mit Unreal Engine."
     />
     <meta
       name="keywords"
@@ -30,6 +30,11 @@
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#f4f2ed" />
     <link rel="canonical" href="https://schmidtjuscelio.vercel.app/" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' fill='%23f4f2ed' stroke='%23141412' stroke-width='2'/%3E%3Ctext x='16' y='21' font-family='monospace' font-size='13' font-weight='600' text-anchor='middle' fill='%23141412'%3EJS%3C/text%3E%3C/svg%3E"
+    />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -229,13 +234,25 @@
         font-weight: 500;
       }
 
+      .wordmark-text {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        line-height: 1.2;
+      }
+
+      .wordmark .name {
+        white-space: nowrap;
+      }
+
       .wordmark .sub {
         font-family: "IBM Plex Mono";
         font-weight: 400;
-        font-size: 0.66rem;
-        letter-spacing: 0.14em;
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--ink-faint);
+        white-space: nowrap;
       }
 
       /* Rechter Bereich: Nav + Sprachschalter */
@@ -950,9 +967,6 @@
         aspect-ratio: 4/3;
       }
 
-      .gal figure.wide {
-        aspect-ratio: 4/3;
-      }
       .gal figure:nth-child(3n) {
         border-right: none;
       }
@@ -1414,8 +1428,7 @@
         .gal {
           grid-template-columns: repeat(2, 1fr);
         }
-        .gal figure,
-        .gal figure.wide {
+        .gal figure {
           aspect-ratio: 4/3;
         }
         .gal figure:nth-child(3n) {
@@ -1460,10 +1473,10 @@
       <div class="head-in">
         <a href="#top" class="wordmark">
           <span class="mark">JS</span>
-          <span
-            >Juscélio Schmidt
-            <span class="sub">/ Tech Artist · Realtime</span></span
-          >
+          <span class="wordmark-text">
+            <span class="name">Juscélio Schmidt</span>
+            <span class="sub">Tech Artist · Realtime</span>
+          </span>
         </a>
         <div class="head-right">
           <button
@@ -1816,6 +1829,7 @@
               type="button"
               class="sec-toggle"
               data-target="projekte"
+              aria-controls="projekte-body"
               aria-expanded="false"
               data-show-de="Alle Projekte anzeigen ↓"
               data-show-en="Show all projects ↓"
@@ -1829,7 +1843,7 @@
           </div>
         </div>
       </div>
-      <div class="proj-list sec-body">
+      <div class="proj-list sec-body" id="projekte-body">
         <a
           class="proj rv"
           href="https://archviz-poket.vercel.app/#cena=aereo"
@@ -1985,6 +1999,7 @@
               type="button"
               class="sec-toggle"
               data-target="automotive"
+              aria-controls="automotive-body"
               aria-expanded="false"
               data-show-de="Case anzeigen ↓"
               data-show-en="Show case ↓"
@@ -1998,7 +2013,7 @@
           </div>
         </div>
       </div>
-      <div class="wrap compare-wrap sec-body">
+      <div class="wrap compare-wrap sec-body" id="automotive-body">
         <div class="compare rv">
           <div class="compare-buttons" id="compareButtons">
             <button
@@ -2131,15 +2146,15 @@
              ══════════════════════════════════════════════════════════ -->
         <figure
           class="rv"
-          data-cat="archviz unreal-engine"
+          data-cat="automotive unreal-engine"
           data-hover-imgs="images/12.jpg,images/12b.jpg,images/12c.jpg"
         >
-          <img src="images/12.jpg" srcset="images/mobile/12.jpg 900w, images/12.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Schmidt, Nr. 12" loading="lazy" />
+          <img src="images/12.jpg" srcset="images/mobile/12.jpg 900w, images/12.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive Realtime-Render – Unreal Engine von Juscélio Schmidt, Nr. 12" loading="lazy" />
         </figure>
         <!-- ══════════════════════════════════════════════════════ -->
 
         <figure
-          class="rv wide"
+          class="rv"
           data-cat="automotive unreal-engine"
           data-hover-imgs="images/16.jpg,images/16b.jpg,images/16c.jpg"
         >
@@ -2191,7 +2206,7 @@
           <img src="images/5.jpg" srcset="images/mobile/5.jpg 900w, images/5.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Schmidt, Nr. 5" loading="lazy" />
         </figure>
         <figure
-          class="rv wide"
+          class="rv"
           data-cat="automotive unreal-engine"
           data-hover-imgs="images/14.jpg,images/14b.jpg,images/14c.jpg"
         >
@@ -2252,8 +2267,8 @@
         >
           <img src="images/28.jpg" srcset="images/mobile/28.jpg 900w, images/28.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive Realtime-Render – Unreal Engine von Juscélio Schmidt, Nr. 28" loading="lazy" />
         </figure>
-        <figure class="rv" data-cat="archviz unreal-engine">
-          <img src="images/29.jpg" srcset="images/mobile/29.jpg 900w, images/29.jpg 1920w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung – Unreal Engine von Juscélio Schmidt, Nr. 29" loading="lazy" />
+        <figure class="rv" data-cat="archviz">
+          <img src="images/29.jpg" srcset="images/mobile/29.jpg 900w, images/29.jpg 1920w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Schmidt, Nr. 29" loading="lazy" />
         </figure>
         <figure
           class="rv"
@@ -2325,6 +2340,7 @@
               type="button"
               class="sec-toggle"
               data-target="web3"
+              aria-controls="web3-body"
               aria-expanded="false"
               data-show-de="Alle Arbeiten anzeigen ↓"
               data-show-en="Show all work ↓"
@@ -2338,7 +2354,7 @@
           </div>
         </div>
       </div>
-      <div class="proj-list sec-body">
+      <div class="proj-list sec-body" id="web3-body">
         <div class="proj rv">
           <div class="no">W3—01</div>
           <div class="body">
