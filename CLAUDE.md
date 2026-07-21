@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-Personal portfolio for Juscélio Schmidt — Senior Tech Artist & Junior Developer. Single-page site in pure HTML/CSS/JS with no build step, no package manager, and no framework.
+Personal portfolio for Juscélio Diaz — Senior Tech Artist & Junior Developer. Single-page site in pure HTML/CSS/JS with no build step, no package manager, and no framework.
 
 ## Running the site
 
