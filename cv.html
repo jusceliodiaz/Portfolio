@@ -526,6 +526,7 @@
 
 <script>
   function applyLang(lang) {
+    if (lang !== 'en' && lang !== 'de') lang = 'en';
     document.querySelectorAll('[data-en]').forEach(function (el) {
       el.textContent = el.getAttribute('data-' + lang);
     });
