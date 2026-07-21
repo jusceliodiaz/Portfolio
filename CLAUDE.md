@@ -20,7 +20,7 @@ Everything lives in a single file: `index.html`. CSS is inlined in `<style>`, Ja
 - `images/me.jpg` — profile photo
 - `images/hero/h1–h7.jpg` — hero background slideshow
 - `images/portfolio/2–32.jpg` — gallery grid
-- `images/5a.png`, `images/ue1.png` — project card thumbnails
+- `images/5a.jpg`, `images/ue1.jpg` — project card thumbnails
 
 ## Key patterns
 
