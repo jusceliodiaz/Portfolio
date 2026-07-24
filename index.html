@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,15 +21,15 @@
 
     <meta
       name="description"
-      content="Juscélio Diaz — Realtime & Technical Artist für Deutschland, Spanien, Portugal, Niederlande & Europa. Echtzeit-Erlebnisse für Architektur und virtuelle Produktion mit Unreal Engine."
+      content="Juscélio Diaz — Realtime & Technical Artist for Europe. Real-time experiences for architecture and virtual production with Unreal Engine."
     />
     <meta
       name="keywords"
-      content="Realtime Artist, Technical Artist, Unreal Engine Freelancer, Archviz Deutschland, Archviz España, Archviz Portugal, Archviz Nederland, virtuelle Produktion Europa, Pixel Streaming, 3D-Visualisierung, Architekturvisualisierung"
+      content="Realtime Artist, Technical Artist, Unreal Engine Freelancer, Archviz Europe, Virtual Production Europe, Pixel Streaming, 3D Visualization, Architecture Visualization"
     />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#f4f2ed" />
-    <link rel="canonical" href="https://schmidtjuscelio.vercel.app/" />
+    <link rel="canonical" href="https://jdiaz.vercel.app/" />
     <link
       rel="icon"
       type="image/svg+xml"
@@ -38,10 +38,9 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://schmidtjuscelio.vercel.app/" />
+    <meta property="og:url" content="https://jdiaz.vercel.app/" />
     <meta property="og:site_name" content="Juscélio Diaz" />
-    <meta property="og:locale" content="de_DE" />
-    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="es_ES" />
     <meta property="og:locale:alternate" content="pt_PT" />
     <meta property="og:locale:alternate" content="nl_NL" />
@@ -51,48 +50,48 @@
     />
     <meta
       property="og:description"
-      content="Realtime & Technical Artist für Kunden in Deutschland, Spanien, Portugal, den Niederlanden und Europa — hochwertige Echtzeit-Erlebnisse für Architektur, Pixel-Streaming und virtuelle Produktion."
+      content="Realtime & Technical Artist for clients across Europe — high-quality real-time experiences for architecture, pixel streaming and virtual production."
     />
     <meta
       property="og:image"
-      content="https://schmidtjuscelio.vercel.app/images/13.jpeg"
+      content="https://jdiaz.vercel.app/images/13.jpeg"
     />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://schmidtjuscelio.vercel.app/" />
+    <meta name="twitter:url" content="https://jdiaz.vercel.app/" />
     <meta
       name="twitter:title"
       content="Juscélio Diaz — Realtime & Technical Artist"
     />
     <meta
       name="twitter:description"
-      content="Realtime & Technical Artist für Kunden in Deutschland, Spanien, Portugal, den Niederlanden und Europa — hochwertige Echtzeit-Erlebnisse für Architektur, Pixel-Streaming und virtuelle Produktion."
+      content="Realtime & Technical Artist for clients across Europe — high-quality real-time experiences for architecture, pixel streaming and virtual production."
     />
     <meta
       name="twitter:image"
-      content="https://schmidtjuscelio.vercel.app/images/13.jpeg"
+      content="https://jdiaz.vercel.app/images/13.jpeg"
     />
 
-    <!-- JSON-LD: Person / ProfessionalService, mit Fokus auf DE/ES/PT/NL/EU-Kundschaft -->
+    <!-- JSON-LD: Person / ProfessionalService, focused on Europe/Worldwide clients -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Juscélio Diaz",
         "jobTitle": "Realtime & Technical Artist",
-        "url": "https://schmidtjuscelio.vercel.app/",
-        "image": "https://schmidtjuscelio.vercel.app/images/13.jpeg",
+        "url": "https://jdiaz.vercel.app/",
+        "image": "https://jdiaz.vercel.app/images/13.jpeg",
         "email": "mailto:escrevaparajd@gmail.com",
-        "knowsLanguage": ["de", "en", "pt", "es"],
+        "knowsLanguage": ["en", "pt", "es"],
         "knowsAbout": [
           "Unreal Engine",
           "Realtime Rendering",
-          "Architekturvisualisierung",
+          "Architecture Visualization",
           "Pixel Streaming",
-          "Virtuelle Produktion"
+          "Virtual Production"
         ],
-        "areaServed": ["Germany", "Spain", "Portugal", "Netherlands", "Europe", "Worldwide"],
+        "areaServed": ["Europe", "Worldwide"],
         "address": {
           "@type": "PostalAddress",
           "addressCountry": "BR"
@@ -1458,9 +1457,9 @@
             >
           </nav>
           <div class="lang-sw">
-            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn active" data-lang="en">EN</button>
             <button class="lang-btn" data-lang="de">DE</button>
-            <button class="lang-btn active" data-lang="it">IT</button>
+            <button class="lang-btn" data-lang="it">IT</button>
           </div>
         </div>
       </div>
@@ -2804,7 +2803,7 @@
       langBtns.forEach((b) =>
         b.addEventListener("click", () => applyLang(b.dataset.lang)),
       );
-      applyLang(localStorage.getItem("cv-lang") || "it");
+      applyLang(localStorage.getItem("cv-lang") || "en");
 
       // ── Kollabierbare Sektionen ─────────────────────────────────────
       document.querySelectorAll(".sec-toggle").forEach((btn) => {

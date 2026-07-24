@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Juscélio Diaz — Dalla pianta all'esperienza immersiva</title>
+<meta
+  name="description"
+  content="Juscélio Diaz — Architectural Visualization & Realtime. Dalla lettura della pianta alla VR: modellazione, render, post-produzione IA e Unreal Engine per l'architettura del lusso mediterraneo."
+/>
+<meta name="robots" content="noindex, follow" />
+<meta name="theme-color" content="#f4f2ed" />
+<link
+  rel="icon"
+  type="image/svg+xml"
+  href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' fill='%23f4f2ed' stroke='%23141412' stroke-width='2'/%3E%3Ctext x='16' y='21' font-family='monospace' font-size='13' font-weight='600' text-anchor='middle' fill='%23141412'%3EJD%3C/text%3E%3C/svg%3E"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root{
+    --chalk:#f4f2ed;
+    --chalk-2:#eae5da;
+    --sand:#ded7c7;
+    --ink:#20201c;
+    --ink-soft:#54514a;
+    --ink-faint:#8b897f;
+    --sea:#1f5673;
+    --sea-deep:#143b52;
+    --terracotta:#b0563a;
+    --line:#d8d1c2;
+    --max:1280px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--chalk);
+    color:var(--ink);
+    font-family:"Jost",sans-serif;
+    font-weight:300;
+    font-size:17px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:400;line-height:1.04;letter-spacing:.005em}
+  a{color:inherit;text-decoration:none}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  .mono{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,5vw,64px)}
+
+  /* ---------- Header ---------- */
+  header{position:sticky;top:0;z-index:100;backdrop-filter:blur(8px);
+    background:color-mix(in srgb,var(--chalk) 82%,transparent);
+    border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center}
+  .brand img{width:auto;height:45px;object-fit:contain}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+    transition:color .3s var(--ease);position:relative}
+  .nav-links a:hover{color:var(--ink)}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:clamp(56px,10vw,130px) 0 clamp(40px,6vw,70px)}
+  .kicker{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:30px}
+  .pill{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--sea);
+    color:var(--sea);border-radius:100px;padding:7px 16px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
+  .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--terracotta)}
+  .hero h1{font-size:clamp(40px,7.2vw,92px);font-weight:300;letter-spacing:-.01em;max-width:16ch}
+  .hero h1 em{font-style:italic;color:var(--sea)}
+  .lede{max-width:600px;margin-top:26px;font-size:clamp(16.5px,1.7vw,19px);color:var(--ink-soft)}
+  .lede b{color:var(--ink);font-weight:400}
+
+  /* ---------- Timeline (orizzontale, minimal) ---------- */
+  .timeline-sec{padding-top:clamp(56px,8vw,96px)}
+  .tl-head{max-width:640px;margin-bottom:clamp(40px,6vw,64px)}
+  .tl-head .mono{margin-bottom:12px}
+  .tl-head h2{font-size:clamp(28px,4.4vw,48px)}
+  .tl-head p{color:var(--ink-soft);margin-top:14px}
+
+  .timeline{
+    display:grid;grid-template-columns:repeat(6,1fr);
+    position:relative;
+  }
+  .timeline::before{
+    content:"";position:absolute;left:0;right:0;top:9px;height:1px;background:var(--line);
+  }
+  .tl-step{position:relative;padding:0 clamp(10px,1.6vw,18px) 0 0}
+  .tl-step:last-child{padding-right:0}
+  .tl-num{
+    width:18px;height:18px;border-radius:50%;background:var(--chalk);
+    border:1px solid var(--sea);color:var(--sea);
+    display:flex;align-items:center;justify-content:center;
+    font-family:"IBM Plex Mono",monospace;font-size:9px;position:relative;z-index:1;margin-bottom:22px;
+  }
+  .tl-tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--terracotta);margin-bottom:8px;display:block}
+  .tl-body h3{font-size:clamp(15.5px,1.5vw,18px);font-weight:400;font-family:"Jost",sans-serif;margin-bottom:8px;line-height:1.3}
+  .tl-body p{color:var(--ink-soft);font-size:13.5px;line-height:1.55}
+  .tl-tools{margin-top:10px;font-size:10.5px;letter-spacing:.06em;color:var(--ink-faint)}
+
+  @media(max-width:900px){
+    .timeline{
+      grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;
+      gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;
+      -ms-overflow-style:none;scrollbar-width:none;
+    }
+    .timeline::-webkit-scrollbar{display:none}
+    .timeline::before{left:0;right:0;width:auto}
+    .tl-step{scroll-snap-align:start;padding-right:0}
+  }
+
+  /* ---------- Award strip ---------- */
+  .award{background:var(--ink);color:var(--chalk);margin-top:clamp(56px,8vw,96px)}
+  .award .wrap{padding:clamp(36px,6vw,56px) clamp(20px,5vw,64px);
+    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .award .txt .mono{color:#9b968a;margin-bottom:8px}
+  .award h3{font-size:clamp(22px,3vw,30px);font-weight:300;color:var(--chalk)}
+  .award a.more{display:inline-flex;gap:8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--chalk);border-bottom:1px solid #5c584f;padding-bottom:5px;white-space:nowrap}
+  .award a.more:hover{border-color:var(--chalk)}
+
+  /* ---------- Gallery (full-bleed) ---------- */
+  section.gallery{padding:clamp(64px,9vw,120px) 0}
+  .grid{width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+  .grid figure{position:relative;overflow:hidden;background:var(--chalk-2);aspect-ratio:1/1;transition:opacity .3s var(--ease)}
+  .grid figure img{transform:scale(1.03);transition:transform 1s var(--ease),filter 1s var(--ease);filter:saturate(.96)}
+  .grid figure:hover img{transform:scale(1.08);filter:saturate(1.05)}
+  .grid figure figcaption{position:absolute;left:16px;bottom:14px;color:#fff;font-size:10.5px;
+    letter-spacing:.18em;text-transform:uppercase;opacity:0;transform:translateY(8px);
+    transition:.4s var(--ease);text-shadow:0 1px 10px rgba(0,0,0,.55)}
+  .grid figure:hover figcaption{opacity:1;transform:translateY(0)}
+  .grid figure.hide{display:none}
+  .gal-pass-badge{
+    position:absolute;top:10px;right:10px;display:flex;align-items:center;gap:6px;
+    padding:6px 10px;border-radius:999px;background:color-mix(in srgb,var(--chalk) 35%,transparent);
+    backdrop-filter:blur(10px) saturate(160%);-webkit-backdrop-filter:blur(10px) saturate(160%);
+    border:1px solid color-mix(in srgb,var(--chalk) 40%,transparent);
+    box-shadow:0 2px 12px rgba(0,0,0,.1);z-index:2;pointer-events:none;transition:opacity .3s;
+  }
+  .gal-pass-badge svg{width:12px;height:12px;flex:none;stroke:var(--ink-soft);fill:none;stroke-width:1.6}
+  .gal-pass-badge span{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.02em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+  .grid figure:hover .gal-pass-badge{opacity:0}
+  @media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
+
+  /* ---------- Contact / footer ---------- */
+  .contact{background:var(--sea-deep);color:var(--chalk)}
+  .contact .wrap{padding:clamp(56px,9vw,96px) clamp(20px,5vw,64px)}
+  .contact h2{font-size:clamp(34px,6vw,66px);font-weight:300;color:var(--chalk);line-height:1}
+  .contact .mail{display:inline-block;margin-top:24px;font-family:"Cormorant Garamond",serif;
+    font-size:clamp(22px,3.2vw,34px);color:var(--chalk);font-style:italic;
+    border-bottom:1px solid rgba(244,242,237,.35);padding-bottom:6px;transition:.35s var(--ease)}
+  .contact .mail:hover{border-color:var(--chalk)}
+  .socials{margin-top:38px;display:flex;gap:26px;flex-wrap:wrap}
+  .socials a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#bcd0dc;transition:color .3s var(--ease)}
+  .socials a:hover{color:var(--chalk)}
+  footer.f{border-top:1px solid rgba(244,242,237,.16);margin-top:50px;padding-top:22px;
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11.5px;letter-spacing:.08em;color:#9fb6c3}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1!important;transform:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><img src="images/logo.png" alt="Juscélio Diaz" /></a>
+    <nav class="nav-links">
+      <a href="#percorso">Percorso</a>
+      <a href="#galleria">Galleria</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- TIMELINE / PERCORSO -->
+  <section class="timeline-sec" id="percorso">
+    <div class="wrap">
+      <div class="tl-head reveal">
+        <span class="mono">Il mio percorso</span>
+        <h2>Come lavoro, passo per passo</h2>
+        <p>Sei fasi, dalla pianta architettonica alla realtà virtuale — pensate per portare
+        qualità cinematografica senza tempi di produzione infiniti.</p>
+      </div>
+
+      <div class="timeline reveal">
+        <div class="tl-step">
+          <div class="tl-num">01</div>
+          <div class="tl-body">
+            <span class="tl-tag">Progetto</span>
+            <h3>Lettura della pianta</h3>
+            <p>Proporzioni, percorsi, luce naturale — prima di aprire qualsiasi software.</p>
+          </div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-num">02</div>
+          <div class="tl-body">
+            <span class="tl-tag">Render</span>
+            <h3>Modellazione &amp; render</h3>
+            <p>Geometria, materiali e luce, renderizzati in 3ds Max + Corona.</p>
+            <div class="tl-tools">3ds Max · Corona</div>
+          </div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-num">03</div>
+          <div class="tl-body">
+            <span class="tl-tag">Post-produzione</span>
+            <h3>Finiture con IA</h3>
+            <p>Colore, dettaglio e finiture rifinite fino al risultato editoriale.</p>
+            <div class="tl-tools">Nano Banana 2</div>
+          </div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-num">04</div>
+          <div class="tl-body">
+            <span class="tl-tag">Versioning</span>
+            <h3>Varianti senza rirenderizzare</h3>
+            <p>Luce, stagione o materiali diversi — più opzioni, meno ore di render.</p>
+            <div class="tl-tools">ComfyUI</div>
+          </div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-num">05</div>
+          <div class="tl-body">
+            <span class="tl-tag">Video</span>
+            <h3>Video IA, tempi brevi</h3>
+            <p>Still trasformati in clip cinematiche in ore, non giorni.</p>
+            <div class="tl-tools">Kling</div>
+          </div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-num">06</div>
+          <div class="tl-body">
+            <span class="tl-tag">Realtà virtuale</span>
+            <h3>File pronto per VR</h3>
+            <p>Ottimizzato e portato in Unreal Engine — vissuto anche con un visore.</p>
+            <div class="tl-tools">Unreal Engine · VR</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERIA -->
+  <section class="gallery" id="galleria">
+      <div class="grid reveal">
+        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_1.jpg,images/italy_1b.jpg,images/italy_1c.jpg"><img src="images/italy_1.jpg" srcset="images/mobile/italy_1.jpg 900w, images/italy_1.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 1" loading="lazy" /><figcaption>Mediterraneo / 01</figcaption></figure>
+        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_2.jpg,images/italy_2b.jpg,images/italy_2c.jpg"><img src="images/italy_2.jpg" srcset="images/mobile/italy_2.jpg 900w, images/italy_2.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 2" loading="lazy" /><figcaption>Mediterraneo / 02</figcaption></figure>
+        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_3.jpg,images/italy_3b.jpg,images/italy_3c.jpg"><img src="images/italy_3.jpg" srcset="images/mobile/italy_3.jpg 900w, images/italy_3.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 3" loading="lazy" /><figcaption>Mediterraneo / 03</figcaption></figure>
+        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_4.jpg,images/italy_4b.jpg,images/italy_4c.jpg"><img src="images/italy_4.jpg" srcset="images/mobile/italy_4.jpg 900w, images/italy_4.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 4" loading="lazy" /><figcaption>Mediterraneo / 04</figcaption></figure>
+        <figure data-cat="mediterraneo"><img src="images/italy_5.jpg" srcset="images/mobile/italy_5.jpg 900w, images/italy_5.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 5" loading="lazy" /><figcaption>Mediterraneo / 05</figcaption></figure>
+        <figure data-cat="mediterraneo"><img src="images/italy_6.jpg" srcset="images/mobile/italy_6.jpg 900w, images/italy_6.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 6" loading="lazy" /><figcaption>Mediterraneo / 06</figcaption></figure>
+        <figure data-cat="mediterraneo"><img src="images/italy_8.jpg" srcset="images/mobile/italy_8.jpg 900w, images/italy_8.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 8" loading="lazy" /><figcaption>Mediterraneo / 08</figcaption></figure>
+        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_9.jpg,images/italy_9b.jpg,images/italy_9c.jpg"><img src="images/italy_9.jpg" srcset="images/mobile/italy_9.jpg 900w, images/italy_9.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 9" loading="lazy" /><figcaption>Mediterraneo / 09</figcaption></figure>
+        <figure data-cat="mediterraneo"><img src="images/italy_10.jpg" srcset="images/mobile/italy_10.jpg 900w, images/italy_10.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 10" loading="lazy" /><figcaption>Mediterraneo / 10</figcaption></figure>
+
+        <figure data-cat="archviz"><img src="images/22.jpg" srcset="images/mobile/22.jpg 900w, images/22.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 22" loading="lazy" /><figcaption>Architettura / 22</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/20.jpg" srcset="images/mobile/20.jpg 900w, images/20.jpg 1366w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica — Unreal Engine, Nr. 20" loading="lazy" /><figcaption>Architettura / 20</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/29.jpg" srcset="images/mobile/29.jpg 900w, images/29.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 29" loading="lazy" /><figcaption>Architettura / 29</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/21.jpg" srcset="images/mobile/21.jpg 900w, images/21.jpg 1366w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica — Unreal Engine, Nr. 21" loading="lazy" /><figcaption>Architettura / 21</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/32.jpg" srcset="images/mobile/32.jpg 900w, images/32.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 32" loading="lazy" /><figcaption>Architettura / 32</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/25.jpg" srcset="images/mobile/25.jpg 900w, images/25.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 25" loading="lazy" /><figcaption>Architettura / 25</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/24.jpg" srcset="images/mobile/24.jpg 900w, images/24.jpg 1772w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 24" loading="lazy" /><figcaption>Architettura / 24</figcaption></figure>
+        <figure data-cat="archviz" data-hover-imgs="images/5.jpg,images/5b.jpg"><img src="images/5.jpg" srcset="images/mobile/5.jpg 900w, images/5.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 5" loading="lazy" /><figcaption>Architettura / 05</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/26.jpg" srcset="images/mobile/26.jpg 900w, images/26.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 26" loading="lazy" /><figcaption>Architettura / 26</figcaption></figure>
+      </div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section class="contact" id="contatti">
+    <div class="wrap">
+      <span class="mono" style="color:#9fb6c3">Contatti</span>
+      <h2 style="margin-top:18px">Un progetto<br>in mente?</h2>
+      <a class="mail" href="mailto:escrevaparajd@gmail.com">escrevaparajd@gmail.com</a>
+      <div class="socials">
+        <a href="https://jdiaz.vercel.app/cv.html" target="_blank" rel="noopener">CV →</a>
+        <a href="https://www.linkedin.com/in/typeforjd" target="_blank" rel="noopener">LinkedIn →</a>
+        <a href="https://www.artstation.com/typeforjd" target="_blank" rel="noopener">ArtStation →</a>
+        <a href="https://www.instagram.com/jdworkviz/" target="_blank" rel="noopener">Instagram →</a>
+      </div>
+      <footer class="f">
+        <span>© 2026 Juscélio Diaz — Architectural Visualization &amp; Realtime</span>
+        <span>Remote · Europa</span>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12, rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Passes de hover sulle immagini con varianti
+  document.querySelectorAll(".grid figure[data-hover-imgs]").forEach((fig) => {
+    const img = fig.querySelector("img");
+    const frames = fig.dataset.hoverImgs.split(",").map((s) => s.trim());
+    const original = img.getAttribute("src");
+    const originalSrcset = img.getAttribute("srcset");
+    let timer = null;
+    let step = 0;
+
+    const badge = document.createElement("span");
+    badge.className = "gal-pass-badge";
+    badge.innerHTML =
+      '<svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z" stroke-linejoin="round"/></svg>' +
+      '<span>Passa il mouse</span>';
+    fig.appendChild(badge);
+
+    fig.addEventListener("mouseenter", () => {
+      if (originalSrcset) img.removeAttribute("srcset");
+      step = 0;
+      timer = setInterval(() => {
+        step = (step + 1) % frames.length;
+        img.setAttribute("src", frames[step]);
+      }, 700);
+    });
+
+    fig.addEventListener("mouseleave", () => {
+      clearInterval(timer);
+      if (originalSrcset) img.setAttribute("srcset", originalSrcset);
+      img.setAttribute("src", original);
+    });
+  });
+</script>
+</body>
+</html>
