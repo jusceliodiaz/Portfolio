@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="it">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Juscélio Diaz — Dalla pianta all'esperienza immersiva</title>
+<title>Juscélio Diaz — Da planta à experiência imersiva</title>
 <meta
   name="description"
-  content="Juscélio Diaz — Architectural Visualization & Realtime. Dalla lettura della pianta alla VR: modellazione, render, post-produzione IA e Unreal Engine per l'architettura del lusso mediterraneo."
+  content="Juscélio Diaz — Architectural Visualization & Realtime. Da leitura da planta à VR: modelagem, render, pós-produção com IA e Unreal Engine para a arquitetura de luxo mediterrânea."
 />
 <meta name="robots" content="noindex, follow" />
 <meta name="theme-color" content="#f4f2ed" />
@@ -89,35 +89,163 @@
   .tl-head h2{font-size:clamp(28px,4.4vw,48px)}
   .tl-head p{color:var(--ink-soft);margin-top:14px}
 
-  .timeline{
-    display:grid;grid-template-columns:repeat(6,1fr);
-    position:relative;
+  /* ---------- Palco do comparador — vídeo e slider ocupam o MESMO box,
+     sobrepostos via position:absolute, para trocar sem nunca empurrar
+     o conteúdo abaixo (a altura vem sempre do stage, nunca dos filhos) ---------- */
+  .tl-compare-stage{
+    position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;
+    border:1px solid var(--line);background:var(--chalk-2);
+    margin-bottom:clamp(40px,6vw,64px);
   }
-  .timeline::before{
-    content:"";position:absolute;left:0;right:0;top:9px;height:1px;background:var(--line);
+  .tl-compare-stage > .tl-compare,
+  .tl-compare-stage > .tl-compare-video{
+    position:absolute;inset:0;width:100%;height:100%;
   }
-  .tl-step{position:relative;padding:0 clamp(10px,1.6vw,18px) 0 0}
-  .tl-step:last-child{padding-right:0}
-  .tl-num{
-    width:18px;height:18px;border-radius:50%;background:var(--chalk);
-    border:1px solid var(--sea);color:var(--sea);
-    display:flex;align-items:center;justify-content:center;
-    font-family:"IBM Plex Mono",monospace;font-size:9px;position:relative;z-index:1;margin-bottom:22px;
-  }
-  .tl-tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--terracotta);margin-bottom:8px;display:block}
-  .tl-body h3{font-size:clamp(15.5px,1.5vw,18px);font-weight:400;font-family:"Jost",sans-serif;margin-bottom:8px;line-height:1.3}
-  .tl-body p{color:var(--ink-soft);font-size:13.5px;line-height:1.55}
-  .tl-tools{margin-top:10px;font-size:10.5px;letter-spacing:.06em;color:var(--ink-faint)}
 
+  .tl-compare{
+    overflow:hidden;cursor:ew-resize;touch-action:none;user-select:none;
+  }
+  .tl-compare.is-hidden{display:none}
+  .tl-compare img{position:absolute;top:0;left:0;height:100%;object-fit:cover;pointer-events:none;display:block}
+  .tl-compare .cs-base{width:100%}
+  .tl-compare .cs-overlay-wrap{position:absolute;top:0;left:0;height:100%;overflow:hidden}
+  .tl-compare .cs-handle{
+    position:absolute;top:0;bottom:0;width:2px;left:50%;transform:translateX(-50%);
+    background:var(--chalk);box-shadow:0 0 0 1px rgba(0,0,0,.15);pointer-events:none;
+  }
+  .tl-compare .cs-handle-grip{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:42px;height:42px;border-radius:50%;background:var(--chalk);
+    display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--ink);
+    box-shadow:0 2px 16px rgba(0,0,0,.28);
+  }
+  .tl-compare .cs-label{
+    position:absolute;bottom:14px;font-family:"IBM Plex Mono",monospace;font-size:10px;
+    letter-spacing:.16em;text-transform:uppercase;color:#fff;
+    text-shadow:0 1px 8px rgba(0,0,0,.6);pointer-events:none;
+  }
+  .tl-compare .cs-label-before{left:16px}
+  .tl-compare .cs-label-after{right:16px}
+
+  /* ---------- Player de vídeo (etapa 05) ---------- */
+  .tl-compare-video{background:var(--ink);overflow:hidden}
+  .tl-compare-video.is-hidden{display:none}
+  .tl-compare-video video{width:100%;height:100%;display:block;object-fit:cover;background:var(--ink)}
+  .tl-compare-video .cs-label{
+    position:absolute;top:14px;left:16px;
+    font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+    color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6);pointer-events:none;
+  }
+
+  /* ---------- Timeline como slider: 3 por vista, cards grandes ---------- */
+  .timeline-wrap{position:relative}
+
+  /* trilho/régua acima dos cards — dá a leitura imediata de "linha do tempo" */
+  .tl-track{
+    position:relative;height:28px;margin:0 6px clamp(30px,3.4vw,44px);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .tl-track-line{position:absolute;left:2px;right:2px;top:50%;height:1px;background:var(--line);transform:translateY(-50%)}
+  .tl-track-fill{
+    position:absolute;left:2px;top:50%;height:1px;background:var(--sea);
+    transform:translateY(-50%);width:0%;transition:width .5s var(--ease);
+  }
+  .tl-track-dot{
+    position:relative;z-index:1;width:9px;height:9px;border-radius:50%;
+    background:var(--chalk);border:1.5px solid var(--line);
+    transition:background .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease);
+  }
+  .tl-track-dot.done{background:var(--sea);border-color:var(--sea)}
+  .tl-track-dot.active{background:var(--terracotta);border-color:var(--terracotta);transform:scale(1.6)}
+
+  .timeline{
+    display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 2 * 26px) / 3);
+    gap:26px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+    -ms-overflow-style:none;scrollbar-width:none;padding:4px 4px 10px;
+  }
+  .timeline::-webkit-scrollbar{display:none}
+
+  .tl-step{
+    all:unset;box-sizing:border-box;display:flex;flex-direction:column;cursor:pointer;
+    scroll-snap-align:start;position:relative;min-height:380px;
+    background:var(--chalk);border:1px solid var(--line);
+    padding:clamp(26px,2.6vw,32px) clamp(24px,2.4vw,30px) clamp(20px,2vw,24px);
+    transition:border-color .35s var(--ease),background .35s var(--ease),
+      box-shadow .35s var(--ease),transform .35s var(--ease);
+  }
+  .tl-step:hover{border-color:var(--ink);transform:translateY(-6px);box-shadow:0 22px 44px rgba(32,32,28,.12)}
+  .tl-step.active{
+    border-color:var(--sea);background:var(--chalk-2);
+    box-shadow:0 22px 48px rgba(31,86,115,.16);
+  }
+  .tl-step:focus-visible{outline:2px solid var(--sea);outline-offset:3px}
+
+  /* numeral grande em contorno — assinatura editorial em vez de badge minúsculo */
+  .tl-num{
+    font-family:"Cormorant Garamond",serif;font-weight:400;font-size:58px;line-height:1;
+    color:transparent;-webkit-text-stroke:1px var(--ink-faint);
+    margin-bottom:6px;transition:-webkit-text-stroke-color .3s var(--ease),color .3s var(--ease);
+  }
+  .tl-step:hover .tl-num{-webkit-text-stroke-color:var(--terracotta)}
+  .tl-step.active .tl-num{color:var(--sea);-webkit-text-stroke-color:var(--sea)}
+
+  .tl-tag{
+    display:inline-flex;align-self:flex-start;
+    border:1px solid var(--terracotta);color:var(--terracotta);border-radius:100px;
+    padding:5px 14px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    margin-bottom:16px;transition:background .3s var(--ease),color .3s var(--ease);
+  }
+  .tl-step.active .tl-tag{background:var(--terracotta);color:var(--chalk)}
+
+  .tl-body{flex:1}
+  .tl-body h3{font-size:clamp(20px,2.1vw,25px);font-weight:400;font-family:"Cormorant Garamond",serif;margin-bottom:10px;line-height:1.15;color:var(--ink)}
+  .tl-body p{color:var(--ink-soft);font-size:14.5px;line-height:1.62}
+  .tl-tools{
+    margin-top:14px;display:inline-block;
+    font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.05em;color:var(--ink-soft);
+    border:1px solid var(--line);border-radius:3px;padding:5px 10px;
+  }
+
+  .tl-footer{
+    margin-top:20px;padding-top:16px;border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+  }
+  .tl-cta-label{
+    font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);transition:color .3s var(--ease);
+  }
+  .tl-step:hover .tl-cta-label,.tl-step.active .tl-cta-label{color:var(--ink)}
+  .tl-cta-icon{
+    flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ink);
+    transition:background .3s var(--ease),border-color .3s var(--ease),color .3s var(--ease),transform .3s var(--ease);
+  }
+  .tl-step:hover .tl-cta-icon{background:var(--terracotta);border-color:var(--terracotta);color:var(--chalk);transform:rotate(45deg)}
+  .tl-step.active .tl-cta-icon{background:var(--sea);border-color:var(--sea);color:var(--chalk);transform:rotate(45deg)}
+
+  /* setas de navegação do slider */
+  .tl-nav{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+    width:46px;height:46px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--chalk);border:1px solid var(--ink);color:var(--ink);
+    cursor:pointer;font-size:17px;box-shadow:0 6px 20px rgba(0,0,0,.12);
+    transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease),opacity .25s var(--ease);
+  }
+  .tl-nav:hover{background:var(--sea);border-color:var(--sea);color:var(--chalk)}
+  .tl-nav.prev{left:-23px}
+  .tl-nav.next{right:-23px}
+  .tl-nav.is-disabled{opacity:.3;pointer-events:none}
+
+  @media(max-width:1100px){
+    .timeline{grid-auto-columns:calc((100% - 24px) / 2)}
+  }
   @media(max-width:900px){
-    .timeline{
-      grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;
-      gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;
-      -ms-overflow-style:none;scrollbar-width:none;
-    }
-    .timeline::-webkit-scrollbar{display:none}
-    .timeline::before{left:0;right:0;width:auto}
-    .tl-step{scroll-snap-align:start;padding-right:0}
+    .tl-nav{display:none}
+  }
+  @media(max-width:700px){
+    .timeline{grid-auto-columns:82%;gap:20px}
+    .tl-track{display:none}
   }
 
   /* ---------- Award strip ---------- */
@@ -207,9 +335,9 @@
   <div class="wrap nav">
     <a class="brand" href="#top"><img src="images/logo.png" alt="Juscélio Diaz" /></a>
     <nav class="nav-links">
-      <a href="#percorso">Percorso</a>
-      <a href="#galleria">Galleria</a>
-      <a href="#contatti">Contatti</a>
+      <a href="#percorso">Percurso</a>
+      <a href="#galleria">Galeria</a>
+      <a href="#contatti">Contato</a>
     </nav>
   </div>
 </header>
@@ -220,66 +348,135 @@
   <section class="timeline-sec" id="percorso">
     <div class="wrap">
       <div class="tl-head reveal">
-        <span class="mono">Il mio percorso</span>
-        <h2>Come lavoro, passo per passo</h2>
-        <p>Sei fasi, dalla pianta architettonica alla realtà virtuale — pensate per portare
-        qualità cinematografica senza tempi di produzione infiniti.</p>
+        <span class="mono">Meu percurso</span>
+        <h2>Como eu trabalho, passo a passo</h2>
+        <p>Seis fases, da planta arquitetônica à realidade virtual — pensadas para trazer
+        qualidade cinematográfica sem prazos de produção intermináveis. Clique em cada etapa
+        para comparar o passo com o resultado final.</p>
       </div>
 
-      <div class="timeline reveal">
-        <div class="tl-step">
-          <div class="tl-num">01</div>
-          <div class="tl-body">
-            <span class="tl-tag">Progetto</span>
-            <h3>Lettura della pianta</h3>
-            <p>Proporzioni, percorsi, luce naturale — prima di aprire qualsiasi software.</p>
+      <!--
+        SLIDER COMPARADOR — arraste para revelar "antes" (processo) x "depois" (final).
+        A imagem final (images/italy_1.jpg) é sempre a mesma em todas as etapas;
+        só a imagem de "processo" muda ao clicar em cada botão da timeline (data-before).
+        Substitua os caminhos images/italy_*.jpg de "before" pelas fotos reais de cada etapa quando tiver.
+        A etapa 05 (Vídeo) troca esse comparador por um player de vídeo:
+        images/italy_15.webm (data-video no botão do card 05 e <source> abaixo).
+      -->
+      <div class="tl-compare-stage">
+        <div class="tl-compare reveal" id="tlCompare">
+          <img class="cs-base" id="csAfter" src="images/italy_1.jpg" alt="Final" />
+          <div class="cs-overlay-wrap" id="csOverlayWrap">
+            <img class="cs-overlay" id="csBefore" src="images/italy_1b.jpg" alt="Processo — etapa atual" />
           </div>
-        </div>
-        <div class="tl-step">
-          <div class="tl-num">02</div>
-          <div class="tl-body">
-            <span class="tl-tag">Render</span>
-            <h3>Modellazione &amp; render</h3>
-            <p>Geometria, materiali e luce, renderizzati in 3ds Max + Corona.</p>
-            <div class="tl-tools">3ds Max · Corona</div>
+          <div class="cs-handle" id="csHandle">
+            <span class="cs-handle-grip">↔</span>
           </div>
+          <span class="cs-label cs-label-before">Processo</span>
+          <span class="cs-label cs-label-after">Final</span>
         </div>
-        <div class="tl-step">
-          <div class="tl-num">03</div>
-          <div class="tl-body">
-            <span class="tl-tag">Post-produzione</span>
-            <h3>Finiture con IA</h3>
-            <p>Colore, dettaglio e finiture rifinite fino al risultato editoriale.</p>
-            <div class="tl-tools">Nano Banana 2</div>
-          </div>
+        <div class="tl-compare-video is-hidden" id="tlCompareVideo">
+          <video id="tlVideo" controls playsinline preload="auto">
+            <source src="images/italy_15.webm" type="video/webm" />
+          </video>
+          <span class="cs-label cs-label-before">Vídeo IA</span>
         </div>
-        <div class="tl-step">
-          <div class="tl-num">04</div>
-          <div class="tl-body">
-            <span class="tl-tag">Versioning</span>
-            <h3>Varianti senza rirenderizzare</h3>
-            <p>Luce, stagione o materiali diversi — più opzioni, meno ore di render.</p>
-            <div class="tl-tools">ComfyUI</div>
-          </div>
+      </div>
+
+      <div class="timeline-wrap">
+        <div class="tl-track" aria-hidden="true">
+          <span class="tl-track-line"></span>
+          <span class="tl-track-fill" id="tlTrackFill"></span>
+          <span class="tl-track-dot active"></span>
+          <span class="tl-track-dot"></span>
+          <span class="tl-track-dot"></span>
+          <span class="tl-track-dot"></span>
+          <span class="tl-track-dot"></span>
+          <span class="tl-track-dot"></span>
         </div>
-        <div class="tl-step">
-          <div class="tl-num">05</div>
-          <div class="tl-body">
-            <span class="tl-tag">Video</span>
-            <h3>Video IA, tempi brevi</h3>
-            <p>Still trasformati in clip cinematiche in ore, non giorni.</p>
-            <div class="tl-tools">Kling</div>
-          </div>
+
+        <div class="timeline reveal" id="timeline">
+          <button type="button" class="tl-step active" data-before="images/italy_1b.jpg" data-after="images/italy_1.jpg">
+            <div class="tl-num">01</div>
+            <div class="tl-body">
+              <span class="tl-tag">Projeto</span>
+              <h3>Planta &amp; modelagem</h3>
+              <p>Leio a planta arquitetônica e já modelo a geometria — proporções, fluxos e volumes definidos antes de pensar em luz.</p>
+              <div class="tl-tools">3ds Max</div>
+            </div>
+            <div class="tl-footer">
+              <span class="tl-cta-label">Comparar imagem</span>
+              <span class="tl-cta-icon">→</span>
+            </div>
+          </button>
+          <button type="button" class="tl-step" data-before="images/italy_11.jpg" data-after="images/italy_1.jpg">
+            <div class="tl-num">02</div>
+            <div class="tl-body">
+              <span class="tl-tag">Render</span>
+              <h3>Materiais &amp; luz</h3>
+              <p>Com a geometria pronta, ajusto materiais e iluminação e renderizo a cena.</p>
+              <div class="tl-tools">3ds Max</div>
+            </div>
+            <div class="tl-footer">
+              <span class="tl-cta-label">Comparar imagem</span>
+              <span class="tl-cta-icon">→</span>
+            </div>
+          </button>
+          <button type="button" class="tl-step" data-before="images/italy_12.jpg" data-after="images/italy_1.jpg">
+            <div class="tl-num">03</div>
+            <div class="tl-body">
+              <span class="tl-tag">Beleza</span>
+              <h3>Render final</h3>
+              <p>Ajusto volume, iluminação e composição até a cena alcançar a beleza do resultado final.</p>
+              <div class="tl-tools">Corona Render</div>
+            </div>
+            <div class="tl-footer">
+              <span class="tl-cta-label">Comparar imagem</span>
+              <span class="tl-cta-icon">→</span>
+            </div>
+          </button>
+          <button type="button" class="tl-step" data-before="images/italy_13.jpg" data-after="images/italy_1.jpg">
+            <div class="tl-num">04</div>
+            <div class="tl-body">
+              <span class="tl-tag">IA Generativa</span>
+              <h3>Composição &amp; versões</h3>
+              <p>Uso IA generativa para explorar composições e gerar variações de luz, estação e materiais — sem rerenderizar.</p>
+              <div class="tl-tools">ComfyUI</div>
+            </div>
+            <div class="tl-footer">
+              <span class="tl-cta-label">Comparar imagem</span>
+              <span class="tl-cta-icon">→</span>
+            </div>
+          </button>
+          <button type="button" class="tl-step" data-before="images/italy_9.jpg" data-after="images/italy_1.jpg" data-video="images/italy_15.webm">
+            <div class="tl-num">05</div>
+            <div class="tl-body">
+              <span class="tl-tag">Vídeo</span>
+              <h3>Vídeo com IA, tempo curto</h3>
+              <p>Stills transformados em clipes cinematográficos em minutos, não horas ou dias.</p>
+              <div class="tl-tools">ComfyUI</div>
+            </div>
+            <div class="tl-footer">
+              <span class="tl-cta-label">Ver vídeo</span>
+              <span class="tl-cta-icon">▶</span>
+            </div>
+          </button>
+          <button type="button" class="tl-step" data-before="images/italy_14.jpg" data-after="images/italy_1.jpg">
+            <div class="tl-num">06</div>
+            <div class="tl-body">
+              <span class="tl-tag">Realidade virtual</span>
+              <h3>Arquivo pronto para VR</h3>
+              <p>Otimizado e levado para um motor realtime — vivido também com um óculos de VR.</p>
+              <div class="tl-tools">Realtime · VR</div>
+            </div>
+            <div class="tl-footer">
+              <span class="tl-cta-label">Comparar imagem</span>
+              <span class="tl-cta-icon">→</span>
+            </div>
+          </button>
         </div>
-        <div class="tl-step">
-          <div class="tl-num">06</div>
-          <div class="tl-body">
-            <span class="tl-tag">Realtà virtuale</span>
-            <h3>File pronto per VR</h3>
-            <p>Ottimizzato e portato in Unreal Engine — vissuto anche con un visore.</p>
-            <div class="tl-tools">Unreal Engine · VR</div>
-          </div>
-        </div>
+        <button type="button" class="tl-nav prev" id="tlPrev" aria-label="Etapas anteriores">←</button>
+        <button type="button" class="tl-nav next" id="tlNext" aria-label="Próximas etapas">→</button>
       </div>
     </div>
   </section>
@@ -287,40 +484,40 @@
   <!-- GALLERIA -->
   <section class="gallery" id="galleria">
       <div class="grid reveal">
-        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_1.jpg,images/italy_1b.jpg,images/italy_1c.jpg"><img src="images/italy_1.jpg" srcset="images/mobile/italy_1.jpg 900w, images/italy_1.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 1" loading="lazy" /><figcaption>Mediterraneo / 01</figcaption></figure>
-        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_2.jpg,images/italy_2b.jpg,images/italy_2c.jpg"><img src="images/italy_2.jpg" srcset="images/mobile/italy_2.jpg 900w, images/italy_2.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 2" loading="lazy" /><figcaption>Mediterraneo / 02</figcaption></figure>
-        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_3.jpg,images/italy_3b.jpg,images/italy_3c.jpg"><img src="images/italy_3.jpg" srcset="images/mobile/italy_3.jpg 900w, images/italy_3.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 3" loading="lazy" /><figcaption>Mediterraneo / 03</figcaption></figure>
-        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_4.jpg,images/italy_4b.jpg,images/italy_4c.jpg"><img src="images/italy_4.jpg" srcset="images/mobile/italy_4.jpg 900w, images/italy_4.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 4" loading="lazy" /><figcaption>Mediterraneo / 04</figcaption></figure>
-        <figure data-cat="mediterraneo"><img src="images/italy_5.jpg" srcset="images/mobile/italy_5.jpg 900w, images/italy_5.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 5" loading="lazy" /><figcaption>Mediterraneo / 05</figcaption></figure>
-        <figure data-cat="mediterraneo"><img src="images/italy_6.jpg" srcset="images/mobile/italy_6.jpg 900w, images/italy_6.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 6" loading="lazy" /><figcaption>Mediterraneo / 06</figcaption></figure>
-        <figure data-cat="mediterraneo"><img src="images/italy_8.jpg" srcset="images/mobile/italy_8.jpg 900w, images/italy_8.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 8" loading="lazy" /><figcaption>Mediterraneo / 08</figcaption></figure>
-        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_9.jpg,images/italy_9b.jpg,images/italy_9c.jpg"><img src="images/italy_9.jpg" srcset="images/mobile/italy_9.jpg 900w, images/italy_9.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 9" loading="lazy" /><figcaption>Mediterraneo / 09</figcaption></figure>
-        <figure data-cat="mediterraneo"><img src="images/italy_10.jpg" srcset="images/mobile/italy_10.jpg 900w, images/italy_10.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 10" loading="lazy" /><figcaption>Mediterraneo / 10</figcaption></figure>
+        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_1.jpg,images/italy_1b.jpg,images/italy_1c.jpg"><img src="images/italy_1.jpg" srcset="images/mobile/italy_1.jpg 900w, images/italy_1.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interior mediterrâneo, Nr. 1" loading="lazy" /><figcaption>Mediterrâneo / 01</figcaption></figure>
+        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_2.jpg,images/italy_2b.jpg,images/italy_2c.jpg"><img src="images/italy_2.jpg" srcset="images/mobile/italy_2.jpg 900w, images/italy_2.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interior mediterrâneo, Nr. 2" loading="lazy" /><figcaption>Mediterrâneo / 02</figcaption></figure>
+        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_3.jpg,images/italy_3b.jpg,images/italy_3c.jpg"><img src="images/italy_3.jpg" srcset="images/mobile/italy_3.jpg 900w, images/italy_3.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interior mediterrâneo, Nr. 3" loading="lazy" /><figcaption>Mediterrâneo / 03</figcaption></figure>
+        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_4.jpg,images/italy_4b.jpg,images/italy_4c.jpg"><img src="images/italy_4.jpg" srcset="images/mobile/italy_4.jpg 900w, images/italy_4.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interior mediterrâneo, Nr. 4" loading="lazy" /><figcaption>Mediterrâneo / 04</figcaption></figure>
+        <figure data-cat="mediterraneo"><img src="images/italy_5.jpg" srcset="images/mobile/italy_5.jpg 900w, images/italy_5.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interior mediterrâneo, Nr. 5" loading="lazy" /><figcaption>Mediterrâneo / 05</figcaption></figure>
+        <figure data-cat="mediterraneo"><img src="images/italy_6.jpg" srcset="images/mobile/italy_6.jpg 900w, images/italy_6.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interior mediterrâneo, Nr. 6" loading="lazy" /><figcaption>Mediterrâneo / 06</figcaption></figure>
+        <figure data-cat="mediterraneo"><img src="images/italy_8.jpg" srcset="images/mobile/italy_8.jpg 900w, images/italy_8.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interior mediterrâneo, Nr. 8" loading="lazy" /><figcaption>Mediterrâneo / 08</figcaption></figure>
+        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_9.jpg,images/italy_9b.jpg,images/italy_9c.jpg"><img src="images/italy_9.jpg" srcset="images/mobile/italy_9.jpg 900w, images/italy_9.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interior mediterrâneo, Nr. 9" loading="lazy" /><figcaption>Mediterrâneo / 09</figcaption></figure>
+        <figure data-cat="mediterraneo"><img src="images/italy_10.jpg" srcset="images/mobile/italy_10.jpg 900w, images/italy_10.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interior mediterrâneo, Nr. 10" loading="lazy" /><figcaption>Mediterrâneo / 10</figcaption></figure>
 
-        <figure data-cat="archviz"><img src="images/22.jpg" srcset="images/mobile/22.jpg 900w, images/22.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 22" loading="lazy" /><figcaption>Architettura / 22</figcaption></figure>
-        <figure data-cat="archviz"><img src="images/20.jpg" srcset="images/mobile/20.jpg 900w, images/20.jpg 1366w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica — Unreal Engine, Nr. 20" loading="lazy" /><figcaption>Architettura / 20</figcaption></figure>
-        <figure data-cat="archviz"><img src="images/29.jpg" srcset="images/mobile/29.jpg 900w, images/29.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 29" loading="lazy" /><figcaption>Architettura / 29</figcaption></figure>
-        <figure data-cat="archviz"><img src="images/21.jpg" srcset="images/mobile/21.jpg 900w, images/21.jpg 1366w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica — Unreal Engine, Nr. 21" loading="lazy" /><figcaption>Architettura / 21</figcaption></figure>
-        <figure data-cat="archviz"><img src="images/32.jpg" srcset="images/mobile/32.jpg 900w, images/32.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 32" loading="lazy" /><figcaption>Architettura / 32</figcaption></figure>
-        <figure data-cat="archviz"><img src="images/25.jpg" srcset="images/mobile/25.jpg 900w, images/25.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 25" loading="lazy" /><figcaption>Architettura / 25</figcaption></figure>
-        <figure data-cat="archviz"><img src="images/24.jpg" srcset="images/mobile/24.jpg 900w, images/24.jpg 1772w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 24" loading="lazy" /><figcaption>Architettura / 24</figcaption></figure>
-        <figure data-cat="archviz" data-hover-imgs="images/5.jpg,images/5b.jpg"><img src="images/5.jpg" srcset="images/mobile/5.jpg 900w, images/5.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 5" loading="lazy" /><figcaption>Architettura / 05</figcaption></figure>
-        <figure data-cat="archviz"><img src="images/26.jpg" srcset="images/mobile/26.jpg 900w, images/26.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 26" loading="lazy" /><figcaption>Architettura / 26</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/22.jpg" srcset="images/mobile/22.jpg 900w, images/22.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualização arquitetônica, Nr. 22" loading="lazy" /><figcaption>Arquitetura / 22</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/20.jpg" srcset="images/mobile/20.jpg 900w, images/20.jpg 1366w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualização arquitetônica — Unreal Engine, Nr. 20" loading="lazy" /><figcaption>Arquitetura / 20</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/29.jpg" srcset="images/mobile/29.jpg 900w, images/29.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualização arquitetônica, Nr. 29" loading="lazy" /><figcaption>Arquitetura / 29</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/21.jpg" srcset="images/mobile/21.jpg 900w, images/21.jpg 1366w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualização arquitetônica — Unreal Engine, Nr. 21" loading="lazy" /><figcaption>Arquitetura / 21</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/32.jpg" srcset="images/mobile/32.jpg 900w, images/32.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualização arquitetônica, Nr. 32" loading="lazy" /><figcaption>Arquitetura / 32</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/25.jpg" srcset="images/mobile/25.jpg 900w, images/25.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualização arquitetônica, Nr. 25" loading="lazy" /><figcaption>Arquitetura / 25</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/24.jpg" srcset="images/mobile/24.jpg 900w, images/24.jpg 1772w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualização arquitetônica, Nr. 24" loading="lazy" /><figcaption>Arquitetura / 24</figcaption></figure>
+        <figure data-cat="archviz" data-hover-imgs="images/5.jpg,images/5b.jpg"><img src="images/5.jpg" srcset="images/mobile/5.jpg 900w, images/5.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualização arquitetônica, Nr. 5" loading="lazy" /><figcaption>Arquitetura / 05</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/26.jpg" srcset="images/mobile/26.jpg 900w, images/26.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualização arquitetônica, Nr. 26" loading="lazy" /><figcaption>Arquitetura / 26</figcaption></figure>
       </div>
   </section>
 
   <!-- CONTATTI -->
   <section class="contact" id="contatti">
     <div class="wrap contact-in">
-      <span class="mono">Contatto — Parliamone</span>
+      <span class="mono">Contato — Vamos conversar</span>
       <h2>
-        Hai un progetto in mente?<br />
-        <a href="mailto:escrevaparajd@gmail.com">Scrivimi.</a>
+        Tem um projeto em mente?<br />
+        <a href="mailto:escrevaparajd@gmail.com">Escreva-me.</a>
       </h2>
       <p>
-        Aperto a collaborazioni in realtime, visualizzazione e sviluppo
-        front-end — con team internazionali, da remoto e affidabile.
-        Costruiamo insieme qualcosa di straordinario.
+        Aberto a colaborações em realtime, visualização e desenvolvimento
+        front-end — com equipes internacionais, remoto e confiável.
+        Vamos construir algo extraordinário juntos.
       </p>
       <div class="links">
         <a href="mailto:escrevaparajd@gmail.com">
@@ -328,8 +525,8 @@
           <small>escrevaparajd@gmail.com</small>
         </a>
         <a href="https://jdiaz.vercel.app/cv.html" target="_blank" rel="noopener">
-          <span>Curriculum</span>
-          <small>Visualizza online ↗</small>
+          <span>Currículo</span>
+          <small>Ver online ↗</small>
         </a>
         <a href="https://www.linkedin.com/in/typeforjd" target="_blank" rel="noopener">
           <span>LinkedIn</span><small>/typeforjd ↗</small>
@@ -350,7 +547,7 @@
   <div class="foot-in">
     <span>© 2026 Juscélio Diaz</span>
     <span>Architectural Visualization &amp; Realtime</span>
-    <span>Realizzato con precisione</span>
+    <span>Feito com precisão</span>
   </div>
 </footer>
 
@@ -360,6 +557,131 @@
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:.12, rootMargin:"0px 0px -8% 0px"});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Slider comparador da timeline (antes / depois, arraste com mouse ou toque)
+  // Base = imagem final (sempre visível, largura total). Overlay = imagem de
+  // processo, recortada da esquerda até o handle — por isso "Processo" fica
+  // à esquerda e "Final" à direita, batendo com as legendas.
+  (function () {
+    const compare = document.getElementById("tlCompare");
+    if (!compare) return;
+    const before = document.getElementById("csBefore");
+    const overlayWrap = document.getElementById("csOverlayWrap");
+    const after = document.getElementById("csAfter");
+    const handle = document.getElementById("csHandle");
+    let dragging = false;
+
+    function setPositionPx(px) {
+      const rect = compare.getBoundingClientRect();
+      const w = rect.width;
+      px = Math.max(0, Math.min(w, px));
+      overlayWrap.style.width = px + "px";
+      before.style.width = w + "px";
+      handle.style.left = px + "px";
+    }
+    function setPercent(pct) {
+      setPositionPx(compare.getBoundingClientRect().width * pct);
+    }
+    function moveFromClientX(clientX) {
+      const rect = compare.getBoundingClientRect();
+      setPositionPx(clientX - rect.left);
+    }
+
+    compare.addEventListener("pointerdown", (e) => {
+      dragging = true;
+      compare.setPointerCapture(e.pointerId);
+      moveFromClientX(e.clientX);
+    });
+    compare.addEventListener("pointermove", (e) => {
+      if (dragging) moveFromClientX(e.clientX);
+    });
+    compare.addEventListener("pointerup", () => (dragging = false));
+    compare.addEventListener("pointercancel", () => (dragging = false));
+    window.addEventListener("resize", () => setPercent(0.5));
+
+    setPercent(0.5);
+
+    // Cada botão da timeline carrega seu próprio par de imagens no slider
+    const steps = document.querySelectorAll(".tl-step");
+    const trackDots = document.querySelectorAll(".tl-track-dot");
+    const trackFill = document.getElementById("tlTrackFill");
+
+    function updateTrack(activeIndex) {
+      trackDots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === activeIndex);
+        dot.classList.toggle("done", i < activeIndex);
+      });
+      if (trackFill) {
+        const pct = steps.length > 1 ? (activeIndex / (steps.length - 1)) * 100 : 0;
+        trackFill.style.width = pct + "%";
+      }
+    }
+
+    // Etapa 05 (Vídeo) troca o comparador de imagens por um player de vídeo
+    const compareStage = document.querySelector(".tl-compare-stage");
+    const videoBox = document.getElementById("tlCompareVideo");
+    const video = document.getElementById("tlVideo");
+
+    function showVideo(src) {
+      compare.classList.add("is-hidden");
+      videoBox.classList.remove("is-hidden");
+      if (video.querySelector("source").getAttribute("src") !== src) {
+        video.querySelector("source").setAttribute("src", src);
+        video.load();
+      }
+    }
+    function showCompare() {
+      video.pause();
+      videoBox.classList.add("is-hidden");
+      compare.classList.remove("is-hidden");
+    }
+
+    steps.forEach((step, index) => {
+      step.addEventListener("click", () => {
+        steps.forEach((s) => s.classList.remove("active"));
+        step.classList.add("active");
+        updateTrack(index);
+
+        if (step.dataset.video) {
+          showVideo(step.dataset.video);
+        } else {
+          showCompare();
+          before.src = step.dataset.before;
+          after.src = step.dataset.after;
+          setPercent(0.5);
+        }
+        compareStage.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+    });
+
+    updateTrack(0);
+  })();
+
+  // Timeline como slider: setas avançam/retrocedem uma "página" de cards
+  (function () {
+    const track = document.getElementById("timeline");
+    const prevBtn = document.getElementById("tlPrev");
+    const nextBtn = document.getElementById("tlNext");
+    if (!track || !prevBtn || !nextBtn) return;
+
+    function step() {
+      const card = track.querySelector(".tl-step");
+      if (!card) return track.clientWidth;
+      const gap = parseFloat(getComputedStyle(track).columnGap || 0);
+      return card.getBoundingClientRect().width + gap;
+    }
+    function updateNavState() {
+      const max = track.scrollWidth - track.clientWidth - 1;
+      prevBtn.classList.toggle("is-disabled", track.scrollLeft <= 0);
+      nextBtn.classList.toggle("is-disabled", track.scrollLeft >= max);
+    }
+
+    prevBtn.addEventListener("click", () => track.scrollBy({ left: -step(), behavior: "smooth" }));
+    nextBtn.addEventListener("click", () => track.scrollBy({ left: step(), behavior: "smooth" }));
+    track.addEventListener("scroll", updateNavState, { passive: true });
+    window.addEventListener("resize", updateNavState);
+    updateNavState();
+  })();
 
   // Passes de hover sulle immagini con varianti
   document.querySelectorAll(".grid figure[data-hover-imgs]").forEach((fig) => {
@@ -374,7 +696,7 @@
     badge.className = "gal-pass-badge";
     badge.innerHTML =
       '<svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z" stroke-linejoin="round"/></svg>' +
-      '<span>Passa il mouse</span>';
+      '<span>Passe o mouse</span>';
     fig.appendChild(badge);
 
     fig.addEventListener("mouseenter", () => {
