@@ -209,14 +209,14 @@
   .tl-step{
     all:unset;box-sizing:border-box;display:flex;flex-direction:column;cursor:pointer;
     scroll-snap-align:start;position:relative;min-height:380px;
-    background:var(--chalk);border:1px solid var(--line-soft);border-radius:var(--r-md);
+    background:var(--chalk);border:none;border-radius:var(--r-md);
     box-shadow:none;
     padding:clamp(26px,2.6vw,32px) clamp(24px,2.4vw,30px) clamp(20px,2vw,24px);
-    transition:border-color .35s var(--ease),background .35s var(--ease),transform .35s var(--ease);
+    transition:background .35s var(--ease),transform .35s var(--ease);
   }
-  .tl-step:hover{border-color:var(--terracotta);transform:translateY(-6px);box-shadow:none}
+  .tl-step:hover{background:var(--chalk-2);transform:translateY(-6px);box-shadow:none}
   .tl-step.active{
-    border-color:var(--sea);background:var(--chalk-2);
+    background:var(--chalk-2);
     box-shadow:none;
   }
   .tl-step:focus-visible{outline:2px solid var(--sea);outline-offset:3px}
@@ -224,11 +224,11 @@
   /* numero grande in contorno — firma editoriale al posto del badge minuscolo */
   .tl-num{
     font-family:"Cormorant Garamond",serif;font-weight:400;font-size:58px;line-height:1;
-    color:transparent;-webkit-text-stroke:1px var(--ink-faint);
-    margin-bottom:6px;transition:-webkit-text-stroke-color .3s var(--ease),color .3s var(--ease);
+    color:var(--ink-faint);
+    margin-bottom:6px;transition:color .3s var(--ease);
   }
-  .tl-step:hover .tl-num{-webkit-text-stroke-color:var(--terracotta)}
-  .tl-step.active .tl-num{color:var(--sea);-webkit-text-stroke-color:var(--sea)}
+  .tl-step:hover .tl-num{color:var(--terracotta)}
+  .tl-step.active .tl-num{color:var(--sea)}
 
   .tl-tag{
     display:inline-flex;align-self:flex-start;
