@@ -742,7 +742,11 @@
     const ctx = canvas.getContext("2d", { alpha: false });
 
     const FRAME_COUNT = 72;
-    const framePath = (i) => `images/seq/topHero_${String(i).padStart(2, "0")}.jpg`;
+    // Telas pequenas usam a pasta mobile (frames menores/mais leves) para
+    // não baixar as versões pesadas de desktop em conexões de celular.
+    const IS_MOBILE = window.matchMedia("(max-width: 760px)").matches;
+    const SEQ_DIR = IS_MOBILE ? "images/seq/mobile/" : "images/seq/";
+    const framePath = (i) => `${SEQ_DIR}topHero_${String(i).padStart(2, "0")}.jpg`;
     const images = new Array(FRAME_COUNT);
     let currentIndex = -1;
 
