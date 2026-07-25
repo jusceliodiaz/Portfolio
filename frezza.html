@@ -646,9 +646,6 @@
         <a href="https://www.linkedin.com/in/typeforjd" target="_blank" rel="noopener">
           <span>LinkedIn</span><small>/typeforjd ↗</small>
         </a>
-        <a href="https://www.artstation.com/typeforjd" target="_blank" rel="noopener">
-          <span>ArtStation</span><small>/typeforjd ↗</small>
-        </a>
         <a href="https://www.instagram.com/jdworkviz/" target="_blank" rel="noopener">
           <span>Instagram</span><small>@jdworkviz ↗</small>
         </a>
@@ -750,21 +747,44 @@
       }
     }
 
+    let firstFramePainted = false;
+    function showFirstFrame() {
+      if (firstFramePainted) return;
+      const img = images[0];
+      if (!img || !img.complete || !img.naturalWidth) return;
+      firstFramePainted = true;
+      resizeCanvas();
+      drawCover(img);
+    }
+
     resizeCanvas();
     window.addEventListener("resize", () => {
       resizeCanvas();
       if (currentIndex >= 0 && images[currentIndex]) drawCover(images[currentIndex]);
+      else showFirstFrame();
     });
     window.addEventListener("scroll", updateFromScroll, { passive: true });
+    // iOS restaura a página do bfcache (gesto de "voltar") com o canvas em
+    // branco — força um redesenho assim que a página reaparece.
+    window.addEventListener("pageshow", () => {
+      resizeCanvas();
+      if (currentIndex >= 0 && images[currentIndex]) drawCover(images[currentIndex]);
+      else showFirstFrame();
+    });
 
-    // Carrega o frame 0 primeiro (exibido assim que pronto), depois o resto
-    // da sequência em segundo plano — o scrub funciona mesmo enquanto carrega.
+    // Carrega o frame 0 primeiro. Usa decode() (mais confiável que onload no
+    // Safari/iOS pra garantir que a imagem já está pronta pra ser desenhada
+    // no canvas — sem isso a tela fica preta até o primeiro scroll) com
+    // onload como reforço. O resto da sequência carrega em segundo plano.
     for (let i = 0; i < FRAME_COUNT; i++) {
       const img = new Image();
       img.decoding = "async";
       img.src = framePath(i);
       images[i] = img;
-      if (i === 0) img.onload = () => renderFrame(0);
+      if (i === 0) {
+        img.addEventListener("load", showFirstFrame);
+        if (img.decode) img.decode().then(showFirstFrame).catch(showFirstFrame);
+      }
     }
   })();
 
