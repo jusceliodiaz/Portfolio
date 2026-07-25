@@ -43,6 +43,9 @@
     --shadow-sm:0 2px 10px rgba(32,32,28,.05);
     --shadow-md:0 14px 34px rgba(32,32,28,.09);
     --shadow-lg:0 28px 64px rgba(32,32,28,.14);
+    /* glassmorphism (rif. FirstPerson/styles.css) */
+    --warm:#c8a96e;
+    --glass-shadow:0 0 0 .5px rgba(255,255,255,.5) inset, 0 20px 60px rgba(0,0,0,.25);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -66,18 +69,52 @@
   .mono{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
   .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,5vw,64px)}
 
-  /* ---------- Header ---------- */
-  header{position:sticky;top:0;z-index:100;backdrop-filter:blur(8px);
-    background:color-mix(in srgb,var(--chalk) 82%,transparent);
-    border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
-  .brand{display:flex;align-items:center}
-  .brand img{width:auto;height:45px;object-fit:contain}
-  .nav-links{display:flex;gap:30px;align-items:center}
-  .nav-links a{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+  /* ---------- Hero de sequência (scroll-scrub estilo Apple) ----------
+     A seção tem altura alta (350vh) para dar "distância" de scroll; o
+     canvas fica sticky preenchendo a viewport inteira enquanto o scroll
+     dentro da seção avança os frames de images/seq/topHero_00..71.jpg. ---------- */
+  .seq-hero{position:relative;height:200vh;background:#0d0d0b}
+  .seq-hero-pin{position:sticky;top:0;left:0;height:100svh;overflow:hidden;background:#0d0d0b}
+  .seq-hero-pin canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .seq-hero-fade{
+    position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(to top,rgba(5,5,3,.6) 0%,rgba(5,5,3,0) 32%);
+  }
+  .seq-hero-cue{
+    position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:2;
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    color:rgba(255,255,255,.72);font-family:"IBM Plex Mono",monospace;
+    font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    opacity:1;transition:opacity .4s ease;pointer-events:none;
+  }
+  .seq-hero-cue.hide{opacity:0}
+  .seq-hero-cue-line{width:1px;height:34px;background:linear-gradient(to bottom,rgba(255,255,255,.8),transparent);
+    animation:seqCuePulse 1.6s ease-in-out infinite}
+  @keyframes seqCuePulse{0%,100%{opacity:.25}50%{opacity:1}}
+  @media(prefers-reduced-motion:reduce){.seq-hero-cue-line{animation:none}}
+
+  /* ---------- Header — pílula flutuante em vidro, centralizada, sobre o hero ---------- */
+  header{
+    position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:100;
+    width:auto;max-width:calc(100% - 32px);
+    background:rgba(20,20,18,.4);
+    backdrop-filter:blur(20px) saturate(1.7);-webkit-backdrop-filter:blur(20px) saturate(1.7);
+    border:1px solid rgba(255,255,255,.18);border-radius:999px;
+    box-shadow:var(--glass-shadow);
+  }
+  header .nav{display:flex;align-items:center;justify-content:center;gap:32px;height:52px;padding:0 26px}
+  .brand{
+    display:flex;align-items:center;font-family:"Cormorant Garamond",serif;
+    font-size:16px;font-weight:400;color:#fdfcf9;white-space:nowrap;
+  }
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.75);
     transition:color .3s var(--ease);position:relative}
-  .nav-links a:hover{color:var(--ink)}
-  @media(max-width:760px){.nav-links{display:none}}
+  .nav-links a:hover{color:#fff}
+  @media(max-width:760px){
+    .nav-links{display:none}
+    .brand{font-size:13px;max-width:60vw;overflow:hidden;text-overflow:ellipsis}
+  }
 
   /* ---------- Hero ---------- */
   .hero{padding:clamp(56px,10vw,130px) 0 clamp(40px,6vw,70px)}
@@ -91,11 +128,6 @@
   .lede b{color:var(--ink);font-weight:400}
 
   /* ---------- Timeline (orizzontale, minimal) ---------- */
-  .timeline-sec{padding-top:clamp(56px,8vw,96px)}
-  .tl-head{max-width:640px;margin-bottom:clamp(40px,6vw,64px)}
-  .tl-head .mono{margin-bottom:12px}
-  .tl-head h2{font-size:clamp(28px,4.4vw,48px)}
-  .tl-head p{color:var(--ink-soft);margin-top:14px}
 
   /* ---------- Palco del comparatore — video e slider occupano LO STESSO box,
      sovrapposti via position:absolute, per cambiare senza mai spingere
@@ -259,6 +291,111 @@
     .tl-track{display:none}
   }
 
+  /* ---------- Hero 16:9 a tutta larghezza (glassmorphism, rif. FirstPerson) ----------
+     Il comparatore è full-bleed (100vw) ma con proporzione fissa 16:9, non
+     più a tutta altezza — i card della timeline restano in vetro sopra l'immagine. ---------- */
+  .tl-hero{
+    position:relative;width:100vw;left:50%;transform:translateX(-50%);
+    /* 16:9 quando cabe na tela; nunca ultrapassa a primeira dobra (senão os
+       cards ficam cortados abaixo da viewport em telas largas e baixas) */
+    height:min(56.25vw,84vh);
+    overflow:hidden;background:#0d0d0b;
+  }
+  .tl-hero .tl-compare-stage{
+    position:absolute;inset:0;width:100%;height:100%;
+    aspect-ratio:auto;border-radius:0;box-shadow:none;margin-bottom:0;
+  }
+  .tl-hero .tl-compare-stage::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+    background:
+      linear-gradient(to top,rgba(5,5,3,.72) 0%,rgba(5,5,3,.18) 34%,rgba(5,5,3,0) 56%),
+      linear-gradient(to bottom,rgba(5,5,3,.45) 0%,rgba(5,5,3,0) 24%);
+  }
+  .tl-hero .tl-compare img,
+  .tl-hero .tl-compare-video video{filter:saturate(1.05) brightness(.94)}
+
+  /* etichetta sottile — unico testo sopra la galleria/hero */
+  .tl-hero-tag{
+    position:absolute;top:clamp(90px,10vw,112px);left:clamp(20px,5vw,64px);z-index:5;
+    display:inline-flex;align-items:center;pointer-events:none;
+    font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:rgba(255,255,255,.85);
+    background:rgba(255,255,255,.1);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);
+    border:1px solid rgba(255,255,255,.22);border-radius:999px;
+    padding:7px 16px;box-shadow:var(--glass-shadow);
+  }
+
+  /* dock inferior: trilho + cards da timeline, vidro translúcido escuro */
+  .tl-hero .timeline-wrap{
+    position:absolute;left:0;right:0;bottom:0;z-index:5;
+    padding:0 30% clamp(20px,3vw,36px);
+  }
+  .tl-hero .tl-track{margin:0 10px clamp(16px,2.2vw,26px)}
+  .tl-hero .tl-track-line{background:rgba(255,255,255,.3)}
+  .tl-hero .tl-track-fill{background:var(--warm)}
+  .tl-hero .tl-track-dot{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.4)}
+  .tl-hero .tl-track-dot.done{background:var(--warm);border-color:var(--warm)}
+  .tl-hero .tl-track-dot.active{background:#fff;border-color:var(--warm)}
+
+  .tl-hero .tl-step{
+    background:rgba(20,20,18,.34);
+    backdrop-filter:blur(22px) saturate(1.6);-webkit-backdrop-filter:blur(22px) saturate(1.6);
+    border:1px solid rgba(255,255,255,.16);
+    box-shadow:none;
+    min-height:0;
+    padding:clamp(12px,1.2vw,16px) clamp(14px,1.4vw,18px) clamp(10px,1vw,12px);
+  }
+  .tl-hero .tl-num{font-size:30px;margin-bottom:2px}
+  .tl-hero .tl-tag{padding:4px 12px;font-size:9px;margin-bottom:8px}
+  .tl-hero .tl-body h3{font-size:clamp(19px,1.8vw,23px);margin-bottom:8px}
+  .tl-hero .tl-body p{font-size:14px;line-height:1.55}
+  .tl-hero .tl-tools{margin-top:8px;font-size:10px;padding:4px 10px}
+  .tl-hero .tl-footer{margin-top:10px;padding-top:8px}
+  .tl-hero .tl-cta-icon{width:26px;height:26px;font-size:11px}
+  .tl-hero .tl-step:hover{
+    border-color:rgba(255,255,255,.32);background:rgba(20,20,18,.46);
+    box-shadow:none;
+  }
+  .tl-hero .tl-step.active{
+    background:rgba(20,20,18,.56);border-color:var(--warm);
+    box-shadow:none;
+  }
+  .tl-hero .tl-num{-webkit-text-stroke-color:rgba(255,255,255,.42)}
+  .tl-hero .tl-step:hover .tl-num{-webkit-text-stroke-color:var(--warm)}
+  .tl-hero .tl-step.active .tl-num{color:var(--warm);-webkit-text-stroke-color:var(--warm)}
+  .tl-hero .tl-tag{border-color:var(--warm);color:var(--warm)}
+  .tl-hero .tl-step.active .tl-tag{background:var(--warm);color:#1a1710}
+  .tl-hero .tl-body h3{color:#fdfcf9}
+  .tl-hero .tl-body p{color:rgba(255,255,255,.7)}
+  .tl-hero .tl-tools{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:rgba(255,255,255,.75)}
+  .tl-hero .tl-footer{border-top-color:rgba(255,255,255,.16)}
+  .tl-hero .tl-cta-label{color:rgba(255,255,255,.55)}
+  .tl-hero .tl-step:hover .tl-cta-label,.tl-hero .tl-step.active .tl-cta-label{color:#fff}
+  .tl-hero .tl-cta-icon{border-color:rgba(255,255,255,.35);color:#fff}
+  .tl-hero .tl-step:hover .tl-cta-icon{background:var(--warm);border-color:var(--warm);color:#1a1710}
+  .tl-hero .tl-step.active .tl-cta-icon{background:var(--warm);border-color:var(--warm);color:#1a1710}
+
+  .tl-hero .tl-nav{
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);
+    border:1px solid rgba(255,255,255,.25);color:#fff;
+  }
+  .tl-hero .tl-nav:hover{background:var(--warm);border-color:var(--warm);color:#1a1710}
+  /* setas coladas na borda dos cards, não na borda da tela — o offset
+     compensa o padding lateral do dock (30% em desktop) */
+  .tl-hero .tl-nav.prev{left:calc(30% - 58px)}
+  .tl-hero .tl-nav.next{right:calc(30% - 58px)}
+
+  @media(max-width:1100px){
+    .tl-hero .timeline-wrap{padding-left:16%;padding-right:16%}
+    .tl-hero .tl-nav.prev{left:calc(16% - 54px)}
+    .tl-hero .tl-nav.next{right:calc(16% - 54px)}
+  }
+  @media(max-width:700px){
+    .tl-hero{height:min(56.25vw,70vh);min-height:460px}
+    .tl-hero .timeline-wrap{padding-left:clamp(16px,4vw,28px);padding-right:clamp(16px,4vw,28px)}
+  }
+
   /* ---------- Award strip ---------- */
   .award{background:var(--ink);color:var(--chalk);margin-top:clamp(56px,8vw,96px)}
   .award .wrap{padding:clamp(36px,6vw,56px) clamp(20px,5vw,64px);
@@ -270,11 +407,7 @@
   .award a.more:hover{border-color:var(--chalk)}
 
   /* ---------- Gallery (full-bleed, masonry editorial) ---------- */
-  section.gallery{padding:clamp(64px,9vw,120px) 0}
-  .gal-head{max-width:640px;margin:0 auto clamp(40px,6vw,64px);padding:0 clamp(20px,5vw,64px)}
-  .gal-head .mono{margin-bottom:12px}
-  .gal-head h2{font-size:clamp(28px,4.4vw,48px);font-weight:400}
-  .gal-head p{color:var(--ink-soft);margin-top:14px}
+  section.gallery{padding:0 0 clamp(64px,9vw,120px)}
 
   /* bento grid via CSS grid: as imagens mantêm a proporção natural, mas o
      grid-row-end de cada figure é calculado em JS (layoutGalleryGrid) para
@@ -372,7 +505,7 @@
 
 <header>
   <div class="wrap nav">
-    <a class="brand" href="#top"><img src="images/logo.png" alt="Juscélio Diaz" /></a>
+    <a class="brand" href="#top">Come lavoro, passo per passo</a>
     <nav class="nav-links">
       <a href="#percorso">Percorso</a>
       <a href="#galleria">Galleria</a>
@@ -383,25 +516,34 @@
 
 <main id="top">
 
+  <!--
+    HERO DI SEQUENZA — scroll-scrub in stile Apple.
+    72 frame in images/seq/topHero_00.jpg .. topHero_71.jpg, disegnati su
+    canvas in base alla posizione di scroll dentro questa sezione (vedi JS).
+  -->
+  <section class="seq-hero" id="seqHero">
+    <div class="seq-hero-pin">
+      <canvas id="seqCanvas"></canvas>
+      <div class="seq-hero-fade"></div>
+      <div class="seq-hero-cue" id="seqCue" aria-hidden="true">
+        <span>Scroll</span>
+        <span class="seq-hero-cue-line"></span>
+      </div>
+    </div>
+  </section>
+
   <!-- TIMELINE / PERCORSO -->
   <section class="timeline-sec" id="percorso">
-    <div class="wrap">
-      <div class="tl-head reveal">
-        <span class="mono">Il mio percorso</span>
-        <h2>Come lavoro, passo per passo</h2>
-        <p>Sei fasi, dalla pianta architettonica alla realtà virtuale — pensate per portare
-        qualità cinematografica senza tempi di produzione infiniti. Clicca su ogni fase
-        per confrontarla con il risultato finale.</p>
-      </div>
-
+    <div class="tl-hero">
       <!--
-        SLIDER COMPARATORE — trascina per rivelare "prima" (processo) x "dopo" (finale).
+        SLIDER COMPARATORE A TUTTA LARGHEZZA, 16:9 — trascina per rivelare "prima" (processo) x "dopo" (finale).
         L'immagine finale (images/italy_1.jpg) è sempre la stessa in tutte le fasi;
         solo l'immagine di "processo" cambia cliccando su ogni pulsante della timeline (data-before).
         Sostituisci i percorsi images/italy_*.jpg di "before" con le foto reali di ogni fase quando le avrai.
         La fase 05 (Video) sostituisce questo comparatore con un player video:
         images/italy_15.webm (data-video sul pulsante della card 05 e <source> qui sotto).
       -->
+      <span class="tl-hero-tag reveal">Il mio percorso</span>
       <div class="tl-compare-stage">
         <div class="tl-compare reveal" id="tlCompare">
           <img class="cs-base" id="csAfter" src="images/italy_1.jpg" alt="Finale" />
@@ -522,12 +664,6 @@
 
   <!-- GALLERIA -->
   <section class="gallery" id="galleria">
-      <div class="gal-head reveal">
-        <span class="mono">Galleria selezionata</span>
-        <h2>Interni mediterranei &amp; architettura</h2>
-        <p>Una selezione di render e frame realtime — passa il mouse sulle immagini contrassegnate
-        per vedere variazioni di luce, stagione e composizione.</p>
-      </div>
       <div class="grid reveal">
         <figure data-cat="mediterraneo" data-hover-imgs="images/italy_1.jpg,images/italy_1b.jpg,images/italy_1c.jpg"><img src="images/italy_1.jpg" srcset="images/mobile/italy_1.jpg 900w, images/italy_1.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 1" loading="lazy" /><figcaption>Mediterraneo / 01</figcaption></figure>
         <figure data-cat="mediterraneo" data-hover-imgs="images/italy_2.jpg,images/italy_2b.jpg,images/italy_2c.jpg"><img src="images/italy_2.jpg" srcset="images/mobile/italy_2.jpg 900w, images/italy_2.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 2" loading="lazy" /><figcaption>Mediterraneo / 02</figcaption></figure>
@@ -597,6 +733,103 @@
 </footer>
 
 <script>
+  // Hero de sequência: scroll-scrub estilo Apple (canvas + frames de images/seq/)
+  (function () {
+    const section = document.getElementById("seqHero");
+    const canvas = document.getElementById("seqCanvas");
+    const cue = document.getElementById("seqCue");
+    if (!section || !canvas) return;
+    const ctx = canvas.getContext("2d", { alpha: false });
+
+    const FRAME_COUNT = 72;
+    const framePath = (i) => `images/seq/topHero_${String(i).padStart(2, "0")}.jpg`;
+    const images = new Array(FRAME_COUNT);
+    let currentIndex = -1;
+
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + "px";
+      canvas.style.height = h + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function drawCover(img) {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const scale = Math.max(w / img.naturalWidth, h / img.naturalHeight);
+      const dw = img.naturalWidth * scale;
+      const dh = img.naturalHeight * scale;
+      const dx = (w - dw) / 2;
+      const dy = (h - dh) / 2;
+      ctx.clearRect(0, 0, w, h);
+      ctx.drawImage(img, dx, dy, dw, dh);
+    }
+
+    function renderFrame(idx) {
+      idx = Math.max(0, Math.min(FRAME_COUNT - 1, idx));
+      const img = images[idx];
+      if (!img || !img.complete || !img.naturalWidth) return;
+      currentIndex = idx;
+      drawCover(img);
+    }
+
+    // Alvo vem direto do scroll; o frame exibido persegue esse alvo com
+    // interpolação (lerp) em loop contínuo, para o scrub ficar fluido em vez
+    // de saltar de frame em frame a cada evento de scroll.
+    let targetFrame = 0;
+    let displayFrame = 0;
+    let loopRunning = false;
+
+    function updateFromScroll() {
+      const rect = section.getBoundingClientRect();
+      const scrollable = rect.height - window.innerHeight;
+      let progress = scrollable > 0 ? -rect.top / scrollable : 0;
+      progress = Math.max(0, Math.min(1, progress));
+      targetFrame = progress * (FRAME_COUNT - 1);
+      if (cue) cue.classList.toggle("hide", progress > 0.03);
+      startLoop();
+    }
+
+    function startLoop() {
+      if (loopRunning) return;
+      loopRunning = true;
+      requestAnimationFrame(tick);
+    }
+
+    function tick() {
+      const diff = targetFrame - displayFrame;
+      displayFrame += diff * 0.28;
+      if (Math.abs(diff) < 0.04) displayFrame = targetFrame;
+      renderFrame(Math.round(displayFrame));
+      if (displayFrame !== targetFrame) {
+        requestAnimationFrame(tick);
+      } else {
+        loopRunning = false;
+      }
+    }
+
+    resizeCanvas();
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      if (currentIndex >= 0 && images[currentIndex]) drawCover(images[currentIndex]);
+    });
+    window.addEventListener("scroll", updateFromScroll, { passive: true });
+
+    // Carrega o frame 0 primeiro (exibido assim que pronto), depois o resto
+    // da sequência em segundo plano — o scrub funciona mesmo enquanto carrega.
+    for (let i = 0; i < FRAME_COUNT; i++) {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = framePath(i);
+      images[i] = img;
+      if (i === 0) img.onload = () => renderFrame(0);
+    }
+  })();
+
   // Reveal on scroll
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
@@ -616,7 +849,13 @@
       const rowHeight = parseFloat(style.gridAutoRows) || 2;
       const rowGap = parseFloat(style.rowGap) || 0;
       figures.forEach((fig) => {
-        const h = fig.getBoundingClientRect().height;
+        const img = fig.querySelector("img");
+        if (!img.naturalWidth || !img.naturalHeight) return;
+        // Usa a largura da coluna (fixa pelo grid-template-columns, não afetada
+        // pelo span que aplicamos) + a proporção natural da imagem — nunca lê a
+        // altura já modificada da própria figure, senão o cálculo colapsa.
+        const colWidth = fig.getBoundingClientRect().width;
+        const h = colWidth * (img.naturalHeight / img.naturalWidth);
         const span = Math.ceil((h + rowGap) / (rowHeight + rowGap));
         fig.style.gridRowEnd = "span " + Math.max(span, 1);
       });
