@@ -179,7 +179,7 @@
   }
 
   /* ---------- Timeline come slider: 3 alla volta, card grandi ---------- */
-  .timeline-wrap{position:relative}
+  .timeline-wrap{position:relative;padding:clamp(36px,5vw,56px) 0 clamp(8px,1.4vw,16px)}
 
   /* binario/righello sopra le card — dà subito la lettura di "linea del tempo" */
   .tl-track{
@@ -287,7 +287,7 @@
     .tl-nav{display:none}
   }
   @media(max-width:700px){
-    .timeline{grid-auto-columns:82%;gap:20px}
+    .timeline{grid-auto-columns:68%;gap:14px}
     .tl-track{display:none}
   }
 
@@ -314,7 +314,7 @@
   .tl-hero .tl-compare img,
   .tl-hero .tl-compare-video video{filter:saturate(1.05) brightness(.94)}
 
-  /* etichetta sottile — unico testo sopra la galleria/hero */
+  /* etichetta sottile — unico testo sopra il hero dello slider */
   .tl-hero-tag{
     position:absolute;top:clamp(90px,10vw,112px);left:clamp(20px,5vw,64px);z-index:5;
     display:inline-flex;align-items:center;pointer-events:none;
@@ -325,75 +325,8 @@
     padding:7px 16px;box-shadow:var(--glass-shadow);
   }
 
-  /* dock inferior: trilho + cards da timeline, vidro translúcido escuro */
-  .tl-hero .timeline-wrap{
-    position:absolute;left:0;right:0;bottom:0;z-index:5;
-    padding:0 30% clamp(20px,3vw,36px);
-  }
-  .tl-hero .tl-track{margin:0 10px clamp(16px,2.2vw,26px)}
-  .tl-hero .tl-track-line{background:rgba(255,255,255,.3)}
-  .tl-hero .tl-track-fill{background:var(--warm)}
-  .tl-hero .tl-track-dot{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.4)}
-  .tl-hero .tl-track-dot.done{background:var(--warm);border-color:var(--warm)}
-  .tl-hero .tl-track-dot.active{background:#fff;border-color:var(--warm)}
-
-  .tl-hero .tl-step{
-    background:rgba(20,20,18,.34);
-    backdrop-filter:blur(22px) saturate(1.6);-webkit-backdrop-filter:blur(22px) saturate(1.6);
-    border:1px solid rgba(255,255,255,.16);
-    box-shadow:none;
-    min-height:0;
-    padding:clamp(12px,1.2vw,16px) clamp(14px,1.4vw,18px) clamp(10px,1vw,12px);
-  }
-  .tl-hero .tl-num{font-size:30px;margin-bottom:2px}
-  .tl-hero .tl-tag{padding:4px 12px;font-size:9px;margin-bottom:8px}
-  .tl-hero .tl-body h3{font-size:clamp(19px,1.8vw,23px);margin-bottom:8px}
-  .tl-hero .tl-body p{font-size:14px;line-height:1.55}
-  .tl-hero .tl-tools{margin-top:8px;font-size:10px;padding:4px 10px}
-  .tl-hero .tl-footer{margin-top:10px;padding-top:8px}
-  .tl-hero .tl-cta-icon{width:26px;height:26px;font-size:11px}
-  .tl-hero .tl-step:hover{
-    border-color:rgba(255,255,255,.32);background:rgba(20,20,18,.46);
-    box-shadow:none;
-  }
-  .tl-hero .tl-step.active{
-    background:rgba(20,20,18,.56);border-color:var(--warm);
-    box-shadow:none;
-  }
-  .tl-hero .tl-num{-webkit-text-stroke-color:rgba(255,255,255,.42)}
-  .tl-hero .tl-step:hover .tl-num{-webkit-text-stroke-color:var(--warm)}
-  .tl-hero .tl-step.active .tl-num{color:var(--warm);-webkit-text-stroke-color:var(--warm)}
-  .tl-hero .tl-tag{border-color:var(--warm);color:var(--warm)}
-  .tl-hero .tl-step.active .tl-tag{background:var(--warm);color:#1a1710}
-  .tl-hero .tl-body h3{color:#fdfcf9}
-  .tl-hero .tl-body p{color:rgba(255,255,255,.7)}
-  .tl-hero .tl-tools{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:rgba(255,255,255,.75)}
-  .tl-hero .tl-footer{border-top-color:rgba(255,255,255,.16)}
-  .tl-hero .tl-cta-label{color:rgba(255,255,255,.55)}
-  .tl-hero .tl-step:hover .tl-cta-label,.tl-hero .tl-step.active .tl-cta-label{color:#fff}
-  .tl-hero .tl-cta-icon{border-color:rgba(255,255,255,.35);color:#fff}
-  .tl-hero .tl-step:hover .tl-cta-icon{background:var(--warm);border-color:var(--warm);color:#1a1710}
-  .tl-hero .tl-step.active .tl-cta-icon{background:var(--warm);border-color:var(--warm);color:#1a1710}
-
-  .tl-hero .tl-nav{
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);
-    border:1px solid rgba(255,255,255,.25);color:#fff;
-  }
-  .tl-hero .tl-nav:hover{background:var(--warm);border-color:var(--warm);color:#1a1710}
-  /* setas coladas na borda dos cards, não na borda da tela — o offset
-     compensa o padding lateral do dock (30% em desktop) */
-  .tl-hero .tl-nav.prev{left:calc(30% - 58px)}
-  .tl-hero .tl-nav.next{right:calc(30% - 58px)}
-
-  @media(max-width:1100px){
-    .tl-hero .timeline-wrap{padding-left:16%;padding-right:16%}
-    .tl-hero .tl-nav.prev{left:calc(16% - 54px)}
-    .tl-hero .tl-nav.next{right:calc(16% - 54px)}
-  }
   @media(max-width:700px){
     .tl-hero{height:min(56.25vw,70vh);min-height:460px}
-    .tl-hero .timeline-wrap{padding-left:clamp(16px,4vw,28px);padding-right:clamp(16px,4vw,28px)}
   }
 
   /* ---------- Award strip ---------- */
@@ -407,7 +340,7 @@
   .award a.more:hover{border-color:var(--chalk)}
 
   /* ---------- Gallery (full-bleed, masonry editorial) ---------- */
-  section.gallery{padding:0 0 clamp(64px,9vw,120px)}
+  section.gallery{padding:clamp(48px,7vw,88px) 0 clamp(64px,9vw,120px)}
 
   /* bento grid via CSS grid: as imagens mantêm a proporção natural, mas o
      grid-row-end de cada figure é calculado em JS (layoutGalleryGrid) para
@@ -563,7 +496,10 @@
           <span class="cs-label cs-label-before">Video IA</span>
         </div>
       </div>
+    </div>
 
+    <!-- Timeline abaixo do slider, fora do overlay -->
+    <div class="wrap">
       <div class="timeline-wrap">
         <div class="tl-track" aria-hidden="true">
           <span class="tl-track-line"></span>
