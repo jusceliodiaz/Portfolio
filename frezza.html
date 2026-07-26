@@ -294,15 +294,21 @@
     transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease),opacity .25s var(--ease);
   }
   .tl-nav:hover{background:var(--sea);border-color:var(--sea);color:var(--chalk)}
-  .tl-nav.prev{left:-23px}
-  .tl-nav.next{right:-23px}
+  /* -58px = largura da seta (46) + respiro (12): fica inteira FORA do card,
+     ocupando o padding lateral do .wrap. Com -23px metade dela ficava
+     sobreposta ao primeiro/último card. */
+  .tl-nav.prev{left:-58px}
+  .tl-nav.next{right:-58px}
   .tl-nav.is-disabled{opacity:.3;pointer-events:none}
 
+  /* abaixo de 1160px o padding lateral do .wrap fica menor que 58px e as setas
+     seriam cortadas pela borda da tela — some com elas (o slider continua
+     navegável por arraste / scroll horizontal) */
+  @media(max-width:1160px){
+    .tl-nav{display:none}
+  }
   @media(max-width:1100px){
     .timeline{grid-auto-columns:calc((100% - 24px) / 2)}
-  }
-  @media(max-width:900px){
-    .tl-nav{display:none}
   }
   @media(max-width:700px){
     .timeline{grid-auto-columns:68%;gap:14px}
