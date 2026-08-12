@@ -1456,6 +1456,7 @@
           </nav>
           <div class="lang-sw">
             <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="de">DE</button>
             <button class="lang-btn" data-lang="it">IT</button>
           </div>
         </div>
@@ -1517,7 +1518,7 @@
  >Location</span
               >
               <b data-en="Remote worldwide" data-it="Remoto in tutto il mondo"
-                >Brazil · Remote worldwide</b
+ >Remote worldwide</b
               >
             </div>
             <div class="fact">
@@ -1760,16 +1761,21 @@
               <span data-en="Work" data-it="Lavoro">Work</span></span
             >
             <button
-              type="button"
-              class="sec-toggle"
-              data-target="projekte"
-              aria-controls="projekte-body"
-              aria-expanded="false"
-              data-show-en="Show all projects ↓"
-              data-hide-en="Collapse ↑"
-              data-en="Show all projects ↓"
-              data-it="Mostra tutti i progetti ↓"
-              >Show all projects ↓</button>
+ type="button"
+ class="sec-toggle"
+ data-target="projekte"
+ aria-controls="projekte-body"
+ aria-expanded="false"
+ data-show-de="Alle Projekte anzeigen ↓"
+ data-show-en="Show all projects ↓"
+ 
+ data-hide-de="Einklappen ↑"
+ data-hide-en="Collapse ↑"
+ 
+ 
+ data-en="Show all projects ↓"
+ data-it="Mostra tutti i progetti ↓"
+ >Show all projects ↓</button>
           </div>
         </div>
       </div>
@@ -2173,16 +2179,21 @@
               <span data-en="Web3" data-it="Web3">Web3</span></span
             >
             <button
-              type="button"
-              class="sec-toggle"
-              data-target="web3"
-              aria-controls="web3-body"
-              aria-expanded="false"
-              data-show-en="Show all work ↓"
-              data-hide-en="Collapse ↑"
-              data-en="Show all work ↓"
-              data-it="Mostra tutti i lavori ↓"
-              >Show all work ↓</button>
+ type="button"
+ class="sec-toggle"
+ data-target="web3"
+ aria-controls="web3-body"
+ aria-expanded="false"
+ data-show-de="Alle Arbeiten anzeigen ↓"
+ data-show-en="Show all work ↓"
+ 
+ data-hide-de="Einklappen ↑"
+ data-hide-en="Collapse ↑"
+ 
+ 
+ data-en="Show all work ↓"
+ data-it="Mostra tutti i lavori ↓"
+ >Show all work ↓</button>
           </div>
         </div>
       </div>
@@ -2635,7 +2646,7 @@
       const langBtns = document.querySelectorAll(".lang-btn");
 
       function applyLang(lang) {
-        document.querySelectorAll("[data-en]").forEach((el) => {
+        document.querySelectorAll("[data-de]").forEach((el) => {
           el.textContent = el.getAttribute("data-" + lang);
         });
         langBtns.forEach((b) =>
@@ -2657,6 +2668,7 @@
           const collapsed = section.classList.toggle("collapsed");
           btn.setAttribute("aria-expanded", String(!collapsed));
           const state = collapsed ? "show" : "hide";
+          btn.setAttribute("data-de", btn.dataset[state + "De"]);
           btn.setAttribute("data-en", btn.dataset[state + "En"]);
           btn.textContent = btn.getAttribute(
             "data-" + document.documentElement.lang,
@@ -2714,14 +2726,13 @@
         const badge = document.createElement("span");
         badge.className = "gal-pass-badge";
         const passLabelText = {
+          de: "Hover für Passes",
           en: "Hover to see passes",
-          it: "Passa il mouse per vedere i passaggi",
+          es: "Pasa el cursor para ver los passes",
         };
         badge.innerHTML =
           '<svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z" stroke-linejoin="round"/></svg>' +
-          '<span class="gal-pass-label" data-en="Hover to see passes" data-it="Passa il mouse per vedere i passaggi">' +
-          (passLabelText[currentLang] || passLabelText.en) +
-          "</span>";
+          '<span class="gal-pass-label" data-en="Hover to see passes" data-it="Passa il mouse per vedere i passaggi">Hover to see passes</span>";
         fig.appendChild(badge);
 
         fig.addEventListener("mouseenter", () => {
