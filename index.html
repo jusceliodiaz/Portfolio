@@ -2649,7 +2649,24 @@
       langBtns.forEach((b) =>
         b.addEventListener("click", () => applyLang(b.dataset.lang)),
       );
-      applyLang(localStorage.getItem("cv-lang") || "en");
+
+      // Sem preferência salva ainda: detecta pelo idioma do navegador/SO —
+      // de/de-DE/de-CH/de-AT → alemão, it/it-IT/it-CH → italiano,
+      // qualquer outra coisa → inglês. Isso não é geolocalização por IP (o
+      // site é estático, sem backend), mas na prática visitantes da
+      // Alemanha, Suíça ou Áustria quase sempre têm o navegador em alemão,
+      // e da Itália em italiano.
+      function detectBrowserLang() {
+        const supported = ["en", "de", "it"];
+        const candidates = navigator.languages || [navigator.language || ""];
+        for (const raw of candidates) {
+          const code = (raw || "").toLowerCase().slice(0, 2);
+          if (supported.includes(code)) return code;
+        }
+        return "en";
+      }
+
+      applyLang(localStorage.getItem("cv-lang") || detectBrowserLang());
 
       // ── Kollabierbare Sektionen ─────────────────────────────────────
       document.querySelectorAll(".sec-toggle").forEach((btn) => {

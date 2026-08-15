@@ -257,9 +257,9 @@
   <!-- ============ CONTROLS ============ -->
   <div class="cv-controls">
     <div class="lang-sw">
-      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn active" data-lang="en">EN</button>
       <button class="lang-btn" data-lang="de">DE</button>
-      <button class="lang-btn active" data-lang="it">IT</button>
+      <button class="lang-btn" data-lang="it">IT</button>
     </div>
     <button class="btn-download" id="downloadBtn">
       <span data-en="Download PDF" data-de="PDF herunterladen" data-it="Scarica PDF">Download PDF</span>
@@ -526,7 +526,7 @@
 
 <script>
   function applyLang(lang) {
-    if (lang !== 'en' && lang !== 'de' && lang !== 'it') lang = 'it';
+    if (lang !== 'en' && lang !== 'de' && lang !== 'it') lang = 'en';
     document.querySelectorAll('[data-en]').forEach(function (el) {
       el.textContent = el.getAttribute('data-' + lang);
     });
@@ -544,7 +544,22 @@
     b.addEventListener('click', function () { applyLang(b.dataset.lang); });
   });
 
-  applyLang(localStorage.getItem('cv-lang') || 'it');
+  // Sem preferência salva ainda: detecta pelo idioma do navegador/SO —
+  // de/de-DE/de-CH/de-AT → alemão, it/it-IT/it-CH → italiano, o resto
+  // cai no padrão (inglês). Não é geolocalização por IP (página estática,
+  // sem backend), mas cobre bem visitantes da Alemanha, Suíça, Áustria e
+  // Itália na prática.
+  function detectBrowserLang() {
+    var supported = ['en', 'de', 'it'];
+    var candidates = navigator.languages || [navigator.language || ''];
+    for (var i = 0; i < candidates.length; i++) {
+      var code = (candidates[i] || '').toLowerCase().slice(0, 2);
+      if (supported.indexOf(code) !== -1) return code;
+    }
+    return 'en';
+  }
+
+  applyLang(localStorage.getItem('cv-lang') || detectBrowserLang());
 
   document.getElementById('downloadBtn').addEventListener('click', function () {
     window.print();
