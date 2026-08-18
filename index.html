@@ -482,6 +482,55 @@
         }
       }
 
+      /* ── Hero-Kontakt — schlanke Chip-Reihe, kein zweites schweres
+         Bordertable wie im Kontaktbereich; reiht sich unter die Fakten ── */
+      .hero-links {
+        margin-top: clamp(28px, 4vh, 44px);
+        padding-top: 22px;
+        padding-bottom: clamp(28px, 5vh, 56px);
+        border-top: 1px solid var(--line-strong);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px 10px;
+        opacity: 0;
+        animation: fade 1s 0.65s var(--ease) forwards;
+      }
+      .hero-links-label {
+        margin-right: 4px;
+      }
+      .hero-link-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        border: 1px solid var(--line-strong);
+        padding: 11px 16px;
+        text-decoration: none;
+        color: var(--ink);
+        font-family: "IBM Plex Mono";
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition:
+          background 0.25s var(--ease),
+          color 0.25s,
+          border-color 0.25s;
+      }
+      .hero-link-pill svg {
+        width: 15px;
+        height: 15px;
+        flex: none;
+      }
+      .hero-link-pill:hover {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: var(--paper);
+      }
+      .hero-link-pill:hover svg {
+        color: var(--paper);
+      }
+
       /* laufende Bildleiste */
       .hero-strip {
         border-top: 1px solid var(--line-strong);
@@ -1231,6 +1280,22 @@
         color: color-mix(in srgb, var(--paper) 55%, transparent);
       }
 
+      .link-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .link-ic {
+        width: 18px;
+        height: 18px;
+        flex: none;
+        color: var(--ink-faint);
+        transition: color 0.25s;
+      }
+      .links a:hover .link-ic {
+        color: color-mix(in srgb, var(--paper) 80%, transparent);
+      }
+
       /* ── Footer ────────────────────────────────────────────────────── */
       footer {
         border-top: 1px solid var(--line-strong);
@@ -1550,6 +1615,25 @@
               >
             </div>
           </div>
+        </div>
+        <div class="hero-links">
+          <span class="hero-links-label mono" data-de="Direkter Kontakt" data-en="Direct contact" data-it="Contatto diretto">Direct contact</span>
+          <a class="hero-link-pill" href="mailto:escrevaparajd@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+            <span data-de="E-Mail" data-en="Email" data-it="Email">Email</span>
+          </a>
+          <a class="hero-link-pill" href="cv.html" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg>
+            <span data-de="Lebenslauf" data-en="CV / Resume" data-it="CV / Curriculum">CV / Resume</span>
+          </a>
+          <a class="hero-link-pill" href="https://www.linkedin.com/in/typeforjd" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a class="hero-link-pill" href="https://www.instagram.com/jdworkviz/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
+            <span>Instagram</span>
+          </a>
         </div>
       </div>
       <div class="hero-strip" aria-hidden="true">
@@ -2364,13 +2448,19 @@
  >Open to collaborations in realtime, visualization and front-end development — with German and international teams, remote and reliable. Let's build something extraordinary together.</p>
         <div class="links rv">
           <a href="mailto:escrevaparajd@gmail.com">
-            <span data-de="E-Mail" data-en="Email" data-it="Email">Email</span>
+            <span class="link-label">
+              <svg class="link-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+              <span data-de="E-Mail" data-en="Email" data-it="Email">Email</span>
+            </span>
             <small>escrevaparajd@gmail.com</small>
           </a>
           <a href="cv.html" target="_blank" rel="noopener">
-            <span data-de="Lebenslauf" data-en="CV / Resume" data-it="CV / Curriculum"
+            <span class="link-label">
+              <svg class="link-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg>
+              <span data-de="Lebenslauf" data-en="CV / Resume" data-it="CV / Curriculum"
  >CV / Resume</span
-            >
+              >
+            </span>
             <small data-de="Online ansehen ↗" data-en="View online ↗" data-it="Visualizza online ↗"
  >View online ↗</small
             >
@@ -2380,14 +2470,22 @@
             target="_blank"
             rel="noopener"
           >
-            <span>LinkedIn</span><small>/typeforjd ↗</small>
+            <span class="link-label">
+              <svg class="link-ic" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+              <span>LinkedIn</span>
+            </span>
+            <small>/typeforjd ↗</small>
           </a>
           <a
             href="https://www.instagram.com/jdworkviz/"
             target="_blank"
             rel="noopener"
           >
-            <span>Instagram</span><small>@jdworkviz ↗</small>
+            <span class="link-label">
+              <svg class="link-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
+              <span>Instagram</span>
+            </span>
+            <small>@jdworkviz ↗</small>
           </a>
         </div>
       </div>
