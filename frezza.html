@@ -136,17 +136,6 @@
     .brand{font-size:13px;max-width:60vw;overflow:hidden;text-overflow:ellipsis}
   }
 
-  /* ---------- Hero ---------- */
-  .hero{padding:clamp(56px,10vw,130px) 0 clamp(40px,6vw,70px)}
-  .kicker{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:30px}
-  .pill{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--sea);
-    color:var(--sea);border-radius:100px;padding:7px 16px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
-  .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--terracotta)}
-  .hero h1{font-size:clamp(40px,7.2vw,92px);font-weight:300;letter-spacing:-.01em;max-width:16ch}
-  .hero h1 em{font-style:italic;color:var(--sea)}
-  .lede{max-width:600px;margin-top:26px;font-size:clamp(16.5px,1.7vw,19px);color:var(--ink-soft)}
-  .lede b{color:var(--ink);font-weight:400}
-
   /* ---------- Timeline (orizzontale, minimal) ---------- */
 
   /* ---------- Palco del comparatore — video e slider occupano LO STESSO box,
@@ -389,16 +378,6 @@
   @media(max-width:700px){
     .tl-hero{height:min(56.25vw,70vh);min-height:460px}
   }
-
-  /* ---------- Award strip ---------- */
-  .award{background:var(--ink);color:var(--chalk);margin-top:clamp(56px,8vw,96px)}
-  .award .wrap{padding:clamp(36px,6vw,56px) clamp(20px,5vw,64px);
-    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-  .award .txt .mono{color:#9b968a;margin-bottom:8px}
-  .award h3{font-size:clamp(22px,3vw,30px);font-weight:300;color:var(--chalk)}
-  .award a.more{display:inline-flex;gap:8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--chalk);border-bottom:1px solid #5c584f;padding-bottom:5px;white-space:nowrap}
-  .award a.more:hover{border-color:var(--chalk)}
 
   /* ---------- Gallery (full-bleed, masonry editorial) ---------- */
   section.gallery{padding:clamp(48px,7vw,88px) 0 clamp(64px,9vw,120px)}
@@ -681,14 +660,14 @@
   <!-- GALLERIA -->
   <section class="gallery" id="galleria">
       <div class="grid reveal">
-        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_1.jpg,images/italy_1b.jpg,images/italy_1c.jpg"><img src="images/italy_1.jpg" srcset="images/mobile/italy_1.jpg 900w, images/italy_1.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 1" loading="lazy" /><figcaption>Mediterraneo / 01</figcaption></figure>
-        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_2.jpg,images/italy_2b.jpg,images/italy_2c.jpg"><img src="images/italy_2.jpg" srcset="images/mobile/italy_2.jpg 900w, images/italy_2.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 2" loading="lazy" /><figcaption>Mediterraneo / 02</figcaption></figure>
-        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_3.jpg,images/italy_3b.jpg,images/italy_3c.jpg"><img src="images/italy_3.jpg" srcset="images/mobile/italy_3.jpg 900w, images/italy_3.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 3" loading="lazy" /><figcaption>Mediterraneo / 03</figcaption></figure>
-        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_4.jpg,images/italy_4b.jpg,images/italy_4c.jpg"><img src="images/italy_4.jpg" srcset="images/mobile/italy_4.jpg 900w, images/italy_4.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 4" loading="lazy" /><figcaption>Mediterraneo / 04</figcaption></figure>
-        <figure data-cat="mediterraneo"><img src="images/italy_5.jpg" srcset="images/mobile/italy_5.jpg 900w, images/italy_5.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 5" loading="lazy" /><figcaption>Mediterraneo / 05</figcaption></figure>
-        <figure data-cat="mediterraneo"><img src="images/italy_8.jpg" srcset="images/mobile/italy_8.jpg 900w, images/italy_8.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 8" loading="lazy" /><figcaption>Mediterraneo / 08</figcaption></figure>
-        <figure data-cat="mediterraneo" data-hover-imgs="images/italy_9.jpg,images/italy_9b.jpg,images/italy_9c.jpg"><img src="images/italy_9.jpg" srcset="images/mobile/italy_9.jpg 900w, images/italy_9.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 9" loading="lazy" /><figcaption>Mediterraneo / 09</figcaption></figure>
-        <figure data-cat="mediterraneo"><img src="images/italy_10.jpg" srcset="images/mobile/italy_10.jpg 900w, images/italy_10.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Interno mediterraneo, Nr. 10" loading="lazy" /><figcaption>Mediterraneo / 10</figcaption></figure>
+        <figure data-cat="archviz" data-hover-imgs="images/italy_1.jpg,images/italy_1b.jpg,images/italy_1c.jpg"><img src="images/italy_1.jpg" srcset="images/mobile/italy_1.jpg 900w, images/italy_1.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 1" loading="lazy" /><figcaption>Architettura / 01</figcaption></figure>
+        <figure data-cat="archviz" data-hover-imgs="images/italy_2.jpg,images/italy_2b.jpg,images/italy_2c.jpg"><img src="images/italy_2.jpg" srcset="images/mobile/italy_2.jpg 900w, images/italy_2.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 2" loading="lazy" /><figcaption>Architettura / 02</figcaption></figure>
+        <figure data-cat="archviz" data-hover-imgs="images/italy_3.jpg,images/italy_3b.jpg,images/italy_3c.jpg"><img src="images/italy_3.jpg" srcset="images/mobile/italy_3.jpg 900w, images/italy_3.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 3" loading="lazy" /><figcaption>Architettura / 03</figcaption></figure>
+        <figure data-cat="archviz" data-hover-imgs="images/italy_4.jpg,images/italy_4b.jpg,images/italy_4c.jpg"><img src="images/italy_4.jpg" srcset="images/mobile/italy_4.jpg 900w, images/italy_4.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 4" loading="lazy" /><figcaption>Architettura / 04</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/italy_5.jpg" srcset="images/mobile/italy_5.jpg 900w, images/italy_5.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 5" loading="lazy" /><figcaption>Architettura / 05</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/italy_8.jpg" srcset="images/mobile/italy_8.jpg 900w, images/italy_8.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 8" loading="lazy" /><figcaption>Architettura / 08</figcaption></figure>
+        <figure data-cat="archviz" data-hover-imgs="images/italy_9.jpg,images/italy_9b.jpg,images/italy_9c.jpg"><img src="images/italy_9.jpg" srcset="images/mobile/italy_9.jpg 900w, images/italy_9.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 9" loading="lazy" /><figcaption>Architettura / 09</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/italy_10.jpg" srcset="images/mobile/italy_10.jpg 900w, images/italy_10.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 10" loading="lazy" /><figcaption>Architettura / 10</figcaption></figure>
 
         <figure data-cat="archviz"><img src="images/22.jpg" srcset="images/mobile/22.jpg 900w, images/22.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 22" loading="lazy" /><figcaption>Architettura / 22</figcaption></figure>
         <figure data-cat="archviz"><img src="images/20.jpg" srcset="images/mobile/20.jpg 900w, images/20.jpg 1366w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica — Unreal Engine, Nr. 20" loading="lazy" /><figcaption>Architettura / 20</figcaption></figure>
@@ -700,6 +679,10 @@
         <figure data-cat="archviz" data-hover-imgs="images/5.jpg,images/5b.jpg"><img src="images/5.jpg" srcset="images/mobile/5.jpg 900w, images/5.jpg 2200w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 5" loading="lazy" /><figcaption>Architettura / 05</figcaption></figure>
         <figure data-cat="archviz"><img src="images/26.jpg" srcset="images/mobile/26.jpg 900w, images/26.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Nr. 26" loading="lazy" /><figcaption>Architettura / 26</figcaption></figure>
         <figure data-cat="archviz"><img src="images/espanha_1.jpg" srcset="images/mobile/espanha_1.jpg 900w, images/espanha_1.jpg 2752w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Spagna" loading="lazy" /><figcaption>Architettura / Spagna</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/render_001.jpg" srcset="images/mobile/render_001.jpg 900w, images/render_001.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Render 1" loading="lazy" /><figcaption>Architettura / Render 1</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/render_002.jpg" srcset="images/mobile/render_002.jpg 900w, images/render_002.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Render 2" loading="lazy" /><figcaption>Architettura / Render 2</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/render_003.jpg" srcset="images/mobile/render_003.jpg 900w, images/render_003.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Render 3" loading="lazy" /><figcaption>Architettura / Render 3</figcaption></figure>
+        <figure data-cat="archviz"><img src="images/render_004.jpg" srcset="images/mobile/render_004.jpg 900w, images/render_004.jpg 1920w" sizes="(max-width:820px) 50vw, 33vw" alt="Visualizzazione architettonica, Render 4" loading="lazy" /><figcaption>Architettura / Render 4</figcaption></figure>
       </div>
   </section>
 

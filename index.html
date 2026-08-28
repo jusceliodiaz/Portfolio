@@ -339,12 +339,6 @@
         background: var(--paper-2);
       }
 
-      .lang-sep {
-        color: var(--line);
-        font-size: 0.9rem;
-        user-select: none;
-      }
-
       .nav-toggle {
         display: none;
         background: none;
@@ -1124,26 +1118,6 @@
         flex-wrap: wrap;
       }
 
-      .static-boxes {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--pad);
-        margin-top: clamp(28px, 4vh, 44px);
-      }
-
-      .static-box {
-        border: 1px solid var(--line-strong);
-        aspect-ratio: 4/3;
-        overflow: hidden;
-      }
-
-      .static-box img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-
       /* ── Leistungen ────────────────────────────────────────────────── */
       .skills {
         display: grid;
@@ -1395,10 +1369,6 @@
           font-size: 0.6rem;
         }
 
-        .static-boxes {
-          grid-template-columns: 1fr;
-        }
-
         .hero-meta {
           grid-template-columns: 1fr;
           gap: 28px;
@@ -1481,37 +1451,25 @@
           </span>
         </a>
         <div class="head-right">
-          <button
-            class="nav-toggle"
-            id="navToggle"
-            aria-label="Menü"
-            aria-expanded="false"
-            aria-controls="mainNav"
-          >
+          <button class="nav-toggle" id="navToggle" aria-label="Menü" aria-expanded="false" aria-controls="mainNav">
             ☰
           </button>
           <nav id="mainNav">
-            <a href="#auszeichnung"
-              ><span class="n">01</span
-              ><span data-de="Auszeichnung" data-en="Award" data-it="Premio"
- >Award</span
+            <a href="#auszeichnung"><span class="n">01</span
+              ><span data-de="Auszeichnung" data-en="Award" data-it="Premio">Award</span
               ></a
             >
-            <a href="#projekte"
-              ><span class="n">02</span
+            <a href="#projekte"><span class="n">02</span
               ><span data-de="Projekte" data-en="Projects" data-it="Progetti">Projects</span></a
             >
-            <a href="#galerie"
-              ><span class="n">03</span
+            <a href="#galerie"><span class="n">03</span
               ><span data-de="Galerie" data-en="Gallery" data-it="Galleria">Gallery</span></a
             >
             <a href="#showreel"><span class="n">04</span>Showreel</a>
-            <a href="#leistungen"
-              ><span class="n">05</span
+            <a href="#leistungen"><span class="n">05</span
               ><span data-de="Leistungen" data-en="Skills" data-it="Competenze">Skills</span></a
             >
-            <a href="#kontakt" class="cta"
-              ><span class="n">06</span
+            <a href="#kontakt" class="cta"><span class="n">06</span
               ><span data-de="Kontakt" data-en="Contact" data-it="Contatto">Contact</span></a
             >
           </nav>
@@ -1527,90 +1485,48 @@
     <!-- ── Hero ──────────────────────────────────────────────────── -->
     <section class="hero" id="top">
       <div class="wrap hero-top">
-        <p
- class="mono"
- style="
- margin-bottom: 18px;
- opacity: 0;
- animation: fade 1s 0.2s var(--ease) forwards;
- "
- 
- data-de="Juscélio Diaz — Realtime &amp; Technical Artist" data-en="Juscélio Diaz — Realtime &amp; Technical Artist"
- data-it="Juscélio Diaz — Realtime &amp; Technical Artist"
- >Juscélio Diaz — Realtime &amp; Technical Artist</p>
+        <p class="mono" style=" margin-bottom: 18px; opacity: 0; animation: fade 1s 0.2s var(--ease) forwards; " data-de="Juscélio Diaz — Realtime &amp; Technical Artist" data-en="Juscélio Diaz — Realtime &amp; Technical Artist" data-it="Juscélio Diaz — Realtime &amp; Technical Artist">Juscélio Diaz — Realtime &amp; Technical Artist</p>
         <h1>
-          <span class="row"
-            ><span data-de="Echtzeit." data-en="Realtime." data-it="Realtime."
- >Realtime.</span
+          <span class="row"><span data-de="Echtzeit." data-en="Realtime." data-it="Realtime.">Realtime.</span
             ></span
           >
-          <span class="row"
-            ><span class="outline" data-de="Präzision." data-en="Precision." data-it="Precisione."
- >Precision.</span
+          <span class="row"><span class="outline" data-de="Präzision." data-en="Precision." data-it="Precisione.">Precision.</span
             ></span
           >
-          <span class="row"
-            ><span
-              ><span data-de="Welten" data-en="Worlds" data-it="Mondi">Worlds</span
+          <span class="row"><span><span data-de="Welten" data-en="Worlds" data-it="Mondi">Worlds</span
               ><em>.</em></span
             ></span
           >
         </h1>
         <div class="hero-meta">
-          <p
- class="lede"
- 
- data-de="Ich entwickle hochwertige Echtzeit-Erlebnisse für Architektur, Pixel-Streaming und virtuelle Produktion — von Produktions-Tools bis zu browserbasierten 3D-Anwendungen. Mit Fokus auf Performance, Optimierung und kinoreife Qualität. Präzise geplant, sauber umgesetzt, messbar schnell." data-en="I craft high-end real-time experiences for architecture, pixel streaming and virtual production — from production tools to browser-based 3D applications. Focused on performance, optimization and cinematic quality. Precisely planned, cleanly executed, measurably fast."
- data-it="Creo esperienze in tempo reale di alto livello per architettura, pixel streaming e produzione virtuale — dagli strumenti di produzione alle applicazioni 3D basate su browser. Concentrato su performance, ottimizzazione e qualità cinematografica. Pianificato con precisione, eseguito con pulizia, misurabilmente veloce."
- >I craft high-end real-time experiences for architecture, pixel streaming and virtual production — from production tools to browser-based 3D applications. Focused on performance, optimization and cinematic quality. Precisely planned, cleanly executed, measurably fast.</p>
+          <p class="lede" data-de="Ich entwickle hochwertige Echtzeit-Erlebnisse für Architektur, Pixel-Streaming und virtuelle Produktion — von Produktions-Tools bis zu browserbasierten 3D-Anwendungen. Mit Fokus auf Performance, Optimierung und kinoreife Qualität. Präzise geplant, sauber umgesetzt, messbar schnell." data-en="I craft high-end real-time experiences for architecture, pixel streaming and virtual production — from production tools to browser-based 3D applications. Focused on performance, optimization and cinematic quality. Precisely planned, cleanly executed, measurably fast." data-it="Creo esperienze in tempo reale di alto livello per architettura, pixel streaming e produzione virtuale — dagli strumenti di produzione alle applicazioni 3D basate su browser. Concentrato su performance, ottimizzazione e qualità cinematografica. Pianificato con precisione, eseguito con pulizia, misurabilmente veloce.">I craft high-end real-time experiences for architecture, pixel streaming and virtual production — from production tools to browser-based 3D applications. Focused on performance, optimization and cinematic quality. Precisely planned, cleanly executed, measurably fast.</p>
           <div class="facts">
             <div class="fact">
               <span class="k" data-de="Status" data-en="Status" data-it="Stato">Status</span>
-              <b
- class="avail"
- 
- data-de="Verfügbar für Projekte" data-en="Available for projects"
- data-it="Disponibile per progetti"
- >Available for projects</b
+              <b class="avail" data-de="Verfügbar für Projekte" data-en="Available for projects" data-it="Disponibile per progetti">Available for projects</b
               >
             </div>
             <div class="fact">
-              <span class="k" data-de="Standort" data-en="Location" data-it="Posizione"
- >Location</span
+              <span class="k" data-de="Standort" data-en="Location" data-it="Posizione">Location</span
               >
-              <b data-de="Remote weltweit" data-en="Remote worldwide" data-it="Remoto in tutto il mondo"
-                >Brazil · Remote worldwide</b
+              <b data-de="Remote weltweit" data-en="Remote worldwide" data-it="Remoto in tutto il mondo">Brazil · Remote worldwide</b
               >
             </div>
             <div class="fact">
-              <span class="k" data-de="Schwerpunkt" data-en="Focus" data-it="Focus"
- >Focus</span
+              <span class="k" data-de="Schwerpunkt" data-en="Focus" data-it="Focus">Focus</span
               >
               <b>Unreal Engine · Realtime · Visualization</b>
             </div>
             <div class="fact">
-              <span class="k" data-de="Sprachen" data-en="Languages" data-it="Lingue"
- >Languages</span
+              <span class="k" data-de="Sprachen" data-en="Languages" data-it="Lingue">Languages</span
               >
-              <b
- 
- data-de="Englisch · Portugiesisch" data-en="English · Portuguese"
- data-it="Inglese · Portoghese"
- >English · Portuguese</b
+              <b data-de="Englisch · Portugiesisch" data-en="English · Portuguese" data-it="Inglese · Portoghese">English · Portuguese</b
               >
             </div>
             <div class="fact">
-              <span class="k" data-de="Auszeichnung" data-en="Award" data-it="Premio"
- >Award</span
+              <span class="k" data-de="Auszeichnung" data-en="Award" data-it="Premio">Award</span
               >
-              <b
-                ><a
- href="#auszeichnung"
- style="text-decoration: none; color: var(--signal)"
- 
- data-de="CGconnect 3D Award 2026 ↓" data-en="CGconnect 3D Award 2026 ↓"
- data-it="CGconnect 3D Award 2026 ↓"
- >CGconnect 3D Award 2026 ↓</a
+              <b><a href="#auszeichnung" style="text-decoration: none; color: var(--signal)" data-de="CGconnect 3D Award 2026 ↓" data-en="CGconnect 3D Award 2026 ↓" data-it="CGconnect 3D Award 2026 ↓">CGconnect 3D Award 2026 ↓</a
                 ></b
               >
             </div>
@@ -1713,68 +1629,39 @@
     <section id="auszeichnung" class="award">
       <div class="wrap award-in">
         <div class="award-top rv">
-          <span
- class="award-badge"
- 
- data-de="CGconnect 3D Awards 2026 — Gewinner" data-en="CGconnect 3D Awards 2026 — Winner"
- data-it="CGconnect 3D Awards 2026 — Vincitore"
- >CGconnect 3D Awards 2026 — Winner</span
+          <span class="award-badge" data-de="CGconnect 3D Awards 2026 — Gewinner" data-en="CGconnect 3D Awards 2026 — Winner" data-it="CGconnect 3D Awards 2026 — Vincitore">CGconnect 3D Awards 2026 — Winner</span
           >
-          <span
- class="mono"
- 
- data-de="01 / Auszeichnung — Warschau, Polen" data-en="01 / Award — Warsaw, Poland"
- data-it="01 / Premio — Varsavia, Polonia"
- >01 / Award — Warsaw, Poland</span
+          <span class="mono" data-de="01 / Auszeichnung — Warschau, Polen" data-en="01 / Award — Warsaw, Poland" data-it="01 / Premio — Varsavia, Polonia">01 / Award — Warsaw, Poland</span
           >
         </div>
         <h2 class="rv">
           <span data-de="Casa Müze —" data-en="Casa Müze —" data-it="Casa Müze —">Casa Müze —</span
           ><br />
-          <span class="thin" data-de="Weltweit beste" data-en="World's Best" data-it="La Migliore al Mondo"
- >World's Best</span
+          <span class="thin" data-de="Weltweit beste" data-en="World's Best" data-it="La Migliore al Mondo">World's Best</span
           ><br />
-          <span data-de="Immersive Experience" data-en="Immersive Experience" data-it="Esperienza Immersiva"
- >Immersive Experience</span
+          <span data-de="Immersive Experience" data-en="Immersive Experience" data-it="Esperienza Immersiva">Immersive Experience</span
           ><span class="red">.</span>
         </h2>
         <div class="award-grid">
           <div class="award-text">
-            <p
- class="rv"
- 
- data-de="Casa Müze wurde bei den CGconnect 3D Awards 2026 als Winner in der Kategorie Interactive VR/AR Experience ausgezeichnet — verliehen während des World Visualization Festival in Warschau, Polen. Eine Idee, geboren an einem Strand in Brasilien, stand am Ende auf einer Bühne am anderen Ende der Welt." data-en="Casa Müze was named Winner in the Interactive VR/AR Experience category at the CGconnect 3D Awards 2026 — presented during the World Visualization Festival in Warsaw, Poland. An idea born on a beach in Brazil ended up on a stage on the other side of the world."
- data-it="Casa Müze è stata nominata Winner nella categoria Interactive VR/AR Experience ai CGconnect 3D Awards 2026 — presentata durante il World Visualization Festival di Varsavia, Polonia. Un'idea nata su una spiaggia in Brasile è finita su un palco dall'altra parte del mondo."
- >Casa Müze was named Winner in the Interactive VR/AR Experience category at the CGconnect 3D Awards 2026 — presented during the World Visualization Festival in Warsaw, Poland. An idea born on a beach in Brazil ended up on a stage on the other side of the world.</p>
-            <p
- class="rv"
- 
- data-de="Das Projekt basiert auf einer einfachen Überzeugung: Die relevantesten Entwicklungen der Zukunft schaffen Zugehörigkeit, bevor sie fertiggestellt sind. Keine Verkaufsgalerie, sondern eine Beziehungsplattform — Architektur im Massstab 1:1, Echtzeit-Visualisierung, Klang, Licht und ein Kinosaal, der Besucher in das Projekt führt, bevor eine einzige Wand steht. Abgerundet durch ein eigens kuratiertes Gastronomie-Erlebnis bei jedem Besuch." data-en="The project is built on a simple belief: the most relevant developments of the future create belonging before completion. Not a sales gallery, but a relationship platform — real-scale architecture, real-time visualization, sound, light and a cinema room that takes visitors inside the project before a single wall exists. Rounded off by a curated gastronomy experience on every visit."
- data-it="Il progetto si basa su una convinzione semplice: gli sviluppi più rilevanti del futuro creano appartenenza prima ancora di essere completati. Non una galleria di vendita, ma una piattaforma relazionale — architettura in scala reale, visualizzazione in tempo reale, suono, luce e una sala cinema che porta i visitatori dentro il progetto prima che esista un solo muro. Il tutto arricchito da un'esperienza gastronomica curata ad ogni visita."
- >The project is built on a simple belief: the most relevant developments of the future create belonging before completion. Not a sales gallery, but a relationship platform — real-scale architecture, real-time visualization, sound, light and a cinema room that takes visitors inside the project before a single wall exists. Rounded off by a curated gastronomy experience on every visit.</p>
+            <p class="rv" data-de="Casa Müze wurde bei den CGconnect 3D Awards 2026 als Winner in der Kategorie Interactive VR/AR Experience ausgezeichnet — verliehen während des World Visualization Festival in Warschau, Polen. Eine Idee, geboren an einem Strand in Brasilien, stand am Ende auf einer Bühne am anderen Ende der Welt." data-en="Casa Müze was named Winner in the Interactive VR/AR Experience category at the CGconnect 3D Awards 2026 — presented during the World Visualization Festival in Warsaw, Poland. An idea born on a beach in Brazil ended up on a stage on the other side of the world." data-it="Casa Müze è stata nominata Winner nella categoria Interactive VR/AR Experience ai CGconnect 3D Awards 2026 — presentata durante il World Visualization Festival di Varsavia, Polonia. Un'idea nata su una spiaggia in Brasile è finita su un palco dall'altra parte del mondo.">Casa Müze was named Winner in the Interactive VR/AR Experience category at the CGconnect 3D Awards 2026 — presented during the World Visualization Festival in Warsaw, Poland. An idea born on a beach in Brazil ended up on a stage on the other side of the world.</p>
+            <p class="rv" data-de="Das Projekt basiert auf einer einfachen Überzeugung: Die relevantesten Entwicklungen der Zukunft schaffen Zugehörigkeit, bevor sie fertiggestellt sind. Keine Verkaufsgalerie, sondern eine Beziehungsplattform — Architektur im Massstab 1:1, Echtzeit-Visualisierung, Klang, Licht und ein Kinosaal, der Besucher in das Projekt führt, bevor eine einzige Wand steht. Abgerundet durch ein eigens kuratiertes Gastronomie-Erlebnis bei jedem Besuch." data-en="The project is built on a simple belief: the most relevant developments of the future create belonging before completion. Not a sales gallery, but a relationship platform — real-scale architecture, real-time visualization, sound, light and a cinema room that takes visitors inside the project before a single wall exists. Rounded off by a curated gastronomy experience on every visit." data-it="Il progetto si basa su una convinzione semplice: gli sviluppi più rilevanti del futuro creano appartenenza prima ancora di essere completati. Non una galleria di vendita, ma una piattaforma relazionale — architettura in scala reale, visualizzazione in tempo reale, suono, luce e una sala cinema che porta i visitatori dentro il progetto prima che esista un solo muro. Il tutto arricchito da un'esperienza gastronomica curata ad ogni visita.">The project is built on a simple belief: the most relevant developments of the future create belonging before completion. Not a sales gallery, but a relationship platform — real-scale architecture, real-time visualization, sound, light and a cinema room that takes visitors inside the project before a single wall exists. Rounded off by a curated gastronomy experience on every visit.</p>
           </div>
           <div class="award-facts rv">
             <div class="fact">
-              <span class="k" data-de="Auszeichnung" data-en="Award" data-it="Premio"
- >Award</span
+              <span class="k" data-de="Auszeichnung" data-en="Award" data-it="Premio">Award</span
               >
               <b>Best Immersive Experience</b>
             </div>
             <div class="fact">
-              <span class="k" data-de="Wettbewerb" data-en="Competition" data-it="Concorso"
- >Competition</span
+              <span class="k" data-de="Wettbewerb" data-en="Competition" data-it="Concorso">Competition</span
               >
               <b>CGarchitect 3D Awards 2026</b>
             </div>
             <div class="fact">
-              <span class="k" data-de="Verliehen" data-en="Presented at" data-it="Presentato a"
- >Presented at</span
+              <span class="k" data-de="Verliehen" data-en="Presented at" data-it="Presentato a">Presented at</span
               >
-              <b
- 
- data-de="World Visualization Festival, Warschau — Juni 2026" data-en="World Visualization Festival, Warsaw — June 2026"
- data-it="World Visualization Festival, Varsavia — Giugno 2026"
- >World Visualization Festival, Warsaw — June 2026</b
+              <b data-de="World Visualization Festival, Warschau — Juni 2026" data-en="World Visualization Festival, Warsaw — June 2026" data-it="World Visualization Festival, Varsavia — Giugno 2026">World Visualization Festival, Warsaw — June 2026</b
               >
             </div>
           </div>
@@ -1787,42 +1674,19 @@
           <button type="button" class="award-photo-nav next" aria-label="Next photo">→</button>
         </div>
         <div class="award-video rv">
-          <iframe
-            src="https://www.youtube.com/embed/8n9Irv9ph9k"
-            title="Casa Müze"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
+          <iframe src="https://www.youtube.com/embed/8n9Irv9ph9k" title="Casa Müze" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <div class="award-links rv">
-          <a
-            href="https://cgconnect.chaos.com/insights/articles/06538776-2026-3d-awards-winners-revealed"
-            target="_blank"
-            rel="noopener"
-          >
-            <span
- 
- data-de="Offizielle Bekanntgabe" data-en="Official announcement"
- data-it="Annuncio ufficiale"
- >Official announcement</span
+          <a href="https://cgconnect.chaos.com/insights/articles/06538776-2026-3d-awards-winners-revealed" target="_blank" rel="noopener">
+            <span data-de="Offizielle Bekanntgabe" data-en="Official announcement" data-it="Annuncio ufficiale">Official announcement</span
             >
             <small>CGconnect ↗</small>
           </a>
-          <a
-            href="https://www.worldvizfest.com/"
-            target="_blank"
-            rel="noopener"
-          >
+          <a href="https://www.worldvizfest.com/" target="_blank" rel="noopener">
             <span>World Visualization Festival</span>
             <small>worldvizfest.com ↗</small>
           </a>
-          <a
-            href="https://www.linkedin.com/company/cgconnect-official/"
-            target="_blank"
-            rel="noopener"
-          >
+          <a href="https://www.linkedin.com/company/cgconnect-official/" target="_blank" rel="noopener">
             <span>CGconnect</span>
             <small>LinkedIn ↗</small>
           </a>
@@ -1836,31 +1700,15 @@
         <div class="sec-head rv">
           <h2 data-de="Ausgewählte Projekte" data-en="Selected Projects" data-it="Progetti Selezionati">Selected Projects</h2>
           <div class="sec-head-right">
-            <span class="idx"
-              ><b>02</b> /
+            <span class="idx"><b>02</b> /
               <span data-de="Arbeit" data-en="Work" data-it="Lavoro">Work</span></span
             >
-            <button
-              type="button"
-              class="sec-toggle"
-              data-target="projekte"
-              aria-controls="projekte-body"
-              aria-expanded="false"
-              data-show-de="Alle Projekte anzeigen ↓" data-show-en="Show all projects ↓"
-              data-hide-de="Einklappen ↑" data-hide-en="Collapse ↑"
-              data-de="Alle Projekte anzeigen ↓" data-en="Show all projects ↓"
-              data-it="Mostra tutti i progetti ↓"
-              >Show all projects ↓</button>
+            <button type="button" class="sec-toggle" data-target="projekte" aria-controls="projekte-body" aria-expanded="false" data-show-de="Alle Projekte anzeigen ↓" data-show-en="Show all projects ↓" data-hide-de="Einklappen ↑" data-hide-en="Collapse ↑" data-de="Alle Projekte anzeigen ↓" data-en="Show all projects ↓" data-it="Mostra tutti i progetti ↓">Show all projects ↓</button>
           </div>
         </div>
       </div>
       <div class="proj-list sec-body" id="projekte-body">
-        <a
-          class="proj rv"
-          href="https://archviz-poket.vercel.app/#cena=aereo"
-          target="_blank"
-          rel="noopener"
-        >
+        <a class="proj rv" href="https://archviz-poket.vercel.app/#cena=aereo" target="_blank" rel="noopener">
           <div class="no">P—01</div>
           <div class="body">
             <h3>City Explorer <span class="arrow">↗</span></h3>
@@ -1870,26 +1718,15 @@
               <span data-de="Interaktiv" data-en="Interactive" data-it="Interattivo">Interactive</span>
             </div>
           </div>
-          <div
- class="desc"
- 
- data-de="Interaktive, browserbasierte Plattform zur Architekturvisualisierung — entwickelt für Immobilienmarketing und überzeugende Kundenpräsentationen." data-en="Interactive browser-based architectural visualization platform — built for real estate marketing and compelling client presentations."
- data-it="Piattaforma interattiva di visualizzazione architettonica basata su browser — creata per il marketing immobiliare e presentazioni ai clienti coinvolgenti."
- >Interactive browser-based architectural visualization platform — built for real estate marketing and compelling client presentations.</div>
+          <div class="desc" data-de="Interaktive, browserbasierte Plattform zur Architekturvisualisierung — entwickelt für Immobilienmarketing und überzeugende Kundenpräsentationen." data-en="Interactive browser-based architectural visualization platform — built for real estate marketing and compelling client presentations." data-it="Piattaforma interattiva di visualizzazione architettonica basata su browser — creata per il marketing immobiliare e presentazioni ai clienti coinvolgenti.">Interactive browser-based architectural visualization platform — built for real estate marketing and compelling client presentations.</div>
           <div class="visual">
             <img src="images/h7.jpg" alt="City Explorer" loading="lazy" />
-            <span class="lbl" data-de="Live-Demo" data-en="Live Demo" data-it="Demo Live"
- >Live Demo</span
+            <span class="lbl" data-de="Live-Demo" data-en="Live Demo" data-it="Demo Live">Live Demo</span
             >
           </div>
         </a>
 
-        <a
-          class="proj rv"
-          href="https://first-person-self.vercel.app/#cena=aereo"
-          target="_blank"
-          rel="noopener"
-        >
+        <a class="proj rv" href="https://first-person-self.vercel.app/#cena=aereo" target="_blank" rel="noopener">
           <div class="no">P—02</div>
           <div class="body">
             <h3>Walkthrough <span class="arrow">↗</span></h3>
@@ -1899,65 +1736,38 @@
               <span>Storytelling</span>
             </div>
           </div>
-          <div
- class="desc"
- 
- data-de="Hochwertiges interaktives Immobilien-Showcase: Echtzeit-Rendering, durchdachtes UI/UX-Design und immersives Storytelling in einem Erlebnis vereint." data-en="High-end interactive property showcase: realtime rendering, thoughtful UI/UX design and immersive storytelling combined in one experience."
- data-it="Showcase immobiliare interattivo di alto livello: rendering in tempo reale, design UI/UX curato e storytelling immersivo uniti in un'unica esperienza."
- >High-end interactive property showcase: realtime rendering, thoughtful UI/UX design and immersive storytelling combined in one experience.</div>
+          <div class="desc" data-de="Hochwertiges interaktives Immobilien-Showcase: Echtzeit-Rendering, durchdachtes UI/UX-Design und immersives Storytelling in einem Erlebnis vereint." data-en="High-end interactive property showcase: realtime rendering, thoughtful UI/UX design and immersive storytelling combined in one experience." data-it="Showcase immobiliare interattivo di alto livello: rendering in tempo reale, design UI/UX curato e storytelling immersivo uniti in un'unica esperienza.">High-end interactive property showcase: realtime rendering, thoughtful UI/UX design and immersive storytelling combined in one experience.</div>
           <div class="visual">
             <img src="images/h4.jpg" alt="Walkthrough" loading="lazy" />
-            <span class="lbl" data-de="Live-Demo" data-en="Live Demo" data-it="Demo Live"
- >Live Demo</span
+            <span class="lbl" data-de="Live-Demo" data-en="Live Demo" data-it="Demo Live">Live Demo</span
             >
           </div>
         </a>
 
-        <a
-          class="proj rv"
-          href="https://jdworks.gumroad.com/l/SceneValidatorArchviz"
-          target="_blank"
-          rel="noopener"
-        >
+        <a class="proj rv" href="https://jdworks.gumroad.com/l/SceneValidatorArchviz" target="_blank" rel="noopener">
           <div class="no">P—03</div>
           <div class="body">
             <h3>
-              <span
- 
- data-de="Scene Validator für Archviz" data-en="Scene Validator for Archviz"
- data-it="Scene Validator per Archviz"
- >Scene Validator for Archviz</span
+              <span data-de="Scene Validator für Archviz" data-en="Scene Validator for Archviz" data-it="Scene Validator per Archviz">Scene Validator for Archviz</span
               >
               <span class="arrow">↗</span>
             </h3>
             <div class="tags">
               <span>Python</span>
               <span>Unreal Engine</span>
-              <span data-de="Pipeline-Tool" data-en="Pipeline Tool" data-it="Strumento di Pipeline"
- >Pipeline Tool</span
+              <span data-de="Pipeline-Tool" data-en="Pipeline Tool" data-it="Strumento di Pipeline">Pipeline Tool</span
               >
             </div>
           </div>
-          <div
- class="desc"
- 
- data-de="Python-Tool für Unreal-Engine-Archviz-Pipelines: validiert Szenen, erkennt typische Fehler und setzt produktionsreife Standards durch — bevor gerendert wird." data-en="Python tool for Unreal Engine archviz pipelines: validates scenes, catches common errors and enforces production-ready standards — before rendering."
- data-it="Strumento Python per pipeline archviz in Unreal Engine: valida le scene, individua errori comuni e applica standard pronti per la produzione — prima del rendering."
- >Python tool for Unreal Engine archviz pipelines: validates scenes, catches common errors and enforces production-ready standards — before rendering.</div>
+          <div class="desc" data-de="Python-Tool für Unreal-Engine-Archviz-Pipelines: validiert Szenen, erkennt typische Fehler und setzt produktionsreife Standards durch — bevor gerendert wird." data-en="Python tool for Unreal Engine archviz pipelines: validates scenes, catches common errors and enforces production-ready standards — before rendering." data-it="Strumento Python per pipeline archviz in Unreal Engine: valida le scene, individua errori comuni e applica standard pronti per la produzione — prima del rendering.">Python tool for Unreal Engine archviz pipelines: validates scenes, catches common errors and enforces production-ready standards — before rendering.</div>
           <div class="visual">
             <img src="images/5a.jpg" alt="Scene Validator" loading="lazy" />
-            <span class="lbl" data-de="Auf Gumroad" data-en="On Gumroad" data-it="Su Gumroad"
- >On Gumroad</span
+            <span class="lbl" data-de="Auf Gumroad" data-en="On Gumroad" data-it="Su Gumroad">On Gumroad</span
             >
           </div>
         </a>
 
-        <a
-          class="proj rv"
-          href="https://jdworks.gumroad.com/l/hhhoc"
-          target="_blank"
-          rel="noopener"
-        >
+        <a class="proj rv" href="https://jdworks.gumroad.com/l/hhhoc" target="_blank" rel="noopener">
           <div class="no">P—04</div>
           <div class="body">
             <h3>Beach House — Unreal Engine 5 <span class="arrow">↗</span></h3>
@@ -1967,16 +1777,10 @@
               <span>Cinematic</span>
             </div>
           </div>
-          <div
- class="desc"
- 
- data-de="Vollständige Unreal-Engine-5-Umgebung: Strandhaus-Szene mit hochauflösendem Licht, präzisen Materialien und kinoreifem Produktions-Setup." data-en="Full Unreal Engine 5 environment: beach house scene with high-fidelity lighting, precise materials and cinematic-ready production setup."
- data-it="Ambiente completo in Unreal Engine 5: scena di una casa sulla spiaggia con illuminazione ad alta fedeltà, materiali precisi e setup di produzione pronto per il cinema."
- >Full Unreal Engine 5 environment: beach house scene with high-fidelity lighting, precise materials and cinematic-ready production setup.</div>
+          <div class="desc" data-de="Vollständige Unreal-Engine-5-Umgebung: Strandhaus-Szene mit hochauflösendem Licht, präzisen Materialien und kinoreifem Produktions-Setup." data-en="Full Unreal Engine 5 environment: beach house scene with high-fidelity lighting, precise materials and cinematic-ready production setup." data-it="Ambiente completo in Unreal Engine 5: scena di una casa sulla spiaggia con illuminazione ad alta fedeltà, materiali precisi e setup di produzione pronto per il cinema.">Full Unreal Engine 5 environment: beach house scene with high-fidelity lighting, precise materials and cinematic-ready production setup.</div>
           <div class="visual">
             <img src="images/ue1.jpg" alt="Beach House UE5" loading="lazy" />
-            <span class="lbl" data-de="Auf Gumroad" data-en="On Gumroad" data-it="Su Gumroad"
- >On Gumroad</span
+            <span class="lbl" data-de="Auf Gumroad" data-en="On Gumroad" data-it="Su Gumroad">On Gumroad</span
             >
           </div>
         </a>
@@ -1988,59 +1792,22 @@
       <div class="wrap">
         <div class="sec-head rv">
           <h2 data-de="Aktuelle Arbeiten" data-en="Recent Work" data-it="Lavori Recenti">Recent Work</h2>
-          <span class="idx"
-            ><b>03</b> /
+          <span class="idx"><b>03</b> /
             <span data-de="Galerie" data-en="Gallery" data-it="Galleria">Gallery</span></span
           >
         </div>
         <div class="gal-filters rv" role="group" aria-label="Filter">
-          <button
- type="button"
- class="active"
- data-filter="all"
- 
- data-de="Alle" data-en="All"
- data-it="Tutti"
- >All</button>
-          <button
- type="button"
- data-filter="automotive"
- 
- data-de="Automotive" data-en="Automotive"
- data-it="Automotive"
- >Automotive</button>
-          <button
- type="button"
- data-filter="archviz"
- 
- data-de="Archviz + Virtual Production" data-en="Archviz + Virtual Production"
- data-it="Archviz + Produzione Virtuale"
- >Archviz + Virtual Production</button>
-          <button
- type="button"
- data-filter="unreal-engine"
- 
- data-de="Unreal Engine" data-en="Unreal Engine"
- data-it="Unreal Engine"
- >Unreal Engine</button>
-          <button
- type="button"
- data-filter="mediterraneo"
- 
- data-de="Mediterraneo" data-en="Mediterraneo"
- data-it="Mediterraneo"
- >Mediterraneo</button>
+          <button type="button" class="active" data-filter="all" data-de="Alle" data-en="All" data-it="Tutti">All</button>
+          <button type="button" data-filter="automotive" data-de="Automotive" data-en="Automotive" data-it="Automotive">Automotive</button>
+          <button type="button" data-filter="archviz" data-de="Archviz + Virtual Production" data-en="Archviz + Virtual Production" data-it="Archviz + Produzione Virtuale">Archviz + Virtual Production</button>
+          <button type="button" data-filter="unreal-engine" data-de="Unreal Engine" data-en="Unreal Engine" data-it="Unreal Engine">Unreal Engine</button>
         </div>
       </div>
       <div class="gal">
         <figure class="rv" data-cat="automotive unreal-engine">
           <img src="images/11.jpg" srcset="images/mobile/11.jpg 900w, images/11.jpg 1366w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive Realtime-Render – Unreal Engine von Juscélio Diaz, Nr. 11" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="automotive"
-          data-hover-imgs="images/30.jpg,images/30a.jpg,images/30b.jpg"
-        >
+        <figure class="rv" data-cat="automotive" data-hover-imgs="images/30.jpg,images/30a.jpg,images/30b.jpg">
           <img src="images/30.jpg" srcset="images/mobile/30.jpg 900w, images/30.jpg 2000w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive-Visualisierung von Juscélio Diaz, Nr. 30" loading="lazy" />
         </figure>
         <figure class="rv" data-cat="">
@@ -2049,21 +1816,13 @@
         <figure class="rv" data-cat="archviz">
           <img src="images/22.jpg" srcset="images/mobile/22.jpg 900w, images/22.jpg 1920w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Nr. 22" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="automotive unreal-engine"
-          data-hover-imgs="images/14.jpg,images/14b.jpg,images/14c.jpg"
-        >
+        <figure class="rv" data-cat="automotive unreal-engine" data-hover-imgs="images/14.jpg,images/14b.jpg,images/14c.jpg">
           <img src="images/14.jpg" srcset="images/mobile/14.jpg 900w, images/14.jpg 2000w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive Realtime-Render – Unreal Engine von Juscélio Diaz, Nr. 14" loading="lazy" />
         </figure>
         <figure class="rv" data-cat="archviz unreal-engine">
           <img src="images/20.jpg" srcset="images/mobile/20.jpg 900w, images/20.jpg 1366w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung – Unreal Engine von Juscélio Diaz, Nr. 20" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="automotive"
-          data-hover-imgs="images/33.jpeg,images/33b.jpg,images/33c.jpg"
-        >
+        <figure class="rv" data-cat="automotive" data-hover-imgs="images/33.jpeg,images/33b.jpg,images/33c.jpg">
           <img src="images/33.jpeg" srcset="images/mobile/33.jpeg 900w, images/33.jpeg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive-Visualisierung von Juscélio Diaz, Nr. 33" loading="lazy" />
         </figure>
         <figure class="rv" data-cat="archviz">
@@ -2075,99 +1834,48 @@
         <figure class="rv" data-cat="archviz">
           <img src="images/32.jpg" srcset="images/mobile/32.jpg 900w, images/32.jpg 1920w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Nr. 32" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="automotive"
-          data-hover-imgs="images/beauty.jpg,images/clay.jpg,images/blender.jpg,images/lines.jpg"
-        >
+        <figure class="rv" data-cat="automotive" data-hover-imgs="images/beauty.jpg,images/clay.jpg,images/blender.jpg,images/lines.jpg">
           <img src="images/beauty.jpg" srcset="images/mobile/beauty.jpg 900w, images/beauty.jpg 2000w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive-Visualisierung von Juscélio Diaz, Nr. beauty" loading="lazy" />
         </figure>
         <!-- ══════════════════════════════════════════════════════ -->
 
-        <figure
-          class="rv"
-          data-cat="automotive unreal-engine"
-          data-hover-imgs="images/16.jpg,images/16b.jpg,images/16c.jpg"
-        >
+        <figure class="rv" data-cat="automotive unreal-engine" data-hover-imgs="images/16.jpg,images/16b.jpg,images/16c.jpg">
           <img src="images/16.jpg" srcset="images/mobile/16.jpg 900w, images/16.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive Realtime-Render – Unreal Engine von Juscélio Diaz, Nr. 16" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="automotive"
-          data-hover-imgs="images/31.jpg,images/31b.jpg"
-        >
+        <figure class="rv" data-cat="automotive" data-hover-imgs="images/31.jpg,images/31b.jpg">
           <img src="images/31.jpg" srcset="images/mobile/31.jpg 900w, images/31.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive-Visualisierung von Juscélio Diaz, Nr. 31" loading="lazy" />
         </figure>
         <figure class="rv" data-cat="archviz">
           <img src="images/25.jpg" srcset="images/mobile/25.jpg 900w, images/25.jpg 1920w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Nr. 25" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="automotive"
-          data-hover-imgs="images/34.jpeg,images/34b.jpg,images/34c.jpg"
-        >
+        <figure class="rv" data-cat="automotive" data-hover-imgs="images/34.jpeg,images/34b.jpg,images/34c.jpg">
           <img src="images/34.jpeg" srcset="images/mobile/34.jpeg 900w, images/34.jpeg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive-Visualisierung von Juscélio Diaz, Nr. 34" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="unreal-engine"
-          data-hover-imgs="images/27.jpg,images/27b.jpg,images/27c.jpg"
-        >
-          <img src="images/27.jpg" srcset="images/mobile/27.jpg 900w, images/27.jpg 2000w" sizes="(max-width: 820px) 50vw, 33vw" alt="Unreal Engine Realtime-Render von Juscélio Diaz, Nr. 27" loading="lazy" />
-        </figure>
-        <figure
-          class="rv"
-          data-cat=""
-          data-hover-imgs="images/7.jpg,images/7a.jpg,images/7b.jpg"
-        >
+        <figure class="rv" data-cat="" data-hover-imgs="images/7.jpg,images/7a.jpg,images/7b.jpg">
           <img src="images/7.jpg" srcset="images/mobile/7.jpg 900w, images/7.jpg 1366w" sizes="(max-width: 820px) 50vw, 33vw" alt="Realtime 3D-Render von Juscélio Diaz, Nr. 7" loading="lazy" />
         </figure>
         <figure class="rv" data-cat="archviz">
           <img src="images/24.jpg" srcset="images/mobile/24.jpg 900w, images/24.jpg 1772w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Nr. 24" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="automotive unreal-engine"
-          data-hover-imgs="images/6.jpg,images/6b.jpg,images/6c.jpg"
-        >
+        <figure class="rv" data-cat="automotive unreal-engine" data-hover-imgs="images/6.jpg,images/6b.jpg,images/6c.jpg">
           <img src="images/6.jpg" srcset="images/mobile/6.jpg 900w, images/6.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive Realtime-Render – Unreal Engine von Juscélio Diaz, Nr. 6" loading="lazy" />
         </figure>
         <figure class="rv" data-cat="automotive">
           <img src="images/static-2.jpg" srcset="images/mobile/static-2.jpg 900w, images/static-2.jpg 2000w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive-Visualisierung von Juscélio Diaz, Nr. static-2" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="automotive"
-          data-hover-imgs="images/13.jpeg,images/13b.jpg,images/13c.jpg"
-        >
+        <figure class="rv" data-cat="automotive" data-hover-imgs="images/13.jpeg,images/13b.jpg,images/13c.jpg">
           <img src="images/13.jpeg" srcset="images/mobile/13.jpeg 900w, images/13.jpeg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive-Visualisierung von Juscélio Diaz, Nr. 13" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="archviz unreal-engine"
-          data-hover-imgs="images/2.jpg,images/2b.jpg,images/2c.jpg"
-        >
+        <figure class="rv" data-cat="archviz unreal-engine" data-hover-imgs="images/2.jpg,images/2b.jpg,images/2c.jpg">
           <img src="images/2.jpg" srcset="images/mobile/2.jpg 900w, images/2.jpg 2000w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung – Unreal Engine von Juscélio Diaz, Nr. 2" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="automotive unreal-engine"
-          data-hover-imgs="images/35.jpg,images/35b.jpg,images/35c.jpg"
-        >
+        <figure class="rv" data-cat="automotive unreal-engine" data-hover-imgs="images/35.jpg,images/35b.jpg,images/35c.jpg">
           <img src="images/35.jpg" srcset="images/mobile/35.jpg 900w, images/35.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive Realtime-Render – Unreal Engine von Juscélio Diaz, Nr. 35" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="archviz"
-          data-hover-imgs="images/5.jpg,images/5b.jpg"
-        >
+        <figure class="rv" data-cat="archviz" data-hover-imgs="images/5.jpg,images/5b.jpg">
           <img src="images/5.jpg" srcset="images/mobile/5.jpg 900w, images/5.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Nr. 5" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="automotive unreal-engine"
-          data-hover-imgs="images/3.jpg,images/3b.jpg,images/3c.jpg"
-        >
+        <figure class="rv" data-cat="automotive unreal-engine" data-hover-imgs="images/3.jpg,images/3b.jpg,images/3c.jpg">
           <img src="images/3.jpg" srcset="images/mobile/3.jpg 900w, images/3.jpg 2000w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive Realtime-Render – Unreal Engine von Juscélio Diaz, Nr. 3" loading="lazy" />
         </figure>
         <figure class="rv" data-cat="archviz">
@@ -2176,11 +1884,19 @@
         <figure class="rv" data-cat="archviz">
           <img src="images/espanha_1.jpg" srcset="images/mobile/espanha_1.jpg 900w, images/espanha_1.jpg 2752w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Spanien" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="automotive unreal-engine"
-          data-hover-imgs="images/8.jpg,images/8b.jpg,images/8c.jpg"
-        >
+        <figure class="rv" data-cat="archviz">
+          <img src="images/render_001.jpg" srcset="images/mobile/render_001.jpg 900w, images/render_001.jpg 1920w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Render 1" loading="lazy" />
+        </figure>
+        <figure class="rv" data-cat="archviz">
+          <img src="images/render_002.jpg" srcset="images/mobile/render_002.jpg 900w, images/render_002.jpg 1920w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Render 2" loading="lazy" />
+        </figure>
+        <figure class="rv" data-cat="archviz">
+          <img src="images/render_003.jpg" srcset="images/mobile/render_003.jpg 900w, images/render_003.jpg 1920w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Render 3" loading="lazy" />
+        </figure>
+        <figure class="rv" data-cat="archviz">
+          <img src="images/render_004.jpg" srcset="images/mobile/render_004.jpg 900w, images/render_004.jpg 1920w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Render 4" loading="lazy" />
+        </figure>
+        <figure class="rv" data-cat="automotive unreal-engine" data-hover-imgs="images/8.jpg,images/8b.jpg,images/8c.jpg">
           <img src="images/8.jpg" srcset="images/mobile/8.jpg 900w, images/8.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive Realtime-Render – Unreal Engine von Juscélio Diaz, Nr. 8" loading="lazy" />
         </figure>
         <!-- ══════════════════════════════════════════════════════════
@@ -2189,56 +1905,32 @@
              Passes de hover:  images/12b.jpg, images/12c.jpg
              Para trocar: basta substituir os três caminhos abaixo.
              ══════════════════════════════════════════════════════════ -->
-        <figure
-          class="rv"
-          data-cat="automotive unreal-engine"
-          data-hover-imgs="images/12.jpg,images/12b.jpg,images/12c.jpg"
-        >
+        <figure class="rv" data-cat="automotive unreal-engine" data-hover-imgs="images/12.jpg,images/12b.jpg,images/12c.jpg">
           <img src="images/12.jpg" srcset="images/mobile/12.jpg 900w, images/12.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Automotive Realtime-Render – Unreal Engine von Juscélio Diaz, Nr. 12" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="mediterraneo"
-          data-hover-imgs="images/italy_1.jpg,images/italy_1b.jpg,images/italy_1c.jpg"
-        >
-          <img src="images/italy_1.jpg" srcset="images/mobile/italy_1.jpg 900w, images/italy_1.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Mediterraneo von Juscélio Diaz, Nr. 1" loading="lazy" />
+        <figure class="rv" data-cat="archviz" data-hover-imgs="images/italy_1.jpg,images/italy_1b.jpg,images/italy_1c.jpg">
+          <img src="images/italy_1.jpg" srcset="images/mobile/italy_1.jpg 900w, images/italy_1.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Nr. 1" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="mediterraneo"
-          data-hover-imgs="images/italy_2.jpg,images/italy_2b.jpg,images/italy_2c.jpg"
-        >
-          <img src="images/italy_2.jpg" srcset="images/mobile/italy_2.jpg 900w, images/italy_2.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Mediterraneo von Juscélio Diaz, Nr. 2" loading="lazy" />
+        <figure class="rv" data-cat="archviz" data-hover-imgs="images/italy_2.jpg,images/italy_2b.jpg,images/italy_2c.jpg">
+          <img src="images/italy_2.jpg" srcset="images/mobile/italy_2.jpg 900w, images/italy_2.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Nr. 2" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="mediterraneo"
-          data-hover-imgs="images/italy_3.jpg,images/italy_3b.jpg,images/italy_3c.jpg"
-        >
-          <img src="images/italy_3.jpg" srcset="images/mobile/italy_3.jpg 900w, images/italy_3.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Mediterraneo von Juscélio Diaz, Nr. 3" loading="lazy" />
+        <figure class="rv" data-cat="archviz" data-hover-imgs="images/italy_3.jpg,images/italy_3b.jpg,images/italy_3c.jpg">
+          <img src="images/italy_3.jpg" srcset="images/mobile/italy_3.jpg 900w, images/italy_3.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Nr. 3" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="mediterraneo"
-          data-hover-imgs="images/italy_4.jpg,images/italy_4b.jpg,images/italy_4c.jpg"
-        >
-          <img src="images/italy_4.jpg" srcset="images/mobile/italy_4.jpg 900w, images/italy_4.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Mediterraneo von Juscélio Diaz, Nr. 4" loading="lazy" />
+        <figure class="rv" data-cat="archviz" data-hover-imgs="images/italy_4.jpg,images/italy_4b.jpg,images/italy_4c.jpg">
+          <img src="images/italy_4.jpg" srcset="images/mobile/italy_4.jpg 900w, images/italy_4.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Nr. 4" loading="lazy" />
         </figure>
-        <figure class="rv" data-cat="mediterraneo">
-          <img src="images/italy_5.jpg" srcset="images/mobile/italy_5.jpg 900w, images/italy_5.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Mediterraneo von Juscélio Diaz, Nr. 5" loading="lazy" />
+        <figure class="rv" data-cat="archviz">
+          <img src="images/italy_5.jpg" srcset="images/mobile/italy_5.jpg 900w, images/italy_5.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Nr. 5" loading="lazy" />
         </figure>
-        <figure class="rv" data-cat="mediterraneo">
-          <img src="images/italy_8.jpg" srcset="images/mobile/italy_8.jpg 900w, images/italy_8.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Mediterraneo von Juscélio Diaz, Nr. 8" loading="lazy" />
+        <figure class="rv" data-cat="archviz">
+          <img src="images/italy_8.jpg" srcset="images/mobile/italy_8.jpg 900w, images/italy_8.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Nr. 8" loading="lazy" />
         </figure>
-        <figure
-          class="rv"
-          data-cat="mediterraneo"
-          data-hover-imgs="images/italy_9.jpg,images/italy_9b.jpg,images/italy_9c.jpg"
-        >
-          <img src="images/italy_9.jpg" srcset="images/mobile/italy_9.jpg 900w, images/italy_9.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Mediterraneo von Juscélio Diaz, Nr. 9" loading="lazy" />
+        <figure class="rv" data-cat="archviz" data-hover-imgs="images/italy_9.jpg,images/italy_9b.jpg,images/italy_9c.jpg">
+          <img src="images/italy_9.jpg" srcset="images/mobile/italy_9.jpg 900w, images/italy_9.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Nr. 9" loading="lazy" />
         </figure>
-        <figure class="rv" data-cat="mediterraneo">
-          <img src="images/italy_10.jpg" srcset="images/mobile/italy_10.jpg 900w, images/italy_10.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Mediterraneo von Juscélio Diaz, Nr. 10" loading="lazy" />
+        <figure class="rv" data-cat="archviz">
+          <img src="images/italy_10.jpg" srcset="images/mobile/italy_10.jpg 900w, images/italy_10.jpg 2200w" sizes="(max-width: 820px) 50vw, 33vw" alt="Architekturvisualisierung von Juscélio Diaz, Nr. 10" loading="lazy" />
         </figure>
       </div>
     </section>
@@ -2247,29 +1939,14 @@
     <section id="showreel">
       <div class="wrap reel">
         <div class="sec-head rv">
-          <h2
- 
- data-de="Unreal Engine Cinematics" data-en="Unreal Engine Cinematics &amp; Realtime Work"
- data-it="Unreal Engine Cinematics e Lavori Realtime"
- >Unreal Engine Cinematics &amp; Realtime Work</h2>
+          <h2 data-de="Unreal Engine Cinematics" data-en="Unreal Engine Cinematics &amp; Realtime Work" data-it="Unreal Engine Cinematics e Lavori Realtime">Unreal Engine Cinematics &amp; Realtime Work</h2>
           <span class="idx"><b>04</b> /UE Showreel</span>
         </div>
         <div class="reel-frame rv">
-          <iframe
-            src="https://player.vimeo.com/video/1187806891"
-            title="Showreel — Juscélio Diaz"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowfullscreen
-            loading="lazy"
-          ></iframe>
+          <iframe src="https://player.vimeo.com/video/1187806891" title="Showreel — Juscélio Diaz" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
         </div>
         <div class="reel-cap">
-          <span
- class="mono"
- 
- data-de="Showreel 2026 — Realtime · Archviz · Virtuelle Produktion" data-en="Showreel 2026 — Realtime · Archviz · Virtual Production"
- data-it="Showreel 2026 — Realtime · Archviz · Produzione Virtuale"
- >Showreel 2026 — Realtime · Archviz · Virtual Production</span>
+          <span class="mono" data-de="Showreel 2026 — Realtime · Archviz · Virtuelle Produktion" data-en="Showreel 2026 — Realtime · Archviz · Virtual Production" data-it="Showreel 2026 — Realtime · Archviz · Produzione Virtuale">Showreel 2026 — Realtime · Archviz · Virtual Production</span>
           <span class="mono">Vimeo — 16:9</span>
         </div>
       </div>
@@ -2280,8 +1957,7 @@
       <div class="wrap">
         <div class="sec-head rv">
           <h2 data-de="Kompetenzen" data-en="Skills" data-it="Competenze">Skills</h2>
-          <span class="idx"
-            ><b>05</b> /
+          <span class="idx"><b>05</b> /
             <span data-de="Leistungen" data-en="Skills" data-it="Competenze">Skills</span></span
           >
         </div>
@@ -2292,129 +1968,46 @@
           <h3>Unreal Engine &amp; Realtime</h3>
           <ul>
             <li>Unreal Engine 4 / 5 — Tech Art</li>
-            <li
- 
- data-de="Pixel-Streaming &amp; virtuelle Produktion" data-en="Pixel Streaming &amp; virtual production"
- data-it="Pixel Streaming e produzione virtuale"
- >Pixel Streaming &amp; virtual production</li>
-            <li
- 
- data-de="Lighting, Materialien, Cinematics" data-en="Lighting, Materials, Cinematics"
- data-it="Illuminazione, Materiali, Cinematics"
- >Lighting, Materials, Cinematics</li>
+            <li data-de="Pixel-Streaming &amp; virtuelle Produktion" data-en="Pixel Streaming &amp; virtual production" data-it="Pixel Streaming e produzione virtuale">Pixel Streaming &amp; virtual production</li>
+            <li data-de="Lighting, Materialien, Cinematics" data-en="Lighting, Materials, Cinematics" data-it="Illuminazione, Materiali, Cinematics">Lighting, Materials, Cinematics</li>
             <li data-de="VR / AR-Erlebnisse" data-en="VR / AR experiences" data-it="Esperienze VR / AR">VR / AR experiences</li>
             <li>DataPrep &amp; Asset Pipelines</li>
           </ul>
         </div>
         <div class="skill rv">
-          <span
- class="mono"
- 
- data-de="K—02 / Entwicklung" data-en="K—02 / Development"
- data-it="K—02 / Sviluppo"
- >K—02 / Development</span
+          <span class="mono" data-de="K—02 / Entwicklung" data-en="K—02 / Development" data-it="K—02 / Sviluppo">K—02 / Development</span
           >
           <h3>Tools &amp; Front-End</h3>
           <ul>
-            <li
- 
- data-de="Python — Produktions- &amp; Pipeline-Tools" data-en="Python — Production &amp; Pipeline Tools"
- data-it="Python — Strumenti di Produzione e Pipeline"
- >Python — Production &amp; Pipeline Tools</li>
-            <li
- 
- data-de="Browserbasierte 3D-Anwendungen" data-en="Browser-based 3D applications"
- data-it="Applicazioni 3D basate su browser"
- >Browser-based 3D applications</li>
-            <li
- 
- data-de="UI/UX-Design für interaktive Erlebnisse" data-en="UI/UX Design for interactive experiences"
- data-it="Design UI/UX per esperienze interattive"
- >UI/UX Design for interactive experiences</li>
+            <li data-de="Python — Produktions- &amp; Pipeline-Tools" data-en="Python — Production &amp; Pipeline Tools" data-it="Python — Strumenti di Produzione e Pipeline">Python — Production &amp; Pipeline Tools</li>
+            <li data-de="Browserbasierte 3D-Anwendungen" data-en="Browser-based 3D applications" data-it="Applicazioni 3D basate su browser">Browser-based 3D applications</li>
+            <li data-de="UI/UX-Design für interaktive Erlebnisse" data-en="UI/UX Design for interactive experiences" data-it="Design UI/UX per esperienze interattive">UI/UX Design for interactive experiences</li>
             <li>3ds Max · Corona Render</li>
-            <li
- 
- data-de="VS Code · sauberer, wartbarer Code" data-en="VS Code · clean, maintainable code"
- data-it="VS Code · codice pulito e manutenibile"
- >VS Code · clean, maintainable code</li>
+            <li data-de="VS Code · sauberer, wartbarer Code" data-en="VS Code · clean, maintainable code" data-it="VS Code · codice pulito e manutenibile">VS Code · clean, maintainable code</li>
           </ul>
         </div>
         <div class="skill rv">
-          <span class="mono" data-de="K—03 / Qualität" data-en="K—03 / Quality" data-it="K—03 / Qualità"
- >K—03 / Quality</span
+          <span class="mono" data-de="K—03 / Qualität" data-en="K—03 / Quality" data-it="K—03 / Qualità">K—03 / Quality</span
           >
-          <h3
- 
- data-de="Performance &amp; Optimierung" data-en="Performance &amp; Optimization"
- data-it="Performance e Ottimizzazione"
- >Performance &amp; Optimization</h3>
+          <h3 data-de="Performance &amp; Optimierung" data-en="Performance &amp; Optimization" data-it="Performance e Ottimizzazione">Performance &amp; Optimization</h3>
           <ul>
-            <li
- 
- data-de="Profiling &amp; systematische Optimierung" data-en="Profiling &amp; systematic optimization"
- data-it="Profiling e ottimizzazione sistematica"
- >Profiling &amp; systematic optimization</li>
-            <li
- 
- data-de="Produktionsreife Standards &amp; Validierung" data-en="Production-ready standards &amp; validation"
- data-it="Standard pronti per la produzione e validazione"
- >Production-ready standards &amp; validation</li>
-            <li
- 
- data-de="Kinoreife Bildqualität in Echtzeit" data-en="Cinematic image quality in realtime"
- data-it="Qualità d'immagine cinematografica in tempo reale"
- >Cinematic image quality in realtime</li>
-            <li
- 
- data-de="Zuverlässige Lieferung — termingerecht" data-en="Reliable delivery — on schedule"
- data-it="Consegna affidabile — nei tempi previsti"
- >Reliable delivery — on schedule</li>
-            <li
- 
- data-de="Strukturierte, dokumentierte Workflows" data-en="Structured, documented workflows"
- data-it="Workflow strutturati e documentati"
- >Structured, documented workflows</li>
+            <li data-de="Profiling &amp; systematische Optimierung" data-en="Profiling &amp; systematic optimization" data-it="Profiling e ottimizzazione sistematica">Profiling &amp; systematic optimization</li>
+            <li data-de="Produktionsreife Standards &amp; Validierung" data-en="Production-ready standards &amp; validation" data-it="Standard pronti per la produzione e validazione">Production-ready standards &amp; validation</li>
+            <li data-de="Kinoreife Bildqualität in Echtzeit" data-en="Cinematic image quality in realtime" data-it="Qualità d'immagine cinematografica in tempo reale">Cinematic image quality in realtime</li>
+            <li data-de="Zuverlässige Lieferung — termingerecht" data-en="Reliable delivery — on schedule" data-it="Consegna affidabile — nei tempi previsti">Reliable delivery — on schedule</li>
+            <li data-de="Strukturierte, dokumentierte Workflows" data-en="Structured, documented workflows" data-it="Workflow strutturati e documentati">Structured, documented workflows</li>
           </ul>
         </div>
         <div class="skill rv">
-          <span
- class="mono"
- 
- data-de="K—04 / Künstliche Intelligenz" data-en="K—04 / Artificial Intelligence"
- data-it="K—04 / Intelligenza Artificiale"
- >K—04 / Artificial Intelligence</span
+          <span class="mono" data-de="K—04 / Künstliche Intelligenz" data-en="K—04 / Artificial Intelligence" data-it="K—04 / Intelligenza Artificiale">K—04 / Artificial Intelligence</span
           >
-          <h3
- 
- data-de="Generative KI &amp; KI-gestützte Entwicklung" data-en="Generative AI &amp; AI-Assisted Development"
- data-it="IA Generativa e Sviluppo Assistito da IA"
- >Generative AI &amp; AI-Assisted Development</h3>
+          <h3 data-de="Generative KI &amp; KI-gestützte Entwicklung" data-en="Generative AI &amp; AI-Assisted Development" data-it="IA Generativa e Sviluppo Assistito da IA">Generative AI &amp; AI-Assisted Development</h3>
           <ul>
-            <li
- 
- data-de="KI-Bildgenerierung — ComfyUI, Kling, Nano Banana 2" data-en="AI image generation — ComfyUI, Kling, Nano Banana 2"
- data-it="Generazione di immagini IA — ComfyUI, Kling, Nano Banana 2"
- >AI image generation — ComfyUI, Kling, Nano Banana 2</li>
-            <li
- 
- data-de="Prompt Engineering für Konzept &amp; Look-Dev" data-en="Prompt engineering for concept &amp; look-dev"
- data-it="Prompt engineering per concept e look-dev"
- >Prompt engineering for concept &amp; look-dev</li>
-            <li
- 
- data-de="Agentisches Coding — Claude Code, GitHub Copilot" data-en="Agentic coding — Claude Code, GitHub Copilot"
- data-it="Coding agentico — Claude Code, GitHub Copilot"
- >Agentic coding — Claude Code, GitHub Copilot</li>
-            <li
- 
- data-de="KI-gestützte Pipeline- &amp; Workflow-Automatisierung" data-en="AI-assisted pipeline &amp; workflow automation"
- data-it="Automazione di pipeline e workflow assistita da IA"
- >AI-assisted pipeline &amp; workflow automation</li>
-            <li
- 
- data-de="API-Integration — Claude, OpenAI, Gemini" data-en="API integration — Claude, OpenAI, Gemini"
- data-it="Integrazione API — Claude, OpenAI, Gemini"
- >API integration — Claude, OpenAI, Gemini</li>
+            <li data-de="KI-Bildgenerierung — ComfyUI, Kling, Nano Banana 2" data-en="AI image generation — ComfyUI, Kling, Nano Banana 2" data-it="Generazione di immagini IA — ComfyUI, Kling, Nano Banana 2">AI image generation — ComfyUI, Kling, Nano Banana 2</li>
+            <li data-de="Prompt Engineering für Konzept &amp; Look-Dev" data-en="Prompt engineering for concept &amp; look-dev" data-it="Prompt engineering per concept e look-dev">Prompt engineering for concept &amp; look-dev</li>
+            <li data-de="Agentisches Coding — Claude Code, GitHub Copilot" data-en="Agentic coding — Claude Code, GitHub Copilot" data-it="Coding agentico — Claude Code, GitHub Copilot">Agentic coding — Claude Code, GitHub Copilot</li>
+            <li data-de="KI-gestützte Pipeline- &amp; Workflow-Automatisierung" data-en="AI-assisted pipeline &amp; workflow automation" data-it="Automazione di pipeline e workflow assistita da IA">AI-assisted pipeline &amp; workflow automation</li>
+            <li data-de="API-Integration — Claude, OpenAI, Gemini" data-en="API integration — Claude, OpenAI, Gemini" data-it="Integrazione API — Claude, OpenAI, Gemini">API integration — Claude, OpenAI, Gemini</li>
           </ul>
         </div>
       </div>
@@ -2423,29 +2016,17 @@
     <!-- ── Kontakt ───────────────────────────────────────────────── -->
     <section class="contact" id="kontakt">
       <div class="wrap contact-in">
-        <span
- class="mono rv"
- 
- data-de="08 / Kontakt — Lassen Sie uns sprechen" data-en="08 / Contact — Let's talk"
- data-it="08 / Contatto — Parliamone"
- >08 / Contact — Let's talk</span>
+        <span class="mono rv" data-de="08 / Kontakt — Lassen Sie uns sprechen" data-en="08 / Contact — Let's talk" data-it="08 / Contatto — Parliamone">08 / Contact — Let's talk</span>
         <h2 class="rv">
-          <span data-de="Ein Projekt im Kopf?" data-en="Got a project in mind?" data-it="Hai un progetto in mente?"
- >Got a project in mind?</span
+          <span data-de="Ein Projekt im Kopf?" data-en="Got a project in mind?" data-it="Hai un progetto in mente?">Got a project in mind?</span
           >
           <br />
           <a href="mailto:escrevaparajd@gmail.com">
-            <span data-de="Schreiben Sie mir." data-en="Write to me." data-it="Scrivimi."
- >Write to me.</span
+            <span data-de="Schreiben Sie mir." data-en="Write to me." data-it="Scrivimi.">Write to me.</span
             >
           </a>
         </h2>
-        <p
- class="rv"
- 
- data-de="Offen für Kooperationen in Realtime, Visualisierung und Front-End-Entwicklung — mit deutschen und internationalen Teams, remote und zuverlässig. Lassen Sie uns gemeinsam etwas Aussergewöhnliches bauen." data-en="Open to collaborations in realtime, visualization and front-end development — with German and international teams, remote and reliable. Let's build something extraordinary together."
- data-it="Aperto a collaborazioni in realtime, visualizzazione e sviluppo front-end — con team tedeschi e internazionali, da remoto e affidabile. Costruiamo insieme qualcosa di straordinario."
- >Open to collaborations in realtime, visualization and front-end development — with German and international teams, remote and reliable. Let's build something extraordinary together.</p>
+        <p class="rv" data-de="Offen für Kooperationen in Realtime, Visualisierung und Front-End-Entwicklung — mit deutschen und internationalen Teams, remote und zuverlässig. Lassen Sie uns gemeinsam etwas Aussergewöhnliches bauen." data-en="Open to collaborations in realtime, visualization and front-end development — with German and international teams, remote and reliable. Let's build something extraordinary together." data-it="Aperto a collaborazioni in realtime, visualizzazione e sviluppo front-end — con team tedeschi e internazionali, da remoto e affidabile. Costruiamo insieme qualcosa di straordinario.">Open to collaborations in realtime, visualization and front-end development — with German and international teams, remote and reliable. Let's build something extraordinary together.</p>
         <div class="links rv">
           <a href="mailto:escrevaparajd@gmail.com">
             <span class="link-label">
@@ -2457,30 +2038,20 @@
           <a href="cv.html" target="_blank" rel="noopener">
             <span class="link-label">
               <svg class="link-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg>
-              <span data-de="Lebenslauf" data-en="CV / Resume" data-it="CV / Curriculum"
- >CV / Resume</span
+              <span data-de="Lebenslauf" data-en="CV / Resume" data-it="CV / Curriculum">CV / Resume</span
               >
             </span>
-            <small data-de="Online ansehen ↗" data-en="View online ↗" data-it="Visualizza online ↗"
- >View online ↗</small
+            <small data-de="Online ansehen ↗" data-en="View online ↗" data-it="Visualizza online ↗">View online ↗</small
             >
           </a>
-          <a
-            href="https://www.linkedin.com/in/typeforjd"
-            target="_blank"
-            rel="noopener"
-          >
+          <a href="https://www.linkedin.com/in/typeforjd" target="_blank" rel="noopener">
             <span class="link-label">
               <svg class="link-ic" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
               <span>LinkedIn</span>
             </span>
             <small>/typeforjd ↗</small>
           </a>
-          <a
-            href="https://www.instagram.com/jdworkviz/"
-            target="_blank"
-            rel="noopener"
-          >
+          <a href="https://www.instagram.com/jdworkviz/" target="_blank" rel="noopener">
             <span class="link-label">
               <svg class="link-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
               <span>Instagram</span>
@@ -2495,8 +2066,7 @@
       <div class="foot-in">
         <span>© 2026 Juscélio Diaz</span>
         <span>Realtime &amp; Technical Artist</span>
-        <span data-de="Gestaltet mit Präzision" data-en="Crafted with precision" data-it="Realizzato con precisione"
- >Crafted with precision</span
+        <span data-de="Gestaltet mit Präzision" data-en="Crafted with precision" data-it="Realizzato con precisione">Crafted with precision</span
         >
       </div>
     </footer>
