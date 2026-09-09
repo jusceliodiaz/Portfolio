@@ -1,9 +1,9 @@
 /* ============================================================
    PLINTH / 001 — three.js viewer
-   Ordem de tentativa:
-     1) assets/model/chair.glb   (o real)
-     2) turntable de imagens     (fallback honesto)
-     3) proxy em blocos          (só pra você ver o viewer vivo antes do export)
+   Dois LODs reais: chair_low.glb (padrão) e chair_high.glb (sob demanda).
+   Se nenhum carregar:
+     1) turntable de imagens     (fallback honesto)
+     2) proxy em blocos          (só pra ver o viewer vivo)
    ============================================================ */
 
 import * as THREE            from 'three';
@@ -14,11 +14,17 @@ import { RoomEnvironment }   from 'three/addons/environments/RoomEnvironment.js'
 
 /* ── Config ──────────────────────────────────────────────── */
 const CONFIG = {
-  model:   'assets/model/chair.glb',
+  models: {
+    low:  { url: 'assets/model/chair_low.glb',  label: 'Low'  },
+    high: { url: 'assets/model/chair_high.glb', label: 'High' },
+  },
+  lod:     'low',
   draco:   'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/libs/draco/gltf/',
   probe:   'assets/img/turntable/frame-001.webp',
   exposure: 1.05,
   autoRotateSpeed: 0.55,
+  /* os GLB vêm sem material — clay, pra forma falar sozinha */
+  clay:    { color: 0xd9d4ca, roughness: 0.62, metalness: 0.0 },
 };
 
 const stage    = document.getElementById('viewerStage');
@@ -123,16 +129,23 @@ const countTris = (obj) => {
   return Math.round(t);
 };
 
-const prepare = (obj) => {
+const clayMat = new THREE.MeshStandardMaterial(CONFIG.clay);
+
+const prepare = (obj, { clay = false } = {}) => {
   obj.traverse(o => {
     if (!o.isMesh) return;
     o.castShadow = true;
     o.receiveShadow = true;
+    if (clay) o.material = clayMat;
     if (o.material) {
       o.material.envMapIntensity = 0.9;
       if ('side' in o.material) o.material.side = THREE.FrontSide;
     }
   });
+  /* mantém o wireframe se o botão já estava ligado antes da troca */
+  if (document.getElementById('btnWire')?.getAttribute('aria-pressed') === 'true') {
+    obj.traverse(o => { if (o.isMesh && o.material) o.material.wireframe = true; });
+  }
 };
 
 /* Proxy em blocos — placeholder enquanto o .glb não existe */
@@ -166,40 +179,92 @@ const startProxy = () => {
   say('Placeholder — GLB pending');
 };
 
-const loadModel = async () => {
-  /* Em file:// o fetch de teste falha; tenta direto e cai no catch. */
-  if (location.protocol !== 'file:') {
-    try {
-      const r = await fetch(CONFIG.model, { method: 'HEAD' });
-      if (!r.ok) throw new Error('no model');
-    } catch {
-      /* Sem GLB: turntable se houver frames, senão proxy. */
-      try {
-        const p = await fetch(CONFIG.probe, { method: 'HEAD' });
-        if (p.ok) return useTurntable('Turntable preview');
-      } catch { /* segue pro proxy */ }
-      return startProxy();
-    }
-  }
+/* Descarta geometria/material do LOD anterior antes de trocar. */
+let current = null;
+let busy    = false;
 
-  say('Loading…');
-  const draco = new DRACOLoader().setDecoderPath(CONFIG.draco);
-  const loader = new GLTFLoader().setDRACOLoader(draco);
+const disposeCurrent = () => {
+  if (!current) return;
+  current.traverse(o => {
+    if (!o.isMesh) return;
+    o.geometry?.dispose();
+    const mats = Array.isArray(o.material) ? o.material : [o.material];
+    mats.forEach(m => {
+      if (!m || m === clayMat) return;            /* clay é compartilhado */
+      Object.values(m).forEach(v => v?.isTexture && v.dispose());
+      m.dispose();
+    });
+  });
+  root.remove(current);
+  current = null;
+};
+
+const draco  = new DRACOLoader().setDecoderPath(CONFIG.draco);
+const loader = new GLTFLoader().setDRACOLoader(draco);
+
+const setLodUi = (lod, disabled) => {
+  document.querySelectorAll('[data-lod]').forEach(b => {
+    b.setAttribute('aria-pressed', String(b.dataset.lod === lod));
+    b.disabled = !!disabled;
+  });
+};
+
+const loadLod = (lod, { first = false } = {}) => new Promise((resolve, reject) => {
+  const spec = CONFIG.models[lod];
+  if (!spec) return reject(new Error('unknown lod'));
+  busy = true;
+  setLodUi(lod, true);
+  say(`Loading ${spec.label.toLowerCase()}…`);
 
   loader.load(
-    CONFIG.model,
+    spec.url,
     (gltf) => {
-      root.add(gltf.scene);
-      prepare(gltf.scene);
-      frameObject(gltf.scene);
-      const tris = countTris(gltf.scene);
-      say(`${tris.toLocaleString('en-US')} tris · drag to orbit`);
+      disposeCurrent();
+      /* GLB sem materiais: clay em vez do default metálico do glTF */
+      const bare = !gltf.parser?.json?.materials?.length;
+      current = gltf.scene;
+      root.add(current);
+      prepare(current, { clay: bare });
+      frameObject(current);
+      const tris = countTris(current);
+      say(`${spec.label} · ${tris.toLocaleString('en-US')} tris · drag to orbit`);
+      CONFIG.lod = lod;
+      busy = false;
+      setLodUi(lod, false);
+      resolve();
     },
-    (e) => { if (e.total) say(`Loading ${Math.round((e.loaded / e.total) * 100)}%`); },
-    () => startProxy()
+    (e) => { if (e.total) say(`${spec.label} ${Math.round((e.loaded / e.total) * 100)}%`); },
+    (err) => {
+      busy = false;
+      setLodUi(CONFIG.lod, false);
+      /* Troca que falha mantém o modelo atual na tela. */
+      if (!first) { say(`${spec.label} failed to load`); return reject(err); }
+      reject(err);
+    }
   );
+});
+
+const boot = async () => {
+  try {
+    await loadLod(CONFIG.lod, { first: true });
+  } catch {
+    /* Nenhum GLB: turntable se houver frames, senão proxy. */
+    try {
+      const p = await fetch(CONFIG.probe, { method: 'HEAD' });
+      if (p.ok) return useTurntable('Turntable preview');
+    } catch { /* segue pro proxy */ }
+    startProxy();
+  }
 };
-loadModel();
+boot();
+
+document.querySelectorAll('[data-lod]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const lod = btn.dataset.lod;
+    if (busy || lod === CONFIG.lod) return;
+    loadLod(lod).catch(() => {});
+  });
+});
 
 /* ── UI ──────────────────────────────────────────────────── */
 const VIEWS = {
@@ -227,6 +292,7 @@ btnWire?.addEventListener('click', () => {
   const on = btnWire.getAttribute('aria-pressed') !== 'true';
   btnWire.setAttribute('aria-pressed', String(on));
   root.traverse(o => { if (o.isMesh && o.material) o.material.wireframe = on; });
+  clayMat.wireframe = on;
 });
 
 const btnSpin = document.getElementById('btnSpin');

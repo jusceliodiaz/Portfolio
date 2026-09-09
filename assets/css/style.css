@@ -104,14 +104,6 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
   text-wrap:pretty;
 }
 
-.eyebrow{
-  margin:0;
-  font:var(--label);
-  letter-spacing:var(--label-ls);
-  text-transform:uppercase;
-  color:var(--muted);
-}
-
 .idx{
   display:block; margin:0 0 auto;
   font:var(--label); font-size:.72rem; letter-spacing:.16em;
@@ -479,6 +471,8 @@ ul.data{ margin:0; padding:0; }
   transition:color .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease);
 }
 .chip:hover{ color:var(--txt); border-color:var(--muted); }
+.chip:disabled{ opacity:.45; cursor:default; }
+.chip__meta{ opacity:.55; margin-left:.45em; }
 .chip[aria-pressed="true"]{ color:#0b0b0c; background:var(--accent); border-color:var(--accent); }
 
 .downloads{ display:flex; flex-wrap:wrap; gap:.5rem; }
