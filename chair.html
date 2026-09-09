@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PLINTH — Lounge Chair · 3D Modeling Study</title>
-<meta name="description" content="Full production breakdown of the PLINTH lounge chair: reference research, low-poly base, high-poly sculpt, studio lighting, interior scene and material moods.">
-<meta name="theme-color" content="#0a0a0b">
+<meta name="description" content="Contact sheet of the PLINTH lounge chair build: reference research, low-poly base, high-poly sculpt, studio lighting, interior scene and material moods.">
+<meta name="theme-color" content="#0b0b0c">
 
 <!-- Página no ar mas fora do Google enquanto os renders forem placeholders: apague esta linha quando publicar de vez -->
 <meta name="robots" content="noindex, nofollow">
 
-<!-- Open Graph (troque a URL absoluta quando publicar) -->
+<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="PLINTH — Lounge Chair · 3D Modeling Study">
 <meta property="og:description" content="From reference board to production-ready asset. Modeling, sculpt, lookdev and rendering breakdown.">
@@ -38,21 +38,21 @@
   </button>
 
   <nav class="nav__menu" id="navMenu" aria-label="Sections">
-    <a class="nav__link" href="#overview">Overview</a>
+    <a class="nav__link" href="#overview">00 Brief</a>
     <a class="nav__link" href="#research">01 Research</a>
     <a class="nav__link" href="#lowpoly">02 Low-poly</a>
     <a class="nav__link" href="#sculpt">03 Sculpt</a>
     <a class="nav__link" href="#studio">04 Studio</a>
     <a class="nav__link" href="#interior">05 Interior</a>
     <a class="nav__link" href="#moods">06 Moods</a>
-    <a class="nav__link" href="#viewer">3D</a>
+    <a class="nav__link" href="#viewer">07 3D</a>
     <a class="nav__link nav__link--cta" href="#specs">Specs</a>
   </nav>
 </header>
 
 <main id="top">
 
-  <!-- ═══════════════ HERO / FILM ═══════════════ -->
+  <!-- ═══════════════ HERO ═══════════════ -->
   <section class="hero" id="hero">
     <video class="hero__video" id="heroLoop"
            autoplay muted loop playsinline preload="metadata"
@@ -64,19 +64,16 @@
 
     <div class="hero__inner">
       <p class="eyebrow" data-reveal>Modeling test — final round</p>
-      <h1 class="hero__title" data-reveal>
-        A chair,<br><em>told from the inside out.</em>
-      </h1>
+      <h1 class="hero__title" data-reveal>A chair, <em>inside out.</em></h1>
       <p class="hero__lede" data-reveal>
-        PLINTH is a low, soft-shouldered lounge chair on a solid timber plinth.
-        This page follows the whole build — reference to render — in the order it happened.
+        Low, soft-shouldered lounge chair on a solid timber plinth. Reference to render, in order.
       </p>
       <div class="hero__actions" data-reveal>
         <button class="btn btn--primary" id="playFilm">
           <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
           Watch the film <span class="btn__meta">1:10</span>
         </button>
-        <a class="btn btn--ghost" href="#overview">See the process</a>
+        <a class="btn btn--ghost" href="#overview">The sheet</a>
       </div>
     </div>
 
@@ -86,8 +83,6 @@
       <div><dt>Duration</dt><dd>5 days</dd></div>
       <div><dt>Deliverable</dt><dd>Production-ready asset</dd></div>
     </dl>
-
-    <a class="hero__cue" href="#overview" aria-label="Scroll down"><span></span></a>
   </section>
 
   <!-- Modal do filme com áudio -->
@@ -101,102 +96,69 @@
     </div>
   </div>
 
-  <!-- ═══════════════ OVERVIEW ═══════════════ -->
-  <section class="section section--split" id="overview">
-    <div class="section__aside">
-      <p class="eyebrow" data-reveal>The brief</p>
+  <!-- ═══════════════ 00 BRIEF ═══════════════ -->
+  <section class="sheet" id="overview" data-reveal>
+    <div class="cell cell--text w4">
+      <span class="idx">00</span>
+      <p class="eyebrow">The brief</p>
+      <h2 class="h2">One chair, <em>four hard problems.</em></h2>
+      <p class="line">Believable at close range, light enough to sit in a full interior scene.</p>
     </div>
-    <div class="section__body">
-      <h2 class="h2" data-reveal>One chair, four hard problems.</h2>
-      <p class="lead" data-reveal>
-        The test asked for a single upholstered chair, believable at close range and light enough
-        to sit in a full interior scene. That splits into four problems: a clean quad base that
-        subdivides without pinching, soft-goods that read as fabric and not as geometry,
-        a timber base with honest joinery, and a lookdev that survives both studio white and
-        a warm interior.
-      </p>
-      <p data-reveal>
-        I worked in that order and kept every stage reviewable — the wireframe, the sculpt,
-        the shading breakdown and the render passes are all below, exactly as they came out
-        of the pipeline.
-      </p>
 
-      <ul class="pillars" data-reveal>
-        <li><span>01</span><strong>Silhouette first</strong>Blocking approved before a single detail.</li>
-        <li><span>02</span><strong>All-quad topology</strong>Edge flow follows the seams, not the software.</li>
-        <li><span>03</span><strong>Soft-goods logic</strong>Compression, gravity and piping done as sculpt, not noise.</li>
-        <li><span>04</span><strong>Scene-ready</strong>One asset, five material moods, no re-topology.</li>
-      </ul>
-    </div>
+    <ul class="pillars w8">
+      <li><span>01</span><strong>Silhouette first</strong><em>Blocking approved before any detail.</em></li>
+      <li><span>02</span><strong>All-quad topology</strong><em>Edge flow follows the seams, not the software.</em></li>
+      <li><span>03</span><strong>Soft-goods logic</strong><em>Compression and gravity sculpted, never noise.</em></li>
+      <li><span>04</span><strong>Scene-ready</strong><em>One asset, five moods, no re-topology.</em></li>
+    </ul>
   </section>
 
   <!-- ═══════════════ 01 RESEARCH ═══════════════ -->
-  <section class="section phase" id="research">
-    <header class="phase__head">
-      <p class="phase__num" data-reveal>01</p>
-      <div>
-        <h2 class="h2" data-reveal>Research &amp; reference</h2>
-        <p class="lead" data-reveal>
-          Two days of looking before one hour of modeling. I built a board around a narrow
-          question: what makes a low chair feel heavy at the base and light at the shoulders?
-        </p>
-      </div>
-    </header>
-
-    <div class="board" data-gallery="research" data-reveal>
-      <button class="tile tile--tall" data-full="assets/img/research/ref-01.webp" data-caption="Silhouette study — plinth base proportion">
-        <img src="assets/img/research/ref-01.webp" alt="Reference: chair silhouette study" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/research/ref-02.webp" data-caption="Arm roll and piping detail">
-        <img src="assets/img/research/ref-02.webp" alt="Reference: arm roll and piping" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/research/ref-03.webp" data-caption="Seat compression under load">
-        <img src="assets/img/research/ref-03.webp" alt="Reference: seat compression" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/research/ref-04.webp" data-caption="Timber plinth joinery">
-        <img src="assets/img/research/ref-04.webp" alt="Reference: timber plinth joinery" loading="lazy" decoding="async">
-      </button>
-      <button class="tile tile--wide" data-full="assets/img/research/ref-05.webp" data-caption="Fabric weave and sheen targets">
-        <img src="assets/img/research/ref-05.webp" alt="Reference: fabric weave" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/research/ref-06.webp" data-caption="Back-to-arm transition">
-        <img src="assets/img/research/ref-06.webp" alt="Reference: back to arm transition" loading="lazy" decoding="async">
-      </button>
+  <section class="sheet" id="research" data-gallery="research" data-reveal>
+    <div class="cell cell--text w4">
+      <span class="idx">01</span>
+      <p class="eyebrow">Research</p>
+      <h2 class="h2">Heavy at the base, <em>light at the shoulders.</em></h2>
+      <p class="line">Two days of looking before one hour of modeling.</p>
     </div>
 
-    <div class="notes" data-reveal>
-      <div class="note">
-        <h3>What I kept</h3>
-        <p>The continuous shoulder line, the single piping run from arm to back, and a plinth
-           that reads as one solid block with a shadow gap under it.</p>
-      </div>
-      <div class="note">
-        <h3>What I dropped</h3>
-        <p>Buttoning and heavy tufting — they fight the clean shoulder and cost geometry
-           that the brief didn't ask for.</p>
-      </div>
-      <div class="note">
-        <h3>Dimensions locked</h3>
-        <p>W 104 · D 92 · H 68 cm · seat height 38 cm. Every later stage was modeled to
-           real-world scale in metres.</p>
-      </div>
-    </div>
+    <button class="tile w4 ar-43" data-full="assets/img/research/ref-01.webp" data-caption="Silhouette study — plinth base proportion">
+      <img src="assets/img/research/ref-01.webp" alt="Reference: chair silhouette study" loading="lazy" decoding="async">
+    </button>
+    <button class="tile w4 ar-43" data-full="assets/img/research/ref-02.webp" data-caption="Arm roll and piping detail">
+      <img src="assets/img/research/ref-02.webp" alt="Reference: arm roll and piping" loading="lazy" decoding="async">
+    </button>
+
+    <button class="tile w6 ar-32" data-full="assets/img/research/ref-05.webp" data-caption="Fabric weave and sheen targets">
+      <img src="assets/img/research/ref-05.webp" alt="Reference: fabric weave" loading="lazy" decoding="async">
+    </button>
+    <button class="tile w3 ar-1 half-sm" data-full="assets/img/research/ref-03.webp" data-caption="Seat compression under load">
+      <img src="assets/img/research/ref-03.webp" alt="Reference: seat compression" loading="lazy" decoding="async">
+    </button>
+    <button class="tile w3 ar-1 half-sm" data-full="assets/img/research/ref-04.webp" data-caption="Timber plinth joinery">
+      <img src="assets/img/research/ref-04.webp" alt="Reference: timber plinth joinery" loading="lazy" decoding="async">
+    </button>
+
+    <button class="tile w8 ar-21" data-full="assets/img/research/ref-06.webp" data-caption="Back-to-arm transition">
+      <img src="assets/img/research/ref-06.webp" alt="Reference: back to arm transition" loading="lazy" decoding="async">
+    </button>
+    <dl class="data data--1 w4">
+      <div><dt>Kept</dt><dd>Continuous shoulder, single piping run, shadow gap under the plinth</dd></div>
+      <div><dt>Dropped</dt><dd>Buttoning and heavy tufting</dd></div>
+      <div><dt>Locked</dt><dd>W 104 · D 92 · H 68 cm · seat 38</dd></div>
+    </dl>
   </section>
 
   <!-- ═══════════════ 02 LOW-POLY ═══════════════ -->
-  <section class="section phase" id="lowpoly">
-    <header class="phase__head">
-      <p class="phase__num" data-reveal>02</p>
-      <div>
-        <h2 class="h2" data-reveal>Low-poly base mesh</h2>
-        <p class="lead" data-reveal>
-          Built as one clean quad cage per part — shell, cushions, plinth, feet — so the
-          asset stays editable and subdivides predictably. Drag the handle to reveal the wire.
-        </p>
-      </div>
-    </header>
+  <section class="sheet" id="lowpoly" data-gallery="lowpoly" data-reveal>
+    <div class="cell cell--text w4">
+      <span class="idx">02</span>
+      <p class="eyebrow">Low-poly</p>
+      <h2 class="h2">One quad cage <em>per part.</em></h2>
+      <p class="line">Drag the handle to check the topology yourself.</p>
+    </div>
 
-    <div class="compare" data-compare data-reveal>
+    <div class="compare w8 ar-169" data-compare>
       <img class="compare__img" src="assets/img/lowpoly/lowpoly-shaded.webp" alt="Low-poly base mesh, shaded" loading="lazy" decoding="async">
       <img class="compare__img compare__img--top" src="assets/img/lowpoly/lowpoly-wire.webp" alt="Low-poly base mesh, wireframe" loading="lazy" decoding="async">
       <div class="compare__line" aria-hidden="true"></div>
@@ -208,216 +170,168 @@
       <p class="compare__tag compare__tag--r">Wireframe</p>
     </div>
 
-    <dl class="stats" data-reveal>
+    <dl class="data data--4 data--fig w12">
       <div><dt>Base mesh</dt><dd>18.4k <span>quads</span></dd></div>
       <div><dt>Quad ratio</dt><dd>100<span>%</span></dd></div>
-      <div><dt>Subdiv level</dt><dd>2 <span>render</span></dd></div>
+      <div><dt>Subdiv</dt><dd>2 <span>render</span></dd></div>
       <div><dt>UV sets</dt><dd>3 <span>udim-free</span></dd></div>
     </dl>
 
-    <div class="grid grid--3" data-gallery="lowpoly" data-reveal>
-      <button class="tile" data-full="assets/img/lowpoly/lowpoly-detail-01.webp" data-caption="Arm roll — edge flow follows the piping">
-        <img src="assets/img/lowpoly/lowpoly-detail-01.webp" alt="Wireframe detail: arm roll" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/lowpoly/lowpoly-detail-02.webp" data-caption="Shoulder transition — no poles, no pinching">
-        <img src="assets/img/lowpoly/lowpoly-detail-02.webp" alt="Wireframe detail: shoulder" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/lowpoly/lowpoly-detail-03.webp" data-caption="Plinth and feet — hard-surface bevels">
-        <img src="assets/img/lowpoly/lowpoly-detail-03.webp" alt="Wireframe detail: plinth" loading="lazy" decoding="async">
-      </button>
-    </div>
+    <button class="tile w4 ar-43" data-full="assets/img/lowpoly/lowpoly-detail-01.webp" data-caption="Arm roll — edge flow follows the piping">
+      <img src="assets/img/lowpoly/lowpoly-detail-01.webp" alt="Wireframe detail: arm roll" loading="lazy" decoding="async">
+    </button>
+    <button class="tile w4 ar-43" data-full="assets/img/lowpoly/lowpoly-detail-02.webp" data-caption="Shoulder transition — no poles, no pinching">
+      <img src="assets/img/lowpoly/lowpoly-detail-02.webp" alt="Wireframe detail: shoulder" loading="lazy" decoding="async">
+    </button>
+    <button class="tile w4 ar-43" data-full="assets/img/lowpoly/lowpoly-detail-03.webp" data-caption="Plinth and feet — hard-surface bevels">
+      <img src="assets/img/lowpoly/lowpoly-detail-03.webp" alt="Wireframe detail: plinth" loading="lazy" decoding="async">
+    </button>
   </section>
 
   <!-- ═══════════════ 03 SCULPT ═══════════════ -->
-  <section class="section phase" id="sculpt">
-    <header class="phase__head">
-      <p class="phase__num" data-reveal>03</p>
-      <div>
-        <h2 class="h2" data-reveal>Sculpt &amp; soft-goods</h2>
-        <p class="lead" data-reveal>
-          The base mesh is correct but dead. Everything that makes it upholstery happens here:
-          seam tension, the cushion sagging where a body sits, folds that start at a seam
-          and die into the volume.
-        </p>
-      </div>
-    </header>
-
-    <figure class="figure figure--wide" data-reveal>
-      <button class="tile tile--flat" data-gallery="sculpt" data-full="assets/img/sculpt/sculpt-clay.webp" data-caption="High-poly clay render — 4.1M tris">
-        <img src="assets/img/sculpt/sculpt-clay.webp" alt="High-poly clay render of the chair" loading="lazy" decoding="async">
-      </button>
-      <figcaption>Clay pass. No material, no cheating — the form has to hold on its own.</figcaption>
-    </figure>
-
-    <div class="grid grid--3" data-gallery="sculpt" data-reveal>
-      <button class="tile" data-full="assets/img/sculpt/sculpt-detail-01.webp" data-caption="Piping — sculpted, not a boolean tube">
-        <img src="assets/img/sculpt/sculpt-detail-01.webp" alt="Sculpt detail: piping" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/sculpt/sculpt-detail-02.webp" data-caption="Seat compression and gravity folds">
-        <img src="assets/img/sculpt/sculpt-detail-02.webp" alt="Sculpt detail: seat folds" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/sculpt/sculpt-detail-03.webp" data-caption="Back panel — subtle stitch pull">
-        <img src="assets/img/sculpt/sculpt-detail-03.webp" alt="Sculpt detail: back panel" loading="lazy" decoding="async">
-      </button>
+  <section class="sheet" id="sculpt" data-gallery="sculpt" data-reveal>
+    <button class="tile w8 ar-32" data-full="assets/img/sculpt/sculpt-clay.webp" data-caption="High-poly clay render — 4.1M tris">
+      <img src="assets/img/sculpt/sculpt-clay.webp" alt="High-poly clay render of the chair" loading="lazy" decoding="async">
+    </button>
+    <div class="cell cell--text w4">
+      <span class="idx">03</span>
+      <p class="eyebrow">Sculpt</p>
+      <h2 class="h2">Every fold answers <em>to something physical.</em></h2>
+      <p class="line">A seam, a corner, or weight. Nothing decorative.</p>
     </div>
 
-    <div class="notes" data-reveal>
-      <div class="note">
-        <h3>Rule I followed</h3>
-        <p>Every fold answers to something physical — a seam, a corner, or weight. Nothing decorative.</p>
-      </div>
-      <div class="note">
-        <h3>Bake</h3>
-        <p>Normal + AO baked from the high-poly onto the level-0 cage. Nothing baked that could be shaded.</p>
-      </div>
-      <div class="note">
-        <h3>Cost</h3>
-        <p>4.1M tris in sculpt, 18.4k quads shipped. The detail lives in maps, not in the mesh.</p>
-      </div>
-    </div>
+    <button class="tile w3 ar-1 half-sm" data-full="assets/img/sculpt/sculpt-detail-01.webp" data-caption="Piping — sculpted, not a boolean tube">
+      <img src="assets/img/sculpt/sculpt-detail-01.webp" alt="Sculpt detail: piping" loading="lazy" decoding="async">
+    </button>
+    <button class="tile w3 ar-1 half-sm" data-full="assets/img/sculpt/sculpt-detail-02.webp" data-caption="Seat compression and gravity folds">
+      <img src="assets/img/sculpt/sculpt-detail-02.webp" alt="Sculpt detail: seat folds" loading="lazy" decoding="async">
+    </button>
+    <button class="tile w3 ar-1 half-sm" data-full="assets/img/sculpt/sculpt-detail-03.webp" data-caption="Back panel — subtle stitch pull">
+      <img src="assets/img/sculpt/sculpt-detail-03.webp" alt="Sculpt detail: back panel" loading="lazy" decoding="async">
+    </button>
+    <dl class="data data--1 w3">
+      <div><dt>Bake</dt><dd>Normal + AO from high-poly onto the level-0 cage</dd></div>
+      <div><dt>Cost</dt><dd>4.1M tris sculpted · 18.4k quads shipped</dd></div>
+    </dl>
   </section>
 
   <!-- ═══════════════ 04 STUDIO ═══════════════ -->
-  <section class="section phase" id="studio">
-    <header class="phase__head">
-      <p class="phase__num" data-reveal>04</p>
-      <div>
-        <h2 class="h2" data-reveal>Studio setup</h2>
-        <p class="lead" data-reveal>
-          Neutral cyc, one large soft key at 40°, a low fill and a rim to separate the back
-          from the wall. Built to show form, not to flatter it.
-        </p>
-      </div>
-    </header>
-
-    <div class="grid grid--gallery" data-gallery="studio" data-reveal>
-      <button class="tile tile--wide" data-full="assets/img/studio/studio-01.webp" data-caption="Three-quarter hero — studio white">
-        <img src="assets/img/studio/studio-01.webp" alt="Studio render: three-quarter view" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/studio/studio-02.webp" data-caption="Front elevation">
-        <img src="assets/img/studio/studio-02.webp" alt="Studio render: front" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/studio/studio-03.webp" data-caption="Side profile — shoulder line">
-        <img src="assets/img/studio/studio-03.webp" alt="Studio render: side profile" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/studio/studio-04.webp" data-caption="Back — single piping run">
-        <img src="assets/img/studio/studio-04.webp" alt="Studio render: back" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/studio/studio-05.webp" data-caption="Macro — weave and seam">
-        <img src="assets/img/studio/studio-05.webp" alt="Studio render: macro fabric" loading="lazy" decoding="async">
-      </button>
-      <button class="tile tile--wide" data-full="assets/img/studio/studio-06.webp" data-caption="Top-down — cushion volume">
-        <img src="assets/img/studio/studio-06.webp" alt="Studio render: top down" loading="lazy" decoding="async">
-      </button>
+  <section class="sheet" id="studio" data-gallery="studio" data-reveal>
+    <div class="cell cell--text w3">
+      <span class="idx">04</span>
+      <p class="eyebrow">Studio</p>
+      <h2 class="h2">Built to show form, <em>not to flatter it.</em></h2>
+      <p class="line">Neutral cyc, one soft key at 40°, low fill, narrow rim.</p>
     </div>
+    <button class="tile w6 ar-32" data-full="assets/img/studio/studio-01.webp" data-caption="Three-quarter hero — studio white">
+      <img src="assets/img/studio/studio-01.webp" alt="Studio render: three-quarter view" loading="lazy" decoding="async">
+    </button>
+    <button class="tile w3 ar-34" data-full="assets/img/studio/studio-05.webp" data-caption="Macro — weave and seam">
+      <img src="assets/img/studio/studio-05.webp" alt="Studio render: macro fabric" loading="lazy" decoding="async">
+    </button>
 
-    <div class="lightset" data-reveal>
-      <p class="eyebrow">Light rig</p>
-      <ul>
-        <li><b>Key</b> 3×2 m softbox, 40° camera-left, 5600 K</li>
-        <li><b>Fill</b> bounce card at 1/8 key, camera-right</li>
-        <li><b>Rim</b> narrow strip, 140° behind, 1/4 key</li>
-        <li><b>Render</b> Cycles · 2048 spp · OIDN · 4000 × 4000 px</li>
-      </ul>
-    </div>
+    <button class="tile w3 ar-1 half-sm" data-full="assets/img/studio/studio-02.webp" data-caption="Front elevation">
+      <img src="assets/img/studio/studio-02.webp" alt="Studio render: front" loading="lazy" decoding="async">
+    </button>
+    <button class="tile w3 ar-1 half-sm" data-full="assets/img/studio/studio-03.webp" data-caption="Side profile — shoulder line">
+      <img src="assets/img/studio/studio-03.webp" alt="Studio render: side profile" loading="lazy" decoding="async">
+    </button>
+    <button class="tile w3 ar-1 half-sm" data-full="assets/img/studio/studio-04.webp" data-caption="Back — single piping run">
+      <img src="assets/img/studio/studio-04.webp" alt="Studio render: back" loading="lazy" decoding="async">
+    </button>
+    <button class="tile w3 ar-1 half-sm" data-full="assets/img/studio/studio-06.webp" data-caption="Top-down — cushion volume">
+      <img src="assets/img/studio/studio-06.webp" alt="Studio render: top down" loading="lazy" decoding="async">
+    </button>
+
+    <ul class="data data--4 w12">
+      <li><b>Key</b><p>3×2 m softbox · 40° camera-left · 5600 K</p></li>
+      <li><b>Fill</b><p>Bounce card at 1/8 key · camera-right</p></li>
+      <li><b>Rim</b><p>Narrow strip · 140° behind · 1/4 key</p></li>
+      <li><b>Render</b><p>Cycles · 2048 spp · OIDN · 4000 px</p></li>
+    </ul>
   </section>
 
   <!-- ═══════════════ 05 INTERIOR ═══════════════ -->
-  <section class="section phase phase--bleed" id="interior">
-    <header class="phase__head">
-      <p class="phase__num" data-reveal>05</p>
-      <div>
-        <h2 class="h2" data-reveal>Interior scene</h2>
-        <p class="lead" data-reveal>
-          The real test: does the asset hold up in context, at scale, under practical light?
-          One room, one time of day, five cameras.
-        </p>
-      </div>
-    </header>
+  <section class="sheet" id="interior" data-gallery="interior" data-reveal>
+    <div class="cell cell--text w4">
+      <span class="idx">05</span>
+      <p class="eyebrow">Interior</p>
+      <h2 class="h2">At scale, <em>under practical light.</em></h2>
+      <p class="line">One room, one time of day, five cameras.</p>
+    </div>
+    <button class="tile w4 ar-43" data-full="assets/img/interior/interior-01.webp" data-caption="Camera B — 50 mm, seated eye level">
+      <img src="assets/img/interior/interior-01.webp" alt="Interior render: camera B" loading="lazy" decoding="async">
+    </button>
+    <button class="tile w4 ar-43" data-full="assets/img/interior/interior-02.webp" data-caption="Camera C — 85 mm, detail on the plinth">
+      <img src="assets/img/interior/interior-02.webp" alt="Interior render: camera C" loading="lazy" decoding="async">
+    </button>
 
-    <button class="bleed" data-gallery="interior" data-full="assets/img/interior/interior-hero.webp"
-            data-caption="Interior hero — 16:00, west window" data-reveal>
+    <button class="bleed" data-full="assets/img/interior/interior-hero.webp"
+            data-caption="Interior hero — 16:00, west window">
       <img src="assets/img/interior/interior-hero.webp" alt="Interior scene with the chair, wide shot" loading="lazy" decoding="async">
       <span class="bleed__cap">Camera A — 35 mm · f/4 · 16:00</span>
     </button>
 
-    <div class="grid grid--4" data-gallery="interior" data-reveal>
-      <button class="tile" data-full="assets/img/interior/interior-01.webp" data-caption="Camera B — 50 mm, seated eye level">
-        <img src="assets/img/interior/interior-01.webp" alt="Interior render: camera B" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/interior/interior-02.webp" data-caption="Camera C — 85 mm, detail on the plinth">
-        <img src="assets/img/interior/interior-02.webp" alt="Interior render: camera C" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/interior/interior-03.webp" data-caption="Camera D — backlit, rim on the shoulder">
-        <img src="assets/img/interior/interior-03.webp" alt="Interior render: camera D" loading="lazy" decoding="async">
-      </button>
-      <button class="tile" data-full="assets/img/interior/interior-04.webp" data-caption="Camera E — corner, ambient only">
-        <img src="assets/img/interior/interior-04.webp" alt="Interior render: camera E" loading="lazy" decoding="async">
-      </button>
-    </div>
+    <button class="tile w6 ar-32" data-full="assets/img/interior/interior-03.webp" data-caption="Camera D — backlit, rim on the shoulder">
+      <img src="assets/img/interior/interior-03.webp" alt="Interior render: camera D" loading="lazy" decoding="async">
+    </button>
+    <button class="tile w6 ar-32" data-full="assets/img/interior/interior-04.webp" data-caption="Camera E — corner, ambient only">
+      <img src="assets/img/interior/interior-04.webp" alt="Interior render: camera E" loading="lazy" decoding="async">
+    </button>
   </section>
 
   <!-- ═══════════════ 06 MOODS ═══════════════ -->
-  <section class="section phase" id="moods">
-    <header class="phase__head">
-      <p class="phase__num" data-reveal>06</p>
-      <div>
-        <h2 class="h2" data-reveal>Material moods</h2>
-        <p class="lead" data-reveal>
-          Same geometry, same UVs, five stories. Every variant is a material swap only —
-          which is the point of building the asset this way.
-        </p>
-      </div>
-    </header>
+  <section class="sheet" id="moods" data-gallery="moods" data-reveal>
+    <div class="cell cell--text cell--row w12">
+      <span class="idx">06</span>
+      <h2 class="h2">Same geometry, <em>five stories.</em></h2>
+      <p class="line">Material swap only — which is the point of building it this way.</p>
+    </div>
 
-    <div class="moods" data-gallery="moods" data-reveal>
-      <figure>
-        <button class="tile" data-full="assets/img/moods/mood-01.webp" data-caption="Ivory canvas · navy piping · whitewashed oak">
+    <div class="strip">
+      <figure class="figure">
+        <button class="tile ar-1" data-full="assets/img/moods/mood-01.webp" data-caption="Ivory canvas · navy piping · whitewashed oak">
           <img src="assets/img/moods/mood-01.webp" alt="Mood: ivory canvas with navy piping" loading="lazy" decoding="async">
         </button>
-        <figcaption><b>Riviera</b>Ivory canvas · navy piping · whitewashed oak</figcaption>
+        <figcaption class="cap"><b>Riviera</b>Ivory canvas · navy piping</figcaption>
       </figure>
-      <figure>
-        <button class="tile" data-full="assets/img/moods/mood-02.webp" data-caption="Stone grey leather · bleached oak">
+      <figure class="figure">
+        <button class="tile ar-1" data-full="assets/img/moods/mood-02.webp" data-caption="Stone grey leather · bleached oak">
           <img src="assets/img/moods/mood-02.webp" alt="Mood: stone grey leather" loading="lazy" decoding="async">
         </button>
-        <figcaption><b>Atelier</b>Stone grey leather · bleached oak</figcaption>
+        <figcaption class="cap"><b>Atelier</b>Stone grey leather · bleached oak</figcaption>
       </figure>
-      <figure>
-        <button class="tile" data-full="assets/img/moods/mood-03.webp" data-caption="Cognac aniline leather · dark walnut">
+      <figure class="figure">
+        <button class="tile ar-1" data-full="assets/img/moods/mood-03.webp" data-caption="Cognac aniline leather · dark walnut">
           <img src="assets/img/moods/mood-03.webp" alt="Mood: cognac leather" loading="lazy" decoding="async">
         </button>
-        <figcaption><b>Club</b>Cognac aniline leather · dark walnut</figcaption>
+        <figcaption class="cap"><b>Club</b>Cognac aniline · dark walnut</figcaption>
       </figure>
-      <figure>
-        <button class="tile" data-full="assets/img/moods/mood-04.webp" data-caption="Raw linen · patinated bronze base">
+      <figure class="figure">
+        <button class="tile ar-1" data-full="assets/img/moods/mood-04.webp" data-caption="Raw linen · patinated bronze base">
           <img src="assets/img/moods/mood-04.webp" alt="Mood: raw linen with bronze base" loading="lazy" decoding="async">
         </button>
-        <figcaption><b>Foundry</b>Raw linen · patinated bronze</figcaption>
+        <figcaption class="cap"><b>Foundry</b>Raw linen · patinated bronze</figcaption>
       </figure>
-      <figure>
-        <button class="tile" data-full="assets/img/moods/mood-05.webp" data-caption="Cream bouclé · oiled walnut">
+      <figure class="figure">
+        <button class="tile ar-1" data-full="assets/img/moods/mood-05.webp" data-caption="Cream bouclé · oiled walnut">
           <img src="assets/img/moods/mood-05.webp" alt="Mood: cream boucle with walnut base" loading="lazy" decoding="async">
         </button>
-        <figcaption><b>Salon</b>Cream bouclé · oiled walnut</figcaption>
+        <figcaption class="cap"><b>Salon</b>Cream bouclé · oiled walnut</figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- ═══════════════ 3D VIEWER ═══════════════ -->
-  <section class="section phase" id="viewer">
-    <header class="phase__head">
-      <p class="phase__num" data-reveal>07</p>
-      <div>
-        <h2 class="h2" data-reveal>Inspect the asset</h2>
-        <p class="lead" data-reveal>
-          The shipped mesh, in your browser. Drag to orbit, scroll to zoom,
-          toggle the wireframe to check the topology yourself.
-        </p>
-      </div>
-    </header>
+  <!-- ═══════════════ 07 VIEWER ═══════════════ -->
+  <section class="sheet" id="viewer" data-reveal>
+    <div class="cell cell--text w3">
+      <span class="idx">07</span>
+      <p class="eyebrow">3D</p>
+      <h2 class="h2">The shipped mesh, <em>in your browser.</em></h2>
+      <p class="line">Orbit, zoom, toggle the wireframe.</p>
+    </div>
 
-    <div class="viewer" id="viewerStage" data-reveal>
+    <div class="viewer w9" id="viewerStage">
       <div class="viewer__canvas" id="viewerCanvas"></div>
 
       <!-- Fallback: turntable por sequência de imagens (enquanto não há .glb) -->
@@ -439,49 +353,40 @@
 
       <p class="viewer__status" id="viewerStatus">Loading…</p>
     </div>
-
-    <p class="micro" data-reveal>
-      Real-world scale · metres · Y-up. GLB is Draco-compressed and shipped with baked
-      normal and AO maps at 2 K.
-    </p>
   </section>
 
   <!-- ═══════════════ SPECS ═══════════════ -->
-  <section class="section section--split" id="specs">
-    <div class="section__aside">
-      <p class="eyebrow" data-reveal>Technical</p>
+  <section class="sheet" id="specs" data-reveal>
+    <div class="cell cell--text w3">
+      <span class="idx">—</span>
+      <p class="eyebrow">Technical</p>
+      <h2 class="h2">Specs <em>&amp; delivery</em></h2>
+      <p class="line">Metres · Y-up · origin at floor centre.</p>
     </div>
-    <div class="section__body">
-      <h2 class="h2" data-reveal>Specs &amp; delivery</h2>
 
-      <table class="spec" data-reveal>
+    <div class="cell cell--pad w6">
+      <table class="spec">
         <tbody>
           <tr><th>Base mesh</th><td>18,412 quads · 100% quad · no n-gons</td></tr>
           <tr><th>Render mesh</th><td>Subdiv 2 · 294k quads</td></tr>
           <tr><th>Sculpt</th><td>4.1M tris (ZBrush)</td></tr>
-          <tr><th>UVs</th><td>3 sets · non-overlapping · 10.24 px/cm texel density</td></tr>
-          <tr><th>Textures</th><td>4K PBR — base, roughness, normal, AO, (fabric) sheen</td></tr>
+          <tr><th>UVs</th><td>3 sets · non-overlapping · 10.24 px/cm</td></tr>
+          <tr><th>Textures</th><td>4K PBR — base, roughness, normal, AO, sheen</td></tr>
           <tr><th>Materials</th><td>5 mood variants, geometry untouched</td></tr>
           <tr><th>Render</th><td>Cycles · OIDN · ACES · 4000 px stills</td></tr>
           <tr><th>Formats</th><td>.blend · .fbx · .obj · .glb (Draco)</td></tr>
-          <tr><th>Scale</th><td>Metres · Y-up · origin at floor centre</td></tr>
         </tbody>
       </table>
+    </div>
 
-      <div class="notes notes--2" data-reveal>
-        <div class="note">
-          <h3>Trade-offs I made</h3>
-          <p>No cloth sim — the folds are sculpted. It gives full art direction over where the
-             eye lands and keeps the asset deterministic across the five moods.</p>
-        </div>
-        <div class="note">
-          <h3>What I'd do next</h3>
-          <p>A second cushion state for "occupied" shots, a fabric-specific sheen LUT,
-             and an LOD1 at ~6k quads for background dressing.</p>
-        </div>
-      </div>
+    <dl class="data data--1 w3">
+      <div><dt>Trade-off</dt><dd>No cloth sim — folds are sculpted, so the asset stays deterministic across the five moods</dd></div>
+      <div><dt>Next</dt><dd>Occupied cushion state · fabric sheen LUT · LOD1 at ~6k quads</dd></div>
+    </dl>
 
-      <div class="downloads" data-reveal>
+    <div class="cell cell--pad w12">
+      <p class="micro">GLB is Draco-compressed and ships with baked normal and AO maps at 2 K.</p>
+      <div class="downloads" style="margin-top:1rem">
         <a class="btn btn--ghost" href="downloads/plinth-breakdown.pdf" download>Breakdown PDF</a>
         <a class="btn btn--ghost" href="downloads/plinth-turntable.mp4" download>Turntable MP4</a>
         <a class="btn btn--ghost" href="downloads/plinth-wireframe-sheet.pdf" download>Wireframe sheet</a>
@@ -492,15 +397,17 @@
 
 <footer class="foot">
   <div class="foot__in">
-    <p class="foot__name">Juscelio Santos</p>
-    <p class="foot__role">3D Artist — modeling, lookdev, rendering</p>
+    <div>
+      <p class="foot__name">Juscelio Santos</p>
+      <p class="foot__role">3D Artist — modeling, lookdev, rendering</p>
+    </div>
     <p class="foot__links">
       <a href="mailto:juscelio.santos@neoramastudio.com">Email</a>
       <a href="#" target="_blank" rel="noopener">Portfolio</a>
       <a href="#" target="_blank" rel="noopener">ArtStation</a>
       <a href="#" target="_blank" rel="noopener">LinkedIn</a>
     </p>
-    <p class="foot__meta">PLINTH / 001 — prepared for review, 2026. All work original.</p>
+    <p class="foot__meta">PLINTH / 001 — prepared for review, <span id="year">2026</span>. All work original.</p>
   </div>
 </footer>
 
