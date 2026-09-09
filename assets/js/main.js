@@ -14,10 +14,14 @@
   const bar = $('#progressBar');
   const nav = $('#nav');
 
+  /* CSS drives the bar natively where scroll-driven animations exist —
+     writing an inline width there would fight the scaleX keyframes. */
+  const cssProgress = !!(window.CSS && CSS.supports && CSS.supports('animation-timeline', 'scroll()'));
+
   const onScroll = () => {
     const el = document.documentElement;
     const max = el.scrollHeight - el.clientHeight;
-    if (bar) bar.style.width = (max > 0 ? (el.scrollTop / max) * 100 : 0).toFixed(2) + '%';
+    if (bar && !cssProgress) bar.style.width = (max > 0 ? (el.scrollTop / max) * 100 : 0).toFixed(2) + '%';
     if (nav) nav.classList.toggle('is-solid', el.scrollTop > 40);
   };
   document.addEventListener('scroll', onScroll, { passive: true });
