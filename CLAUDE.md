@@ -4,32 +4,36 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-Personal portfolio for Juscélio Diaz — Senior Tech Artist & Junior Developer. Single-page site in pure HTML/CSS/JS with no build step, no package manager, and no framework.
+Personal portfolio for Juscélio Diaz — real-time architectural visualisation, aimed at high-end archviz studios. Pure HTML/CSS/JS with no build step, no package manager, and no framework.
 
 ## Running the site
 
 Open `index.html` directly in a browser. There is no dev server, no npm, no compilation step. All assets are local or loaded via CDN (Google Fonts).
 
-## Architecture
+## Pages
 
-Everything lives in a single file: `index.html`. CSS is inlined in `<style>`, JavaScript is inlined in two `<script>` blocks at the bottom of `<body>`.
+- `index.html` — the live portfolio (monograph layout). CSS inlined in `<style>`, one `<script>` at the end of `<body>`.
+- `cv-alt.html` — the CV linked from `index.html`; A4 print layout, "Download PDF" calls `window.print()`.
+- `index-old.html`, `cv.html` — previous design, kept for reference (`index-old.html` is `noindex`).
 
-**Sections (in order):** Hero → Projects → Gallery → Showreel → Contact → Footer
-
-**Images:**
-- `images/me.jpg` — profile photo
-- `images/hero/h1–h7.jpg` — hero background slideshow
-- `images/portfolio/2–32.jpg` — gallery grid
-- `images/5a.jpg`, `images/ue1.jpg` — project card thumbnails
+**Sections of `index.html` (in order):** Hero → Practice → Selected work index → Projects 01–06 → Film → Tools & assets → Automotive → Profile → Contact
 
 ## Key patterns
 
-**Design tokens** — all colors, spacing, and layout values are CSS custom properties on `:root` (e.g. `--bg`, `--accent`, `--card`, `--maxw`). Change visual style by editing variables there, not inline.
+**Design tokens** — colors, fonts, margin (`--m`) and gutter (`--g`) are CSS custom properties on `:root`. Change visual style there, not inline.
 
-**Bilingual content (EN/NL)** — translatable elements carry `data-en="..."` and `data-nl="..."` attributes. The `applyLang(lang)` function in the first `<script>` block sets `el.textContent` from the matching attribute and persists the choice to `localStorage` under the key `cv-lang`. To add a new translatable string, add both `data-en` and `data-nl` to the element.
+**Layout** — a 12-column `.grid`. Plates use span classes: `.c-full`, `.c-half`, `.c-third`, `.c-wide` + `.c-side`, `.c-right`, `.c-mid`, `.c-tall` + `.c-copy`. All collapse to full width under 900px.
 
-**Scroll reveal** — elements with class `reveal` start invisible (`opacity:0; transform:translateY(30px)`). An `IntersectionObserver` adds class `in` when they enter the viewport. Stagger delay is computed as `(index % 4) * 0.08s`.
+**Projects** — each is an `<article class="project" id="p-NN">` with a `.p-head` (number, title, `dl.p-meta`) and a `.plates` grid of `<figure class="plate">`. Add a project by copying one article and adding a matching row to `#indexList` (its `data-peek` is the hover-preview image).
 
-**Hero slideshow** — `.hero-slide` elements cycle via `setInterval` (5 s) by toggling class `active`, which triggers a CSS `opacity` + `scale` transition.
+**Language** — English-only. Write copy directly as element text; there is no i18n layer.
 
-**Fallback images** — every `<img>` has an `onerror` handler that hides the broken image and shows a sibling `.fallback` div with initials/title text.
+**Scroll reveal** — elements with class `rv` fade/slide in when an `IntersectionObserver` adds class `in`.
+
+**Hero** — `.hero-slide` elements cross-fade every 6 s by toggling class `on`; each carries `data-cap` and `data-href` for the caption link.
+
+**Pass wipe** — `.wipe` stacks the final render under a `.pass` image clipped by `--x`, driven by a transparent `<input type="range">`. Buttons with `data-src` in the following `.wipe-ctrl` swap the pass.
+
+**Lightbox** — any `.plate > img` opens it; `data-full` overrides the source (used when the thumbnail is a mobile variant).
+
+**Images** — `images/mobile/*` are 900px variants used in `srcset`. `images/mobile/2.jpg` is NOT the same picture as `images/2.jpg`, so don't use it.
