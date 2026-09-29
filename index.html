@@ -113,14 +113,44 @@
     white-space: nowrap;
   }
   .brand span { opacity: 0.6; margin-left: 10px; font-weight: 400; }
-  .top nav { display: flex; gap: clamp(14px, 2.2vw, 32px); }
+  .top nav { display: flex; align-items: center; gap: clamp(14px, 2.2vw, 32px); }
   .top nav a {
+    position: relative;
+    padding-block: 6px;
     text-decoration: none;
     font: 400 13px/1 var(--sans);
-    opacity: 0.75;
+    opacity: 0.7;
     transition: opacity 0.2s;
   }
-  .top nav a:hover, .top nav a:focus-visible { opacity: 1; }
+  .top nav a::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease);
+  }
+  .top nav a:hover, .top nav a:focus-visible, .top nav a[aria-current] { opacity: 1; }
+  .top nav a[aria-current]::after { transform: scaleX(1); }
+  .top nav .cv {
+    margin-left: clamp(0px, 1vw, 12px);
+    padding: 7px 14px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    opacity: 0.85;
+  }
+  .top nav .cv::after { display: none; }
+  .menu-btn {
+    display: none;
+    padding: 8px 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: 400 13px/1 var(--sans);
+    cursor: pointer;
+  }
 
   /* ── Hero ───────────────────────────────────────────────── */
   .hero {
@@ -131,21 +161,13 @@
     background: var(--night);
     color: #fff;
   }
-  .hero-slide {
+  .hero-video {
     position: absolute;
     inset: 0;
-    opacity: 0;
-    transition: opacity 1.8s var(--ease);
-  }
-  .hero-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.04);
-    transition: transform 9s linear;
   }
-  .hero-slide.on { opacity: 1; }
-  .hero-slide.on img { transform: scale(1); }
   .hero::after {
     content: "";
     position: absolute;
@@ -174,48 +196,15 @@
     margin: 0 0 22px;
     color: rgba(255,255,255,0.72);
   }
-  .hero-meta {
-    grid-column: 9 / span 4;
-    justify-self: end;
-    width: 100%;
-    max-width: 340px;
-  }
+  .hero-meta { grid-column: 9 / span 4; }
+  .hero-meta p { margin: 0; }
   .hero-cap {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
     font-size: 13px;
     color: rgba(255,255,255,0.86);
-    min-height: 2.6em;
+    text-align: right;
   }
   .hero-cap a { text-decoration: none; }
   .hero-cap a:hover { text-decoration: underline; text-underline-offset: 3px; }
-  .ticks { display: flex; gap: 6px; margin-top: 14px; }
-  .ticks button {
-    flex: 1;
-    height: 18px;
-    padding: 0;
-    border: 0;
-    background: none;
-    cursor: pointer;
-    position: relative;
-  }
-  .ticks button::before,
-  .ticks button::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; top: 8px;
-    height: 1px;
-    background: rgba(255,255,255,0.3);
-  }
-  .ticks button::after {
-    background: #fff;
-    transform: scaleX(0);
-    transform-origin: left;
-  }
-  .ticks button.on::after { animation: tick var(--dur, 6s) linear forwards; }
-  .ticks button.done::after { transform: scaleX(1); }
-  @keyframes tick { to { transform: scaleX(1); } }
 
   /* ── Intro ──────────────────────────────────────────────── */
   .intro {
@@ -440,6 +429,41 @@
   }
   .wipe-ctrl button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--ink); }
 
+  /* Pass cycle: production passes stacked over the plate, stepped on hover */
+  .pv { position: relative; display: block; overflow: hidden; }
+  .pv .pf {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s;
+  }
+  .pv .pf.on { opacity: 1; }
+  .pv-tag {
+    position: absolute;
+    top: 12px; right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 12px 7px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.35);
+    background: rgba(20,20,19,0.28);
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    color: #fff;
+    font: 400 12px/1 var(--sans);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: background 0.25s;
+  }
+  .pv-tag svg { width: 13px; height: 13px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
+  .pv:hover .pv-tag, .pv.play .pv-tag { background: rgba(20,20,19,0.5); }
+
   /* Video facade: poster until clicked, then the player */
   .facade {
     position: relative;
@@ -486,24 +510,24 @@
   .player { aspect-ratio: 16 / 9; background: #000; }
   .player iframe { width: 100%; height: 100%; border: 0; display: block; }
 
-  /* ── Film ───────────────────────────────────────────────── */
-  .film {
+  /* ── Reel ───────────────────────────────────────────────── */
+  .reel {
     background: var(--night);
     color: #efeee9;
     padding-block: clamp(80px, 12vh, 140px);
     scroll-margin-top: 60px;
   }
-  .film .label { color: rgba(239,238,233,0.5); }
-  .film-head { align-items: end; padding-bottom: 32px; row-gap: 16px; }
-  .film-head h2 {
+  .reel .label { color: rgba(239,238,233,0.5); }
+  .reel-head { align-items: end; padding-bottom: 32px; row-gap: 16px; }
+  .reel-head h2 {
     grid-column: 1 / span 7;
     margin: 0;
     font: 300 clamp(2rem, 4.4vw, 4rem)/1 var(--serif);
     letter-spacing: -0.02em;
   }
-  .film-head h2 em { font-style: italic; }
-  .film-head p { grid-column: 9 / span 4; margin: 0; font-size: 14px; color: rgba(239,238,233,0.66); }
-  .film .c-full { padding-inline: var(--m); }
+  .reel-head h2 em { font-style: italic; }
+  .reel-head p { grid-column: 9 / span 4; margin: 0; font-size: 14px; color: rgba(239,238,233,0.66); }
+  .reel .c-full { padding-inline: var(--m); }
 
   /* ── Assets & other work ────────────────────────────────── */
   .section { padding-block: clamp(96px, 16vh, 180px) 0; scroll-margin-top: 60px; }
@@ -529,8 +553,6 @@
   .asset h3 span { font-family: var(--sans); font-size: 13px; color: var(--ink-3); margin-left: 6px; }
   .asset p { margin: 0; max-width: 52ch; font-size: 14px; color: var(--ink-2); }
 
-  .strip { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--g); }
-  .strip .plate img { aspect-ratio: 16 / 10; object-fit: cover; }
 
   /* ── Profile ────────────────────────────────────────────── */
   .profile { row-gap: 40px; align-items: start; }
@@ -647,9 +669,29 @@
 
   /* ── Responsive ─────────────────────────────────────────── */
   @media (max-width: 900px) {
-    .top nav a:not(.keep) { display: none; }
+    .menu-btn { display: block; }
+    .top nav {
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 8px var(--m) 20px;
+      background: var(--paper);
+      color: var(--ink);
+      border-bottom: 1px solid var(--line);
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: opacity 0.25s, transform 0.3s var(--ease), visibility 0s 0.3s;
+    }
+    .top.open nav { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+    .top.open { background: var(--paper); color: var(--ink); border-bottom-color: var(--line); }
+    .top nav a { padding-block: 14px; font-size: 16px; border-bottom: 1px solid var(--line); }
+    .top nav a::after { display: none; }
+    .top nav .cv { margin: 16px 0 0; align-self: flex-start; padding: 10px 18px; font-size: 14px; }
     .hero-title, .hero-meta { grid-column: 1 / -1; }
-    .hero-meta { justify-self: stretch; max-width: none; }
+    .hero-cap { text-align: left; }
     .intro .label, .intro p, .facts { grid-column: 1 / -1; }
     .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
     .index .i-no { grid-column: span 2; }
@@ -660,10 +702,9 @@
     .p-title, .p-meta { grid-column: 1 / -1; }
     .c-half, .c-wide, .c-side, .c-right, .c-mid, .c-tall, .c-tall + .c-copy { grid-column: 1 / -1; }
     .c-third { grid-column: span 12; }
-    .film-head h2, .film-head p { grid-column: 1 / -1; }
+    .reel-head h2, .reel-head p { grid-column: 1 / -1; }
     .s-head h2, .s-head p { grid-column: 1 / -1; }
     .asset { grid-column: 1 / -1; }
-    .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .portrait { grid-column: 1 / span 6; }
     .bio { grid-column: 1 / -1; }
     .cols { grid-template-columns: 1fr; }
@@ -686,32 +727,24 @@
 <header class="top" id="top">
   <div class="top-in">
     <a class="brand" href="#hero">Juscélio Diaz<span>Architectural Visualisation</span></a>
-    <nav aria-label="Main">
-      <a href="#work" class="keep">Work</a>
-      <a href="#film">Film</a>
-      <a href="#assets">Tools</a>
-      <a href="#profile">Profile</a>
-      <a href="cv-alt.html">CV</a>
-      <a href="#contact" class="keep">Contact</a>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main">
+      <a href="#work" data-for="work p-01 p-02 p-03 p-04 p-05 p-06">Archviz</a>
+      <a href="#p-07" data-for="p-07">Automotive</a>
+      <a href="#reel" data-for="reel">Reel</a>
+      <a href="#assets" data-for="assets">Tools</a>
+      <a href="#contact" data-for="profile contact">Contact</a>
+      <a href="cv.html" class="cv">CV</a>
     </nav>
   </div>
 </header>
 
 <main>
-  <!-- ── Hero: one plate from each project, cross-fading ──────── -->
-  <section class="hero" id="hero" aria-label="Featured images">
-    <div class="hero-slide on" data-cap="Coastal Villa, Italy — Dusk" data-href="#p-02">
-      <img src="images/italy_2.jpg" srcset="images/mobile/italy_2.jpg 900w, images/italy_2.jpg 2200w" sizes="100vw" width="2200" height="1228" alt="Whitewashed coastal villa at dusk beneath a limestone cliff, reflected in a still pool" fetchpriority="high" />
-    </div>
-    <div class="hero-slide" data-cap="Waterfront Towers — Aerial" data-href="#p-03">
-      <img src="images/2.jpg" width="4192" height="2355" alt="Three curved residential towers on a breakwater beside the sea" loading="lazy" />
-    </div>
-    <div class="hero-slide" data-cap="Timber House — Dining, blue hour" data-href="#p-05">
-      <img src="images/render_003.jpg" srcset="images/mobile/render_003.jpg 900w, images/render_003.jpg 1920w" sizes="100vw" width="1920" height="1072" alt="Timber-ceilinged dining room opening onto a terrace and pool at blue hour" loading="lazy" />
-    </div>
-    <div class="hero-slide" data-cap="Casa Müze — Winner, 3D Awards 2026" data-href="#p-01">
-      <img src="images/muze.jpg" width="2000" height="1790" alt="Terraced, planted residential buildings on a beach" loading="lazy" />
-    </div>
+  <!-- ── Hero: real-time reel, looping ─────────────────────── -->
+  <section class="hero" id="hero" aria-label="Real-time reel">
+    <video class="hero-video" id="heroVideo" muted loop playsinline preload="auto" poster="images/hero.jpg" aria-hidden="true">
+      <source src="images/hero_web.mp4" type="video/mp4" />
+    </video>
 
     <div class="grid hero-copy">
       <div class="hero-title">
@@ -719,8 +752,7 @@
         <h1>Architecture,<br /><em>before it exists.</em></h1>
       </div>
       <div class="hero-meta">
-        <div class="hero-cap"><a id="heroCap" href="#p-02">Coastal Villa, Italy — Dusk</a><span class="num" id="heroNo">01 / 04</span></div>
-        <div class="ticks" id="ticks" role="group" aria-label="Choose image"></div>
+        <p class="hero-cap"><a href="#reel">Real-time reel — Unreal Engine</a></p>
       </div>
     </div>
   </section>
@@ -731,7 +763,7 @@
     <p class="rv">I make architectural images and real-time experiences for residential developments, studios and brands — light, material and camera treated with the discipline of offline rendering, <em>delivered in Unreal Engine at frame rate.</em></p>
     <dl class="facts rv">
       <div><dt class="label">Disciplines</dt><dd>Stills · Film · Real-time &amp; interactive · Pipeline tools</dd></div>
-      <div><dt class="label">Software</dt><dd>Unreal Engine 5 · 3ds Max · Corona · Houdini · Python</dd></div>
+      <div><dt class="label">Software</dt><dd>Unreal Engine 5 · 3ds Max · Corona · Python</dd></div>
       <div><dt class="label">Recognition</dt><dd><a href="#p-01">3D Awards 2026 — Winner, Best Immersive Experience</a></dd></div>
       <div><dt class="label">Availability</dt><dd>Open to studio roles · Remote, Europe &amp; worldwide</dd></div>
     </dl>
@@ -739,7 +771,7 @@
 
   <!-- ── Index ─────────────────────────────────────────────────── -->
   <section class="grid index" id="work" aria-labelledby="indexTitle">
-    <div class="index-head"><span class="label" id="indexTitle">Selected work</span><span class="label num">06 projects</span></div>
+    <div class="index-head"><span class="label" id="indexTitle">Selected work</span><span class="label num">07 projects</span></div>
     <ol id="indexList">
       <li><a href="#p-01" data-peek="images/muze2.jpg"><span class="i-no num">01</span><span class="i-title">Casa Müze</span><span class="i-type">Residential development · Immersive experience</span><span class="i-med">Real-time</span></a></li>
       <li><a href="#p-02" data-peek="images/mobile/italy_4.jpg"><span class="i-no num">02</span><span class="i-title">Coastal Villa, Italy</span><span class="i-type">Private residence · Time-of-day study</span><span class="i-med">Stills · Interactive</span></a></li>
@@ -747,6 +779,7 @@
       <li><a href="#p-04" data-peek="images/mobile/22.jpg"><span class="i-no num">04</span><span class="i-title">Tropical Residence</span><span class="i-type">Private residence · Exterior &amp; interior</span><span class="i-med">Unreal Engine</span></a></li>
       <li><a href="#p-05" data-peek="images/mobile/render_001.jpg"><span class="i-no num">05</span><span class="i-title">Timber House</span><span class="i-type">Private residence · Interiors, day to dusk</span><span class="i-med">Stills</span></a></li>
       <li><a href="#p-06" data-peek="images/mobile/5.jpg"><span class="i-no num">06</span><span class="i-title">Residential Studies</span><span class="i-type">Villas &amp; apartments · Lighting studies</span><span class="i-med">Stills</span></a></li>
+      <li><a href="#p-07" data-peek="images/mobile/6.jpg"><span class="i-no num">07</span><span class="i-title">Automotive</span><span class="i-type">Product · Lighting &amp; look development</span><span class="i-med">Stills</span></a></li>
     </ol>
   </section>
 
@@ -799,19 +832,19 @@
       </dl>
     </header>
     <div class="grid plates">
-      <figure class="plate c-full rv">
+      <figure class="plate c-full rv" data-passes="images/italy_4b.jpg,images/italy_4c.jpg">
         <img src="images/italy_4.jpg" srcset="images/mobile/italy_4.jpg 900w, images/italy_4.jpg 2200w" sizes="100vw" width="2200" height="1228" alt="Whitewashed villa with arched loggia beside an infinity pool above the sea" loading="lazy" />
         <figcaption><b class="num">02.1</b>Terrace and infinity pool</figcaption>
       </figure>
-      <figure class="plate c-third rv">
+      <figure class="plate c-third rv" data-passes="images/italy_1b.jpg,images/italy_1c.jpg">
         <img src="images/italy_1.jpg" srcset="images/mobile/italy_1.jpg 900w, images/italy_1.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="The villa in daylight" loading="lazy" />
         <figcaption><b class="num">02.2</b>Day</figcaption>
       </figure>
-      <figure class="plate c-third rv">
+      <figure class="plate c-third rv" data-passes="images/italy_2b.jpg,images/italy_2c.jpg">
         <img src="images/italy_2.jpg" srcset="images/mobile/italy_2.jpg 900w, images/italy_2.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="The villa at dusk with interior lights on" loading="lazy" />
         <figcaption><b class="num">02.3</b>Dusk</figcaption>
       </figure>
-      <figure class="plate c-third rv">
+      <figure class="plate c-third rv" data-passes="images/italy_3b.jpg,images/italy_3c.jpg">
         <img src="images/italy_3.jpg" srcset="images/mobile/italy_3.jpg 900w, images/italy_3.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="The villa at blue hour" loading="lazy" />
         <figcaption><b class="num">02.4</b>Blue hour</figcaption>
       </figure>
@@ -823,7 +856,7 @@
         <img src="images/italy_10.jpg" srcset="images/mobile/italy_10.jpg 900w, images/italy_10.jpg 2200w" sizes="(max-width: 900px) 100vw, 50vw" width="2200" height="1228" alt="Dining under a wisteria pergola seen through an arched doorway" loading="lazy" />
         <figcaption><b class="num">02.6</b>Pergola dining</figcaption>
       </figure>
-      <figure class="plate c-right rv">
+      <figure class="plate c-right rv" data-passes="images/italy_9b.jpg,images/italy_9c.jpg">
         <img src="images/italy_9.jpg" srcset="images/mobile/italy_9.jpg 900w, images/italy_9.jpg 2200w" sizes="(max-width: 900px) 100vw, 66vw" width="2200" height="1228" alt="Living room opening through arches onto the pool terrace" loading="lazy" />
         <figcaption><b class="num">02.7</b>Arcade to the terrace</figcaption>
       </figure>
@@ -990,15 +1023,89 @@
     </div>
   </article>
 
-  <!-- ── Film ──────────────────────────────────────────────────── -->
-  <section class="film" id="film" aria-labelledby="filmTitle">
-    <div class="grid film-head">
-      <h2 id="filmTitle">Showreel <em>2026</em></h2>
+  <!-- ── 07 Automotive ─────────────────────────────────────────── -->
+  <article class="project" id="p-07">
+    <header class="grid p-head">
+      <span class="p-no num">07</span>
+      <div class="p-title">
+        <h2>Also — <em>Automotive</em></h2>
+        <p>Lighting, shading and look development for automotive visualisation — the same eye for surface and reflection, applied to product.</p>
+      </div>
+      <dl class="p-meta">
+        <div><dt>Typology</dt><dd>Automotive</dd></div>
+        <div><dt>Medium</dt><dd>Stills</dd></div>
+        <div><dt>Scope</dt><dd>Lighting, shading, look development</dd></div>
+      </dl>
+    </header>
+    <div class="grid plates">
+      <figure class="plate c-half rv" data-passes="images/13b.jpg,images/13c.jpg">
+        <img src="images/13.jpeg" srcset="images/mobile/13.jpeg 900w, images/13.jpeg 2200w" sizes="(max-width: 900px) 100vw, 50vw" width="2200" height="1228" alt="Saloon under a concrete canopy" loading="lazy" />
+        <figcaption><b class="num">07.1</b>Concrete canopy</figcaption>
+      </figure>
+      <figure class="plate c-half rv" data-passes="images/6b.jpg,images/6c.jpg">
+        <img src="images/6.jpg" srcset="images/mobile/6.jpg 900w, images/6.jpg 2200w" sizes="(max-width: 900px) 100vw, 50vw" width="2200" height="1228" alt="Yellow convertible on a coastal road" loading="lazy" />
+        <figcaption><b class="num">07.2</b>Coastal road</figcaption>
+      </figure>
+      <figure class="plate c-full gap-top rv" data-passes="images/clay.jpg,images/blender.jpg,images/lines.jpg">
+        <img src="images/beauty.jpg" srcset="images/mobile/beauty.jpg 900w, images/beauty.jpg 2000w" sizes="100vw" width="2000" height="1116" alt="Yellow hatchback on a Paris street" loading="lazy" />
+        <figcaption><b class="num">07.3</b>Paris street</figcaption>
+      </figure>
+      <figure class="plate c-half rv" data-passes="images/8b.jpg,images/8c.jpg">
+        <img src="images/8.jpg" srcset="images/mobile/8.jpg 900w, images/8.jpg 2200w" sizes="(max-width: 900px) 100vw, 50vw" width="2200" height="1228" alt="Grey saloon in front of a timber building" loading="lazy" />
+        <figcaption><b class="num">07.4</b>Timber facade</figcaption>
+      </figure>
+      <figure class="plate c-half rv" data-passes="images/35b.jpg,images/35c.jpg">
+        <img src="images/35.jpg" srcset="images/mobile/35.jpg 900w, images/35.jpg 2200w" sizes="(max-width: 900px) 100vw, 50vw" width="2200" height="1228" alt="SUV on snow-covered terrain" loading="lazy" />
+        <figcaption><b class="num">07.5</b>Snowfield</figcaption>
+      </figure>
+      <figure class="plate c-full gap-top rv" data-passes="images/34b.jpg,images/34c.jpg">
+        <img src="images/34.jpeg" srcset="images/mobile/34.jpeg 900w, images/34.jpeg 2200w" sizes="100vw" width="2200" height="1228" alt="Race car on the grid at night, surrounded by crew" loading="lazy" />
+        <figcaption><b class="num">07.6</b>Night grid</figcaption>
+      </figure>
+      <figure class="plate c-half rv" data-passes="images/30a.jpg,images/30b.jpg">
+        <img src="images/30.jpg" srcset="images/mobile/30.jpg 900w, images/30.jpg 2200w" sizes="(max-width: 900px) 100vw, 50vw" width="2200" height="1228" alt="Driver's view from a race car cockpit in the pit lane" loading="lazy" />
+        <figcaption><b class="num">07.7</b>Cockpit</figcaption>
+      </figure>
+      <figure class="plate c-half rv" data-passes="images/31b.jpg">
+        <img src="images/31.jpg" srcset="images/mobile/31.jpg 900w, images/31.jpg 2200w" sizes="(max-width: 900px) 100vw, 50vw" width="2200" height="1228" alt="Touring car drifting through a corner on track" loading="lazy" />
+        <figcaption><b class="num">07.8</b>Circuit</figcaption>
+      </figure>
+      <figure class="plate c-third gap-top rv" data-passes="images/14b.jpg,images/14c.jpg">
+        <img src="images/14.jpg" srcset="images/mobile/14.jpg 900w, images/14.jpg 2000w" sizes="(max-width: 900px) 100vw, 33vw" width="2000" height="1116" alt="White concept saloon in front of a timber-clad house" loading="lazy" />
+        <figcaption><b class="num">07.9</b>Concept, residence</figcaption>
+      </figure>
+      <figure class="plate c-third gap-top rv" data-passes="images/12b.jpg,images/12c.jpg">
+        <img src="images/12.jpg" srcset="images/mobile/12.jpg 900w, images/12.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="Pale blue crossover passing a glass storefront" loading="lazy" />
+        <figcaption><b class="num">07.10</b>City street</figcaption>
+      </figure>
+      <figure class="plate c-third gap-top rv" data-passes="images/16b.jpg,images/16c.jpg">
+        <img src="images/16.jpg" srcset="images/mobile/16.jpg 900w, images/16.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="Lime green hatchback outside a concrete building" loading="lazy" />
+        <figcaption><b class="num">07.11</b>Urban facade</figcaption>
+      </figure>
+      <figure class="plate c-full gap-top rv" data-passes="images/33b.jpg,images/33c.jpg">
+        <img src="images/33.jpeg" srcset="images/mobile/33.jpeg 900w, images/33.jpeg 2200w" sizes="100vw" width="2200" height="1228" alt="Electric pickup covered in frost outside a stone house" loading="lazy" />
+        <figcaption><b class="num">07.12</b>Frost</figcaption>
+      </figure>
+      <figure class="plate c-half crop rv">
+        <img src="images/11.jpg" srcset="images/mobile/11.jpg 900w, images/11.jpg 1366w" sizes="(max-width: 900px) 100vw, 50vw" width="1366" height="911" alt="Off-roader on a sandy path through tropical garden" loading="lazy" />
+        <figcaption><b class="num">07.13</b>Beach path</figcaption>
+      </figure>
+      <figure class="plate c-half crop rv">
+        <img src="images/static-2.jpg" srcset="images/mobile/static-2.jpg 900w, images/static-2.jpg 2000w" sizes="(max-width: 900px) 100vw, 50vw" width="2000" height="1116" alt="Close-up of a yellow car's wheel kicking up leaves" loading="lazy" />
+        <figcaption><b class="num">07.14</b>Wheel detail</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <!-- ── Reel ──────────────────────────────────────────────────── -->
+  <section class="reel" id="reel" aria-labelledby="reelTitle">
+    <div class="grid reel-head">
+      <h2 id="reelTitle">Showreel <em>2026</em></h2>
       <p>Real-time cinematics, archviz and virtual production, rendered in Unreal Engine.</p>
     </div>
     <div class="c-full rv">
       <button type="button" class="facade" data-embed="https://player.vimeo.com/video/1187806891?autoplay=1" aria-label="Play the 2026 showreel">
-        <img src="images/italy_3.jpg" srcset="images/mobile/italy_3.jpg 900w, images/italy_3.jpg 2200w" sizes="100vw" alt="" loading="lazy" />
+        <img src="images/showreel.jpg" srcset="images/mobile/showreel.jpg 900w, images/showreel.jpg 2560w" sizes="100vw" alt="" loading="lazy" />
         <span class="play"><i></i>Play showreel</span>
       </button>
     </div>
@@ -1021,24 +1128,6 @@
         <h3>Beach House — Unreal Engine 5 <span>Gumroad ↗</span></h3>
         <p>Complete UE5 environment: beach house scene with high-fidelity lighting, precise materials and a cinematic-ready setup.</p>
       </a>
-    </div>
-  </section>
-
-  <!-- ── Other work ────────────────────────────────────────────── -->
-  <section class="section" aria-labelledby="otherTitle">
-    <div class="grid s-head">
-      <h2 id="otherTitle">Also — <em>automotive</em></h2>
-      <p>Lighting, shading and look development for automotive visualisation — the same eye for surface and reflection, applied to product.</p>
-    </div>
-    <div class="grid">
-      <div class="strip">
-        <figure class="plate rv"><img src="images/mobile/3.jpg" data-full="images/3.jpg" alt="SUV on sculpted dark terrain" loading="lazy" /></figure>
-        <figure class="plate rv"><img src="images/mobile/13.jpeg" data-full="images/13.jpeg" alt="Saloon under a concrete canopy" loading="lazy" /></figure>
-        <figure class="plate rv"><img src="images/mobile/6.jpg" data-full="images/6.jpg" alt="Yellow convertible on a coastal road" loading="lazy" /></figure>
-        <figure class="plate rv"><img src="images/mobile/8.jpg" data-full="images/8.jpg" alt="Grey saloon in front of a timber building" loading="lazy" /></figure>
-        <figure class="plate rv"><img src="images/mobile/35.jpg" data-full="images/35.jpg" alt="SUV on snow-covered terrain" loading="lazy" /></figure>
-        <figure class="plate rv"><img src="images/mobile/beauty.jpg" data-full="images/beauty.jpg" alt="Yellow hatchback on a Paris street" loading="lazy" /></figure>
-      </div>
     </div>
   </section>
 
@@ -1071,13 +1160,13 @@
               <li>Real-time archviz — interactive apps, configurators, Pixel Streaming</li>
               <li>Lighting, materials and look development</li>
               <li>Virtual production for LED-wall environments</li>
-              <li>Houdini procedural environments</li>
+              <li>Procedural environments</li>
               <li>GPU/CPU profiling and optimisation</li>
               <li>Python pipeline tools for Unreal Engine</li>
             </ul>
           </div>
         </div>
-        <a class="cv-link" href="cv-alt.html">Full curriculum vitae <span aria-hidden="true">→</span></a>
+        <a class="cv-link" href="cv.html">Full curriculum vitae <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -1090,7 +1179,7 @@
       <a href="https://www.linkedin.com/in/typeforjd" target="_blank" rel="noopener">LinkedIn ↗</a>
       <a href="https://www.instagram.com/jdworkviz/" target="_blank" rel="noopener">Instagram ↗</a>
       <a href="https://vimeo.com/1187806891" target="_blank" rel="noopener">Vimeo ↗</a>
-      <a href="cv-alt.html">CV</a>
+      <a href="cv.html">CV</a>
       <span class="end">© 2026 Juscélio Diaz</span>
     </div>
   </section>
@@ -1115,42 +1204,36 @@
     rootMargin: "-60px 0px 0px 0px",
   }).observe(document.getElementById("hero"));
 
-  // ── Hero cross-fade ─────────────────────────────────────────
-  const slides = [...document.querySelectorAll(".hero-slide")];
-  const ticks = document.getElementById("ticks");
-  const heroCap = document.getElementById("heroCap");
-  const heroNo = document.getElementById("heroNo");
-  const DUR = 6000;
-  let cur = 0;
-  let timer;
-  ticks.style.setProperty("--dur", DUR + "ms");
-  slides.forEach((s, i) => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.setAttribute("aria-label", s.dataset.cap);
-    b.addEventListener("click", () => go(i));
-    ticks.appendChild(b);
-  });
-  const tickBtns = [...ticks.children];
+  // ── Nav: mobile toggle + highlight the section in view ──────
+  const menuBtn = header.querySelector(".menu-btn");
+  const setMenu = (open) => {
+    header.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.textContent = open ? "Close" : "Menu";
+  };
+  menuBtn.addEventListener("click", () => setMenu(!header.classList.contains("open")));
+  header.querySelectorAll("nav a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
 
-  function go(i) {
-    slides[cur].classList.remove("on");
-    cur = (i + slides.length) % slides.length;
-    const s = slides[cur];
-    s.classList.add("on");
-    heroCap.textContent = s.dataset.cap;
-    heroCap.href = s.dataset.href;
-    heroNo.textContent = String(cur + 1).padStart(2, "0") + " / " + String(slides.length).padStart(2, "0");
-    tickBtns.forEach((b, j) => {
-      b.classList.remove("on");
-      b.classList.toggle("done", j < cur);
+  const navFor = new Map();
+  header.querySelectorAll("nav a[data-for]").forEach((a) =>
+    a.dataset.for.split(" ").forEach((id) => navFor.set(document.getElementById(id), a))
+  );
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      header.querySelectorAll("nav a").forEach((a) => a.removeAttribute("aria-current"));
+      navFor.get(e.target).setAttribute("aria-current", "true");
     });
-    void tickBtns[cur].offsetWidth; // restart the progress animation
-    tickBtns[cur].classList.add("on");
-    clearTimeout(timer);
-    if (!reduced) timer = setTimeout(() => go(cur + 1), DUR);
-  }
-  go(0);
+  }, { rootMargin: "-50% 0px -50% 0px" });
+  navFor.forEach((a, el) => spy.observe(el));
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) header.querySelectorAll("nav a").forEach((a) => a.removeAttribute("aria-current"));
+  }, { rootMargin: "-50% 0px -50% 0px" }).observe(document.getElementById("hero"));
+
+  // ── Hero video: plays on its own unless the viewer asked for less motion
+  const heroVideo = document.getElementById("heroVideo");
+  if (!reduced) heroVideo.play().catch(() => {}); // blocked autoplay leaves the poster up
 
   // ── Scroll reveal ───────────────────────────────────────────
   const io = new IntersectionObserver(
@@ -1205,6 +1288,64 @@
     });
   });
 
+  // ── Pass cycles: hover steps through data-passes; touch plays in view ──
+  const touch = matchMedia("(hover: none)").matches;
+  const cycleIo = new IntersectionObserver((entries) => {
+    entries.forEach((e) => e.target._cycle[e.isIntersecting ? "start" : "stop"]());
+  }, { threshold: 0.6 });
+
+  document.querySelectorAll(".plate[data-passes]").forEach((fig) => {
+    const img = fig.querySelector(":scope > img");
+    const wrap = document.createElement("span");
+    wrap.className = "pv";
+    img.before(wrap);
+    wrap.append(img);
+
+    const frames = fig.dataset.passes.split(",").map((src) => {
+      const f = document.createElement("img");
+      f.className = "pf";
+      f.alt = "";
+      f.dataset.src = src.trim();
+      wrap.append(f);
+      return f;
+    });
+    const tag = document.createElement("span");
+    tag.className = "pv-tag";
+    tag.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="m2 13 10 5 10-5"/></svg><span></span>';
+    wrap.append(tag);
+    const label = tag.querySelector("span");
+    const idle = touch ? "Passes" : "Hover to see passes";
+    const total = frames.length;
+
+    let step = 0, timer = null;
+    const paint = () => {
+      frames.forEach((f, i) => f.classList.toggle("on", i === step - 1));
+      wrap.classList.toggle("play", !!timer);
+      label.textContent = !timer ? idle : step === 0 ? "Final" : `Pass ${step} / ${total}`;
+    };
+    fig._cycle = {
+      start() {
+        if (timer) return;
+        frames.forEach((f) => { if (!f.src) f.src = f.dataset.src; });
+        timer = setInterval(() => { step = (step + 1) % (frames.length + 1); paint(); }, 700);
+        paint();
+      },
+      stop() {
+        clearInterval(timer);
+        timer = null;
+        step = 0;
+        paint();
+      },
+    };
+    paint();
+
+    if (touch) { if (!reduced) cycleIo.observe(fig); }
+    else {
+      wrap.addEventListener("mouseenter", fig._cycle.start);
+      wrap.addEventListener("mouseleave", fig._cycle.stop);
+    }
+  });
+
   // ── Video facades: load the player only when asked ──────────
   document.querySelectorAll(".facade").forEach((f) => {
     f.addEventListener("click", () => {
@@ -1220,7 +1361,7 @@
   const lbImg = lb.querySelector("img");
   const lbCap = document.getElementById("lbCap");
   const lbNo = document.getElementById("lbNo");
-  const shots = [...document.querySelectorAll(".plate > img")];
+  const shots = [...document.querySelectorAll(".plate > img, .pv > img:first-child")];
   let at = 0;
   let lastFocus = null;
 

@@ -13,10 +13,13 @@ Open `index.html` directly in a browser. There is no dev server, no npm, no comp
 ## Pages
 
 - `index.html` — the live portfolio (monograph layout). CSS inlined in `<style>`, one `<script>` at the end of `<body>`.
-- `cv-alt.html` — the CV linked from `index.html`; A4 print layout, "Download PDF" calls `window.print()`.
-- `index-old.html`, `cv.html` — previous design, kept for reference (`index-old.html` is `noindex`).
+- `cv.html` — the CV linked from `index.html`; same monograph tokens and grid as the index, with an A4 `@media print` layout ("Download PDF" calls `window.print()`).
+- `cv-alt.html` — an A4 print-layout CV made for the monograph redesign; not linked, kept for reference.
+- `index-old.html` — previous design, kept for reference (`index-old.html` is `noindex`).
 
-**Sections of `index.html` (in order):** Hero → Practice → Selected work index → Projects 01–06 → Film → Tools & assets → Automotive → Profile → Contact
+**Sections of `index.html` (in order):** Hero → Practice → Selected work index → Projects 01–06 → Project 07 (Automotive) → Reel → Tools & assets → Profile → Contact
+
+**Nav** — top links follow page order; each `a[data-for]` lists the section ids that highlight it (`aria-current`) while in view. Under 900px the nav becomes a dropdown behind the `.menu-btn` toggle.
 
 ## Key patterns
 
@@ -30,9 +33,11 @@ Open `index.html` directly in a browser. There is no dev server, no npm, no comp
 
 **Scroll reveal** — elements with class `rv` fade/slide in when an `IntersectionObserver` adds class `in`.
 
-**Hero** — `.hero-slide` elements cross-fade every 6 s by toggling class `on`; each carries `data-cap` and `data-href` for the caption link.
+**Hero** — a single looping, muted `#heroVideo` (`images/hero_web.mp4`, `hero.jpg` poster). JS starts it unless `prefers-reduced-motion` is set. `images/hero_web.mp4` is encoded from the 80 MB source `images/hero_ADD.mp4` (no audio, x264 slow CRF 19, maxrate 12M, faststart); don't reference the source from the page.
 
 **Pass wipe** — `.wipe` stacks the final render under a `.pass` image clipped by `--x`, driven by a transparent `<input type="range">`. Buttons with `data-src` in the following `.wipe-ctrl` swap the pass.
+
+**Pass cycle** — a `.plate` with `data-passes="a.jpg,b.jpg"` gets its passes stacked over the image (JS wraps it in `.pv`) and steps through them every 700 ms on hover; on touch devices it plays while the plate is in view. Pass files are full-size only (no mobile variants).
 
 **Lightbox** — any `.plate > img` opens it; `data-full` overrides the source (used when the thumbnail is a mobile variant).
 

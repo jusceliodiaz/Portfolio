@@ -1,506 +1,571 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Juscélio Diaz — CV</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Juscélio Diaz — Curriculum Vitae</title>
+<meta name="description" content="Curriculum vitae of Juscélio Diaz — Senior Unreal Engine artist for real-time architectural visualisation and virtual production." />
+<meta name="theme-color" content="#f3f2ee" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23151514'/%3E%3Ctext x='16' y='21.5' font-family='Georgia,serif' font-size='15' text-anchor='middle' fill='%23f3f2ee'%3EJD%3C/text%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Schibsted+Grotesk:wght@400;500&display=swap" rel="stylesheet" />
+
 <style>
+  /* ════════════════════════════════════════════════════════════════
+     CV — same monograph language as index.html: quiet type,
+     numbered sections under a hairline, a 12-column grid.
+     ════════════════════════════════════════════════════════════════ */
   :root {
-    --paper: #f4f2ed;
-    --paper-2: #edeae2;
-    --ink: #141412;
-    --ink-soft: #4a4944;
-    --ink-faint: #8b897f;
-    --line: #d8d5cb;
-    --line-strong: #141412;
-    --signal: #d92b1c;
-    --green: #1c8c4e;
-    --maxw: 1060px;
-    --ease: cubic-bezier(0.22, 0.8, 0.24, 1);
+    --paper: #f3f2ee;
+    --paper-2: #e8e6e0;
+    --ink: #151514;
+    --ink-2: #4f4e4a;
+    --ink-3: #8a8983;
+    --line: rgba(21, 21, 20, 0.14);
+
+    --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --sans: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+
+    --m: clamp(16px, 4vw, 56px);      /* side margin */
+    --g: clamp(12px, 1.6vw, 24px);    /* grid gutter */
+    --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  ::selection { background: var(--ink); color: var(--paper); }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
+    margin: 0;
     background: var(--paper);
-    font-family: 'Instrument Sans', sans-serif;
     color: var(--ink);
-    line-height: 1.55;
+    font: 400 15px/1.55 var(--sans);
     -webkit-font-smoothing: antialiased;
-    padding: 28px 16px 64px;
+    text-rendering: optimizeLegibility;
   }
-  h1, h2, h3 { font-family: 'Archivo', sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+  img { display: block; max-width: 100%; height: auto; }
   a { color: inherit; }
-  .page { max-width: var(--maxw); margin: 0 auto; }
-  .card { background: var(--paper); border: 1px solid var(--line-strong); }
+  ::selection { background: var(--ink); color: var(--paper); }
 
-  /* ===================== CONTROLS (download) ===================== */
-  .cv-controls {
-    display: flex; align-items: center; justify-content: flex-end; gap: 12px;
-    margin-bottom: 14px; flex-wrap: wrap;
+  .label {
+    font: 500 11px/1.4 var(--sans);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
   }
-  .btn-download {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.7rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
-    background: transparent; color: var(--ink); border: 1px solid var(--line-strong);
-    padding: 10px 18px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
-    transition: background .2s var(--ease), color .2s;
-  }
-  .btn-download:hover { background: var(--signal); color: var(--paper); border-color: var(--signal); }
+  .num { font-variant-numeric: tabular-nums; }
 
-  /* ===================== HERO ===================== */
-  .hero { overflow: hidden; margin-bottom: 20px; animation: fade .5s var(--ease) both; }
-  .banner {
-    height: 96px;
-    background: var(--ink);
-    position: relative;
-    border-bottom: 3px solid var(--signal);
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--g);
+    padding-inline: var(--m);
   }
-  .banner::after {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(244,242,237,.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(244,242,237,.08) 1px, transparent 1px);
-    background-size: 34px 34px;
-    mask-image: linear-gradient(100deg, transparent 35%, black 90%);
-    -webkit-mask-image: linear-gradient(100deg, transparent 35%, black 90%);
-  }
-  .hero-body { padding: 0 32px 30px; position: relative; }
-  .avatar {
-    width: 108px; height: 108px;
-    border: 3px solid var(--ink);
-    background: var(--paper);
-    color: var(--ink); display: flex; align-items: center; justify-content: center;
-    font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 34px; letter-spacing: .02em;
-    margin-top: -54px; margin-bottom: 14px;
-    box-shadow: 4px 4px 0 var(--ink);
-    overflow: hidden;
-    position: relative;
-  }
-  .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .avatar-fallback { display: none; }
-  .name-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-  h1 { font-size: 28px; text-transform: uppercase; letter-spacing: -.02em; }
-  .open-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
-    display: inline-flex; align-items: center; gap: 7px;
-    border: 1px solid var(--line-strong);
-    padding: 5px 12px;
-  }
-  .open-badge::before {
-    content: ''; width: 7px; height: 7px; border-radius: 50%;
-    background: var(--green); animation: blink 1.8s infinite;
-  }
-  @keyframes blink { 50% { opacity: .25; } }
-  .headline {
-    font-size: 15.5px; color: var(--ink-soft); font-weight: 500;
-    margin-top: 10px; max-width: 640px;
-  }
-  .meta-row {
-    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
-    margin-top: 12px; font-size: 13.5px; color: var(--ink-faint);
-  }
-  .meta-row .dot::before { content: '·'; margin: 0 4px; }
-  .meta-row a { color: var(--ink); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--line-strong); }
-  .meta-row a:hover { color: var(--signal); border-color: var(--signal); }
-  .hero-actions { display: flex; gap: 0; margin-top: 22px; flex-wrap: wrap; border: 1px solid var(--line-strong); width: fit-content; }
-  .btn {
-    font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; font-weight: 500;
-    letter-spacing: .06em; text-transform: uppercase;
-    padding: 12px 22px; cursor: pointer;
-    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-    transition: background .2s var(--ease), color .2s;
-    border-right: 1px solid var(--line-strong);
-    background: none;
-  }
-  .hero-actions .btn:last-child { border-right: none; }
-  .btn-primary { background: var(--ink); color: var(--paper); }
-  .btn-primary:hover { background: var(--signal); }
-  .btn-ghost { background: transparent; color: var(--ink); }
-  .btn-ghost:hover { background: var(--paper-2); color: var(--signal); }
+  .grid > * { min-width: 0; }
 
-  /* ===================== LAYOUT ===================== */
-  .cols { display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: start; }
-  .stack { display: grid; gap: 20px; }
-
-  .card-pad { padding: 26px 28px; }
-  h2 {
-    font-size: 16px; text-transform: uppercase; letter-spacing: -.005em;
-    margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
-  }
-  h2::after { content: ''; flex: 1; height: 1px; background: var(--line); }
-
-  /* sidebar */
-  .side-item { display: flex; gap: 12px; align-items: flex-start; padding: 9px 0; font-size: 14px; }
-  .side-item .ic {
-    width: 32px; height: 32px; flex-shrink: 0;
-    border: 1px solid var(--line-strong);
-    display: flex; align-items: center; justify-content: center; font-size: 14px;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-  .side-item a { color: var(--ink); text-decoration: none; font-weight: 600; word-break: break-all; }
-  .side-item a:hover { color: var(--signal); }
-  .side-item small { display: block; color: var(--ink-faint); font-size: 11px; font-family: 'IBM Plex Mono', monospace; letter-spacing: .06em; text-transform: uppercase; margin-top: 2px; }
-
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px; font-weight: 500; letter-spacing: .05em; text-transform: uppercase;
-    color: var(--ink-soft);
-    border: 1px solid var(--line-strong);
-    padding: 6px 11px;
-    transition: background .2s var(--ease), color .2s, border-color .2s;
-  }
-  .chip:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-
-  .cert { padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; }
-  .cert:last-child { border-bottom: none; }
-  .cert b { display: block; font-weight: 700; font-size: 13.5px; }
-  .cert span { color: var(--ink-faint); font-size: 11.5px; font-family: 'IBM Plex Mono', monospace; }
-
-  .lang-item { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; border-bottom: 1px solid var(--line); }
-  .lang-item:last-child { border-bottom: none; }
-  .lang-item span { color: var(--ink-faint); font-size: 11.5px; font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: .05em; }
-
-  /* about */
-  .about p { font-size: 15px; color: var(--ink-soft); margin-bottom: 12px; }
-  .about p strong { color: var(--ink); font-weight: 700; }
-  .motto {
-    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 16px;
-    color: var(--ink); background: var(--paper-2);
-    border-left: 3px solid var(--signal);
-    padding: 12px 18px; margin-top: 16px;
-    display: inline-block;
-  }
-  .about-list { list-style: none; margin-bottom: 4px; }
-  .about-list li {
-    font-size: 14px; color: var(--ink-soft);
-    padding: 6px 0 6px 18px; position: relative;
+  /* ── Header ─────────────────────────────────────────────── */
+  .top {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
   }
-  .about-list li:last-child { border-bottom: none; }
-  .about-list li::before { content: '—'; position: absolute; left: 0; color: var(--ink-faint); }
-
-  /* experience */
-  .job { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); }
-  .job:first-of-type { padding-top: 4px; }
-  .job:last-of-type { border-bottom: none; padding-bottom: 4px; }
-  .logo {
-    width: 44px; height: 44px; flex-shrink: 0;
-    border: 1px solid var(--line-strong);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 14px; color: var(--ink);
-    background: var(--paper-2);
+  .top-in {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    height: 60px;
+    padding-inline: var(--m);
   }
-  .job-main { flex: 1; }
-  .job h3 { font-size: 15.5px; font-weight: 700; text-transform: none; letter-spacing: 0; }
-  .job .co { font-size: 14px; font-weight: 600; color: var(--ink-soft); margin-top: 1px; }
-  .job .when { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--ink-faint); margin-top: 4px; letter-spacing: .02em; }
-  .job p { font-size: 14px; color: var(--ink-soft); margin-top: 10px; max-width: 620px; }
-  .job p strong { color: var(--ink); font-weight: 700; }
-  .subroles { margin-top: 12px; border-left: 2px solid var(--line); padding-left: 14px; }
-  .subroles div { font-size: 13.5px; padding: 4px 0; font-weight: 600; }
-  .subroles span { color: var(--ink-faint); font-weight: 400; font-size: 11.5px; margin-left: 8px; font-family: 'IBM Plex Mono', monospace; }
-
-  /* education */
-  .edu { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
-  .edu:last-child { border-bottom: none; }
-  .edu b { font-size: 15px; font-weight: 700; display: block; }
-  .edu em { font-style: normal; font-size: 13.5px; color: var(--ink-soft); }
-  .edu span { display: block; font-size: 11.5px; color: var(--ink-faint); margin-top: 2px; font-family: 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: .05em; }
-
-  @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-  .cols > * { animation: fade .5s var(--ease) both; }
-  .cols > *:nth-child(2) { animation-delay: .08s; }
-
-  @media (max-width: 860px) {
-    .cols { grid-template-columns: 1fr; }
-    .hero-body { padding: 0 22px 24px; }
-    .card-pad { padding: 22px; }
-    .cv-controls { justify-content: center; }
+  .brand {
+    text-decoration: none;
+    font: 500 14px/1 var(--sans);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
   }
+  .brand span { opacity: 0.6; margin-left: 10px; font-weight: 400; }
+  .top nav { display: flex; align-items: center; gap: clamp(14px, 2.2vw, 32px); }
+  .top nav a {
+    text-decoration: none;
+    font: 400 13px/1 var(--sans);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .top nav a:hover, .top nav a:focus-visible { opacity: 1; }
+  .pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: clamp(0px, 1vw, 12px);
+    padding: 7px 14px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    background: none;
+    color: var(--ink);
+    font: 400 13px/1 var(--sans);
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+  }
+  .pdf:hover, .pdf:focus-visible { background: var(--ink); color: var(--paper); }
+  .pdf svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+
+  /* ── Title ──────────────────────────────────────────────── */
+  .title {
+    padding-block: clamp(72px, 12vh, 140px) clamp(64px, 10vh, 112px);
+    row-gap: 40px;
+    align-items: end;
+  }
+  .title .label { grid-column: 1 / span 3; align-self: start; padding-top: 1.2em; }
+  .title h1 {
+    grid-column: 4 / span 9;
+    margin: 0;
+    font: 300 clamp(3.4rem, 10vw, 9.5rem)/0.92 var(--serif);
+    letter-spacing: -0.035em;
+  }
+  .title h1 em { font-style: italic; }
+  .portrait { grid-column: 1 / span 3; margin: 0; }
+  .portrait img { width: 64%; aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(1) contrast(1.02); background: var(--paper-2); }
+  .lede {
+    grid-column: 4 / span 7;
+    margin: 0;
+    font: 300 clamp(1.4rem, 2.4vw, 2.1rem)/1.22 var(--serif);
+    letter-spacing: -0.01em;
+    text-wrap: pretty;
+  }
+  .lede em { font-style: italic; color: var(--ink-2); }
+  .facts {
+    grid-column: 4 / span 9;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--g);
+    margin: 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .facts div { min-width: 0; }
+  .facts dt { margin-bottom: 8px; }
+  .facts dd { margin: 0; font-size: 14px; color: var(--ink-2); }
+  .facts a { text-decoration-color: var(--line); text-underline-offset: 3px; }
+  .open { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); }
+  .open::before {
+    content: "";
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #2f7d4f;
+    box-shadow: 0 0 0 3px rgba(47,125,79,0.16);
+  }
+
+  /* ── Sections ───────────────────────────────────────────── */
+  .sec {
+    padding-block: 22px clamp(72px, 11vh, 128px);
+    border-top: 1px solid var(--ink);
+    margin-inline: var(--m);
+    padding-inline: 0;
+    row-gap: 20px;
+    align-items: start;
+  }
+  .sec-no { grid-column: 1 / span 1; padding-top: 0.55em; color: var(--ink-3); font-size: 13px; }
+  .sec h2 {
+    grid-column: 2 / span 3;
+    margin: 0;
+    font: 300 clamp(1.8rem, 3.2vw, 2.8rem)/1.05 var(--serif);
+    letter-spacing: -0.015em;
+  }
+  .sec h2 em { font-style: italic; }
+  .body { grid-column: 6 / span 7; }
+
+  /* About */
+  .about p { margin: 0 0 1em; max-width: 62ch; color: var(--ink-2); text-wrap: pretty; }
+  .about p:first-child {
+    margin-bottom: 1.1em;
+    color: var(--ink);
+    font: 300 clamp(1.3rem, 2vw, 1.75rem)/1.28 var(--serif);
+    letter-spacing: -0.01em;
+  }
+  .about strong { font-weight: 500; color: var(--ink); }
+  .brings { list-style: none; margin: 32px 0 0; padding: 0; counter-reset: b; }
+  .brings li {
+    display: grid;
+    grid-template-columns: 3em 1fr;
+    gap: 12px;
+    padding-block: 12px;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+    counter-increment: b;
+  }
+  .brings li:first-child { border-top: 1px solid var(--line); }
+  .brings li::before { content: counter(b, decimal-leading-zero); color: var(--ink-3); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .about .motto {
+    margin: 40px 0 0;
+    font: 300 italic clamp(1.25rem, 1.9vw, 1.6rem)/1.3 var(--serif);
+    color: var(--ink-2);
+  }
+
+  /* Experience */
+  .jobs { list-style: none; margin: 0; padding: 0; }
+  .job {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 5fr);
+    column-gap: var(--g);
+    row-gap: 10px;
+    padding-block: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .job:first-child { padding-top: 0.4em; }
+  .job .when { font-size: 13px; color: var(--ink-3); line-height: 1.5; }
+  .job .when b { display: block; font-weight: 400; color: var(--ink-2); }
+  .job h3 {
+    margin: 0;
+    font: 400 clamp(1.25rem, 1.8vw, 1.55rem)/1.15 var(--serif);
+    letter-spacing: -0.01em;
+  }
+  .job .co { margin-top: 4px; font-size: 13px; color: var(--ink-2); }
+  .job p { margin: 12px 0 0; max-width: 60ch; color: var(--ink-2); font-size: 14px; text-wrap: pretty; }
+  .job p strong { font-weight: 500; color: var(--ink); }
+  .subroles { margin-top: 14px; }
+  .subroles div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: 7px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+  }
+  .subroles span { color: var(--ink-3); white-space: nowrap; }
+
+  /* Lists: education, awards, certifications, languages */
+  .rows { list-style: none; margin: 0; padding: 0; }
+  .rows li {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 2fr);
+    gap: 4px var(--g);
+    padding-block: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .rows li:first-child { border-top: 1px solid var(--line); }
+  .rows b { font: 400 1.2rem/1.2 var(--serif); letter-spacing: -0.005em; }
+  .rows em { grid-column: 1; font-style: normal; font-size: 13px; color: var(--ink-2); }
+  .rows .r { grid-column: 2; grid-row: 1 / span 2; justify-self: end; font-size: 13px; color: var(--ink-3); text-align: right; }
+  .rows a { text-decoration-color: var(--line); text-underline-offset: 3px; }
+
+  .side { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px var(--g); }
+  .side h3 { margin: 0 0 14px; }
+
+  /* Skills */
+  .skills {
+    margin: 0;
+    font: 300 clamp(1.35rem, 2.2vw, 1.95rem)/1.35 var(--serif);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .skills span + span::before { content: " · "; color: var(--ink-3); }
+
+  /* ── Contact (as on index) ──────────────────────────────── */
+  .contact { padding-block: clamp(96px, 16vh, 180px) clamp(48px, 8vh, 80px); }
+  .contact .label { grid-column: 1 / -1; margin-bottom: 20px; }
+  .contact .mail {
+    grid-column: 1 / -1;
+    font: 300 clamp(2rem, 7.2vw, 7.4rem)/1 var(--serif);
+    letter-spacing: -0.03em;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: color 0.3s;
+  }
+  .contact .mail:hover { color: var(--ink-2); }
+  .contact .mail em { font-style: italic; }
+  .contact-links {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 32px;
+    margin-top: 48px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .contact-links a { text-decoration: none; color: var(--ink-2); }
+  .contact-links a:hover { color: var(--ink); }
+  .contact-links .end { margin-left: auto; color: var(--ink-3); }
+  .print-only { display: none; }
+
+  /* ── Motion ─────────────────────────────────────────────── */
+  .rv { opacity: 0; transform: translateY(18px); transition: opacity 1s var(--ease), transform 1.1s var(--ease); }
+  .rv.in { opacity: 1; transform: none; }
+  .title > * { animation: rise 1.1s var(--ease) both; }
+  .title > :nth-child(2) { animation-delay: 0.08s; }
+  .title > :nth-child(3) { animation-delay: 0.16s; }
+  .title > :nth-child(4) { animation-delay: 0.24s; }
+  .title > :nth-child(5) { animation-delay: 0.32s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+
+  :focus-visible { outline: 1px solid currentColor; outline-offset: 3px; }
+
+  /* ── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .top nav a { display: none; }
+    .title .label, .title h1, .lede, .facts, .portrait { grid-column: 1 / -1; }
+    .portrait img { width: 38%; }
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
+    .sec-no { grid-column: 1 / -1; padding: 0; }
+    .sec h2, .body { grid-column: 1 / -1; }
+    .job { grid-template-columns: 1fr; }
+    .side { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .brand span { display: none; }
+    .rows li { grid-template-columns: 1fr; }
+    .rows .r { grid-column: 1; grid-row: auto; justify-self: start; text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .rv { opacity: 1; transform: none; }
+  }
+
+  /* ── Print: A4, same typography, no chrome ──────────────── */
+  @page { size: A4; margin: 14mm 14mm 16mm; }
   @media print {
-    body { background: #fff; padding: 0; }
-    .btn, .cv-controls { display: none !important; }
+    :root { --m: 0px; --g: 5mm; }
+    body { font-size: 9.5pt; line-height: 1.45; background: #fff; }
+    .top, .contact .mail, .contact .label { display: none; }
+    .rv, .title > * { opacity: 1 !important; transform: none !important; animation: none !important; }
+    .title { padding-block: 0 9mm; row-gap: 6mm; }
+    .title h1 { font-size: 40pt; }
+    .lede { font-size: 13pt; }
+    .portrait img { width: 70%; }
+    .facts { padding-top: 4mm; }
+    .facts dd { font-size: 8.5pt; }
+    .sec { padding-block: 3mm 8mm; }
+    .sec h2 { font-size: 17pt; }
+    .about p:first-child { font-size: 12pt; }
+    .job { padding-block: 3.2mm; break-inside: avoid; }
+    .job h3 { font-size: 12pt; }
+    .job p, .brings li, .rows em, .job .co, .job .when { font-size: 8.5pt; }
+    .rows li { padding-block: 2.6mm; break-inside: avoid; }
+    .rows b { font-size: 10.5pt; }
+    .skills { font-size: 12.5pt; }
+    .about .motto { margin-top: 5mm; font-size: 11pt; }
+    .contact { padding-block: 2mm 0; }
+    .contact-links { margin-top: 0; font-size: 8.5pt; }
+    .contact-links .print-only { display: inline; }
+    .contact-links a[href^="http"]::after { content: " " attr(data-print); color: var(--ink-3); }
+    a { text-decoration: none; }
   }
 </style>
 </head>
 <body>
-<div class="page">
 
-  <!-- ============ CONTROLS ============ -->
-  <div class="cv-controls">
-    <button class="btn-download" id="downloadBtn">
-      <span>Download PDF</span>
-    </button>
+<!-- ── Header ─────────────────────────────────────────────────── -->
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="index.html">Juscélio Diaz<span>Architectural Visualisation</span></a>
+    <nav aria-label="Main">
+      <a href="index.html#work">Archviz</a>
+      <a href="index.html#p-07">Automotive</a>
+      <a href="index.html#reel">Reel</a>
+      <a href="#contact">Contact</a>
+      <button type="button" class="pdf" id="downloadBtn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download PDF
+      </button>
+    </nav>
   </div>
+</header>
 
-  <!-- ============ HERO ============ -->
-  <div class="card hero">
-    <div class="banner"></div>
-    <div class="hero-body">
-      <div class="avatar">
-        <img src="images/me.jpg" alt="Juscelio Diaz" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <span class="avatar-fallback">JD</span>
-      </div>
-      <div class="name-row">
-        <h1>Juscelio Diaz</h1>
-        <span class="open-badge">Open to work</span>
-      </div>
-      <div class="headline">
-        Senior Unreal Engine Artist | Real-Time ArchViz &amp; Virtual Production | Houdini | Pixel Streaming | Performance Optimization
-      </div>
-      <div class="meta-row">
-        <span>Berlin Metropolitan Area</span>
-        <span class="dot"></span>
-        <a href="https://jdiaz.vercel.app/" target="_blank">Portfolio</a>
-        <span class="dot"></span>
-        <a href="https://www.linkedin.com/in/typeforjd" target="_blank">LinkedIn</a>
-      </div>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="mailto:escrevaparajd@gmail.com">Contact</a>
-        <a class="btn btn-ghost" href="https://jdiaz.vercel.app/" target="_blank">View portfolio</a>
-      </div>
+<main>
+  <!-- ── Title ─────────────────────────────────────────────────── -->
+  <section class="grid title" aria-labelledby="cvName">
+    <span class="label">Curriculum vitae — 2026</span>
+    <h1 id="cvName">Juscélio <em>Diaz</em></h1>
+    <figure class="portrait">
+      <img src="images/me.jpg" width="800" height="1000" alt="Portrait of Juscélio Diaz" onerror="this.parentElement.style.visibility='hidden'" />
+    </figure>
+    <p class="lede">Senior Unreal Engine artist — real-time architectural visualisation and virtual production, <em>with the performance work that keeps it fast.</em></p>
+    <dl class="facts">
+      <div><dt class="label">Based</dt><dd>Berlin Metropolitan Area</dd></div>
+      <div><dt class="label">Tools</dt><dd>Unreal Engine · Pixel Streaming · Python</dd></div>
+      <div><dt class="label">Recognition</dt><dd><a href="index.html#p-01">3D Awards 2026 — Best Immersive Experience</a></dd></div>
+      <div><dt class="label">Status</dt><dd><span class="open">Open to work</span></dd></div>
+    </dl>
+  </section>
+
+  <!-- ── 01 About ──────────────────────────────────────────────── -->
+  <section class="grid sec rv" aria-labelledby="aboutTitle">
+    <span class="sec-no num">01</span>
+    <h2 id="aboutTitle">About</h2>
+    <div class="body about">
+      <p>I build high-end real-time experiences for architecture, virtual production and interactive media — from LED wall pipelines to browser-based 3D applications via Pixel Streaming.</p>
+      <p>Over the past <strong>10+ years</strong> I've delivered projects for studios and brands across Brazil, Germany, the UK, the US and Canada, including time based in <strong>Berlin</strong> working across automotive visualisation for <strong>Hyundai and Genesis</strong>, Web3 experiences and large-scale worldbuilding. My work sits at the intersection of art and technology: environment art, lighting, look development, UI/UX for interactive apps, and deep performance profiling to hit frame-rate targets on any platform.</p>
+      <h3 class="label" style="margin: 36px 0 0">What I bring</h3>
+      <ul class="brings">
+        <li>Real-time architectural visualisation — interactive apps, configurators, Pixel Streaming</li>
+        <li>Virtual production pipelines optimised for LED wall environments</li>
+        <li>Performance profiling &amp; optimisation — GPU/CPU, draw calls, shader complexity</li>
+        <li>Environment creation with Unreal Engine procedural workflows</li>
+        <li>Mentoring and knowledge-sharing — 2.5+ years teaching Unreal Engine</li>
+      </ul>
+      <p class="motto">Precisely planned, cleanly executed, measurably fast.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="cols">
-
-    <!-- ============ SIDEBAR ============ -->
-    <div class="stack">
-
-      <div class="card card-pad">
-        <h2>Contact</h2>
-        <div class="side-item">
-          <div class="ic">@</div>
-          <div><a href="mailto:escrevaparajd@gmail.com">escrevaparajd@gmail.com</a><small>Email</small></div>
+  <!-- ── 02 Experience ─────────────────────────────────────────── -->
+  <section class="grid sec rv" aria-labelledby="expTitle">
+    <span class="sec-no num">02</span>
+    <h2 id="expTitle">Experience</h2>
+    <ol class="body jobs" reversed>
+      <li class="job">
+        <div class="when num"><b>Nov 2025 – May 2026</b>7 mos · Newcastle, UK</div>
+        <div>
+          <h3>3D Visualization Artist</h3>
+          <div class="co">NVision Studios · Remote</div>
+          <p>Real-time scenes for real estate developments: interactive experiences, asset preparation and scene optimisation to keep large residential environments performant on target hardware.</p>
         </div>
-        <div class="side-item">
-          <div class="ic">↗</div>
-          <div><a href="https://jdiaz.vercel.app/" target="_blank">jdiaz.vercel.app</a><small>Portfolio</small></div>
+      </li>
+      <li class="job">
+        <div class="when num"><b>Mar 2025 – May 2026</b>1 yr 3 mos · Curitiba, Brazil</div>
+        <div>
+          <h3>Unreal Engine Technical Artist</h3>
+          <div class="co">Chroma Garden · Remote</div>
+          <p>Delivered <strong>three architectural projects</strong> on time and to high quality standards. Owned optimisation and profiling across desktop applications and virtual production pipelines for LED wall environments.</p>
         </div>
-        <div class="side-item">
-          <div class="ic">in</div>
-          <div><a href="https://www.linkedin.com/in/typeforjd" target="_blank">linkedin.com/in/typeforjd</a><small>LinkedIn</small></div>
+      </li>
+      <li class="job">
+        <div class="when num"><b>Aug 2024 – Mar 2025</b>8 mos · London, UK</div>
+        <div>
+          <h3>Unreal Engine Artist</h3>
+          <div class="co">Digital Giant · Remote</div>
+          <p>Look development, lighting and shading for automotive visualisation serving <strong>Hyundai and Genesis</strong>, contributing to the studio's internal production ecosystem for consistency and faster iteration.</p>
         </div>
-      </div>
-
-      <div class="card card-pad">
-        <h2>Top Skills</h2>
-        <div class="chips">
-          <span class="chip">Unreal Engine</span>
-          <span class="chip">Houdini</span>
-          <span class="chip">Virtual Production</span>
-          <span class="chip">Pixel Streaming</span>
-          <span class="chip">Real-Time ArchViz</span>
-          <span class="chip">Environment Art</span>
-          <span class="chip">Performance Profiling</span>
-          <span class="chip">Lighting &amp; Look Dev</span>
-          <span class="chip">UI / UX</span>
-          <span class="chip">Python</span>
-          <span class="chip">Generative AI</span>
+      </li>
+      <li class="job">
+        <div class="when num"><b>May 2022 – Jun 2024</b>2 yrs 2 mos · Berlin, Germany</div>
+        <div>
+          <h3>Unreal Engine Artist</h3>
+          <div class="co">OjinXhaus (previously Journee Live)</div>
+          <p>Led and delivered real-time Web3 experiences for international brands including <strong>Macy's, Clinique and NARS</strong>. Project lead and Unreal artist on <strong>Meet the Dee — #Joytopia</strong>, launched at CES Las Vegas 2023, and technical supervision on Macy's Mstylelab, coordinating pipelines and workflows across the Unreal Engine team.</p>
         </div>
-      </div>
-
-      <div class="card card-pad">
-        <h2>Awards</h2>
-        <div class="cert">
-          <b>CGarchitect 3D Awards 2026 — World's Best Immersive Experience</b>
-          <span>Casa Müze · World Visualization Festival, Warsaw</span>
+      </li>
+      <li class="job">
+        <div class="when num"><b>Dec 2021 – Jun 2024</b>2 yrs 7 mos · Rio de Janeiro, Brazil</div>
+        <div>
+          <h3>Unreal Engine Mentor</h3>
+          <div class="co">UNHIDE School · Remote</div>
+          <p>Mentored students in real-time environment art and Unreal Engine workflows, guiding portfolio development and production-ready best practices.</p>
         </div>
-      </div>
+      </li>
+      <li class="job">
+        <div class="when num"><b>Oct 2021 – Jul 2022</b>10 mos · Rio de Janeiro, Brazil</div>
+        <div>
+          <h3>Unreal Engine Generalist &amp; 3D Artist</h3>
+          <div class="co">Lightfarm</div>
+          <p>Real-time and rendered 3D content for high-end advertising campaigns — modelling, lighting and look development.</p>
+        </div>
+      </li>
+      <li class="job">
+        <div class="when num"><b>Feb 2022 – Apr 2022</b>3 mos · Toronto, Canada</div>
+        <div>
+          <h3>Unreal Engine Artist</h3>
+          <div class="co">Underknown · Contract</div>
+          <p>Real-time environments and cinematic content for documentary-style video production.</p>
+        </div>
+      </li>
+      <li class="job">
+        <div class="when num"><b>Mar 2021 – Jul 2021</b>5 mos · New York, USA</div>
+        <div>
+          <h3>Unreal Engine Artist</h3>
+          <div class="co">Rise New York &amp; Partners · Contract</div>
+          <p>Real-time visualisation for agency-driven creative projects.</p>
+        </div>
+      </li>
+      <li class="job">
+        <div class="when num"><b>Oct 2017 – Oct 2021</b>4 yrs 1 mo · Curitiba, Brazil</div>
+        <div>
+          <h3>Earlier roles</h3>
+          <div class="co">Chroma Garden</div>
+          <p>Progressed from graphic design into 3D and real-time production — the foundation that led to technical art specialisation.</p>
+          <div class="subroles num">
+            <div>Unreal Engine Generalist <span>Sep 2020 – Oct 2021</span></div>
+            <div>3D Artist <span>Jul 2020 – Oct 2021</span></div>
+            <div>Graphic Designer <span>Oct 2017 – Jul 2020</span></div>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </section>
 
-      <div class="card card-pad">
-        <h2>Certifications</h2>
-        <div class="cert"><b>Epic Bootcamp 2022: Animation</b><span>INCAS Training und Projekte GmbH</span></div>
-        <div class="cert"><b>Master on Unreal Engine for Architecture</b><span>AR / VR / XR</span></div>
-        <div class="cert"><b>Archviz 3D Artist</b><span>Rendermind</span></div>
-        <div class="cert"><b>Certified Professional — 3ds Max</b><span>Autodesk</span></div>
-      </div>
-
-      <div class="card card-pad">
-        <h2>Languages</h2>
-        <div class="lang-item"><b>Portuguese</b><span>Native</span></div>
-        <div class="lang-item"><b>English</b><span>Professional</span></div>
-      </div>
-
-    </div>
-
-    <!-- ============ MAIN ============ -->
-    <div class="stack">
-
-      <div class="card card-pad about">
-        <h2>About</h2>
-        <p>
-          I build high-end real-time experiences for architecture, virtual production, and
-          interactive media — from LED Wall pipelines to browser-based 3D applications via Pixel
-          Streaming.
-        </p>
-        <p>
-          Over the past <strong>10+ years</strong> I've delivered projects for studios and brands
-          across Brazil, Germany, the UK, the US, and Canada, including time based in
-          <strong>Berlin</strong> working across automotive visualization for <strong>Hyundai and
-          Genesis</strong>, Web3 experiences, and large-scale worldbuilding. My work sits at the
-          intersection of art and technology: environment art, lighting, look development, UI/UX
-          for interactive apps, and deep performance profiling to hit frame-rate targets on any
-          platform.
-        </p>
-        <p><strong>What I bring:</strong></p>
-        <ul class="about-list">
-          <li>Real-time architectural visualization (interactive apps, configurators, Pixel Streaming)</li>
-          <li>Virtual Production pipelines optimized for LED Wall environments</li>
-          <li>Performance profiling &amp; optimization (GPU/CPU, draw calls, shader complexity)</li>
-          <li>Environment creation with Unreal Engine + Houdini procedural workflows</li>
-          <li>Mentoring and knowledge-sharing (2.5+ years teaching Unreal Engine)</li>
+  <!-- ── 03 Education & credentials ────────────────────────────── -->
+  <section class="grid sec rv" aria-labelledby="eduTitle">
+    <span class="sec-no num">03</span>
+    <h2 id="eduTitle">Education &amp; <em>credentials</em></h2>
+    <div class="body side">
+      <div>
+        <h3 class="label">Education</h3>
+        <ul class="rows">
+          <li><b>Think Tank Training Centre</b><em>Environment Design for Games &amp; Virtual Production</em><span class="r num">2022 – 2023</span></li>
+          <li><b>Universidade Metodista de São Paulo</b><em>Bachelor's degree, Digital Games</em><span class="r num">2019 – 2021</span></li>
         </ul>
-        <div class="motto">Precisely planned, cleanly executed, measurably fast.</div>
       </div>
-
-      <div class="card card-pad">
-        <h2>Experience</h2>
-
-        <div class="job">
-          <div class="logo">NV</div>
-          <div class="job-main">
-            <h3>3D Visualization Artist</h3>
-            <div class="co">NVision Studios · Remote</div>
-            <div class="when">Nov 2025 – May 2026 · 7 mos · Newcastle Upon Tyne, UK</div>
-            <p>Real-time scenes for real estate developments: interactive experiences, asset
-            preparation, and scene optimization to keep large residential environments performant
-            on target hardware.</p>
-          </div>
-        </div>
-
-        <div class="job">
-          <div class="logo">CG</div>
-          <div class="job-main">
-            <h3>Unreal Engine Technical Artist</h3>
-            <div class="co">Chroma Garden · Remote</div>
-            <div class="when">Mar 2025 – May 2026 · 1 yr 3 mos · Curitiba, Brazil</div>
-            <p>Delivered <strong>three architectural projects</strong> on time and to high quality
-            standards. Owned optimization and profiling across desktop applications and Virtual
-            Production pipelines for LED Wall environments.</p>
-          </div>
-        </div>
-
-        <div class="job">
-          <div class="logo">DG</div>
-          <div class="job-main">
-            <h3>Unreal Engine Artist</h3>
-            <div class="co">Digital Giant · Remote</div>
-            <div class="when">Aug 2024 – Mar 2025 · 8 mos · London, UK</div>
-            <p>Look development, lighting, and shading for automotive visualization serving
-            <strong>Hyundai and Genesis</strong>, contributing to the studio's internal production
-            ecosystem for consistency and faster iteration.</p>
-          </div>
-        </div>
-
-        <div class="job">
-          <div class="logo">OJ</div>
-          <div class="job-main">
-            <h3>Unreal Engine Artist</h3>
-            <div class="co">OjinXhaus (previously Journee Live)</div>
-            <div class="when">May 2022 – Jun 2024 · 2 yrs 2 mos · Berlin, Germany</div>
-            <p>Led and delivered real-time Web3 experiences for international brands including
-            <strong>Macy's, Clinique, and NARS</strong>. Served as Project Lead and Unreal Artist on
-            <strong>Meet the Dee — #Joytopia</strong>, launched at CES Las Vegas 2023, and provided
-            technical supervision on Macy's Mstylelab, coordinating pipelines and workflows across
-            the Unreal Engine team.</p>
-          </div>
-        </div>
-
-        <div class="job">
-          <div class="logo">UN</div>
-          <div class="job-main">
-            <h3>Unreal Engine Mentor</h3>
-            <div class="co">UNHIDE School · Remote</div>
-            <div class="when">Dec 2021 – Jun 2024 · 2 yrs 7 mos · Rio de Janeiro, Brazil</div>
-            <p>Mentored students in real-time environment art and Unreal Engine workflows, guiding
-            portfolio development and production-ready best practices.</p>
-          </div>
-        </div>
-
-        <div class="job">
-          <div class="logo">LF</div>
-          <div class="job-main">
-            <h3>Unreal Engine Generalist &amp; 3D Artist</h3>
-            <div class="co">Lightfarm</div>
-            <div class="when">Oct 2021 – Jul 2022 · 10 mos · Rio de Janeiro, Brazil</div>
-            <p>Real-time and rendered 3D content for high-end advertising campaigns — modeling,
-            lighting, and look development.</p>
-          </div>
-        </div>
-
-        <div class="job">
-          <div class="logo">UK</div>
-          <div class="job-main">
-            <h3>Unreal Engine Artist</h3>
-            <div class="co">Underknown · Contract</div>
-            <div class="when">Feb 2022 – Apr 2022 · 3 mos · Toronto, Canada</div>
-            <p>Real-time environments and cinematic content for documentary-style video production.</p>
-          </div>
-        </div>
-
-        <div class="job">
-          <div class="logo">RN</div>
-          <div class="job-main">
-            <h3>Unreal Engine Artist</h3>
-            <div class="co">Rise New York &amp; Partners · Contract</div>
-            <div class="when">Mar 2021 – Jul 2021 · 5 mos · New York, USA</div>
-            <p>Real-time visualization for agency-driven creative projects.</p>
-          </div>
-        </div>
-
-        <div class="job">
-          <div class="logo">CG</div>
-          <div class="job-main">
-            <h3>Earlier Roles — Chroma Garden</h3>
-            <div class="co">Chroma Garden · 4 yrs 1 mo</div>
-            <div class="when">Oct 2017 – Oct 2021 · Curitiba, Brazil</div>
-            <p>Progressed from graphic design into 3D and real-time production — the foundation
-            that led to technical art specialization.</p>
-            <div class="subroles">
-              <div>Unreal Engine Generalist <span>Sep 2020 – Oct 2021</span></div>
-              <div>3D Artist <span>Jul 2020 – Oct 2021</span></div>
-              <div>Graphic Designer <span>Oct 2017 – Jul 2020</span></div>
-            </div>
-          </div>
-        </div>
-
+      <div>
+        <h3 class="label">Awards</h3>
+        <ul class="rows">
+          <li><b><a href="index.html#p-01">CGarchitect 3D Awards 2026</a></b><em>World's Best Immersive Experience — Casa Müze · World Visualization Festival, Warsaw</em><span class="r">Winner</span></li>
+        </ul>
       </div>
-
-      <div class="card card-pad">
-        <h2>Education</h2>
-        <div class="edu">
-          <div class="logo">TT</div>
-          <div>
-            <b>Think Tank Training Centre</b>
-            <em>Environment Design for Games &amp; Virtual Production</em>
-            <span>Oct 2022 – Mar 2023</span>
-          </div>
-        </div>
-        <div class="edu">
-          <div class="logo">UM</div>
-          <div>
-            <b>Universidade Metodista de São Paulo</b>
-            <em>Bachelor's Degree, Digital Games</em>
-            <span>2019 – 2021</span>
-          </div>
-        </div>
+      <div>
+        <h3 class="label">Certifications</h3>
+        <ul class="rows">
+          <li><b>Epic Bootcamp 2022: Animation</b><em>INCAS Training und Projekte GmbH</em></li>
+          <li><b>Master on Unreal Engine for Architecture</b><em>AR / VR / XR</em></li>
+          <li><b>Archviz 3D Artist</b><em>Rendermind</em></li>
+          <li><b>Certified Professional — 3ds Max</b><em>Autodesk</em></li>
+        </ul>
       </div>
-
+      <div>
+        <h3 class="label">Languages</h3>
+        <ul class="rows">
+          <li><b>Portuguese</b><span class="r">Native</span></li>
+          <li><b>English</b><span class="r">Professional</span></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</div>
+  </section>
+
+  <!-- ── 04 Skills ─────────────────────────────────────────────── -->
+  <section class="grid sec rv" aria-labelledby="skillsTitle">
+    <span class="sec-no num">04</span>
+    <h2 id="skillsTitle">Top <em>skills</em></h2>
+    <p class="body skills"><span>Unreal Engine</span><span>Virtual Production</span><span>Pixel Streaming</span><span>Real-Time ArchViz</span><span>Environment Art</span><span>Performance Profiling</span><span>Lighting &amp; Look Dev</span><span>UI / UX</span><span>Python</span><span>Generative AI</span></p>
+  </section>
+
+  <!-- ── Contact ───────────────────────────────────────────────── -->
+  <section class="grid contact" id="contact" aria-label="Contact">
+    <span class="label">Enquiries &amp; studio roles</span>
+    <a class="mail" href="mailto:escrevaparajd@gmail.com">escrevaparajd<em>@</em>gmail.com</a>
+    <div class="contact-links">
+      <a href="mailto:escrevaparajd@gmail.com" class="print-only">escrevaparajd@gmail.com</a>
+      <a href="https://jdiaz.vercel.app/" target="_blank" rel="noopener" data-print="jdiaz.vercel.app">Portfolio ↗</a>
+      <a href="https://www.linkedin.com/in/typeforjd" target="_blank" rel="noopener" data-print="linkedin.com/in/typeforjd">LinkedIn ↗</a>
+      <a href="https://vimeo.com/1187806891" target="_blank" rel="noopener" data-print="vimeo.com/1187806891">Reel ↗</a>
+      <span class="end">© 2026 Juscélio Diaz</span>
+    </div>
+  </section>
+</main>
 
 <script>
-  document.getElementById('downloadBtn').addEventListener('click', function () {
-    window.print();
-  });
+  document.getElementById("downloadBtn").addEventListener("click", () => window.print());
+
+  // ── Scroll reveal ───────────────────────────────────────────
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll(".rv").forEach((el) => io.observe(el));
 </script>
 </body>
 </html>
