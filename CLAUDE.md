@@ -33,7 +33,7 @@ Open `index.html` directly in a browser. There is no dev server, no npm, no comp
 
 **Scroll reveal** — elements with class `rv` fade/slide in when an `IntersectionObserver` adds class `in`.
 
-**Hero** — a single looping, muted `#heroVideo` (`images/hero_web.mp4`, `hero.jpg` poster). JS starts it unless `prefers-reduced-motion` is set. `images/hero_web.mp4` is encoded from the 80 MB source `images/hero_ADD.mp4` (no audio, x264 slow CRF 19, maxrate 12M, faststart); don't reference the source from the page.
+**Hero** — a single looping, muted `#heroVideo` (`images/hero2_web.mp4`, `hero2.jpg` poster). JS starts it unless `prefers-reduced-motion` is set. `images/hero2_web.mp4` is encoded from the source `images/hero2.mp4` (no audio, x264 slow CRF 19, maxrate 12M, faststart); don't reference the source from the page. The previous hero (`hero_web.mp4` from `hero_ADD.mp4`) is no longer used.
 
 **Pass wipe** — `.wipe` stacks the final render under a `.pass` image clipped by `--x`, driven by a transparent `<input type="range">`. Buttons with `data-src` in the following `.wipe-ctrl` swap the pass.
 

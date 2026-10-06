@@ -282,9 +282,9 @@
   .peek img { width: 100%; height: 100%; object-fit: cover; }
 
   /* ── Projects ───────────────────────────────────────────── */
-  .project { padding-bottom: clamp(96px, 16vh, 200px); scroll-margin-top: 60px; }
+  .project { padding-bottom: clamp(72px, 11vh, 136px); scroll-margin-top: 60px; }
   .p-head {
-    padding-block: 22px clamp(28px, 4vw, 48px);
+    padding-block: 22px clamp(24px, 3vw, 36px);
     border-top: 1px solid var(--ink);
     row-gap: 20px;
     align-items: start;
@@ -352,8 +352,10 @@
     text-wrap: pretty;
   }
   .c-copy p + p { margin-top: 1em; font: 400 14px/1.6 var(--sans); color: var(--ink-2); }
-  .gap-top { margin-top: clamp(24px, 5vw, 72px); }
+  .gap-top { margin-top: clamp(16px, 2.6vw, 40px); }
   .crop img { aspect-ratio: 16 / 10; object-fit: cover; }
+  /* Lead plate: each project opens on one wide frame, held to a 2:1 band */
+  .lead > img, .lead .pv > img:first-child, .lead .facade { aspect-ratio: 2 / 1; object-fit: cover; }
 
   /* Pass wipe: beauty underneath, a production pass revealed from the left */
   .wipe {
@@ -701,7 +703,7 @@
     .p-no { grid-column: 1 / -1; padding: 0; }
     .p-title, .p-meta { grid-column: 1 / -1; }
     .c-half, .c-wide, .c-side, .c-right, .c-mid, .c-tall, .c-tall + .c-copy { grid-column: 1 / -1; }
-    .c-third { grid-column: span 12; }
+    .c-third { grid-column: span 6; }
     .reel-head h2, .reel-head p { grid-column: 1 / -1; }
     .s-head h2, .s-head p { grid-column: 1 / -1; }
     .asset { grid-column: 1 / -1; }
@@ -742,8 +744,8 @@
 <main>
   <!-- ── Hero: real-time reel, looping ─────────────────────── -->
   <section class="hero" id="hero" aria-label="Real-time reel">
-    <video class="hero-video" id="heroVideo" muted loop playsinline preload="auto" poster="images/hero.jpg" aria-hidden="true">
-      <source src="images/hero_web.mp4" type="video/mp4" />
+    <video class="hero-video" id="heroVideo" muted loop playsinline preload="auto" poster="images/hero2.jpg" aria-hidden="true">
+      <source src="images/hero2_web.mp4" type="video/mp4" />
     </video>
 
     <div class="grid hero-copy">
@@ -778,7 +780,7 @@
       <li><a href="#p-03" data-peek="images/mobile/espanha_1.jpg"><span class="i-no num">03</span><span class="i-title">Waterfront Towers</span><span class="i-type">Residential towers · Masterplan &amp; amenity</span><span class="i-med">Unreal Engine</span></a></li>
       <li><a href="#p-04" data-peek="images/mobile/22.jpg"><span class="i-no num">04</span><span class="i-title">Tropical Residence</span><span class="i-type">Private residence · Exterior &amp; interior</span><span class="i-med">Unreal Engine</span></a></li>
       <li><a href="#p-05" data-peek="images/mobile/render_001.jpg"><span class="i-no num">05</span><span class="i-title">Timber House</span><span class="i-type">Private residence · Interiors, day to dusk</span><span class="i-med">Stills</span></a></li>
-      <li><a href="#p-06" data-peek="images/mobile/5.jpg"><span class="i-no num">06</span><span class="i-title">Residential Studies</span><span class="i-type">Villas &amp; apartments · Lighting studies</span><span class="i-med">Stills</span></a></li>
+      <li><a href="#p-06" data-peek="images/mobile/p01.jpg"><span class="i-no num">06</span><span class="i-title">Interior Studies</span><span class="i-type">Residential, hospitality &amp; workplace</span><span class="i-med">Stills</span></a></li>
       <li><a href="#p-07" data-peek="images/mobile/6.jpg"><span class="i-no num">07</span><span class="i-title">Automotive</span><span class="i-type">Product · Lighting &amp; look development</span><span class="i-med">Stills</span></a></li>
     </ol>
   </section>
@@ -799,18 +801,18 @@
       </dl>
     </header>
     <div class="grid plates">
-      <figure class="plate c-full rv">
+      <figure class="plate c-full lead rv">
         <button type="button" class="facade" data-embed="https://www.youtube-nocookie.com/embed/8n9Irv9ph9k?autoplay=1&amp;rel=0" aria-label="Play the Casa Müze film">
           <img src="images/muze2.jpg" width="2172" height="1765" alt="" loading="lazy" />
           <span class="play"><i></i>Play film</span>
         </button>
         <figcaption><b class="num">01.1</b>Project film</figcaption>
       </figure>
-      <figure class="plate c-wide rv">
+      <figure class="plate c-half crop rv">
         <img src="images/muze.jpg" width="2000" height="1790" alt="Two terraced towers wrapped in planting, set on a beach" loading="lazy" />
         <figcaption><b class="num">01.2</b>Beachfront elevation</figcaption>
       </figure>
-      <figure class="plate c-side rv">
+      <figure class="plate c-half crop rv">
         <img src="images/muze3.jpg" width="1659" height="1702" alt="Lagoon pool between planted terraces" loading="lazy" />
         <figcaption><b class="num">01.3</b>Lagoon between the terraces</figcaption>
       </figure>
@@ -832,7 +834,7 @@
       </dl>
     </header>
     <div class="grid plates">
-      <figure class="plate c-full rv" data-passes="images/italy_4b.jpg,images/italy_4c.jpg">
+      <figure class="plate c-full lead rv" data-passes="images/italy_4b.jpg,images/italy_4c.jpg">
         <img src="images/italy_4.jpg" srcset="images/mobile/italy_4.jpg 900w, images/italy_4.jpg 2200w" sizes="100vw" width="2200" height="1228" alt="Whitewashed villa with arched loggia beside an infinity pool above the sea" loading="lazy" />
         <figcaption><b class="num">02.1</b>Terrace and infinity pool</figcaption>
       </figure>
@@ -848,16 +850,16 @@
         <img src="images/italy_3.jpg" srcset="images/mobile/italy_3.jpg 900w, images/italy_3.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="The villa at blue hour" loading="lazy" />
         <figcaption><b class="num">02.4</b>Blue hour</figcaption>
       </figure>
-      <figure class="plate c-half gap-top rv">
-        <img src="images/italy_5.jpg" srcset="images/mobile/italy_5.jpg 900w, images/italy_5.jpg 2200w" sizes="(max-width: 900px) 100vw, 50vw" width="2200" height="1228" alt="Vaulted living room with arched steel doors framing the sea" loading="lazy" />
+      <figure class="plate c-third gap-top rv">
+        <img src="images/italy_5.jpg" srcset="images/mobile/italy_5.jpg 900w, images/italy_5.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="Vaulted living room with arched steel doors framing the sea" loading="lazy" />
         <figcaption><b class="num">02.5</b>Vaulted living room</figcaption>
       </figure>
-      <figure class="plate c-half gap-top rv">
-        <img src="images/italy_10.jpg" srcset="images/mobile/italy_10.jpg 900w, images/italy_10.jpg 2200w" sizes="(max-width: 900px) 100vw, 50vw" width="2200" height="1228" alt="Dining under a wisteria pergola seen through an arched doorway" loading="lazy" />
+      <figure class="plate c-third gap-top rv">
+        <img src="images/italy_10.jpg" srcset="images/mobile/italy_10.jpg 900w, images/italy_10.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="Dining under a wisteria pergola seen through an arched doorway" loading="lazy" />
         <figcaption><b class="num">02.6</b>Pergola dining</figcaption>
       </figure>
-      <figure class="plate c-right rv" data-passes="images/italy_9b.jpg,images/italy_9c.jpg">
-        <img src="images/italy_9.jpg" srcset="images/mobile/italy_9.jpg 900w, images/italy_9.jpg 2200w" sizes="(max-width: 900px) 100vw, 66vw" width="2200" height="1228" alt="Living room opening through arches onto the pool terrace" loading="lazy" />
+      <figure class="plate c-third gap-top rv" data-passes="images/italy_9b.jpg,images/italy_9c.jpg">
+        <img src="images/italy_9.jpg" srcset="images/mobile/italy_9.jpg 900w, images/italy_9.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="Living room opening through arches onto the pool terrace" loading="lazy" />
         <figcaption><b class="num">02.7</b>Arcade to the terrace</figcaption>
       </figure>
       <figure class="plate c-half gap-top rv">
@@ -922,7 +924,7 @@
       </dl>
     </header>
     <div class="grid plates">
-      <figure class="plate c-full rv">
+      <figure class="plate c-full lead rv">
         <img src="images/22.jpg" srcset="images/mobile/22.jpg 900w, images/22.jpg 1920w" sizes="100vw" width="1920" height="1071" alt="Timber pergola house with a long pool set in tropical forest" loading="lazy" />
         <figcaption><b class="num">04.1</b>Pergola and lap pool</figcaption>
       </figure>
@@ -934,12 +936,12 @@
         <img src="images/25.jpg" srcset="images/mobile/25.jpg 900w, images/25.jpg 1920w" sizes="(max-width: 900px) 100vw, 50vw" width="1920" height="1071" alt="The same living room at night" loading="lazy" />
         <figcaption><b class="num">04.3</b>Living, night</figcaption>
       </figure>
-      <figure class="plate c-wide gap-top rv">
-        <img src="images/21.jpg" srcset="images/mobile/21.jpg 900w, images/21.jpg 1366w" sizes="(max-width: 900px) 100vw, 66vw" width="1366" height="911" alt="Aerial view of the house among palms beside a beach" loading="lazy" />
+      <figure class="plate c-half gap-top crop rv">
+        <img src="images/21.jpg" srcset="images/mobile/21.jpg 900w, images/21.jpg 1366w" sizes="(max-width: 900px) 100vw, 50vw" width="1366" height="911" alt="Aerial view of the house among palms beside a beach" loading="lazy" />
         <figcaption><b class="num">04.4</b>Aerial to the beach</figcaption>
       </figure>
-      <figure class="plate c-side rv">
-        <img src="images/26.jpg" srcset="images/mobile/26.jpg 900w, images/26.jpg 1920w" sizes="(max-width: 900px) 100vw, 33vw" width="1920" height="1071" alt="Kitchen in timber and stone" loading="lazy" />
+      <figure class="plate c-half gap-top crop rv">
+        <img src="images/26.jpg" srcset="images/mobile/26.jpg 900w, images/26.jpg 1920w" sizes="(max-width: 900px) 100vw, 50vw" width="1920" height="1071" alt="Kitchen in timber and stone" loading="lazy" />
         <figcaption><b class="num">04.5</b>Kitchen</figcaption>
       </figure>
     </div>
@@ -968,57 +970,79 @@
         <img src="images/render_003.jpg" srcset="images/mobile/render_003.jpg 900w, images/render_003.jpg 1920w" sizes="(max-width: 900px) 100vw, 50vw" width="1920" height="1072" alt="The same dining room at blue hour with pendants lit" loading="lazy" />
         <figcaption><b class="num">05.2</b>Dining, blue hour</figcaption>
       </figure>
-      <figure class="plate c-full gap-top rv">
-        <img src="images/render_001.jpg" srcset="images/mobile/render_001.jpg 900w, images/render_001.jpg 1920w" sizes="100vw" width="1920" height="1072" alt="Kitchen and dining space opening onto a garden, with a figure at the island" loading="lazy" />
+      <figure class="plate c-half gap-top rv">
+        <img src="images/render_001.jpg" srcset="images/mobile/render_001.jpg 900w, images/render_001.jpg 1920w" sizes="(max-width: 900px) 100vw, 50vw" width="1920" height="1072" alt="Kitchen and dining space opening onto a garden, with a figure at the island" loading="lazy" />
         <figcaption><b class="num">05.3</b>Kitchen to the garden</figcaption>
       </figure>
-      <figure class="plate c-mid rv">
-        <img src="images/render_002.jpg" srcset="images/mobile/render_002.jpg 900w, images/render_002.jpg 1920w" sizes="(max-width: 900px) 100vw, 66vw" width="1920" height="1072" alt="Galley kitchen looking out through full-height glazing" loading="lazy" />
+      <figure class="plate c-half gap-top rv">
+        <img src="images/render_002.jpg" srcset="images/mobile/render_002.jpg 900w, images/render_002.jpg 1920w" sizes="(max-width: 900px) 100vw, 50vw" width="1920" height="1072" alt="Galley kitchen looking out through full-height glazing" loading="lazy" />
         <figcaption><b class="num">05.4</b>Galley kitchen</figcaption>
       </figure>
     </div>
   </article>
 
-  <!-- ── 06 Residential Studies ────────────────────────────────── -->
+  <!-- ── 06 Interior Studies ───────────────────────────────────── -->
   <article class="project" id="p-06">
     <header class="grid p-head">
       <span class="p-no num">06</span>
       <div class="p-title">
-        <h2>Residential <em>Studies</em></h2>
-        <p>Shorter commissions and lighting studies — a lakeside villa shown against its clay pass, a garden pavilion and a coastal apartment.</p>
+        <h2>Interior <em>Studies</em></h2>
+        <p>Recent work across three typologies — private residences, a high-rise restaurant held from day into night, and workplaces built around planting and daylight.</p>
       </div>
       <dl class="p-meta">
-        <div><dt>Typology</dt><dd>Villas &amp; apartments</dd></div>
+        <div><dt>Typology</dt><dd>Residences, hospitality, workplace</dd></div>
         <div><dt>Medium</dt><dd>Stills</dd></div>
-        <div><dt>Scope</dt><dd>Exteriors, interiors, pass breakdown</dd></div>
+        <div><dt>Scope</dt><dd>Interiors, exteriors, day to night</dd></div>
       </dl>
     </header>
     <div class="grid plates">
-      <figure class="plate c-full rv">
-        <div class="wipe" style="--ar: 2200 / 1228">
-          <img src="images/5.jpg" srcset="images/mobile/5.jpg 900w, images/5.jpg 2200w" sizes="100vw" alt="Final render: three-storey villa on the water at golden hour" loading="lazy" />
-          <img class="pass" src="images/5b.jpg" alt="Clay pass of the same view" loading="lazy" />
-          <span class="bar"></span>
-          <div class="wipe-tags"><span class="t-pass">Clay</span><span>Final</span></div>
-          <input type="range" min="0" max="100" value="50" aria-label="Compare clay pass with final render" />
-        </div>
-        <div class="wipe-ctrl"><b class="num">06.1</b>Lakeside villa — drag to compare</div>
+      <figure class="plate c-full lead rv">
+        <img src="images/p01.jpg" srcset="images/mobile/p01.jpg 900w, images/p01.jpg 2200w" sizes="100vw" width="2200" height="1228" alt="Double-height dining room opening onto a garden pool" loading="lazy" />
+        <figcaption><b class="num">06.1</b>Dining to the garden pool</figcaption>
       </figure>
-      <figure class="plate c-tall gap-top rv">
-        <img src="images/24.jpg" srcset="images/mobile/24.jpg 900w, images/24.jpg 1772w" sizes="(max-width: 900px) 100vw, 33vw" width="1772" height="2200" alt="White concrete pavilion framed by trees" loading="lazy" />
-        <figcaption><b class="num">06.2</b>Garden pavilion</figcaption>
+      <figure class="plate c-third gap-top rv">
+        <img src="images/p02.jpg" srcset="images/mobile/p02.jpg 900w, images/p02.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="Sculptural timber spiral stair rising from an indoor garden" loading="lazy" />
+        <figcaption><b class="num">06.2</b>Stair and atrium garden</figcaption>
       </figure>
-      <div class="c-copy gap-top rv">
-        <p>Every frame starts from the architecture: the massing read in clay, the light placed for the material, the camera at a height a person would stand.</p>
-        <p>Before anything renders, scenes are checked with Scene Validator — a pipeline tool of my own, listed below.</p>
-      </div>
-      <figure class="plate c-half gap-top crop rv">
-        <img src="images/20.jpg" srcset="images/mobile/20.jpg 900w, images/20.jpg 1366w" sizes="(max-width: 900px) 100vw, 50vw" width="1366" height="911" alt="Cantilevered white house with a pool terrace facing the sea" loading="lazy" />
-        <figcaption><b class="num">06.3</b>Sea-facing terrace</figcaption>
+      <figure class="plate c-third gap-top rv">
+        <img src="images/p12.jpg" srcset="images/mobile/p12.jpg 900w, images/p12.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="Living room with stone wall and glazing onto an olive courtyard" loading="lazy" />
+        <figcaption><b class="num">06.3</b>Living to the courtyard</figcaption>
       </figure>
-      <figure class="plate c-half gap-top crop rv">
-        <img src="images/32.jpg" srcset="images/mobile/32.jpg 900w, images/32.jpg 1920w" sizes="(max-width: 900px) 100vw, 50vw" width="1920" height="1071" alt="High-rise apartment living room with a balcony over the coast" loading="lazy" />
-        <figcaption><b class="num">06.4</b>Coastal apartment</figcaption>
+      <figure class="plate c-third gap-top rv">
+        <img src="images/p10.jpg" srcset="images/mobile/p10.jpg 900w, images/p10.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="White villa with full-height glazing beside a pool among palms" loading="lazy" />
+        <figcaption><b class="num">06.4</b>Pool terrace</figcaption>
+      </figure>
+      <figure class="plate c-half gap-top rv">
+        <img src="images/p04.jpg" srcset="images/mobile/p04.jpg 900w, images/p04.jpg 2200w" sizes="(max-width: 900px) 100vw, 50vw" width="2200" height="1228" alt="High-rise restaurant with pink marble, brass chandeliers and a fireplace by day" loading="lazy" />
+        <figcaption><b class="num">06.5</b>Restaurant, day</figcaption>
+      </figure>
+      <figure class="plate c-half gap-top rv">
+        <img src="images/p05.jpg" srcset="images/mobile/p05.jpg 900w, images/p05.jpg 2200w" sizes="(max-width: 900px) 100vw, 50vw" width="2200" height="1228" alt="The same restaurant at night against the city skyline" loading="lazy" />
+        <figcaption><b class="num">06.6</b>Restaurant, night</figcaption>
+      </figure>
+      <figure class="plate c-third gap-top rv">
+        <img src="images/p06.jpg" srcset="images/mobile/p06.jpg 900w, images/p06.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="Banquettes and dining tables along the glazed façade of the restaurant" loading="lazy" />
+        <figcaption><b class="num">06.7</b>Dining along the façade</figcaption>
+      </figure>
+      <figure class="plate c-third gap-top rv">
+        <img src="images/p07.jpg" srcset="images/mobile/p07.jpg 900w, images/p07.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="Converted industrial loft lounge with steel trusses and a planted island" loading="lazy" />
+        <figcaption><b class="num">06.8</b>Loft lounge</figcaption>
+      </figure>
+      <figure class="plate c-third gap-top rv">
+        <img src="images/p11.jpg" srcset="images/mobile/p11.jpg 900w, images/p11.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="Roof terrace lounge overlooking residential blocks at dusk" loading="lazy" />
+        <figcaption><b class="num">06.9</b>Roof terrace</figcaption>
+      </figure>
+      <figure class="plate c-third gap-top rv">
+        <img src="images/p03.jpg" srcset="images/mobile/p03.jpg 900w, images/p03.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="Workplace with mezzanine meeting rooms and lounge seating" loading="lazy" />
+        <figcaption><b class="num">06.10</b>Workplace, mezzanine</figcaption>
+      </figure>
+      <figure class="plate c-third gap-top rv">
+        <img src="images/p08.jpg" srcset="images/mobile/p08.jpg 900w, images/p08.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="Open-plan studio with timber benches and hanging planters" loading="lazy" />
+        <figcaption><b class="num">06.11</b>Studio floor</figcaption>
+      </figure>
+      <figure class="plate c-third gap-top rv">
+        <img src="images/p09.jpg" srcset="images/mobile/p09.jpg 900w, images/p09.jpg 2200w" sizes="(max-width: 900px) 100vw, 33vw" width="2200" height="1228" alt="Office reception under illuminated arched glazing" loading="lazy" />
+        <figcaption><b class="num">06.12</b>Reception at dusk</figcaption>
       </figure>
     </div>
   </article>
