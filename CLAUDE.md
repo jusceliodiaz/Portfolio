@@ -19,7 +19,7 @@ Open `index.html` directly in a browser. There is no dev server, no npm, no comp
 
 **Sections of `index.html` (in order):** Hero → Practice → Selected work index → Projects 01–06 → Project 07 (Automotive) → Reel → Tools & assets → Profile → Contact
 
-**Nav** — top links follow page order; each `a[data-for]` lists the section ids that highlight it (`aria-current`) while in view. Under 900px the nav becomes a dropdown behind the `.menu-btn` toggle.
+**Nav** — top links follow page order; each `a[data-for]` lists the section ids that highlight it (`aria-current`) while in view. Under 900px the nav becomes a dropdown behind the `.menu-btn` toggle. "Archviz" (projects 01–06) and "Interactive" (Casa Müze, the Coastal Villa interactive plate `#p-02-interactive`, the Beach House UE5 asset) are `.nav-drop` mega-menus: a list + preview plate from each row's `data-peek`, opening on hover/keyboard focus; the project in view gets `.here`. Under 900px the lists show inline, indented. Adding a project means adding a row there too.
 
 ## Key patterns
 

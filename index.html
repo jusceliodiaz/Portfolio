@@ -142,6 +142,72 @@
     opacity: 0.85;
   }
   .top nav .cv::after { display: none; }
+
+  /* Archviz dropdown — project list with a live preview plate */
+  .top nav { position: relative; }
+  .caret {
+    display: inline-block;
+    width: 5px; height: 5px;
+    margin: 0 0 3px 7px;
+    border: solid currentColor;
+    border-width: 0 1px 1px 0;
+    transform: rotate(45deg);
+    transition: transform 0.35s var(--ease), margin 0.35s var(--ease);
+  }
+  .nav-drop.on .caret { transform: rotate(-135deg); margin-bottom: 0; }
+  .drop {
+    position: absolute;
+    top: 100%; right: 0;
+    width: min(620px, calc(100vw - 2 * var(--m)));
+    padding-top: 17px;               /* bridge to the header edge, keeps hover alive */
+    color: var(--ink);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.25s, transform 0.4s var(--ease), visibility 0s 0.4s;
+  }
+  .nav-drop.on .drop { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+  .drop-in {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 210px;
+    gap: var(--g);
+    padding: 18px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    box-shadow: 0 24px 60px -24px rgba(21, 21, 20, 0.35);
+  }
+  .drop-list { margin: 0; padding: 0; list-style: none; }
+  .drop-list li + li { border-top: 1px solid var(--line); }
+  .top nav .drop a {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    align-items: baseline;
+    column-gap: 8px;
+    padding: 10px 0;
+    opacity: 1;
+    transition: padding 0.35s var(--ease);
+  }
+  .top nav .drop a::after { display: none; }
+  .drop a .num { font-size: 11px; color: var(--ink-3); }
+  .drop a b { font: 400 18px/1.2 var(--serif); letter-spacing: -0.01em; }
+  .drop a small { grid-column: 2; margin-top: 3px; font-size: 12px; color: var(--ink-3); }
+  .top nav .drop a:hover, .top nav .drop a:focus-visible { padding-left: 8px; }
+  .drop a.here b { font-style: italic; }
+  .drop a.here .num { color: var(--ink); }
+  .top nav .drop-all a { display: block; padding: 12px 0 2px; font-size: 12px; color: var(--ink-2); }
+  .top nav .drop-all a:hover { padding-left: 0; color: var(--ink); }
+  .drop-peek {
+    margin: 0;
+    overflow: hidden;
+    background: var(--paper-2);
+  }
+  .drop-peek img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s, transform 1.2s var(--ease);
+  }
+  .drop-peek img.swap { opacity: 0; transform: scale(1.04); }
+
   .menu-btn {
     display: none;
     padding: 8px 0;
@@ -692,6 +758,24 @@
     .top nav a { padding-block: 14px; font-size: 16px; border-bottom: 1px solid var(--line); }
     .top nav a::after { display: none; }
     .top nav .cv { margin: 16px 0 0; align-self: flex-start; padding: 10px 18px; font-size: 14px; }
+    .top nav { max-height: calc(100svh - 60px); overflow-y: auto; }
+    .nav-drop > a { display: block; }
+    .caret, .drop-peek, .drop-all { display: none; }
+    .drop, .nav-drop.on .drop {
+      position: static;
+      width: auto;
+      padding: 0 0 6px 16px;
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .drop-in { display: block; padding: 0; background: none; border: 0; box-shadow: none; }
+    .drop-list li + li { border-top: 0; }
+    .top nav .drop a { padding: 9px 0; border-bottom: 0; }
+    .top nav .drop a:hover, .top nav .drop a:focus-visible { padding-left: 0; }
+    .drop a b { font: 400 15px/1.3 var(--sans); }
+    .drop a small { display: none; }
     .hero-title, .hero-meta { grid-column: 1 / -1; }
     .hero-cap { text-align: left; }
     .intro .label, .intro p, .facts { grid-column: 1 / -1; }
@@ -731,7 +815,36 @@
     <a class="brand" href="#hero">Juscélio Diaz<span>Architectural Visualisation</span></a>
     <button type="button" class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav" aria-label="Main">
-      <a href="#work" data-for="work p-01 p-02 p-03 p-04 p-05 p-06">Archviz</a>
+      <div class="nav-drop">
+        <a href="#work" data-for="work p-01 p-02 p-03 p-04 p-05 p-06" aria-haspopup="true" aria-expanded="false" aria-controls="workMenu">Archviz<i class="caret" aria-hidden="true"></i></a>
+        <div class="drop" id="workMenu">
+          <div class="drop-in">
+            <ol class="drop-list">
+              <li><a href="#p-01" data-peek="images/muze2.jpg"><span class="num">01</span><b>Casa Müze</b><small>Immersive experience</small></a></li>
+              <li><a href="#p-02" data-peek="images/mobile/italy_4.jpg"><span class="num">02</span><b>Coastal Villa, Italy</b><small>Time-of-day study</small></a></li>
+              <li><a href="#p-03" data-peek="images/mobile/espanha_1.jpg"><span class="num">03</span><b>Waterfront Towers</b><small>Masterplan &amp; amenity</small></a></li>
+              <li><a href="#p-04" data-peek="images/mobile/22.jpg"><span class="num">04</span><b>Tropical Residence</b><small>Exterior &amp; interior</small></a></li>
+              <li><a href="#p-05" data-peek="images/mobile/render_001.jpg"><span class="num">05</span><b>Timber House</b><small>Interiors, day to dusk</small></a></li>
+              <li><a href="#p-06" data-peek="images/mobile/p01.jpg"><span class="num">06</span><b>Interior Studies</b><small>Residential, hospitality &amp; workplace</small></a></li>
+              <li class="drop-all"><a href="#work">Full index <span aria-hidden="true">→</span></a></li>
+            </ol>
+            <figure class="drop-peek" aria-hidden="true"><img src="images/muze2.jpg" alt="" /></figure>
+          </div>
+        </div>
+      </div>
+      <div class="nav-drop">
+        <a href="#p-01" aria-haspopup="true" aria-expanded="false" aria-controls="interactiveMenu">Interactive<i class="caret" aria-hidden="true"></i></a>
+        <div class="drop" id="interactiveMenu">
+          <div class="drop-in">
+            <ol class="drop-list">
+              <li><a href="#p-01" data-peek="images/muze2.jpg"><span class="num">01</span><b>Casa Müze</b><small>Immersive installation · Real-time</small></a></li>
+              <li><a href="#p-02-interactive" data-peek="images/italy_14.jpg"><span class="num">02</span><b>Coastal Villa, Italy</b><small>Interactive presentation</small></a></li>
+              <li><a href="#assets" data-peek="images/ue1.jpg"><span class="num">UE5</span><b>Beach House</b><small>Real-time environment · Unreal Engine 5</small></a></li>
+            </ol>
+            <figure class="drop-peek" aria-hidden="true"><img src="images/muze2.jpg" alt="" /></figure>
+          </div>
+        </div>
+      </div>
       <a href="#p-07" data-for="p-07">Automotive</a>
       <a href="#reel" data-for="reel">Reel</a>
       <a href="#assets" data-for="assets">Tools</a>
@@ -866,7 +979,7 @@
         <img src="images/italy_8.jpg" srcset="images/mobile/italy_8.jpg 900w, images/italy_8.jpg 2200w" sizes="(max-width: 900px) 100vw, 50vw" width="2200" height="1228" alt="Outdoor lounge among lemon trees overlooking the coast" loading="lazy" />
         <figcaption><b class="num">02.8</b>Garden lounge</figcaption>
       </figure>
-      <figure class="plate c-half gap-top rv">
+      <figure class="plate c-half gap-top rv" id="p-02-interactive">
         <img src="images/italy_14.jpg" width="2752" height="1536" alt="The villa shown inside an interactive presentation interface" loading="lazy" />
         <figcaption><b class="num">02.9</b>Interactive presentation</figcaption>
       </figure>
@@ -1162,7 +1275,7 @@
       <p>Senior Unreal Engine artist, real-time architectural visualisation.</p>
     </div>
     <div class="grid profile">
-      <figure class="portrait rv"><img src="images/me.jpg" width="1024" height="1054" alt="Portrait of Juscélio Diaz" loading="lazy" /></figure>
+      <figure class="portrait rv"><img src="images/minha.jpg" width="1080" height="1042" alt="Portrait of Juscélio Diaz" loading="lazy" /></figure>
       <div class="bio rv">
         <p>Ten years between art and engineering — environment art, lighting and look development, with the performance profiling that keeps a finished image running in real time.</p>
         <p>I've delivered projects for studios and brands across Brazil, Germany, the UK, the US and Canada: real-time scenes for residential developments, three architectural projects and LED-wall virtual production pipelines, automotive look development for Hyundai and Genesis, and Web3 experiences for Macy's, Clinique and NARS while based in Berlin.</p>
@@ -1237,7 +1350,46 @@
   };
   menuBtn.addEventListener("click", () => setMenu(!header.classList.contains("open")));
   header.querySelectorAll("nav a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") { setMenu(false); drops.forEach((d) => d.set(false)); } });
+
+  // ── Nav dropdowns (Archviz, Interactive): open on hover / keyboard focus,
+  //    the preview plate follows the hovered row
+  const desktop = matchMedia("(min-width: 901px) and (hover: hover)");
+  const drops = [...header.querySelectorAll(".nav-drop")].map((drop) => {
+    const btn = drop.querySelector(":scope > a");
+    const img = drop.querySelector(".drop-peek img");
+    const rows = drop.querySelectorAll("[data-peek]");
+    let shutT = 0, swapT = 0, preloaded = false;
+    function showPeek(a) {
+      const src = a && a.dataset.peek;
+      if (!src || img.getAttribute("src") === src) return;
+      clearTimeout(swapT);
+      img.classList.add("swap");
+      swapT = setTimeout(() => { img.src = src; img.classList.remove("swap"); }, 160);
+    }
+    function set(on) {
+      clearTimeout(shutT);
+      if (on && !desktop.matches) return;
+      if (on) drops.forEach((d) => d.drop !== drop && d.set(false));
+      drop.classList.toggle("on", on);
+      btn.setAttribute("aria-expanded", String(on));
+      if (on && !preloaded) {
+        preloaded = true;
+        rows.forEach((a) => { new Image().src = a.dataset.peek; });
+      }
+      if (on) showPeek(drop.querySelector(".drop a.here") || rows[0]);
+    }
+    drop.addEventListener("mouseenter", () => set(true));
+    drop.addEventListener("mouseleave", () => { shutT = setTimeout(() => set(false), 140); });
+    drop.addEventListener("focusin", (e) => { if (e.target.matches(":focus-visible")) set(true); });
+    drop.addEventListener("focusout", (e) => { if (!drop.contains(e.relatedTarget)) set(false); });
+    rows.forEach((a) => {
+      a.addEventListener("mouseenter", () => showPeek(a));
+      a.addEventListener("focus", () => showPeek(a));
+    });
+    drop.querySelectorAll(".drop a").forEach((a) => a.addEventListener("click", () => { set(false); a.blur(); }));
+    return { drop, set };
+  });
 
   const navFor = new Map();
   header.querySelectorAll("nav a[data-for]").forEach((a) =>
@@ -1248,6 +1400,7 @@
       if (!e.isIntersecting) return;
       header.querySelectorAll("nav a").forEach((a) => a.removeAttribute("aria-current"));
       navFor.get(e.target).setAttribute("aria-current", "true");
+      header.querySelectorAll(".drop [data-peek]").forEach((a) => a.classList.toggle("here", a.hash === "#" + e.target.id));
     });
   }, { rootMargin: "-50% 0px -50% 0px" });
   navFor.forEach((a, el) => spy.observe(el));
