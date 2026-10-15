@@ -8,37 +8,45 @@ Personal portfolio for Juscélio Diaz — real-time architectural visualisation,
 
 ## Running the site
 
-Open `index.html` directly in a browser. There is no dev server, no npm, no compilation step. All assets are local or loaded via CDN (Google Fonts).
+Open `index.html` directly in a browser. There is no dev server, no npm, no compilation step. All assets are local or loaded via CDN (Google Fonts). `deploy.ps1` commits, pushes to `main` (Vercel deploys on push) and waits for the live page to change.
 
 ## Pages
 
-- `index.html` — the live portfolio (monograph layout). CSS inlined in `<style>`, one `<script>` at the end of `<body>`.
-- `cv.html` — the CV linked from `index.html`; same monograph tokens and grid as the index, with an A4 `@media print` layout ("Download PDF" calls `window.print()`).
+- `index.html` — the live portfolio, "Lichtpult" tile-grid design (adapted from the aicontent site). Style in `v2/v2.css`, behaviour in `v2/v2.js`, fonts in `assets/fonts/`, images only from `images_v2/`, auto-reload via `autoreload_v2.js`.
+- `index_old.html` — the previous live portfolio (monograph layout), `noindex`, kept for reference. Uses `images/` and `autoreload.js`. The monograph patterns below apply to it.
+- `cv.html` — the CV linked from `index.html`; uses the monograph tokens and grid, with an A4 `@media print` layout ("Download PDF" calls `window.print()`). Its nav links into `index.html` filters (`#figur`, `#auto`, `#video`).
 - `cv-alt.html` — an A4 print-layout CV made for the monograph redesign; not linked, kept for reference.
-- `index-old.html` — previous design, kept for reference (`index-old.html` is `noindex`).
+- `index-old.html` — an even older design, kept for reference (`noindex`). Unrelated to `index-v2.html` / root `v2.css` / `v2.js` (old experiment).
+- `perfmon_sample_report.html` — sample report linked from the ComfyUI write-up.
 
-**Sections of `index.html` (in order):** Hero → Practice → Selected work index → Projects 01–06 → Project 07 (Automotive) → Reel → Tools & assets → Profile → Contact
+## index.html (Lichtpult)
 
-**Nav** — top links follow page order; each `a[data-for]` lists the section ids that highlight it (`aria-current`) while in view. Under 900px the nav becomes a dropdown behind the `.menu-btn` toggle. "Archviz" (projects 01–06) and "Interactive" (Casa Müze, the Coastal Villa interactive plate `#p-02-interactive`, the Beach House UE5 asset) are `.nav-drop` mega-menus: a list + preview plate from each row's `data-peek`, opening on hover/keyboard focus; the project in view gets `.here`. Under 900px the lists show inline, indented. Adding a project means adding a row there too.
+**Structure** — fixed `.bar` (name, filter buttons, Info, DE/EN) → `#hero` video → `ul#grid` of tiles → `#comfyPipe` (ComfyUI write-up) → `#pipe` (Profile) → footer, plus `dialog.lb` (lightbox) and `dialog.info` (info panel).
 
-## Key patterns
+**Tiles** — each is an `li.t` with `data-cat` (the filter it belongs to), spans `--w/--h` (12 cols), `--tw/--th` (6 cols, ≤1100px), `--mw/--mh` (3 cols, ≤640px), a `button.t-open` with the thumbnail, `.t-badge` (`data-s` = short label for tiny tiles) and `.t-cap`, and a `<template>` holding the lightbox row (`.lb-row` of figures — final + passes, video, or an iframe) and `.lb-info`. Tiles with `data-only="1" hidden` appear only under their filter. `v2.js` adds a `.t-more` badge (expand icon + "+N" extra lightbox figures) to every tile that has a `<template>`. `v2.js` packs tiles gap-free (reorders after the first six and stretches neighbours), so DOM order isn't visual order.
 
-**Design tokens** — colors, fonts, margin (`--m`) and gutter (`--g`) are CSS custom properties on `:root`. Change visual style there, not inline.
+**Filters** — `data-filter` values: `""` All, `figur` Archviz (projects 01–06), `auto` Automotive (07), `video` Film, `inter` Interactive (Scene Validator + Beach House tiles, write-up `#interPipe`), `comfy` ComfyUI (write-up `#comfyPipe`); a write-up block with `data-pipe-for="<filter>"` shows under the grid only for that filter, `pipeline` Profile (hides the grid, shows `#pipe`). A URL hash with a filter name opens it; `data-go-filter` links (hero `.hero-tags`, info panel) do the same. `sheet` (passes-only view) still exists in the JS/CSS but has no button or tiles.
+
+**Language** — EN default, DE via the bar toggle: every translatable text is `<span data-de="…" data-en="…">` with the English text as content.
+
+**ComfyUI content** — imported from the aicontent site; media in `media_ai/` (avif/webp/jpg, `-thumb`/`-m` sizes), tile numbers prefixed `C.`.
+
+**Hero** — shown only under "All" (any other filter hides it and pauses the video; "All" scrolls back to the top). Looping, muted `#heroVideo` (`images_v2/hero2_web.mp4`, `hero2.jpg` poster), started by `v2.js` unless `prefers-reduced-motion`; only the kicker line and the filter tags sit over it. `hero2_web.mp4` is encoded from the source `images/hero2.mp4` (no audio, x264 slow CRF 19, maxrate 12M, faststart); don't reference the source from the page.
+
+## index_old.html (monograph)
+
+**Sections (in order):** Hero → Practice → Selected work index → Projects 01–06 → Project 07 (Automotive) → Reel → Tools & assets → Profile → Contact
+
+**Nav** — top links follow page order; each `a[data-for]` lists the section ids that highlight it (`aria-current`) while in view. Under 900px the nav becomes a dropdown behind the `.menu-btn` toggle. "Archviz" and "Interactive" are `.nav-drop` mega-menus: a list + preview plate from each row's `data-peek`.
+
+**Design tokens** — colors, fonts, margin (`--m`) and gutter (`--g`) are CSS custom properties on `:root`.
 
 **Layout** — a 12-column `.grid`. Plates use span classes: `.c-full`, `.c-half`, `.c-third`, `.c-wide` + `.c-side`, `.c-right`, `.c-mid`, `.c-tall` + `.c-copy`. All collapse to full width under 900px.
 
-**Projects** — each is an `<article class="project" id="p-NN">` with a `.p-head` (number, title, `dl.p-meta`) and a `.plates` grid of `<figure class="plate">`. Add a project by copying one article and adding a matching row to `#indexList` (its `data-peek` is the hover-preview image).
+**Projects** — each is an `<article class="project" id="p-NN">` with a `.p-head` and a `.plates` grid of `<figure class="plate">`, plus a row in `#indexList`.
 
-**Language** — English-only. Write copy directly as element text; there is no i18n layer.
+**Pass wipe / pass cycle / lightbox** — `.wipe` compares a `.pass` image clipped by `--x`; `.plate[data-passes]` steps through passes on hover; any `.plate > img` opens the lightbox (`data-full` overrides the source).
 
-**Scroll reveal** — elements with class `rv` fade/slide in when an `IntersectionObserver` adds class `in`.
+## Images
 
-**Hero** — a single looping, muted `#heroVideo` (`images/hero2_web.mp4`, `hero2.jpg` poster). JS starts it unless `prefers-reduced-motion` is set. `images/hero2_web.mp4` is encoded from the source `images/hero2.mp4` (no audio, x264 slow CRF 19, maxrate 12M, faststart); don't reference the source from the page. The previous hero (`hero_web.mp4` from `hero_ADD.mp4`) is no longer used.
-
-**Pass wipe** — `.wipe` stacks the final render under a `.pass` image clipped by `--x`, driven by a transparent `<input type="range">`. Buttons with `data-src` in the following `.wipe-ctrl` swap the pass.
-
-**Pass cycle** — a `.plate` with `data-passes="a.jpg,b.jpg"` gets its passes stacked over the image (JS wraps it in `.pv`) and steps through them every 700 ms on hover; on touch devices it plays while the plate is in view. Pass files are full-size only (no mobile variants).
-
-**Lightbox** — any `.plate > img` opens it; `data-full` overrides the source (used when the thumbnail is a mobile variant).
-
-**Images** — `images/mobile/*` are 900px variants used in `srcset`. `images/mobile/2.jpg` is NOT the same picture as `images/2.jpg`, so don't use it.
+`images/` is the full set used by `index_old.html` and `cv.html`; `images_v2/` holds copies of only what `index.html` uses (some removed from the new page were deleted there). `*/mobile/*` are 900px variants used in `srcset`. `images/mobile/2.jpg` is NOT the same picture as `images/2.jpg`, so don't use it.
