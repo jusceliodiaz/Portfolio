@@ -4,6 +4,9 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const tiles = $$('.grid .t:not(.t-cta)');
+  // Zähler an "Alle": Kacheln der Startseite
+  const allCount = $('.bar-filter [data-filter=""] sup');
+  if (allCount) allCount.textContent = tiles.filter((t) => t.dataset.only !== '1').length;
   // Einblenden: nur sichtbare Kacheln staffeln, gedeckelt – sonst warten späte Kacheln sekundenlang
   const stagger = () => tiles.filter((t) => !t.hidden).forEach((t, i) => t.style.setProperty('--i', Math.min(i, 16)));
   stagger();
@@ -16,13 +19,13 @@
   /* Sprache */
   const setLang = (l) => {
     document.documentElement.lang = l;
-    $$('[data-de]').forEach((el) => { el.textContent = el.dataset[l]; });
+    $$('[data-es]').forEach((el) => { el.textContent = el.dataset[l]; });
     $$('.bar-lang button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
     try { localStorage.setItem('v2-lang', l); } catch (e) {}
   };
   $$('.bar-lang button').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
-  try { const l = localStorage.getItem('v2-lang'); if (l && l !== 'en') setLang(l); } catch (e) {}
-  const de = () => document.documentElement.lang === 'de';
+  try { const l = localStorage.getItem('v2-lang'); if (l === 'es') setLang(l); } catch (e) {}
+  const es = () => document.documentElement.lang === 'es';
 
   /* Videos im Raster: stumm, nur sichtbar */
   const vids = $$('.grid video[data-autoplay]');
@@ -37,7 +40,8 @@
   const span = (t, cols) => {
     // Renderings sind 16:9 – gefilterte Ansichten bleiben breit
     if (grid.dataset.f === 'figur' || grid.dataset.f === 'auto') return cols >= 12 ? [4, 3] : [3, 2];
-    if (grid.dataset.f === 'video') return cols >= 6 ? [6, 3] : [3, 2];
+    // Film: alle Filme gleich groß, auf breiten Bildschirmen drei nebeneinander
+    if (grid.dataset.f === 'video') return cols >= 12 ? [4, 2] : cols >= 6 ? [6, 3] : [3, 2];
     if (grid.dataset.f === 'inter') return cols >= 6 ? [6, 4] : [3, 2];
     if (grid.dataset.f === 'sheet') return cols >= 12 ? [4, 2] : [3, 2];
     const cs = getComputedStyle(t);
@@ -100,6 +104,16 @@
       t.style.gridColumn = `${p.c + 1} / span ${p.w}`;
       t.style.gridRow = `${p.r + 1} / span ${p.h}`;
     });
+    fitSizes();
+  }
+  // Kacheln werden gestreckt und per cover beschnitten – "sizes" an die echte Größe anpassen, sonst lädt das Handy-Bild
+  function fitSizes() {
+    tiles.forEach((t) => {
+      if (t.hidden) return;
+      if (!t.offsetWidth) return;
+      const w = Math.ceil(Math.max(t.offsetWidth, t.offsetHeight * 16 / 9));
+      $$('.t-open picture [sizes]', t).forEach((el) => { el.sizes = `${w}px`; });
+    });
   }
   layout();
   let lastCols = 0;
@@ -111,11 +125,36 @@
   addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(layout, 120); });
 
   /* Filter */
+  /* Film-Block: Vorschaubild, Film lädt erst auf Klick; beim Filterwechsel wieder zum Vorschaubild */
+  const playFilm = (b) => {
+    const src = b.dataset.embed;
+    let el;
+    if (/\.mp4/.test(src)) {
+      el = document.createElement('video');
+      Object.assign(el, { src, controls: true, autoplay: true, playsInline: true, poster: $('img', b).src });
+    } else {
+      el = document.createElement('iframe');
+      Object.assign(el, { src, title: b.getAttribute('aria-label'), allowFullscreen: true });
+      el.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
+    }
+    el.className = 'film-frame';
+    el.filmBtn = b;
+    b.replaceWith(el);
+  };
+  const stopFilms = () => $$('.film-frame').forEach((el) => el.replaceWith(el.filmBtn));
+  $$('[data-embed]').forEach((b) => b.addEventListener('click', () => playFilm(b)));
+  $$('[data-play]').forEach((a) => a.addEventListener('click', () => {
+    const b = document.getElementById(a.dataset.play);
+    if (b) playFilm(b);
+  }));
+
   $$('.bar-filter button').forEach((b) => b.addEventListener('click', () => {
     const f = b.dataset.filter;
     $$('.bar-filter button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
     const pipe = $('#pipe');
     const isPipe = f === 'pipeline';
+    // Film und Interactive: nur der Textblock, kein Raster (die Kacheln stünden doppelt da)
+    const noGrid = isPipe || f === 'video' || f === 'inter';
     grid.dataset.f = f || '';
     // Hero-Video nur bei "Alle"; in gefilterten Ansichten startet das Raster direkt unter der Leiste
     const hero = $('#hero');
@@ -123,16 +162,17 @@
       hero.hidden = !!f;
       if (heroVideo) { if (f) heroVideo.pause(); else if (!reduce) heroVideo.play().catch(() => {}); }
     }
-    grid.hidden = isPipe;
+    grid.hidden = noGrid;
+    stopFilms();
     if (pipe) pipe.hidden = !isPipe;
     // Textblöcke unter dem Raster, die zu einem Filter gehören (ComfyUI, Interactive)
     $$('[data-pipe-for]').forEach((p) => { p.hidden = p.dataset.pipeFor !== f; });
     tiles.forEach((t) => { t.hidden = f ? t.dataset.cat !== f : t.dataset.only === '1'; });
     cta.hidden = f === 'video' || f === 'sheet' || f === 'comfy' || f === 'inter';
     stagger();
-    if (!isPipe) layout();
+    if (!noGrid) layout();
     // unter das Hero-Video springen, nicht an den Seitenanfang
-    const target = isPipe ? pipe : grid;
+    const target = isPipe ? pipe : noGrid ? $(`[data-pipe-for="${f}"]`) : grid;
     // "Alle" = Startseite mit Hero-Video oben
     const top = f ? target.getBoundingClientRect().top + scrollY - $('.bar').offsetHeight : 0;
     window.scrollTo({ top, behavior: reduce ? 'auto' : 'smooth' });
@@ -159,7 +199,7 @@
     cur = (idx + list.length) % list.length;
     const frag = $('template', list[cur]).content.cloneNode(true);
     const lang = document.documentElement.lang;
-    $$('[data-de]', frag).forEach((el) => { el.textContent = el.dataset[lang]; });
+    $$('[data-es]', frag).forEach((el) => { el.textContent = el.dataset[lang]; });
     $('.lb-body', lb).replaceChildren(frag.querySelector('.lb-row'));
     $('.lb-meta', lb).replaceChildren(...frag.querySelector('.lb-info').childNodes);
     $('.lb-count', lb).textContent = `${String(cur + 1).padStart(2, '0')} / ${String(list.length).padStart(2, '0')}`;
@@ -202,8 +242,8 @@
     $$('.grid .t-open:not(.t-cta-btn)').forEach((b) => {
       b.addEventListener('pointerenter', () => {
         const kind = b.dataset.cursor;
-        cur$.firstElementChild.textContent = kind === 'play' ? (de() ? 'Abspielen' : 'Play')
-          : kind === 'link' ? 'Gumroad ↗' : (de() ? 'Öffnen' : 'Open');
+        cur$.firstElementChild.textContent = kind === 'play' ? (es() ? 'Reproducir' : 'Play')
+          : kind === 'link' ? 'Gumroad ↗' : (es() ? 'Abrir' : 'Open');
         cur$.classList.add('on');
       });
       b.addEventListener('pointerleave', () => cur$.classList.remove('on'));

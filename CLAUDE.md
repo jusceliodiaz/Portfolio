@@ -21,17 +21,17 @@ Open `index.html` directly in a browser. There is no dev server, no npm, no comp
 
 ## index.html (Lichtpult)
 
-**Structure** — fixed `.bar` (name, filter buttons, Info, DE/EN) → `#hero` video → `ul#grid` of tiles → `#comfyPipe` (ComfyUI write-up) → `#pipe` (Profile) → footer, plus `dialog.lb` (lightbox) and `dialog.info` (info panel).
+**Structure** — fixed `.bar` (name, filter buttons, Info, EN/ES) → `#hero` video → `ul#grid` of tiles → `#comfyPipe` (ComfyUI write-up) → `#pipe` (Profile) → footer, plus `dialog.lb` (lightbox) and `dialog.info` (info panel).
 
 **Tiles** — each is an `li.t` with `data-cat` (the filter it belongs to), spans `--w/--h` (12 cols), `--tw/--th` (6 cols, ≤1100px), `--mw/--mh` (3 cols, ≤640px), a `button.t-open` with the thumbnail, `.t-badge` (`data-s` = short label for tiny tiles) and `.t-cap`, and a `<template>` holding the lightbox row (`.lb-row` of figures — final + passes, video, or an iframe) and `.lb-info`. Tiles with `data-only="1" hidden` appear only under their filter. `v2.js` adds a `.t-more` badge (expand icon + "+N" extra lightbox figures) to every tile that has a `<template>`. `v2.js` packs tiles gap-free (reorders after the first six and stretches neighbours), so DOM order isn't visual order.
 
-**Filters** — `data-filter` values: `""` All, `figur` Archviz (projects 01–06), `auto` Automotive (07), `video` Film, `inter` Interactive (Scene Validator + Beach House tiles, write-up `#interPipe`), `comfy` ComfyUI (write-up `#comfyPipe`); a write-up block with `data-pipe-for="<filter>"` shows under the grid only for that filter, `pipeline` Profile (hides the grid, shows `#pipe`). A URL hash with a filter name opens it; `data-go-filter` links (hero `.hero-tags`, info panel) do the same. `sheet` (passes-only view) still exists in the JS/CSS but has no button or tiles.
+**Filters** — `data-filter` values: `""` All, `figur` Archviz (projects 01–06), `auto` Automotive (07), `video` Film (hides the grid, shows the write-up `#filmPipe`: text box + film per row; `.film-embed` buttons load the YouTube/Vimeo/mp4 only on click and `v2.js` swaps them back on filter change), `inter` VR/XR/Real-time (button label; hides the grid, shows the write-up `#interPipe`; the tool/web-project tiles T.01–T.06 (Scene Validator, Beach House, ArchViz Configurator, Interactive Exterior Experience, Interactive Explorer, Living Room Configurator) use `data-cat="tool"`, so they show under All only; each also has a row in `#interPipe`), `comfy` ComfyUI (write-up `#comfyPipe`); a write-up block with `data-pipe-for="<filter>"` shows under the grid only for that filter, `pipeline` Profile (hides the grid, shows `#pipe`). A URL hash with a filter name opens it; `data-go-filter` links (hero `.hero-tags`, info panel) do the same. `sheet` (passes-only view) still exists in the JS/CSS but has no button or tiles.
 
-**Language** — EN default, DE via the bar toggle: every translatable text is `<span data-de="…" data-en="…">` with the English text as content.
+**Language** — EN default, ES via the bar toggle: every translatable text is `<span data-es="…" data-en="…">` with the English text as content.
 
 **ComfyUI content** — imported from the aicontent site; media in `media_ai/` (avif/webp/jpg, `-thumb`/`-m` sizes), tile numbers prefixed `C.`.
 
-**Hero** — shown only under "All" (any other filter hides it and pauses the video; "All" scrolls back to the top). Looping, muted `#heroVideo` (`images_v2/hero2_web.mp4`, `hero2.jpg` poster), started by `v2.js` unless `prefers-reduced-motion`; only the kicker line and the filter tags sit over it. `hero2_web.mp4` is encoded from the source `images/hero2.mp4` (no audio, x264 slow CRF 19, maxrate 12M, faststart); don't reference the source from the page.
+**Hero** — shown only under "All" (any other filter hides it and pauses the video; "All" scrolls back to the top). Looping, muted `#heroVideo` (`images_v2/hero2_web.mp4`, `hero2.jpg` poster), started by `v2.js` unless `prefers-reduced-motion`; only the kicker line and the filter tags sit over it. `hero2_web.mp4` is encoded from the source `images/hero_web.webm` (no audio, x264 slow CRF 19, maxrate 12M, faststart); don't reference the source from the page.
 
 ## index_old.html (monograph)
 

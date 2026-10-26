@@ -347,7 +347,7 @@ main { padding-top: var(--bar-h); }
 .grid[data-f="figur"] .t img, .grid[data-f="figur"] .t video { object-fit: cover; }
 .grid[data-f="figur"] .t-open:hover img { transform: none; }
 /* Filter "Video": 4 pro Zeile, Videos vollständig, Platzhalter */
-.grid[data-f="video"] .t video { object-fit: contain; background: #0E0E0D; }
+.grid[data-f="video"] .t video { object-fit: cover; }
 .grid[data-f="video"] .t-open:hover video { transform: none; }
 .t-ph { background: repeating-linear-gradient(-45deg, #151513 0 12px, #1B1B19 12px 13px); }
 .ph-in { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 16px; }
@@ -462,3 +462,24 @@ a.t-open { color: inherit; text-decoration: none; }
 .t-ext svg { width: 13px; height: 13px; }
 @container (max-width: 220px) { .t-ext b { display: none; } }
 .hero[hidden] { display: none; }
+
+/* Hero: Pipeline-Zeile unter dem Kicker */
+.hero-pipe { margin: 12px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font: 500 0.6875rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--paper); }
+.hero-pipe-l { color: var(--signal); margin-right: 4px; }
+.hero-pipe-s { padding: 7px 9px; background: rgb(11 11 10 / 0.42); border: 1px solid rgb(237 235 229 / 0.22); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.hero-pipe i { font-style: normal; color: rgb(237 235 229 / 0.55); }
+@media (max-width: 640px) { .hero-pipe-l { flex-basis: 100%; } }
+
+/* Film: Texte + Filme wie bei Interactive, Film startet erst auf Klick */
+.film-shot { background: #000; }
+.film-embed { position: relative; display: block; width: 100%; height: 100%; padding: 0; cursor: pointer; overflow: hidden; }
+.film-embed img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 900ms var(--ease), filter 300ms var(--ease); }
+.film-embed:hover img, .film-embed:focus-visible img { transform: scale(1.03); filter: brightness(0.85); }
+.film-embed:focus-visible { outline: 2px solid var(--signal); outline-offset: -2px; }
+.film-play { position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px; display: grid; place-items: center; background: var(--signal); transition: transform 200ms var(--ease); }
+.film-play svg { width: 28px; height: 28px; fill: var(--ink); margin-left: 3px; }
+.film-embed:hover .film-play { transform: scale(1.08); }
+.film-frame { display: block; width: 100%; height: 100%; border: 0; background: #000; object-fit: contain; }
+.film-badge { margin: 0; align-self: flex-start; font: 500 0.6875rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 10px; background: var(--signal); color: var(--ink); }
+button.tx-link { cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .film-embed img, .film-play { transition: none; } }
