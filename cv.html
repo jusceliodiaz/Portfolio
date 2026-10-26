@@ -128,8 +128,6 @@
     letter-spacing: -0.035em;
   }
   .title h1 em { font-style: italic; }
-  .portrait { grid-column: 1 / span 3; margin: 0; }
-  .portrait img { width: 64%; aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(1) contrast(1.02); background: var(--paper-2); }
   .lede {
     grid-column: 4 / span 7;
     margin: 0;
@@ -308,8 +306,7 @@
   /* ── Responsive ─────────────────────────────────────────── */
   @media (max-width: 900px) {
     .top nav a { display: none; }
-    .title .label, .title h1, .lede, .facts, .portrait { grid-column: 1 / -1; }
-    .portrait img { width: 38%; }
+    .title .label, .title h1, .lede, .facts { grid-column: 1 / -1; }
     .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
     .sec-no { grid-column: 1 / -1; padding: 0; }
     .sec h2, .body { grid-column: 1 / -1; }
@@ -337,7 +334,6 @@
     .title { padding-block: 0 9mm; row-gap: 6mm; }
     .title h1 { font-size: 40pt; }
     .lede { font-size: 13pt; }
-    .portrait img { width: 70%; }
     .facts { padding-top: 4mm; }
     .facts dd { font-size: 8.5pt; }
     .sec { padding-block: 3mm 8mm; }
@@ -384,9 +380,6 @@
   <section class="grid title" aria-labelledby="cvName">
     <span class="label">Curriculum vitae — 2026</span>
     <h1 id="cvName">Juscélio <em>Diaz</em></h1>
-    <figure class="portrait">
-      <img src="images/minha.jpg" width="800" height="1000" alt="Portrait of Juscélio Diaz" onerror="this.parentElement.style.visibility='hidden'" />
-    </figure>
     <p class="lede">Senior Unreal Engine artist — real-time architectural visualisation, virtual production and hybrid AI pipelines, <em>with the performance work that keeps it fast.</em></p>
     <dl class="facts">
       <div><dt class="label">Based</dt><dd>Berlin Metropolitan Area</dd></div>
