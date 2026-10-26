@@ -43,6 +43,8 @@
     // Film: alle Filme gleich groß, auf breiten Bildschirmen drei nebeneinander
     if (grid.dataset.f === 'video') return cols >= 12 ? [4, 2] : cols >= 6 ? [6, 3] : [3, 2];
     if (grid.dataset.f === 'inter') return cols >= 6 ? [6, 4] : [3, 2];
+    // ComfyUI: alle Kacheln gleich groß und quadratisch, drei pro Zeile (Handy: eine)
+    if (grid.dataset.f === 'comfy') return cols >= 12 ? [4, 4] : cols >= 6 ? [2, 2] : [3, 3];
     if (grid.dataset.f === 'sheet') return cols >= 12 ? [4, 2] : [3, 2];
     const cs = getComputedStyle(t);
     const k = cols >= 12 ? ['--w', '--h'] : cols >= 6 ? ['--tw', '--th'] : ['--mw', '--mh'];
