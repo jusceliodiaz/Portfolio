@@ -16,18 +16,17 @@ Open `index.html` directly in a browser. There is no dev server, no npm, no comp
 - `index_old.html` — the previous live portfolio (monograph layout), `noindex`, kept for reference. Uses `images/` and `autoreload.js`. The monograph patterns below apply to it.
 - `cv.html` — the CV linked from `index.html`; uses the monograph tokens and grid, with an A4 `@media print` layout ("Download PDF" calls `window.print()`). Its nav links into `index.html` filters (`#figur`, `#auto`, `#video`).
 - `cv-alt.html` — an A4 print-layout CV made for the monograph redesign; not linked, kept for reference.
-- `index-old.html` — an even older design, kept for reference (`noindex`). Unrelated to `index-v2.html` / root `v2.css` / `v2.js` (old experiment).
 - `perfmon_sample_report.html` — sample report linked from the ComfyUI write-up.
 
 ## index.html (Lichtpult)
 
-**Structure** — fixed `.bar` (name, filter buttons, Info, EN/ES) → `#hero` video → `ul#grid` of tiles → `#comfyPipe` (ComfyUI write-up) → `#pipe` (Profile) → footer, plus `dialog.lb` (lightbox) and `dialog.info` (info panel).
+**Structure** — fixed `.bar` (name, filter buttons, Info) → `#hero` video → `ul#grid` of tiles → `#comfyPipe` (ComfyUI write-up) → `#pipe` (Profile) → footer, plus `dialog.lb` (lightbox) and `dialog.info` (info panel).
 
 **Tiles** — each is an `li.t` with `data-cat` (the filter it belongs to), spans `--w/--h` (12 cols), `--tw/--th` (6 cols, ≤1100px), `--mw/--mh` (3 cols, ≤640px), a `button.t-open` with the thumbnail, `.t-badge` (`data-s` = short label for tiny tiles) and `.t-cap`, and a `<template>` holding the lightbox row (`.lb-row` of figures — final + passes, video, or an iframe) and `.lb-info`. Tiles with `data-only="1" hidden` appear only under their filter. `v2.js` adds a `.t-more` badge (expand icon + "+N" extra lightbox figures) to every tile that has a `<template>`. `v2.js` packs tiles gap-free (reorders after the first six and stretches neighbours), so DOM order isn't visual order.
 
 **Filters** — `data-filter` values: `""` All, `figur` Archviz (projects 01–06), `auto` Automotive (07), `video` Film (hides the grid, shows the write-up `#filmPipe`: text box + film per row; `.film-embed` buttons load the YouTube/Vimeo/mp4 only on click and `v2.js` swaps them back on filter change), `inter` VR/XR/Real-time (button label; hides the grid, shows the write-up `#interPipe`; the tool/web-project tiles T.01–T.06 (Scene Validator, Beach House, ArchViz Configurator, Exterior interactive e-shop, First Person interactive showroom, Living Configurator) use `data-cat="tool"`, so they show under All only; each also has a card in `#interPipe` (`.vr-grid`: two `.vr-card`s per row, text on a gradient over the image; on phones the text sits under a full 16:9 image)), `comfy` AI Generative (button label; all tiles square and equal: 3 per row, 1 on phones; write-up `#comfyPipe`); a write-up block with `data-pipe-for="<filter>"` shows under the grid only for that filter, `pipeline` Profile (button is `hidden` in the bar; reachable only via the `#pipeline` URL hash; hides the grid, shows `#pipe`). A URL hash with a filter name opens it; `data-go-filter` links (hero `.hero-tags`, info panel) do the same. `sheet` (passes-only view) still exists in the JS/CSS but has no button or tiles.
 
-**Language** — EN default, ES via the bar toggle: every translatable text is `<span data-es="…" data-en="…">` with the English text as content.
+**Language** — English only (the Spanish toggle and the `data-es`/`data-en` spans were removed).
 
 **ComfyUI content** — imported from the aicontent site; media in `media_ai/` (avif/webp/jpg, `-thumb`/`-m` sizes), tile numbers prefixed `C.`.
 
@@ -49,4 +48,4 @@ Open `index.html` directly in a browser. There is no dev server, no npm, no comp
 
 ## Images
 
-`images/` is the full set used by `index_old.html` and `cv.html`; `images_v2/` holds copies of only what `index.html` uses (some removed from the new page were deleted there). `*/mobile/*` are 900px variants used in `srcset`. `images/mobile/2.jpg` is NOT the same picture as `images/2.jpg`, so don't use it.
+`images/` is the full set used by `index_old.html` and `cv.html`; `images_v2/` holds copies of only what `index.html` uses (some removed from the new page were deleted there). `*/mobile/*` are 900px variants used in `srcset`.

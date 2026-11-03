@@ -1,4 +1,4 @@
-/* v2 · Lichtpult – Raster, Filter, Großansicht, Info, Sprache, Cursor */
+/* v2 · Lichtpult – Raster, Filter, Großansicht, Info, Cursor */
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -15,17 +15,6 @@
   /* Hero-Video: läuft von selbst, außer bei reduzierter Bewegung */
   const heroVideo = $('#heroVideo');
   if (heroVideo && !reduce) heroVideo.play().catch(() => {});
-
-  /* Sprache */
-  const setLang = (l) => {
-    document.documentElement.lang = l;
-    $$('[data-es]').forEach((el) => { el.textContent = el.dataset[l]; });
-    $$('.bar-lang button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
-    try { localStorage.setItem('v2-lang', l); } catch (e) {}
-  };
-  $$('.bar-lang button').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
-  try { const l = localStorage.getItem('v2-lang'); if (l === 'es') setLang(l); } catch (e) {}
-  const es = () => document.documentElement.lang === 'es';
 
   /* Videos im Raster: stumm, nur sichtbar */
   const vids = $$('.grid video[data-autoplay]');
@@ -88,6 +77,12 @@
   function layout() {
     const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length || 12;
     let items = [...tiles.filter((t) => !t.hidden), ...(cta.hidden ? [] : [cta])];
+    // AI Generative: Architektur und Figuren abwechselnd (eins/eins), Rest hinten an
+    if (grid.dataset.f === 'comfy') {
+      const arch = items.filter((t) => t.dataset.mix === 'arch'), rest = items.filter((t) => t.dataset.mix !== 'arch');
+      items = [];
+      while (arch.length || rest.length) { if (arch.length) items.push(arch.shift()); if (rest.length) items.push(rest.shift()); }
+    }
     let best = pack(items, cols), bestItems = items;
     // Falls Lücken bleiben: benachbarte Kacheln probeweise tauschen
     // Lücken: Reihenfolge ab Kachel 6 variieren (fester Zufall), vorne bleibt alles wie definiert
@@ -103,6 +98,7 @@
     }
     bestItems.forEach((t, i) => {
       const p = best.pos[i];
+      t.dataset.pos = i;
       t.style.gridColumn = `${p.c + 1} / span ${p.w}`;
       t.style.gridRow = `${p.r + 1} / span ${p.h}`;
     });
@@ -195,13 +191,12 @@
   const lb = $('dialog.lb');
   let cur = 0;
   const mediaTiles = tiles.filter((t) => t.querySelector('template'));
-  const visible = () => mediaTiles.filter((t) => !t.hidden);
+  // Großansicht blättert in der sichtbaren Reihenfolge, nicht in der DOM-Reihenfolge
+  const visible = () => mediaTiles.filter((t) => !t.hidden).sort((x, y) => x.dataset.pos - y.dataset.pos);
   const show = (idx) => {
     const list = visible();
     cur = (idx + list.length) % list.length;
     const frag = $('template', list[cur]).content.cloneNode(true);
-    const lang = document.documentElement.lang;
-    $$('[data-es]', frag).forEach((el) => { el.textContent = el.dataset[lang]; });
     $('.lb-body', lb).replaceChildren(frag.querySelector('.lb-row'));
     $('.lb-meta', lb).replaceChildren(...frag.querySelector('.lb-info').childNodes);
     $('.lb-count', lb).textContent = `${String(cur + 1).padStart(2, '0')} / ${String(list.length).padStart(2, '0')}`;
@@ -244,8 +239,8 @@
     $$('.grid .t-open:not(.t-cta-btn)').forEach((b) => {
       b.addEventListener('pointerenter', () => {
         const kind = b.dataset.cursor;
-        cur$.firstElementChild.textContent = kind === 'play' ? (es() ? 'Reproducir' : 'Play')
-          : kind === 'link' ? 'Gumroad ↗' : (es() ? 'Abrir' : 'Open');
+        cur$.firstElementChild.textContent = kind === 'play' ? 'Play'
+          : kind === 'link' ? 'Gumroad ↗' : 'Open';
         cur$.classList.add('on');
       });
       b.addEventListener('pointerleave', () => cur$.classList.remove('on'));

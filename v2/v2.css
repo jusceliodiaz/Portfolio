@@ -51,9 +51,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .bar-right { display: flex; justify-content: flex-end; align-items: center; gap: 6px; }
 .bar-link { font: 500 0.6875rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 10px 10px; min-height: 36px; display: inline-flex; align-items: center; }
 .bar-link:hover { color: var(--signal); }
-.bar-lang { display: flex; border: 1px solid var(--line); margin-left: 6px; }
-.bar-lang button { font: 500 0.6875rem/1 var(--mono); padding: 8px 9px; color: var(--muted); }
-.bar-lang button[aria-pressed='true'] { background: var(--paper); color: var(--ink); }
 @media (max-width: 980px) {
   .bar { grid-template-columns: 1fr auto; height: auto; padding-block: 10px; row-gap: 8px; }
   .bar-filter { grid-column: 1 / -1; grid-row: 2; overflow-x: auto; scrollbar-width: none; }
