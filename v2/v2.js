@@ -125,7 +125,8 @@
   /* Filter */
   /* Film-Block: Vorschaubild, Film lädt erst auf Klick; beim Filterwechsel wieder zum Vorschaubild */
   const playFilm = (b) => {
-    const src = b.dataset.embed;
+    // Handy: kleinere Fassung, falls vorhanden
+    const src = (b.dataset.embedM && matchMedia('(max-width: 900px)').matches) ? b.dataset.embedM : b.dataset.embed;
     let el;
     if (/\.mp4/.test(src)) {
       el = document.createElement('video');

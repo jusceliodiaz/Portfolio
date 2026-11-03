@@ -30,7 +30,9 @@ Open `index.html` directly in a browser. There is no dev server, no npm, no comp
 
 **ComfyUI content** — imported from the aicontent site; media in `media_ai/` (avif/webp/jpg, `-thumb`/`-m` sizes), tile numbers prefixed `C.`.
 
-**Hero** — shown only under "All" (any other filter hides it and pauses the video; "All" scrolls back to the top). Looping, muted `#heroVideo` (`images_v2/hero2_web.mp4`, `hero2.jpg` poster), started by `v2.js` unless `prefers-reduced-motion`; only the kicker line and the filter tags sit over it. `hero2_web.mp4` is encoded from the source `images/hero_web.webm` (no audio, x264 slow CRF 19, maxrate 12M, faststart); don't reference the source from the page.
+**Hero** — shown only under "All" (any other filter hides it and pauses the video; "All" scrolls back to the top). Looping, muted `#heroVideo` (`images_v2/hero2_web.mp4`, `hero2.jpg` poster), started by `v2.js` unless `prefers-reduced-motion`; only the kicker line and the filter tags sit over it. `hero2_web.mp4` is encoded from the source `images/hero_web.webm` (no audio, x264 slow CRF 19, maxrate 12M, faststart); don't reference the source from the page. Phones get `hero2_portrait.mp4` (centre crop 804×1072, via `media="(min-aspect-ratio: 3/4)"` on the full source) and the tile/lightbox/film get `hero2_m.mp4` (1280w).
+
+**Mobile media** — every video has a `-m.mp4` (1280w, x264 CRF 24, maxrate 2.5M, no audio): the full mp4/webm sources carry `media="(min-width: 901px)"` and come first, the `-m.mp4` last (browsers that ignore `media` fall back to the full file). Every `images_v2` `<img>` has a `mobile/` 900w variant in `srcset`; `media_ai` images use their `-m` (1400w) variant where one exists.
 
 ## index_old.html (monograph)
 
