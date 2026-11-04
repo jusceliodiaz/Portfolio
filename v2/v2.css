@@ -506,3 +506,23 @@ button.tx-link { cursor: pointer; }
 }
 .bar-filter button { white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) { .vr-card img { transition: none; } }
+
+/* Film: dieselben Karten wie VR, Vorschaubild = Play-Button; der Text lässt Klicks zum Film durch */
+.vr-media { position: absolute; inset: 0; background: #000; }
+.film-card .film-embed img { transition: transform 900ms var(--ease), filter 300ms var(--ease); }
+.film-card .vr-tx { pointer-events: none; }
+.film-card .vr-tx .tx-link { pointer-events: auto; align-self: flex-start; }
+@media (min-width: 901px) { .vr-card.vr-wide { grid-column: 1 / -1; aspect-ratio: 21 / 9; } }
+@media (min-width: 641px) {
+  .film-card .film-play { top: 38%; }
+  .film-card:not(.vr-wide) .film-play { top: 30%; }
+  /* Film läuft: Text ausblenden, damit er nicht über dem Player liegt */
+  .film-card:has(.film-frame) .vr-tx { opacity: 0; visibility: hidden; }
+}
+@media (max-width: 640px) { .vr-media { position: relative; aspect-ratio: 16 / 9; } }
+@media (prefers-reduced-motion: reduce) { .film-card .film-embed img { transition: none; } }
+
+/* Videos ohne Ton: Lautstärke-Regler im Player ausblenden (Chrome/Edge/Safari) */
+video::-webkit-media-controls-mute-button,
+video::-webkit-media-controls-volume-slider,
+video::-webkit-media-controls-volume-control-container { display: none !important; }
