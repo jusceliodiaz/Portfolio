@@ -70,7 +70,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 @media (max-width: 1100px) { :root { --cols: 4; } .t { grid-column: span var(--tw); grid-row: span var(--th); } }
 @media (max-width: 640px) { :root { --cols: 2; } .t { grid-column: span var(--mw); grid-row: span var(--mh); } }
 
-.t-open { position: absolute; inset: 0; display: block; width: 100%; height: 100%; cursor: none; text-align: left; }
+.t-open { position: absolute; inset: 0; display: block; width: 100%; height: 100%; cursor: pointer; text-align: left; }
+.has-cursor .grid .t-open:not(.t-cta-btn) { cursor: none; }
 .t picture, .t img, .t video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .t img, .t video { transition: transform 900ms var(--ease), filter 400ms var(--ease); }
 .t-open:hover img, .t-open:hover video, .t-open:focus-visible img { transform: scale(1.035); }

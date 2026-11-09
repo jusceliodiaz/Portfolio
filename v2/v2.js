@@ -235,12 +235,13 @@
 
   /* Cursor-Etikett */
   const cur$ = $('.cursor');
-  if (matchMedia('(hover: hover)').matches) {
+  if (cur$ && matchMedia('(hover: hover)').matches) {
+    document.documentElement.classList.add('has-cursor');
     document.addEventListener('pointermove', (e) => { cur$.style.left = e.clientX + 'px'; cur$.style.top = e.clientY + 'px'; });
     $$('.grid .t-open:not(.t-cta-btn)').forEach((b) => {
       b.addEventListener('pointerenter', () => {
         const kind = b.dataset.cursor;
-        cur$.firstElementChild.textContent = kind === 'play' ? 'Play'
+        cur$.textContent = kind === 'play' ? 'Play'
           : kind === 'link' ? 'Gumroad ↗' : 'Open';
         cur$.classList.add('on');
       });
