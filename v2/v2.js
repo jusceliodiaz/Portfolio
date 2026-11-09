@@ -88,7 +88,8 @@
     // Lücken: Reihenfolge ab Kachel 6 variieren (fester Zufall), vorne bleibt alles wie definiert
     let seed = 7;
     const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
-    const fixed = Math.min(6, items.length);
+    // Unter "All" bleiben 8 vorne (inkl. der zwei Yacht-Videos), sonst 6
+    const fixed = Math.min(grid.dataset.f ? 6 : 8, items.length);
     for (let k = 0; best.holes && k < 600; k++) {
       const tail = items.slice(fixed);
       for (let i = tail.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [tail[i], tail[j]] = [tail[j], tail[i]]; }
