@@ -17,7 +17,7 @@
   if (heroVideo && !reduce) heroVideo.play().catch(() => {});
 
   /* Videos im Raster: stumm, nur sichtbar */
-  const vids = $$('.grid video[data-autoplay]');
+  const vids = $$('.grid video[data-autoplay], .vr-card video[data-autoplay]');
   if (!reduce && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((es) => es.forEach((e) => { e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause(); }), { threshold: 0.2 });
     vids.forEach((v) => io.observe(v));
