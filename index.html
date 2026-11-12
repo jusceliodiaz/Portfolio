@@ -17,7 +17,7 @@
       gtag("config", "G-P0DQMM860E");
       gtag("config", "AW-15269172683");
     </script>
-    <title>Juscélio Diaz — Technical Artist | AI Creative</title>
+    <title>Juscélio Diaz — 3D Artist and Realtime Developer</title>
     <meta
       name="description"
       content="Juscélio Diaz — technical artist and AI creative. High-end real-time experiences and AI-driven tools for architecture, virtual production and interactive media: Unreal Engine, 3ds Max + Corona Render, Python, PyTorch, ComfyUI, LangChain."
@@ -30,7 +30,7 @@
     <meta property="og:site_name" content="Juscélio Diaz" />
     <meta
       property="og:title"
-      content="Juscélio Diaz — Technical Artist | AI Creative"
+      content="Juscélio Diaz — 3D Artist and Realtime Developer"
     />
     <meta
       property="og:description"
@@ -75,7 +75,7 @@
 
     <header class="bar">
       <a class="bar-name" href="./"
-        >Juscélio Diaz<span>Technical Artist | AI Creative</span></a
+        >Juscélio Diaz<span>3D Artist and Realtime Developer</span></a
       >
       <nav class="bar-filter" aria-label="Filter">
         <button type="button" data-filter="" aria-pressed="true">
@@ -112,7 +112,7 @@
 
     <main>
       <h1 class="visually-hidden">
-        Juscélio Diaz — Technical Artist | AI Creative
+        Juscélio Diaz — 3D Artist and Realtime Developer
       </h1>
       <!-- Hero: real-time reel, looping -->
       <section class="hero" id="hero" aria-label="Hybrid reel">
@@ -5985,7 +5985,16 @@
                   colours, jump between bow, cockpit and stern, set the time
                   of day and play the yacht film.
                 </p>
+                <span class="tx-link vr-more" aria-hidden="true"
+                  >Features &amp; download →</span
+                >
               </div>
+              <button
+                type="button"
+                class="vr-open"
+                data-open-gal="galYacht"
+                aria-label="Open the Yacht Configurator gallery"
+              ></button>
               <a
                 class="tx-link vr-dl"
                 href="https://drive.google.com/file/d/17UmOh2qdgaA8T8sgkKJlKNAy7W12bQXj/view?usp=sharing"
@@ -6022,12 +6031,8 @@
                   Complete UE5 environment: beach house scene with high-fidelity
                   lighting, precise materials and a cinematic-ready setup.
                 </p>
-                <a
-                  class="tx-link"
-                  href="https://jdworks.gumroad.com/l/hhhoc"
-                  target="_blank"
-                  rel="noopener"
-                  >Get it on Gumroad ↗</a
+                <span class="tx-link tx-soon" aria-disabled="true"
+                  >Download soon</span
                 >
               </div>
             </article>
@@ -6934,9 +6939,130 @@
       </div>
     </dialog>
 
+    <dialog class="gal" id="galYacht" aria-labelledby="galYacht-t" tabindex="-1">
+      <header class="gal-h">
+        <div class="gal-h-t">
+          <p class="gal-k">Unreal Engine 5.7 · Real-time configurator</p>
+          <h2 id="galYacht-t" class="gal-t">Yacht Configurator</h2>
+        </div>
+        <div class="gal-h-a">
+          <a class="gal-chip" href="#galYacht-dl" aria-label="Jump to download"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14"/></svg><span>Download</span></a>
+          <button type="button" class="gal-close" aria-label="Close">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+      </header>
+      <figure class="gal-main">
+        <video
+          controls
+          muted
+          loop
+          playsinline
+          preload="none"
+          poster="images_v2/yatch_game.jpg"
+          aria-label="Yacht Configurator walkthrough"
+        >
+          <source
+            media="(min-width: 901px)"
+            src="images_v2/yatch_game.mp4"
+            type="video/mp4"
+          />
+          <source src="images_v2/yatch_game-m.mp4" type="video/mp4" />
+        </video>
+      </figure>
+      <div class="gal-intro">
+        <p class="gal-lead">
+          A real-time configurator for the MAGNIFIC 68&#8242; sailing yacht:
+          change the hull, deck and sail finishes, jump between camera hotspots
+          and re-light the scene from golden hour to midday, on desktop and in
+          VR.
+        </p>
+        <dl class="gal-facts">
+          <div><dt>Engine</dt><dd>UE 5.7</dd></div>
+          <div><dt>Code</dt><dd>C++</dd></div>
+          <div><dt>Platforms</dt><dd>Desktop · VR</dd></div>
+        </dl>
+      </div>
+      <section class="gal-feat" aria-labelledby="galYacht-f">
+        <header class="gal-sh">
+          <h3 id="galYacht-f">Features</h3>
+          <span>05 clips</span>
+        </header>
+        <div class="gal-clips">
+          <figure class="gal-clip">
+            <div class="gal-clip-m">
+              <video muted loop playsinline preload="none" poster="images_v2/y1.jpg">
+                <source src="images_v2/y1.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figcaption>
+              <span class="gal-no">01</span><b>Camera hotspots</b><span class="gal-d">Jump from the overview to the bow, cockpit and stern with one click.</span>
+            </figcaption>
+          </figure>
+          <figure class="gal-clip">
+            <div class="gal-clip-m">
+              <video muted loop playsinline preload="none" poster="images_v2/y2.jpg">
+                <source src="images_v2/y2.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figcaption>
+              <span class="gal-no">02</span><b>Hull colour</b><span class="gal-d">Swap the hull finish in real time from the material palette.</span>
+            </figcaption>
+          </figure>
+          <figure class="gal-clip">
+            <div class="gal-clip-m">
+              <video muted loop playsinline preload="none" poster="images_v2/y3.jpg">
+                <source src="images_v2/y3.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figcaption>
+              <span class="gal-no">03</span><b>Live material swap</b><span class="gal-d">Hull colours update instantly as the camera moves around the yacht.</span>
+            </figcaption>
+          </figure>
+          <figure class="gal-clip">
+            <div class="gal-clip-m">
+              <video muted loop playsinline preload="none" poster="images_v2/y4.jpg">
+                <source src="images_v2/y4.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figcaption>
+              <span class="gal-no">04</span><b>Time of day</b><span class="gal-d">Drag the sun slider from golden hour to midday light.</span>
+            </figcaption>
+          </figure>
+          <figure class="gal-clip">
+            <div class="gal-clip-m">
+              <video muted loop playsinline preload="none" poster="images_v2/y5.jpg">
+                <source src="images_v2/y5.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figcaption>
+              <span class="gal-no">05</span><b>Sails &amp; lighting</b><span class="gal-d">Toggle the sails and re-light the whole scene from the overview.</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <footer class="gal-dl" id="galYacht-dl">
+        <div class="gal-dl-t">
+          <p class="gal-k">Download</p>
+          <h3>Get the Unreal Engine project</h3>
+          <p class="gal-dl-p">
+            Made in Unreal Engine 5.7 with C++, compiled for desktop and VR.
+          </p>
+        </div>
+        <ul class="gal-spec">
+          <li><span>Engine</span><b>Unreal Engine 5.7</b></li>
+          <li><span>Code</span><b>C++</b></li>
+          <li><span>Builds</span><b>Desktop · VR</b></li>
+        </ul>
+        <a class="gal-btn" href="https://drive.google.com/file/d/17UmOh2qdgaA8T8sgkKJlKNAy7W12bQXj/view?usp=sharing" target="_blank" rel="noopener"
+          ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14"/></svg><span>Download project</span><small>Google Drive</small></a
+        >
+      </footer>
+    </dialog>
+
     <dialog class="info" aria-labelledby="info-t">
       <button type="button" class="info-close" aria-label="Close">×</button>
-      <p class="info-l">Technical Artist | AI Creative</p>
+      <p class="info-l">3D Artist and Realtime Developer</p>
       <h2 id="info-t">Juscélio<br />Diaz<em>.</em></h2>
       <p class="info-lead">
         Technical artist &amp; AI creative. I build high-end real-time

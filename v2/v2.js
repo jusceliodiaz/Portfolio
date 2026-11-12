@@ -228,6 +228,26 @@
   const hashF = location.hash.slice(1);
   if (['figur', 'auto', 'video', 'sheet', 'inter', 'comfy', 'pipeline'].includes(hashF)) goFilter(hashF);
 
+  /* Galerie einer VR-Karte: Seite abgedunkelt, Videos spielen nur sichtbar und nur bei offenem Dialog */
+  $$('dialog.gal').forEach((d) => {
+    const vids = $$('video', d);
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting && d.open && !reduce) e.target.play().catch(() => {});
+      else e.target.pause();
+    }), { root: d, threshold: 0.35 });
+    vids.forEach((v) => io.observe(v));
+    $('.gal-close', d).addEventListener('click', () => d.close());
+    d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+    d.addEventListener('close', () => vids.forEach((v) => v.pause()));
+  });
+  $$('[data-open-gal]').forEach((b) => b.addEventListener('click', () => {
+    const d = document.getElementById(b.dataset.openGal);
+    if (!d) return;
+    d.showModal();
+    d.focus(); // Fokus auf den Dialog selbst, nicht auf den ersten Button
+    d.scrollTop = 0;
+  }));
+
   /* Info-Panel */
   const info = $('dialog.info');
   $$('[data-open-info]').forEach((b) => b.addEventListener('click', () => info.showModal()));
