@@ -613,8 +613,19 @@ button.tx-link { cursor: pointer; }
 /* Download-Button oben rechts auf der Karte */
 .vr-card .vr-dl { position: absolute; top: 24px; right: 24px; z-index: 2; margin: 0; padding: 16px 22px; font-size: 0.95rem; color: var(--paper); background: rgb(8 8 7 / 0.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 .vr-card .vr-dl:hover, .vr-card .vr-dl:focus-visible { background: var(--signal); border-color: var(--signal); color: var(--ink); }
+/* Karten mit Galerie: "Features & download" oben rechts ist nur Etikett, der Klick geht an .vr-open darunter */
+.vr-card span.vr-dl { pointer-events: none; }
 @media (max-width: 640px) { .vr-card .vr-dl { top: 12px; right: 12px; padding: 12px 16px; font-size: 0.85rem; } }
 @media (max-width: 900px) { .vr-grid { grid-template-columns: 1fr; } }
+/* VR/Real-time: drei Karten pro Zeile auf breiten Schirmen, etwas kompaktere Karten */
+@media (min-width: 1101px) {
+  #interPipe .vr-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #interPipe .vr-card { aspect-ratio: 4 / 3; }
+  #interPipe .vr-tx { gap: 8px; padding: clamp(64px, 7vw, 120px) clamp(16px, 1.6vw, 26px) clamp(16px, 1.6vw, 26px); }
+  #interPipe .vr-h { font-size: clamp(1.2rem, 1.55vw, 1.7rem); }
+  #interPipe .vr-p { font-size: 0.9rem; }
+  #interPipe .vr-card .vr-dl { top: 16px; right: 16px; padding: 12px 16px; font-size: 0.85rem; }
+}
 @media (max-width: 640px) {
   /* Handy: Bild ganz im 16:9, Text darunter, der Verlauf läuft über die Unterkante des Bildes */
   .vr-card { aspect-ratio: auto; }
