@@ -231,6 +231,8 @@
   /* Galerie einer VR-Karte: Seite abgedunkelt, Videos spielen nur sichtbar und nur bei offenem Dialog */
   $$('dialog.gal').forEach((d) => {
     const vids = $$('video', d);
+    // Handy: kleineres Vorschaubild
+    if (matchMedia('(max-width: 900px)').matches) vids.forEach((v) => { if (v.dataset.posterM) v.poster = v.dataset.posterM; });
     const io = new IntersectionObserver((es) => es.forEach((e) => {
       if (e.isIntersecting && d.open && !reduce) e.target.play().catch(() => {});
       else e.target.pause();
