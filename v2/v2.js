@@ -225,6 +225,14 @@
     goFilter(a.dataset.goFilter);
     history.replaceState(null, '', '#' + a.dataset.goFilter);
   }));
+  /* Scroll-Hinweis im Hero: weich ins Raster, unter der festen Leiste */
+  $('.hero-scroll')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const g = $('#grid'), bar = $('.bar');
+    if (!g) return;
+    const y = g.getBoundingClientRect().top + scrollY - (bar ? bar.offsetHeight : 0);
+    scrollTo({ top: y, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  });
   const hashF = location.hash.slice(1);
   if (['figur', 'auto', 'video', 'sheet', 'inter', 'comfy', 'pipeline'].includes(hashF)) goFilter(hashF);
 
