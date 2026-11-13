@@ -1,0 +1,19 @@
+{
+  "name": "juscelio-diaz-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Juscelio Diaz — portfolio. Static site; npm run build generates SEO tags, /de/ pages and the sitemap.",
+  "scripts": {
+    "dev": "serve . -l 8000",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "build": "node tools/build.cjs && prettier --write \"*.html\" \"de/*.html\"",
+    "og": "node tools/og-images.cjs"
+  },
+  "devDependencies": {
+    "linkedom": "^0.18.15",
+    "prettier": "^3.10.1",
+    "serve": "^14.2.7",
+    "sharp": "^0.34.5"
+  }
+}

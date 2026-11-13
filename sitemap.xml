@@ -1,8 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://jdiaz.vercel.app/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jdiaz.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jdiaz.vercel.app/de/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jdiaz.vercel.app/" />
+  </url>
+  <url>
+    <loc>https://jdiaz.vercel.app/de/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jdiaz.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jdiaz.vercel.app/de/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jdiaz.vercel.app/" />
+  </url>
+  <url>
+    <loc>https://jdiaz.vercel.app/projects.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jdiaz.vercel.app/projects.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jdiaz.vercel.app/de/projects.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jdiaz.vercel.app/projects.html" />
+  </url>
+  <url>
+    <loc>https://jdiaz.vercel.app/de/projects.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jdiaz.vercel.app/projects.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jdiaz.vercel.app/de/projects.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jdiaz.vercel.app/projects.html" />
+  </url>
+  <url>
+    <loc>https://jdiaz.vercel.app/automotive.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jdiaz.vercel.app/automotive.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jdiaz.vercel.app/de/automotive.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jdiaz.vercel.app/automotive.html" />
+  </url>
+  <url>
+    <loc>https://jdiaz.vercel.app/de/automotive.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jdiaz.vercel.app/automotive.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jdiaz.vercel.app/de/automotive.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jdiaz.vercel.app/automotive.html" />
+  </url>
+  <url>
+    <loc>https://jdiaz.vercel.app/archviz.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jdiaz.vercel.app/archviz.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jdiaz.vercel.app/de/archviz.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jdiaz.vercel.app/archviz.html" />
+  </url>
+  <url>
+    <loc>https://jdiaz.vercel.app/de/archviz.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jdiaz.vercel.app/archviz.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jdiaz.vercel.app/de/archviz.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jdiaz.vercel.app/archviz.html" />
+  </url>
+  <url>
+    <loc>https://jdiaz.vercel.app/vr-realtime.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jdiaz.vercel.app/vr-realtime.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jdiaz.vercel.app/de/vr-realtime.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jdiaz.vercel.app/vr-realtime.html" />
+  </url>
+  <url>
+    <loc>https://jdiaz.vercel.app/de/vr-realtime.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jdiaz.vercel.app/vr-realtime.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jdiaz.vercel.app/de/vr-realtime.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jdiaz.vercel.app/vr-realtime.html" />
+  </url>
+  <url>
+    <loc>https://jdiaz.vercel.app/ai-generative.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jdiaz.vercel.app/ai-generative.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jdiaz.vercel.app/de/ai-generative.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jdiaz.vercel.app/ai-generative.html" />
+  </url>
+  <url>
+    <loc>https://jdiaz.vercel.app/de/ai-generative.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jdiaz.vercel.app/ai-generative.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jdiaz.vercel.app/de/ai-generative.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jdiaz.vercel.app/ai-generative.html" />
+  </url>
+  <url>
+    <loc>https://jdiaz.vercel.app/cv.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jdiaz.vercel.app/cv.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jdiaz.vercel.app/de/cv.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jdiaz.vercel.app/cv.html" />
+  </url>
+  <url>
+    <loc>https://jdiaz.vercel.app/de/cv.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jdiaz.vercel.app/cv.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jdiaz.vercel.app/de/cv.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jdiaz.vercel.app/cv.html" />
   </url>
 </urlset>

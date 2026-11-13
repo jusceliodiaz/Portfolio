@@ -1,7 +1,8 @@
 {
+  "cleanUrls": false,
   "headers": [
     {
-      "source": "/(images_v2|images|media_ai)/(.*)",
+      "source": "/assets/(img|video)/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }]
     },
     {

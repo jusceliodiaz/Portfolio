@@ -1,0 +1,454 @@
+/* ==========================================================================
+   Projects (projects.html)
+   1. Corner controls — home + CV / Instagram / LinkedIn stacked (top-left), language (top-right)
+   2. Four project cards — one row on desktop, 2×2 on phones
+   3. Award — floating card on the Archviz card + the overlay it opens
+   ========================================================================== */
+
+/* 1. Corner controls ------------------------------------------------------ */
+.corner {
+  position: fixed;
+  z-index: 10;
+  top: var(--top);
+  display: flex;
+  gap: 8px;
+}
+/* left column: home, then CV / Instagram / LinkedIn below it — one vertical pill,
+   same glass capsule as the language toggle (base.css), home filled like the active language */
+.corner-home {
+  left: var(--edge);
+  flex-direction: column;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid rgb(255 255 255 / 0.28);
+  border-radius: 999px;
+  background: rgb(10 14 16 / 0.5);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  backdrop-filter: blur(12px) saturate(1.2);
+}
+.corner-social {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.corner-home .icon-btn {
+  width: 36px;
+  height: 36px;
+  min-height: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgb(255 255 255 / 0.72);
+  mix-blend-mode: normal;
+}
+.corner-home .icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+.corner-home .icon-btn:hover,
+.corner-home .icon-btn:focus-visible {
+  background: rgb(255 255 255 / 0.14);
+  color: var(--paper);
+}
+.corner-home .icon-btn:focus-visible {
+  outline-offset: 2px;
+}
+.corner-home nav:first-child .icon-btn {
+  background: var(--paper);
+  color: var(--black);
+}
+.corner-home nav:first-child .icon-btn:hover,
+.corner-home nav:first-child .icon-btn:focus-visible {
+  background: rgb(255 255 255 / 0.85);
+}
+/* right corner: language toggle */
+.corner-tools {
+  right: var(--edge);
+  align-items: center;
+}
+@media (orientation: landscape) and (max-height: 600px) {
+  .corner-home {
+    left: max(var(--edge), env(safe-area-inset-left));
+  }
+}
+
+/* 2. Project cards -------------------------------------------------------- */
+.cards {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+.card {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+.card-link {
+  position: absolute;
+  inset: 0;
+}
+.card-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.82);
+  transition:
+    filter 0.35s ease,
+    transform 0.7s ease;
+}
+/* bottom shade keeps the title readable on bright covers */
+.card-link::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 46%;
+  background: linear-gradient(to top, rgb(8 12 14 / 0.66), rgb(8 12 14 / 0.3) 45%, rgb(8 12 14 / 0));
+  pointer-events: none;
+}
+.card:focus-within .card-media {
+  filter: brightness(1);
+}
+@media (hover: hover) {
+  .card:hover .card-media {
+    filter: brightness(1);
+    transform: scale(1.02);
+  }
+}
+.card-link:focus-visible {
+  outline: 3px solid var(--paper);
+  outline-offset: -8px;
+}
+
+.card-title {
+  position: absolute;
+  z-index: 1;
+  left: var(--edge);
+  bottom: calc(3.5% + 60px);
+  white-space: nowrap;
+  font-size: 2.6vw;
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+  text-shadow: 0 2px 24px #0006;
+}
+/* "see all" — part of the card link, styled as a knockout button */
+.card-cta {
+  position: absolute;
+  z-index: 1;
+  left: var(--edge);
+  bottom: 3.5%;
+  padding: 0 20px;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+}
+.card:hover .card-cta,
+.card-link:focus-visible .card-cta {
+  background: transparent;
+  color: var(--paper);
+}
+
+/* framing per cover */
+.card--automotive .card-media {
+  object-position: 65% 50%;
+}
+.card--ai .card-media {
+  object-position: 50% 45%;
+}
+
+@media (max-width: 700px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .card-title {
+    bottom: calc(3.5% + 54px);
+    font-size: 6.4vw;
+  }
+  .card-cta {
+    min-height: 40px;
+    padding: 0 14px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+}
+@media (orientation: landscape) and (max-height: 600px) {
+  .card-title {
+    bottom: calc(max(2px, env(safe-area-inset-bottom)) + 56px);
+    font-size: 3vw;
+  }
+  .card-cta {
+    bottom: max(2px, env(safe-area-inset-bottom));
+  }
+}
+
+/* 3. Award ---------------------------------------------------------------- */
+.award-float {
+  position: absolute;
+  z-index: 3;
+  top: var(--top);
+  left: 50%;
+  width: min(360px, calc(100% - 3vw));
+  transform: translateX(-50%);
+}
+.award-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 10px 40px 10px 10px; /* right padding leaves room for the ↗ link */
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: 16px;
+  background: rgb(10 14 16 / 0.62);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  backdrop-filter: blur(12px) saturate(1.2);
+  text-align: left;
+  transition:
+    background-color var(--ease),
+    border-color var(--ease),
+    transform var(--ease);
+}
+.award-card:hover {
+  border-color: rgb(255 255 255 / 0.5);
+  background: rgb(10 14 16 / 0.8);
+  transform: translateY(-2px);
+}
+.award-card img {
+  flex: none;
+  width: clamp(72px, 9vw, 132px);
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+.award-tx {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.award-k {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.award-k svg {
+  flex: none;
+}
+.award-name {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+.award-s {
+  color: rgb(255 255 255 / 0.78);
+  font-size: 12px;
+  line-height: 1.3;
+}
+/* small ↗ link to the award article (outside the card button) */
+.award-site {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--black);
+  transition: background-color var(--ease);
+}
+.award-site::before {
+  content: ''; /* bigger touch target */
+  position: absolute;
+  inset: -9px;
+}
+.award-site:hover,
+.award-site:focus-visible {
+  background: var(--gold);
+}
+.award-site:focus-visible {
+  outline-offset: 2px;
+}
+
+/* overlay */
+.award-dialog {
+  width: min(960px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  border: 1px solid rgb(255 255 255 / 0.16);
+  background: #0e1316;
+  color: var(--paper);
+  font-family: var(--font);
+}
+.award-dialog::backdrop {
+  background: rgb(4 6 8 / 0.78);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.award-dialog[open] {
+  animation: award-in 0.32s ease-out;
+}
+@keyframes award-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+.award-close {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  background: var(--paper);
+  color: var(--black);
+  font-size: 26px;
+  line-height: 1;
+}
+.award-close:hover,
+.award-close:focus-visible {
+  background: var(--black);
+  color: var(--paper);
+  outline: 1px solid var(--paper);
+}
+.award-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--black);
+}
+.award-play,
+.award-media iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.award-play img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+.award-play-i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  transform: translate(-50%, -50%);
+  background: var(--paper);
+  color: var(--black);
+  transition: transform var(--ease);
+}
+.award-play:hover .award-play-i,
+.award-play:focus-visible .award-play-i {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+.award-body {
+  padding: clamp(20px, 3vw, 36px);
+}
+.award-body h2 {
+  margin: 10px 0 6px;
+  font-size: clamp(32px, 4.4vw, 56px);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+.award-meta {
+  margin-bottom: 16px;
+  color: rgb(255 255 255 / 0.7);
+  font-size: 14px;
+}
+.award-p {
+  max-width: 62ch;
+  margin-bottom: 22px;
+  color: rgb(255 255 255 / 0.88);
+  font-size: 16px;
+  line-height: 1.55;
+}
+.award-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.award-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--paper);
+  background: var(--paper);
+  color: var(--black);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.award-links a + a {
+  background: transparent;
+  color: var(--paper);
+}
+.award-links a:hover,
+.award-links a:focus-visible {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* Narrow columns (4 across under 1400px, or a short landscape phone): compact card —
+   smaller thumbnail, no subtitle, ↗ moves onto the thumbnail's corner so it never covers the text. */
+@media (max-width: 1400px), (orientation: landscape) and (max-height: 600px) {
+  .award-card {
+    gap: 8px;
+    padding: 6px;
+    border-radius: 12px;
+  }
+  .award-card img {
+    width: 64px;
+    border-radius: 8px;
+  }
+  .award-s {
+    display: none;
+  }
+  .award-k {
+    font-size: 10px;
+  }
+  .award-name {
+    font-size: 14px;
+  }
+  .award-site {
+    top: 8px;
+    right: auto;
+    left: calc(6px + 64px - 22px - 2px);
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+  }
+}
+/* Phones: Archviz is the top-right card of the 2×2 grid, so the award sits under the icons. */
+@media (max-width: 700px) {
+  .award-float {
+    top: calc(7svh - 12px + 56px);
+    width: calc(100% - 8vw);
+  }
+}

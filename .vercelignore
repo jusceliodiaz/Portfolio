@@ -1,5 +1,11 @@
-deploy.ps1
-_sources
-PLINTH-case-study-onepage.md
+node_modules
 tools
+i18n
+README.md
 CLAUDE.md
+deploy.ps1
+package.json
+package-lock.json
+.prettierrc.json
+.prettierignore
+.editorconfig

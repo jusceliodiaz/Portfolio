@@ -1,0 +1,1642 @@
+/* ==========================================================================
+   v2 · "Lichtpult" – das Portfolio ist das Raster.
+   ========================================================================== */
+@font-face {
+  font-family: 'Archivo';
+  src: url('../fonts/archivo.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../fonts/jetbrains-mono.woff2') format('woff2');
+  font-weight: 100 800;
+  font-display: swap;
+}
+
+:root {
+  --bg: #0b0b0a;
+  --ink: #0b0b0a;
+  --paper: #edebe5;
+  --muted: #8e8b82;
+  --signal: #ff4d00;
+  --line: rgb(237 235 229 / 0.12);
+  --sans: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --cols: 8;
+  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --bar-h: 58px;
+  color-scheme: dark;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--paper);
+}
+body {
+  font: 400 15px/1.5 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img,
+video {
+  display: block;
+}
+a {
+  color: inherit;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: -2px;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.skip {
+  position: absolute;
+  left: -9999px;
+  z-index: 300;
+  background: var(--signal);
+  color: var(--ink);
+  padding: 10px 14px;
+}
+.skip:focus {
+  left: 8px;
+  top: 8px;
+}
+
+/* ---------- Leiste: schwebt über dem Raster ---------- */
+.bar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  height: var(--bar-h);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 0 clamp(12px, 2vw, 24px);
+  background: linear-gradient(rgb(11 11 10 / 0.86), rgb(11 11 10 / 0.55));
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  border-bottom: 1px solid var(--line);
+}
+.bar-name {
+  text-decoration: none;
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.03em;
+  font-size: 1.05rem;
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.bar-name span {
+  font: 500 0.625rem/1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.bar-filter {
+  display: flex;
+  gap: 2px;
+}
+.bar-filter sup {
+  font-size: 0.6rem;
+  margin-left: 3px;
+  color: var(--signal);
+}
+.bar-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+}
+.bar-link {
+  font: 500 0.6875rem/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 10px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+}
+.bar-link:hover {
+  color: var(--signal);
+}
+@media (max-width: 980px) {
+  .bar {
+    grid-template-columns: 1fr auto;
+    height: auto;
+    padding-block: 10px;
+    row-gap: 8px;
+  }
+  .bar-filter {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .bar-filter::-webkit-scrollbar {
+    display: none;
+  }
+  :root {
+    --bar-h: 96px;
+  }
+}
+
+/* ---------- Raster: füllt die Fläche, keine Abstände ---------- */
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-auto-rows: calc(100vw / var(--cols));
+  grid-auto-flow: dense;
+  gap: 0;
+  background: #000;
+}
+.t {
+  grid-column: span var(--w);
+  grid-row: span var(--h);
+  position: relative;
+  overflow: hidden;
+  background: #151513;
+}
+@media (max-width: 1100px) {
+  :root {
+    --cols: 4;
+  }
+  .t {
+    grid-column: span var(--tw);
+    grid-row: span var(--th);
+  }
+}
+@media (max-width: 640px) {
+  :root {
+    --cols: 2;
+  }
+  .t {
+    grid-column: span var(--mw);
+    grid-row: span var(--mh);
+  }
+}
+
+.t-open {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+.has-cursor .grid .t-open:not(.t-cta-btn) {
+  cursor: none;
+}
+.t img,
+.t video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.t img,
+.t video {
+  transition:
+    transform 900ms var(--ease),
+    filter 400ms var(--ease);
+}
+.t-open:hover img,
+.t-open:hover video,
+.t-open:focus-visible img {
+  transform: scale(1.035);
+}
+
+/* Fokus: die anderen Kacheln treten zurück */
+@media (hover: hover) {
+  .grid:has(.t-open:hover) .t:not(:hover) img,
+  .grid:has(.t-open:hover) .t:not(:hover) video {
+    filter: brightness(0.38) saturate(0.5);
+  }
+}
+
+.t-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+  pointer-events: none;
+  z-index: 2;
+}
+.t-no {
+  font: 500 0.6875rem/1 var(--mono);
+  color: var(--paper);
+  mix-blend-mode: difference;
+  padding-top: 6px;
+  opacity: 0;
+  transition: opacity 200ms;
+}
+.t-badge {
+  font: 500 0.625rem/1 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgb(11 11 10 / 0.82);
+  color: var(--paper);
+  padding: 6px 7px;
+}
+.t-cap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 48px 12px 12px;
+  pointer-events: none;
+  background: linear-gradient(to top, rgb(11 11 10 / 0.9), transparent);
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 220ms var(--ease),
+    transform 320ms var(--ease);
+}
+.t-cap b {
+  font-weight: 700;
+  font-stretch: 112%;
+  letter-spacing: -0.01em;
+  font-size: 0.98rem;
+  line-height: 1.2;
+}
+.t-cap i {
+  font: 400 0.6875rem/1.3 var(--mono);
+  font-style: normal;
+  color: var(--muted);
+}
+.t-open:hover .t-cap,
+.t-open:focus-visible .t-cap {
+  opacity: 1;
+  transform: none;
+}
+.t-open:hover .t-no,
+.t-open:focus-visible .t-no {
+  opacity: 1;
+}
+@media (hover: none) {
+  .t-cap {
+    opacity: 1;
+    transform: none;
+  }
+  .t-cap i {
+    display: none;
+  }
+}
+
+/* Abschlusskachel */
+
+/* Einblenden beim Laden */
+.t {
+  animation: tile-in 900ms var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 45ms);
+}
+
+.foot {
+  margin: 0;
+  padding: 18px clamp(12px, 2vw, 24px) 28px;
+  font: 400 0.6875rem/1.6 var(--mono);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.foot a {
+  color: var(--muted);
+}
+.foot a:hover {
+  color: var(--paper);
+}
+
+/* ---------- Eigener Cursor ---------- */
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 200;
+  pointer-events: none;
+  font: 600 0.6875rem/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--signal);
+  color: var(--ink);
+  padding: 9px 11px;
+  transform: translate(-50%, -50%) scale(0.4);
+  opacity: 0;
+  transition:
+    opacity 160ms,
+    transform 220ms var(--ease);
+}
+.cursor.on {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+@media (hover: none) {
+  .cursor {
+    display: none;
+  }
+  .t-open {
+    cursor: pointer;
+  }
+}
+
+/* ---------- Großansicht ---------- */
+dialog.lb {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgb(8 8 7 / 0.97);
+  color: var(--paper);
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+dialog.lb:not([open]) {
+  display: none;
+}
+dialog.lb::backdrop {
+  background: #000;
+}
+.lb-body {
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 3vw, 40px);
+  padding-bottom: 8px;
+}
+.lb-row {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.lb-row figure {
+  margin: 0;
+  min-width: 0;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.lb-frame {
+  position: relative;
+  max-height: calc(100dvh - 140px);
+  width: 100%;
+  background: #111;
+}
+.lb-frame img,
+.lb-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.lb-row figcaption {
+  margin-top: 8px;
+  font: 500 0.625rem/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.lb-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px clamp(12px, 3vw, 40px) 18px;
+  border-top: 1px solid var(--line);
+}
+.lb-info {
+  display: none;
+}
+.lb-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.lb-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+}
+.lb-ctrl button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  font-size: 1.15rem;
+  transition:
+    background 160ms,
+    color 160ms;
+}
+.lb-ctrl button:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+.lb-close {
+  margin-left: 8px;
+  background: var(--signal) !important;
+  color: var(--ink);
+  border-color: var(--signal) !important;
+}
+.lb-count {
+  font: 500 0.75rem/1 var(--mono);
+  color: var(--muted);
+  padding: 0 10px;
+  min-width: 64px;
+  text-align: center;
+}
+@media (max-width: 760px) {
+  .lb-row {
+    flex-wrap: wrap;
+    overflow-y: auto;
+    align-content: flex-start;
+  }
+  .lb-row figure {
+    flex: 1 1 45% !important;
+  }
+}
+
+/* ---------- Galerie (VR-Karte): Video, Feature-Clips, Download ---------- */
+.vr-open {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.vr-open:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: -2px;
+}
+.vr-card:has(.vr-open:hover) .vr-more,
+.vr-card:has(.vr-open:focus-visible) .vr-more {
+  background: var(--signal);
+  border-color: var(--signal);
+  color: var(--ink);
+}
+/* "Download soon": sieht aus wie der Link, ist aber nicht klickbar */
+.vr-tx .tx-soon,
+.vr-tx .tx-soon:hover {
+  cursor: default;
+  color: rgb(237 235 229 / 0.6);
+  border-color: rgb(237 235 229 / 0.3);
+  border-style: dashed;
+  background: none;
+}
+html:has(dialog.gal[open]) {
+  overflow: hidden;
+}
+dialog.gal {
+  --gp: clamp(18px, 3vw, 44px);
+  width: min(1280px, calc(100vw - 48px));
+  max-width: none;
+  max-height: calc(100dvh - 48px);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--line);
+  background: #0e0e0d;
+  color: var(--paper);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  box-shadow: 0 40px 120px rgb(0 0 0 / 0.6);
+  scrollbar-width: thin;
+  scrollbar-color: rgb(237 235 229 / 0.2) transparent;
+}
+dialog.gal[open] {
+  animation: gal-in 420ms var(--ease);
+}
+dialog.gal::backdrop {
+  background: rgb(4 4 4 / 0.84);
+  -webkit-backdrop-filter: blur(10px) saturate(0.8);
+  backdrop-filter: blur(10px) saturate(0.8);
+}
+dialog.gal[open]::backdrop {
+  animation: gal-fade 320ms ease-out;
+}
+dialog.gal svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: square;
+  flex: none;
+}
+dialog.gal :focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+dialog.gal:focus {
+  outline: none;
+}
+.gal-k {
+  margin: 0;
+  font: 500 0.6875rem/1.2 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+
+/* Kopf: bleibt beim Scrollen oben */
+.gal-h {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px var(--gp);
+  background: rgb(14 14 13 / 0.86);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.gal-h-t {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.gal-t {
+  margin: 0;
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-size: clamp(1.4rem, 2.6vw, 2.4rem);
+}
+.gal-h-a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+.gal-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 16px;
+  font: 600 0.75rem/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--paper);
+  border: 1px solid var(--line);
+  transition:
+    background 180ms,
+    color 180ms,
+    border-color 180ms;
+}
+.gal-chip:hover,
+.gal-chip:focus-visible {
+  border-color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
+}
+.gal-close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: var(--signal);
+  color: var(--ink);
+  border: 1px solid var(--signal);
+  cursor: pointer;
+  transition:
+    background 180ms,
+    border-color 180ms,
+    transform 220ms var(--ease);
+}
+.gal-close:hover,
+.gal-close:focus-visible {
+  background: var(--paper);
+  border-color: var(--paper);
+  transform: rotate(90deg);
+}
+
+/* Hauptvideo */
+.gal-main {
+  margin: 0;
+  background: #000;
+}
+.gal-main video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #000;
+}
+
+/* Einleitung + Eckdaten */
+.gal-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 64px);
+  align-items: end;
+  padding: clamp(28px, 4vw, 56px) var(--gp);
+  border-bottom: 1px solid var(--line);
+}
+.gal-lead {
+  margin: 0;
+  max-width: 58ch;
+  font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+  line-height: 1.55;
+  color: rgb(237 235 229 / 0.88);
+  text-wrap: pretty;
+}
+.gal-facts {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: end;
+  margin: 0;
+  border: 1px solid var(--line);
+  justify-self: end;
+}
+.gal-facts div {
+  padding: 14px 20px;
+}
+.gal-facts div + div {
+  border-left: 1px solid var(--line);
+}
+.gal-facts dt {
+  font: 500 0.625rem/1 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.gal-facts dd {
+  margin: 0;
+  font-weight: 700;
+  font-stretch: 112%;
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+
+/* Features: Bento – zwei breite, darunter drei schmale */
+.gal-feat {
+  padding: clamp(28px, 4vw, 56px) var(--gp);
+}
+.gal-sh {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.gal-sh h3 {
+  margin: 0;
+  font-weight: 800;
+  font-stretch: 118%;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+}
+.gal-sh span {
+  font: 500 0.6875rem/1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.gal-clips {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(10px, 1.2vw, 16px);
+}
+.gal-clips:not(:has(figure)) {
+  display: none;
+}
+.gal-clip {
+  grid-column: span 2;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: #161614;
+  border: 1px solid var(--line);
+  transition: border-color 220ms;
+}
+.gal-clip:nth-child(-n + 2) {
+  grid-column: span 3;
+}
+.gal-clip:hover {
+  border-color: rgb(237 235 229 / 0.3);
+}
+.gal-clip-m {
+  overflow: hidden;
+  background: #000;
+}
+.gal-clip video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 900ms var(--ease);
+}
+.gal-clip:hover video {
+  transform: scale(1.035);
+}
+.gal-clip figcaption {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 12px;
+  row-gap: 6px;
+  padding: 16px 18px 20px;
+}
+.gal-no {
+  grid-row: span 2;
+  font: 500 0.75rem/1.5 var(--mono);
+  color: var(--signal);
+}
+.gal-clip b {
+  font-weight: 800;
+  font-stretch: 115%;
+  letter-spacing: -0.015em;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+.gal-d {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgb(237 235 229 / 0.66);
+}
+
+/* Download */
+.gal-dl {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) auto auto;
+  gap: clamp(20px, 3vw, 48px);
+  align-items: center;
+  margin: 0 var(--gp) var(--gp);
+  padding: clamp(24px, 3.5vw, 44px);
+  background: linear-gradient(135deg, rgb(255 77 0 / 0.14), rgb(255 77 0 / 0.02) 60%), #151513;
+  border: 1px solid rgb(255 77 0 / 0.35);
+  scroll-margin-top: 110px;
+}
+.gal-dl-t {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gal-dl h3 {
+  margin: 0;
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  font-size: clamp(1.4rem, 2.4vw, 2.2rem);
+}
+.gal-dl-p {
+  margin: 0;
+  max-width: 46ch;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgb(237 235 229 / 0.72);
+}
+.gal-spec {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.gal-spec li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 14px;
+  border-left: 2px solid var(--signal);
+}
+.gal-spec span {
+  font: 500 0.625rem/1 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.gal-spec b {
+  font-weight: 700;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+.gal-btn {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 14px;
+  row-gap: 6px;
+  align-items: center;
+  padding: 22px 28px;
+  text-decoration: none;
+  background: var(--signal);
+  color: var(--ink);
+  border: 1px solid var(--signal);
+  transition:
+    background 180ms,
+    border-color 180ms;
+}
+dialog.gal .gal-btn svg {
+  grid-row: span 2;
+  width: 26px;
+  height: 26px;
+  stroke-width: 2.2;
+  transition: transform 220ms var(--ease);
+}
+.gal-btn span {
+  font: 700 0.95rem/1 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.gal-btn small {
+  font: 500 0.625rem/1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.gal-btn:hover,
+.gal-btn:focus-visible {
+  background: var(--paper);
+  border-color: var(--paper);
+}
+dialog.gal .gal-btn:hover svg {
+  transform: translateY(3px);
+}
+
+@media (max-width: 1000px) {
+  .gal-intro {
+    grid-template-columns: 1fr;
+  }
+  .gal-facts {
+    justify-self: start;
+  }
+  .gal-dl {
+    grid-template-columns: 1fr auto;
+  }
+  .gal-dl-t {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 760px) {
+  dialog.gal {
+    width: 100vw;
+    max-height: 100dvh;
+    height: 100dvh;
+    border: 0;
+    box-shadow: none;
+  }
+  .gal-chip span {
+    display: none;
+  }
+  .gal-chip {
+    width: 44px;
+    padding: 0;
+    justify-content: center;
+  }
+  .gal-clips {
+    grid-template-columns: 1fr;
+  }
+  .gal-clip,
+  .gal-clip:nth-child(-n + 2) {
+    grid-column: auto;
+  }
+  .gal-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+  }
+  .gal-facts div {
+    padding: 12px 14px;
+  }
+  .gal-facts dd {
+    font-size: 0.95rem;
+    white-space: normal;
+  }
+  .gal-dl {
+    grid-template-columns: 1fr;
+    margin: 0 0 24px;
+    border-left: 0;
+    border-right: 0;
+  }
+  .gal-btn {
+    justify-content: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  dialog.gal[open],
+  dialog.gal[open]::backdrop {
+    animation: none;
+  }
+  .gal-clip video,
+  dialog.gal .gal-btn svg,
+  .gal-close {
+    transition: none;
+  }
+}
+
+/* ---------- Info-Panel ---------- */
+
+body.is-loading .t {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+main {
+  padding-top: var(--bar-h);
+}
+/* Schmale Abschlusskachel (1 × 2) */
+
+/* Skala −33 %: mehr Kacheln pro Bildschirm */
+:root {
+  --cols: 12;
+}
+@media (max-width: 1100px) {
+  :root {
+    --cols: 6;
+  }
+  .t {
+    grid-column: span var(--tw);
+    grid-row: span var(--th);
+  }
+}
+@media (max-width: 640px) {
+  :root {
+    --cols: 3;
+  }
+  .t {
+    grid-column: span var(--mw);
+    grid-row: span var(--mh);
+  }
+}
+
+/* Kleine Kacheln: knappere Beschriftung */
+.t {
+  container-type: size;
+}
+@container (max-width: 220px) {
+  .t-cap {
+    padding: 32px 8px 8px;
+  }
+  .t-cap b {
+    font-size: 0.78rem;
+  }
+  .t-cap i,
+  .t-no {
+    display: none;
+  }
+  .t-badge {
+    font-size: 0.5625rem;
+    padding: 4px 5px;
+  }
+  .t-top {
+    padding: 6px;
+  }
+}
+@container (max-width: 140px) {
+  .t-badge::after {
+    content: attr(data-s);
+  }
+}
+
+/* Spalten dürfen nicht über den Bildschirm wachsen; Platzierung übernimmt v2.js */
+.grid {
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  grid-auto-flow: row;
+}
+
+/* ---------- Pipeline: Text-Kacheln im selben Raster ---------- */
+.tx {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(14px, 1.6vw, 24px);
+  overflow: hidden;
+}
+.tx-l {
+  margin: 0;
+  font: 500 0.6875rem/1.2 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.tx-h4 {
+  margin: 0;
+  font-weight: 700;
+  font-stretch: 112%;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  font-size: clamp(1rem, 1.15vw, 1.25rem);
+}
+.tx-link {
+  margin-top: auto;
+  align-self: flex-start;
+  font: 600 0.75rem/1 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 12px;
+  border: 1px solid currentColor;
+  transition:
+    background 160ms,
+    color 160ms;
+}
+.tx-link:hover {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+
+.tx-priv {
+  background: var(--signal);
+  color: var(--ink);
+}
+.tx-priv .tx {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.tx-priv .tx-link {
+  margin: 0;
+  color: var(--ink);
+  flex: none;
+}
+.tx-priv .tx-link:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* Kleine Flächen: Text straffen */
+@container (max-height: 200px) {
+  .tx-priv .tx {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ---------- Pipeline in Gruppen ---------- */
+.pipe {
+  background: #000;
+}
+.pg {
+  border-bottom: 1px solid #000;
+}
+.pb {
+  position: relative;
+  background: #151513;
+  min-width: 0;
+  margin: 0;
+}
+.pb .tx {
+  position: static;
+  height: 100%;
+  min-height: 0;
+  padding: clamp(18px, 2.2vw, 32px);
+}
+.pipe > .tx-priv .tx {
+  padding-block: clamp(24px, 3vw, 40px);
+}
+.pb.tx-priv {
+  background: var(--signal);
+  color: var(--ink);
+}
+/* Monitoring vereinfacht: links Aussage, rechts Balken + Ergebnis */
+
+/* Überblick: Text + Dashboard + Graph in einer Zeile, gleiche Bildhöhe */
+
+/* Kein Abdunkeln der übrigen Kacheln beim Hover */
+.grid .t img,
+.grid .t video {
+  filter: none !important;
+}
+/* Filter "Video": nur die Videos, groß */
+/* Filter "Bilder": gleichmäßiges Quadratraster, ohne Ränder */
+.grid[data-f='figur'] .t img {
+  object-fit: cover;
+}
+.grid[data-f='figur'] .t-open:hover img {
+  transform: none;
+}
+/* Filter "Video": 4 pro Zeile, Videos vollständig, Platzhalter */
+
+/* Info & Kontakt: als breite Leiste, wenn die Kachel breit ist */
+/* Filter "Sheets": 3 pro Zeile, gleich groß, nichts beschnitten */
+
+/* ==========================================================================
+   Portfolio · Hero-Video aus dem Monograph, unverändert über dem Raster
+   ========================================================================== */
+
+/* Filme in der Großansicht */
+
+/* Filter "Automotive" verhält sich wie "Archviz" */
+.grid[data-f='auto'] .t img {
+  object-fit: cover;
+}
+.grid[data-f='auto'] .t-open:hover img {
+  transform: none;
+}
+
+/* Filter "Passes": Clay- und Linien-Passes auf dunklem Grund */
+
+/* Überblick: Text + Showreel, Spalte nach dem Bildformat */
+
+/* Scroll-Hinweis im Hero: animierte Maus, springt ins Raster */
+/* Hero ohne Titel: Kicker und Scroll-Hinweis stehen allein unten */
+
+/* Interactive: Tools & Assets – Text links, Bild rechts */
+
+/* "Mehr ansehen": immer sichtbar, damit klar ist, dass die Kachel aufgeht */
+.t-more {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 3;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 28px;
+  padding: 0 8px;
+  font: 600 0.6875rem/1 var(--mono);
+  letter-spacing: 0.04em;
+  background: rgb(11 11 10 / 0.82);
+  color: var(--paper);
+  transition:
+    background 160ms,
+    color 160ms,
+    transform 220ms var(--ease);
+}
+.t-more svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: square;
+}
+.t-open:hover .t-more,
+.t-open:focus-visible .t-more {
+  background: var(--signal);
+  color: var(--ink);
+  transform: scale(1.06);
+}
+.t-cap {
+  padding-right: 72px;
+}
+@container (max-width: 220px) {
+  .t-more {
+    right: 6px;
+    bottom: 6px;
+    height: 24px;
+    padding: 0 6px;
+  }
+  .t-more b {
+    display: none;
+  }
+}
+/* Externe Kacheln (Gumroad): ganze Kachel ist ein Link */
+
+/* Hero: Pipeline-Zeile unter dem Kicker */
+
+/* Film: Texte + Filme wie bei Interactive, Film startet erst auf Klick */
+
+/* VR/XR/Real-time: zwei Karten pro Zeile, Text im Verlauf über dem Bild */
+.vr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: #000;
+}
+.vr-card {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #151513;
+  color: var(--paper);
+}
+.vr-card img,
+.vr-card > video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.vr-card img,
+.vr-card > video {
+  transition: transform 900ms var(--ease);
+}
+.vr-card:hover img,
+.vr-card:focus-within img,
+.vr-card:hover > video,
+.vr-card:focus-within > video {
+  transform: scale(1.03);
+}
+.vr-tx {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(80px, 12vw, 180px) clamp(18px, 2.2vw, 32px) clamp(18px, 2.2vw, 32px);
+  background: linear-gradient(to top, rgb(8 8 7 / 0.94) 0%, rgb(8 8 7 / 0.78) 45%, rgb(8 8 7 / 0) 100%);
+}
+.vr-tx .tx-l {
+  margin: 0;
+  color: rgb(237 235 229 / 0.72);
+}
+.vr-h {
+  margin: 0;
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-size: clamp(1.35rem, 2.1vw, 2.2rem);
+}
+.vr-p {
+  margin: 0;
+  max-width: 60ch;
+  font-size: clamp(0.9rem, 0.95vw, 1rem);
+  line-height: 1.5;
+  color: rgb(237 235 229 / 0.86);
+}
+.vr-tx .tx-link {
+  margin-top: 6px;
+  color: var(--paper);
+}
+.vr-tx .tx-link:hover,
+.vr-tx .tx-link:focus-visible {
+  background: var(--signal);
+  border-color: var(--signal);
+  color: var(--ink);
+}
+/* Download-Button oben rechts auf der Karte */
+.vr-card .vr-dl {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 2;
+  margin: 0;
+  padding: 16px 22px;
+  font-size: 0.95rem;
+  color: var(--paper);
+  background: rgb(8 8 7 / 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.vr-card .vr-dl:hover,
+.vr-card .vr-dl:focus-visible {
+  background: var(--signal);
+  border-color: var(--signal);
+  color: var(--ink);
+}
+/* Karten mit Galerie: "Features & download" oben rechts ist nur Etikett, der Klick geht an .vr-open darunter */
+.vr-card span.vr-dl {
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  .vr-card .vr-dl {
+    top: 12px;
+    right: 12px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+  }
+}
+@media (max-width: 900px) {
+  .vr-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* VR/Real-time: drei Karten pro Zeile auf breiten Schirmen, etwas kompaktere Karten */
+@media (min-width: 1101px) {
+  #interPipe .vr-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  #interPipe .vr-card {
+    aspect-ratio: 4 / 3;
+  }
+  #interPipe .vr-tx {
+    gap: 8px;
+    padding: clamp(64px, 7vw, 120px) clamp(16px, 1.6vw, 26px) clamp(16px, 1.6vw, 26px);
+  }
+  #interPipe .vr-h {
+    font-size: clamp(1.2rem, 1.55vw, 1.7rem);
+  }
+  #interPipe .vr-p {
+    font-size: 0.9rem;
+  }
+  #interPipe .vr-card .vr-dl {
+    top: 16px;
+    right: 16px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+  }
+}
+@media (max-width: 640px) {
+  /* Handy: Bild ganz im 16:9, Text darunter, der Verlauf läuft über die Unterkante des Bildes */
+  .vr-card {
+    aspect-ratio: auto;
+  }
+  .vr-card > video {
+    position: relative;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+  .vr-tx {
+    position: relative;
+    margin-top: -64px;
+    padding-top: 64px;
+    background: linear-gradient(to bottom, rgb(8 8 7 / 0) 0, rgb(8 8 7 / 0.96) 64px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vr-card img,
+  .vr-card > video {
+    transition: none;
+  }
+}
+
+/* Film: dieselben Karten wie VR, Vorschaubild = Play-Button; der Text lässt Klicks zum Film durch */
+@media (min-width: 641px) {
+  /* Film läuft: Text ausblenden, damit er nicht über dem Player liegt */
+}
+
+/* Videos ohne Ton: Lautstärke-Regler im Player ausblenden (Chrome/Edge/Safari) */
+video::-webkit-media-controls-mute-button,
+video::-webkit-media-controls-volume-slider,
+video::-webkit-media-controls-volume-control-container {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Additions for this site (not in the original Lichtpult v2.css)
+   - project nav uses links (one page per project) instead of filter buttons
+   - icon links (CV / Instagram / LinkedIn) in the bar
+   ========================================================================== */
+.bar-filter a {
+  font: 500 0.6875rem/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 12px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  color: var(--muted);
+  transition:
+    color 160ms,
+    background 160ms;
+}
+.bar-filter a:hover {
+  color: var(--paper);
+}
+.bar-filter a[aria-current='page'] {
+  color: var(--ink);
+  background: var(--paper);
+}
+/* Phones: all four project links fit in one row (counts hidden, tighter padding). */
+@media (max-width: 640px) {
+  .bar-filter {
+    justify-content: space-between;
+  }
+  .bar-filter a {
+    padding: 10px 7px;
+    letter-spacing: 0.04em;
+  }
+  .bar-filter sup {
+    display: none;
+  }
+}
+.bar-icon {
+  justify-content: center;
+  min-width: 36px;
+  padding: 9px;
+}
+.bar-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+/* Keyframes */
+@keyframes tile-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+@keyframes gal-in {
+  from {
+    transform: translateY(28px) scale(0.985);
+    opacity: 0;
+  }
+}
+@keyframes gal-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   VR page — film card (Showreel), from the Portfolio v2.css "Film" section.
+   The poster is the play button; the film (Vimeo) loads only on click (grid.js).
+   ========================================================================== */
+.vr-media {
+  position: absolute;
+  inset: 0;
+  background: #000;
+}
+.film-embed {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.film-embed img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 900ms var(--ease),
+    filter 300ms var(--ease);
+}
+.film-embed:hover img,
+.film-embed:focus-visible img {
+  transform: scale(1.03);
+  filter: brightness(0.85);
+}
+.film-embed:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: -2px;
+}
+.film-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  margin: -38px 0 0 -38px;
+  background: var(--signal);
+  transition: transform 200ms var(--ease);
+}
+.film-play svg {
+  width: 28px;
+  height: 28px;
+  margin-left: 3px;
+  fill: var(--ink);
+}
+.film-embed:hover .film-play {
+  transform: scale(1.08);
+}
+.film-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
+}
+/* the text lets clicks through to the poster, except its own button */
+.film-card .vr-tx {
+  pointer-events: none;
+}
+.film-card .vr-tx .tx-link {
+  pointer-events: auto;
+  align-self: flex-start;
+}
+@media (min-width: 901px) {
+  /* play button sits in the image area above the text */
+  .film-card .film-play {
+    top: 30%;
+  }
+  /* while the film plays, hide the text so it doesn't sit on the player */
+  .film-card:has(.film-frame) .vr-tx {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@media (max-width: 900px) {
+  .vr-media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .film-embed img,
+  .film-play {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Language toggle in the bar — always EN | DE, current one filled (markup from tools/build.cjs)
+   ========================================================================== */
+.bar .lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 36px;
+  margin-right: 6px;
+  padding: 3px 3px 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.bar .lang-globe {
+  flex: none;
+  margin-right: 5px;
+  color: var(--muted);
+}
+.bar .lang-toggle a {
+  display: grid;
+  place-items: center;
+  min-width: 34px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 999px;
+  color: var(--muted);
+  font: 500 0.6875rem/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition:
+    background 160ms,
+    color 160ms;
+}
+.bar .lang-toggle a:hover {
+  color: var(--paper);
+}
+.bar .lang-toggle a[aria-current] {
+  background: var(--paper);
+  color: var(--ink);
+}
+@media (max-width: 640px) {
+  .bar .lang-toggle {
+    margin-right: 2px;
+    padding: 3px;
+  }
+  .bar .lang-globe {
+    display: none;
+  }
+  .bar .lang-toggle a {
+    min-width: 30px;
+    padding: 0 6px;
+  }
+}

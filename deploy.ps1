@@ -16,6 +16,7 @@ function Get-LiveStamp {
 
 $before = Get-LiveStamp
 
+npm run build
 git add -A
 if (git status --porcelain) {
     git commit -m $Message | Out-Null
