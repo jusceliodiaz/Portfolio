@@ -87,14 +87,17 @@ function initGrid() {
   centreCurrent();
   document.fonts?.ready.then(centreCurrent);
 
-  if (grid) initTiles(grid, tiles);
+  // Second gallery (archviz "Lifestyle scenes"): plain flow, shares the lightbox after the main grid
+  const free = $$('.grid-free .t');
+  free.forEach((t, i) => (t.dataset.pos = 1000 + i));
+  if (grid) initTiles(grid, tiles, free);
   initGalleries(reduce);
   initFilms();
   initCursor();
 }
 
 /* ---------- Gap-free grid: dense placement, then stretch neighbours into holes ---------- */
-function initTiles(grid, tiles) {
+function initTiles(grid, tiles, free = []) {
   const span = (t, cols) => {
     const f = grid.dataset.f;
     if (f === 'figur' || f === 'auto') return cols >= 12 ? [4, 3] : [3, 2];
@@ -247,7 +250,7 @@ function initTiles(grid, tiles) {
   /* "More" badge: expand icon + number of extra images in the lightbox */
   const EXPAND =
     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg>';
-  tiles
+  [...tiles, ...free]
     .filter((t) => t.querySelector('template'))
     .forEach((t) => {
       const n = t.querySelector('template').content.querySelectorAll('.lb-row figure').length;
@@ -262,7 +265,7 @@ function initTiles(grid, tiles) {
   const lb = $('dialog.lb');
   if (!lb) return;
   let cur = 0;
-  const mediaTiles = tiles.filter((t) => t.querySelector('template'));
+  const mediaTiles = [...tiles, ...free].filter((t) => t.querySelector('template'));
   const visible = () => [...mediaTiles].sort((x, y) => x.dataset.pos - y.dataset.pos);
   const show = (idx) => {
     const list = visible();
@@ -348,7 +351,7 @@ function initCursor() {
     cur.style.left = e.clientX + 'px';
     cur.style.top = e.clientY + 'px';
   });
-  document.querySelectorAll('.grid .t-open').forEach((b) => {
+  document.querySelectorAll('.grid .t-open, .grid-free .t-open').forEach((b) => {
     b.addEventListener('pointerenter', () => {
       cur.textContent = label; // text comes from the HTML, so it follows the page language
       cur.classList.add('on');

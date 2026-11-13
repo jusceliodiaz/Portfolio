@@ -1640,3 +1640,37 @@ video::-webkit-media-controls-volume-control-container {
     padding: 0 6px;
   }
 }
+
+/* ---------- Free gallery (archviz "Lifestyle scenes"): justified rows, native aspect ratios ----------
+   Each tile grows in proportion to its ratio (--r), so every tile in a row ends up the same height
+   and every row spans the full width. */
+.free {
+  border-top: 1px solid var(--line);
+}
+.free-h {
+  margin: 0;
+  padding: 28px clamp(12px, 2vw, 24px) 14px;
+  font: 500 0.6875rem/1.2 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+.grid-free {
+  --row: clamp(200px, 24vw, 380px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  background: #000;
+}
+.grid-free .t {
+  flex: var(--r) 1 calc(var(--r) * var(--row));
+  aspect-ratio: var(--r);
+  min-width: 0;
+}
+@media (max-width: 640px) {
+  .grid-free {
+    --row: 46vw;
+  }
+}
