@@ -8,6 +8,37 @@
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
+/* ---------- Video budget for phones ----------
+   iOS has few hardware video decoders and little memory per tab: every video that has played stays
+   decoded until the page closes, so a long page stutters and later videos never start (black / poster).
+   On touch devices a video that leaves the screen is parked: its <source> URLs are emptied and load()
+   frees the decoder; it is restored when it comes back (the file is still in the HTTP cache). */
+const LITE = matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+function wake(v) {
+  if ('parked' in v.dataset) {
+    v.querySelectorAll('source[data-src]').forEach((s) => {
+      s.src = s.dataset.src;
+      delete s.dataset.src;
+    });
+    delete v.dataset.parked;
+    v.load();
+  }
+  v.dataset.used = '';
+  v.play().catch(() => {});
+}
+
+function rest(v) {
+  v.pause();
+  if (!LITE || 'parked' in v.dataset || !('used' in v.dataset)) return;
+  v.querySelectorAll('source[src]').forEach((s) => {
+    s.dataset.src = s.getAttribute('src');
+    s.removeAttribute('src');
+  });
+  v.dataset.parked = '';
+  v.load();
+}
+
 function initGrid() {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -26,14 +57,25 @@ function initGrid() {
   tiles.forEach((t, i) => t.style.setProperty('--i', Math.min(i, 16))); // staggered fade-in
   requestAnimationFrame(() => document.body.classList.remove('is-loading'));
 
-  /* Muted autoplay videos (VR cards): play only while visible */
+  /* Muted autoplay videos (tiles, VR cards): play only while visible and no overlay is open —
+     on phones at most two at once */
   const vids = $$('.grid video[data-autoplay], .vr-card video[data-autoplay]');
   if (!reduce && 'IntersectionObserver' in window) {
+    const seen = new Set();
+    const sync = () => {
+      const on = $('dialog[open]') ? [] : vids.filter((v) => seen.has(v)).slice(0, LITE ? 2 : Infinity);
+      vids.forEach((v) => (on.includes(v) ? wake(v) : rest(v)));
+    };
     const io = new IntersectionObserver(
-      (es) => es.forEach((e) => (e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause())),
+      (es) => {
+        es.forEach((e) => (e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)));
+        sync();
+      },
       { threshold: 0.2 },
     );
     vids.forEach((v) => io.observe(v));
+    const mo = new MutationObserver(sync); // a gallery / lightbox opening or closing
+    $$('dialog').forEach((d) => mo.observe(d, { attributes: true, attributeFilter: ['open'] }));
   }
 
   // Narrow screens scroll the project nav sideways: keep the current page in view.
@@ -261,15 +303,18 @@ function initTiles(grid, tiles) {
 function initGalleries(reduce) {
   $$('dialog.gal').forEach((d) => {
     const vids = $$('video', d);
-    if (matchMedia('(max-width: 900px)').matches)
+    // Posters live in data-poster (+ a 960px data-poster-m for phones), so a closed gallery downloads nothing.
+    const narrow = matchMedia('(max-width: 900px)').matches;
+    const posters = () =>
       vids.forEach((v) => {
-        if (v.dataset.posterM) v.poster = v.dataset.posterM;
+        const src = (narrow && v.dataset.posterM) || v.dataset.poster;
+        if (src && !v.getAttribute('poster')) v.poster = src;
       });
     const io = new IntersectionObserver(
       (es) =>
         es.forEach((e) => {
-          if (e.isIntersecting && d.open && !reduce) e.target.play().catch(() => {});
-          else e.target.pause();
+          if (e.isIntersecting && d.open && !reduce) wake(e.target);
+          else rest(e.target);
         }),
       { root: d, threshold: 0.35 },
     );
@@ -278,12 +323,14 @@ function initGalleries(reduce) {
     d.addEventListener('click', (e) => {
       if (e.target === d) d.close();
     });
-    d.addEventListener('close', () => vids.forEach((v) => v.pause()));
+    d.addEventListener('gal-open', posters);
+    d.addEventListener('close', () => vids.forEach(rest));
   });
   $$('[data-open-gal]').forEach((b) =>
     b.addEventListener('click', () => {
       const d = document.getElementById(b.dataset.openGal);
       if (!d) return;
+      d.dispatchEvent(new Event('gal-open'));
       d.showModal();
       d.focus();
       d.scrollTop = 0;

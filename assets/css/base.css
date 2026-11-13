@@ -101,6 +101,23 @@ p {
   height: 20px;
 }
 
+/* Phones / tablets: no backdrop blur. Over autoplaying video it is re-computed every frame, which
+   stutters on iOS (Safari and Chrome there are both WebKit); the glass panels keep their tinted fill. */
+@media (hover: none) and (pointer: coarse) {
+  *,
+  *::before,
+  *::after,
+  ::backdrop {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  /* without the blur, a denser fill keeps the pills readable over bright footage */
+  :root .lang-toggle,
+  :root .corner-home {
+    background: rgb(10 14 16 / 0.72);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
