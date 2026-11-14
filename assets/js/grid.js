@@ -94,6 +94,25 @@ function initGrid() {
   initGalleries(reduce);
   initFilms();
   initCursor();
+  initDeepLink();
+}
+
+/* ---------- Deep links: #yacht scrolls to that card, #galYacht opens that gallery ---------- */
+function initDeepLink() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  const el = id && document.getElementById(id);
+  if (!el) return;
+  if (el.matches('dialog.gal')) {
+    document.querySelector(`[data-open-gal="${id}"]`)?.click();
+    return;
+  }
+  // land just below the fixed bar (its height changes with fonts / wrapping), once layout has settled
+  const go = () => {
+    const bar = document.querySelector('.bar')?.offsetHeight || 0;
+    scrollTo({ top: el.getBoundingClientRect().top + scrollY - bar - 12 });
+  };
+  requestAnimationFrame(go);
+  document.fonts?.ready.then(go);
 }
 
 /* ---------- Gap-free grid: dense placement, then stretch neighbours into holes ---------- */
