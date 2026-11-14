@@ -18,6 +18,8 @@ const IMAGES = [
   { name: 'og-automotive', src: 'automotive/6.jpg', sub: 'Automotive', pos: 'right' },
   { name: 'og-archviz', src: 'archviz/render_001.jpg', sub: 'Archviz' },
   { name: 'og-vr-realtime', src: 'vr/showreel.jpg', sub: 'VR | Real-time · Unreal Engine' },
+  // share card for the old /yacht/ link (yacht/index.html → vr-realtime.html#yacht)
+  { name: 'og-yacht', src: 'vr/yacht_share.jpg', sub: 'Yacht Configurator · Unreal Engine 5.7' },
   { name: 'og-ai-generative', src: 'ai/yacht_main_night.jpg', sub: 'AI Generative' },
   { name: 'og-cv', src: 'award/muze.jpg', sub: 'Curriculum Vitae · Award winner 2026' },
   // projects: the four covers side by side, like the page

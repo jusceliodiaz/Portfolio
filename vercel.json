@@ -23,17 +23,7 @@
   "redirects": [
     {
       "source": "/yacht",
-      "destination": "/vr-realtime.html#yacht",
-      "permanent": false
-    },
-    {
-      "source": "/yacht/",
-      "destination": "/vr-realtime.html#yacht",
-      "permanent": false
-    },
-    {
-      "source": "/yacht/:path*",
-      "destination": "/vr-realtime.html#yacht",
+      "destination": "/yacht/",
       "permanent": false
     }
   ]
