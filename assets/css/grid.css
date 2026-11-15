@@ -1674,3 +1674,61 @@ video::-webkit-media-controls-volume-control-container {
     --row: 46vw;
   }
 }
+
+/* Yacht gallery stills: 3 per row under the film (2 on tablets, 1 on phones); a click opens the full image */
+.gal-stills-s {
+  border-bottom: 1px solid var(--line);
+}
+.gal-stills {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 1.2vw, 16px);
+}
+.gal-still {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: #161614;
+  border: 1px solid var(--line);
+  transition: border-color 220ms;
+}
+.gal-still:hover {
+  border-color: rgb(237 235 229 / 0.3);
+}
+.gal-still-m {
+  display: block;
+  overflow: hidden;
+  background: #000;
+}
+.gal-still img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  transition: transform 900ms var(--ease);
+}
+.gal-still:hover img {
+  transform: scale(1.035);
+}
+.gal-still figcaption {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 12px;
+  row-gap: 4px;
+  padding: 14px 16px 16px;
+}
+.gal-still b {
+  font-weight: 800;
+  font-stretch: 115%;
+}
+@media (max-width: 1000px) {
+  .gal-stills {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .gal-stills {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
