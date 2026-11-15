@@ -1675,25 +1675,32 @@ video::-webkit-media-controls-volume-control-container {
   }
 }
 
-/* Yacht gallery stills: 3 per row under the film (2 on tablets, 1 on phones); a click opens the full image */
+/* Yacht gallery stills: 3 per row under the film (2 on tablets, 1 on phones), no gaps; a click opens the full image */
 .gal-stills-s {
   border-bottom: 1px solid var(--line);
 }
+.gal-stills-p {
+  margin: 0 0 20px;
+  max-width: 62ch;
+  line-height: 1.55;
+  color: rgb(237 235 229 / 0.78);
+  text-wrap: pretty;
+}
+/* no gaps: the tiles touch, hairlines between them (left/top on the grid, right/bottom on each tile) */
 .gal-stills {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(10px, 1.2vw, 16px);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
 }
 .gal-still {
   margin: 0;
   display: flex;
   flex-direction: column;
   background: #161614;
-  border: 1px solid var(--line);
-  transition: border-color 220ms;
-}
-.gal-still:hover {
-  border-color: rgb(237 235 229 / 0.3);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 .gal-still-m {
   display: block;

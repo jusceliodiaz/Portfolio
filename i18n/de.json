@@ -345,5 +345,6 @@
   "Yacht with a graphite hull over a coral reef in shallow clear water": "Yacht mit graphitgrauem Rumpf über einem Korallenriff im klaren Flachwasser",
   "White hull": "Weißer Rumpf",
   "Open water": "Offenes Wasser",
-  "Yacht with a white hull on calm open blue water": "Yacht mit weißem Rumpf auf ruhigem, offenem blauem Wasser"
+  "Yacht with a white hull on calm open blue water": "Yacht mit weißem Rumpf auf ruhigem, offenem blauem Wasser",
+  "AI renders made with Python inside 3ds Max: prompt engineering on top of the viewport model, so every hull colour and location starts from the same geometry.": "KI-Renderings mit Python direkt in 3ds Max: Prompt Engineering auf Basis des Viewport-Modells, sodass jede Rumpffarbe und jeder Ort von derselben Geometrie ausgeht."
 }
