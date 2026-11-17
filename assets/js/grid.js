@@ -89,12 +89,59 @@ function initGrid() {
 
   // Second gallery (archviz "Lifestyle scenes"): plain flow, shares the lightbox after the main grid
   const free = $$('.grid-free .t');
-  free.forEach((t, i) => (t.dataset.pos = 1000 + i));
+  const before = (t) => grid && grid.compareDocumentPosition(t) & Node.DOCUMENT_POSITION_PRECEDING;
+  free.forEach((t, i) => (t.dataset.pos = (before(t) ? -1000 : 1000) + i));
   if (grid) initTiles(grid, tiles, free);
   initGalleries(reduce);
   initFilms();
   initCursor();
   initDeepLink();
+  initJustified();
+}
+
+/* ---------- Justified rows for .grid-free (Still page) ----------
+   CSS alone (flex-grow by ratio) blows a lone tile up to the full width, so a single portrait on a
+   row became ~1500px tall. Here each row takes the next tile only if that brings its width (at the
+   target height) closer to the screen width, then scales to fit exactly. A short last row (under 75%
+   full) joins the row above. */
+function initJustified() {
+  const lists = $$('.grid-free');
+  if (!lists.length) return;
+  const run = () =>
+    lists.forEach((ul) => {
+      const W = ul.clientWidth;
+      if (!W) return;
+      const H = W <= 640 ? W * 0.62 : Math.min(380, Math.max(200, innerWidth * 0.24)); // = --row in grid.css
+      const tiles = [...ul.children];
+      const rows = [];
+      let row = [];
+      let sum = 0;
+      tiles.forEach((t) => {
+        const r = parseFloat(t.style.getPropertyValue('--r')) || 1;
+        if (row.length && sum + r * H - W > W - sum) {
+          rows.push(row);
+          row = [];
+          sum = 0;
+        }
+        row.push([t, r]);
+        sum += r * H;
+      });
+      if (row.length) {
+        if (rows.length && sum < W * 0.75) rows[rows.length - 1].push(...row);
+        else rows.push(row);
+      }
+      rows.forEach((items) => {
+        const ratio = items.reduce((s, [, r]) => s + r, 0);
+        const h = W / ratio; // row height that makes the row exactly W wide
+        items.forEach(([t, r]) => (t.style.flex = `0 0 ${(r * h * 100) / W}%`));
+      });
+    });
+  run();
+  let rz;
+  addEventListener('resize', () => {
+    clearTimeout(rz);
+    rz = setTimeout(run, 120);
+  });
 }
 
 /* ---------- Deep links: #yacht scrolls to that card, #galYacht opens that gallery ---------- */

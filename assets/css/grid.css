@@ -1671,7 +1671,7 @@ video::-webkit-media-controls-volume-control-container {
 }
 @media (max-width: 640px) {
   .grid-free {
-    --row: 46vw;
+    --row: 62vw;
   }
 }
 
@@ -1763,4 +1763,66 @@ video::-webkit-media-controls-volume-control-container {
   .gal-spark-m {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+/* Spark AI renders strip — 6 portraits in a row, 3 on tablets, 2 on phones */
+.gal-spark-k {
+  margin: 28px 0 12px;
+  font: 500 0.6875rem/1.2 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.gal-spark-more {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.gal-spark-r {
+  display: block;
+  overflow: hidden;
+  background: #000;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.gal-spark-r img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  transition: transform 900ms var(--ease);
+}
+.gal-spark-r:hover img {
+  transform: scale(1.035);
+}
+@media (max-width: 900px) {
+  .gal-spark-more {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .gal-spark-more {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* odd one out on the last row spans both columns, cropped wider so it is not twice as tall */
+  .gal-spark-r:last-child:nth-child(odd) {
+    grid-column: span 2;
+  }
+  .gal-spark-r:last-child:nth-child(odd) img {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* Still page: the Spark AI section opens the page, straight under the bar */
+.free-top {
+  border-top: 0;
+}
+/* Yacht gallery: Spark AI renders strip right under the film */
+.gal-spark-top {
+  border-bottom: 1px solid var(--line);
+}
+.gal-spark-k-top {
+  margin-top: 0;
 }
