@@ -346,5 +346,11 @@
   "White hull": "Weißer Rumpf",
   "Open water": "Offenes Wasser",
   "Yacht with a white hull on calm open blue water": "Yacht mit weißem Rumpf auf ruhigem, offenem blauem Wasser",
-  "AI renders made with Python inside 3ds Max: prompt engineering on top of the viewport model, so every hull colour and location starts from the same geometry.": "KI-Renderings mit Python direkt in 3ds Max: Prompt Engineering auf Basis des Viewport-Modells, sodass jede Rumpffarbe und jeder Ort von derselben Geometrie ausgeht."
+  "AI renders made with Python inside 3ds Max: prompt engineering on top of the viewport model, so every hull colour and location starts from the same geometry.": "KI-Renderings mit Python direkt in 3ds Max: Prompt Engineering auf Basis des Viewport-Modells, sodass jede Rumpffarbe und jeder Ort von derselben Geometrie ausgeht.",
+  "Spark AI, my ArchViz & render enhancer for 3ds Max, written in Python: the viewport goes in, a prompt-engineered AI render comes out, without leaving the scene.": "Spark AI, mein ArchViz- & Render-Enhancer für 3ds Max, in Python geschrieben: Der Viewport geht hinein, heraus kommt ein KI-Rendering mit gezieltem Prompt Engineering, ohne die Szene zu verlassen.",
+  "3ds Max · Python": "3ds Max · Python",
+  "Spark AI in 3ds Max: the viewport turns into the AI render": "Spark AI in 3ds Max: Der Viewport wird zum KI-Rendering",
+  "Graphite-hull sailing yacht off a rocky Mediterranean coast, AI render from the 3ds Max viewport": "Segelyacht mit graphitgrauem Rumpf vor einer felsigen Mittelmeerküste, KI-Rendering aus dem 3ds-Max-Viewport",
+  "Viewport → AI render": "Viewport → KI-Rendering",
+  "Final render": "Finales Rendering"
 }
