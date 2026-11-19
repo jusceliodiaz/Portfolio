@@ -39,8 +39,8 @@ const PERSON = (lang) => ({
   image: `${SITE}/assets/img/og/og-home.jpg`,
   jobTitle:
     lang === 'de'
-      ? '3D-Artist & Unreal Engine Technical Artist'
-      : '3D Artist & Unreal Engine Technical Artist',
+      ? '3D-Artist | KI-Creative | Unreal Engine Technical Art'
+      : '3D Artist | AI Creative | Unreal Engine Technical Art',
   address: { '@type': 'PostalAddress', addressLocality: 'Berlin', addressCountry: 'DE' },
   knowsLanguage: ['pt', 'en'],
   knowsAbout: [
