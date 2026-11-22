@@ -15,7 +15,7 @@ const path = require('path');
 const { parseHTML } = require('linkedom');
 
 const ROOT = path.resolve(__dirname, '..');
-const SITE = 'https://jdiaz.vercel.app';
+const SITE = 'https://www.schmidtjd.com';
 const DE = JSON.parse(fs.readFileSync(path.join(ROOT, 'i18n/de.json'), 'utf8'));
 
 // page → social image (assets/img/og/*.jpg, 1200×630, made by tools/og-images.cjs)
@@ -34,7 +34,7 @@ const urlOf = (page, lang) =>
 const PERSON = (lang) => ({
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Juscelio Diaz',
+  name: 'Juscelio Schmidt',
   url: urlOf('index', lang),
   image: `${SITE}/assets/img/og/og-home.jpg`,
   jobTitle:
@@ -82,7 +82,7 @@ function seoHead(document, page, lang) {
     `<link rel="alternate" hreflang="de" href="${urlOf(page, 'de')}" />`,
     `<link rel="alternate" hreflang="x-default" href="${urlOf(page, 'en')}" />`,
     `<meta property="og:type" content="${page === 'cv' ? 'profile' : 'website'}" />`,
-    `<meta property="og:site_name" content="Juscelio Diaz" />`,
+    `<meta property="og:site_name" content="Juscelio Schmidt" />`,
     `<meta property="og:locale" content="${lang === 'de' ? 'de_DE' : 'en_GB'}" />`,
     `<meta property="og:locale:alternate" content="${lang === 'de' ? 'en_GB' : 'de_DE'}" />`,
     `<meta property="og:url" content="${url}" />`,

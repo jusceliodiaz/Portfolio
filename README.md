@@ -1,6 +1,6 @@
-# Juscelio Diaz — Portfolio
+# Juscelio Schmidt — Portfolio
 
-Live: https://jdiaz.vercel.app (German: https://jdiaz.vercel.app/de/)
+Live: https://www.schmidtjd.com (German: https://www.schmidtjd.com/de/)
 
 Static site: plain HTML, CSS and JavaScript, no framework. **Open `index.html` in a browser.**
 Node is only needed for `npm run build` (SEO tags, German pages, sitemap) and the formatter.

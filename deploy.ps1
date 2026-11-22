@@ -4,7 +4,7 @@
 param([string]$Message = "Update site $(Get-Date -Format 'yyyy-MM-dd HH:mm')")
 
 $ErrorActionPreference = "Stop"
-$site = "https://jdiaz.vercel.app/"
+$site = "https://www.schmidtjd.com/"
 Set-Location $PSScriptRoot
 
 function Get-LiveStamp {

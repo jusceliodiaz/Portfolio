@@ -38,7 +38,7 @@ const overlay = (sub) =>
     <stop offset="1" stop-color="#080c0e" stop-opacity="0.82"/>
   </linearGradient></defs>
   <rect width="${W}" height="${H}" fill="url(#g)"/>
-  <text x="64" y="${H - 104}" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="84" letter-spacing="-4" fill="#fff">JUSCELIO DIAZ</text>
+  <text x="64" y="${H - 104}" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="84" letter-spacing="-4" fill="#fff">JUSCELIO SCHMIDT</text>
   <text x="68" y="${H - 58}" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="2" fill="#fff" fill-opacity="0.86">${esc(sub)}</text>
 </svg>`);
 

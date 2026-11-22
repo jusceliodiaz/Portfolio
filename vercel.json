@@ -22,6 +22,17 @@
   ],
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "jdiaz.vercel.app"
+        }
+      ],
+      "destination": "https://www.schmidtjd.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/yacht",
       "destination": "/yacht/",
       "permanent": false
