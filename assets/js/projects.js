@@ -1,9 +1,7 @@
 /**
- * Projects (projects.html): four project cards + the award overlay.
- * ←/→ move focus between cards, Enter opens the focused one, Esc goes home.
+ * Main page (index.html): four project cards + the award overlay.
+ * ←/→ move focus between cards, Enter opens the focused one.
  */
-const HOME_URL = 'index.html';
-
 function initProjects() {
   const cards = [...document.querySelectorAll('.card-link')];
   if (!cards.length) return;
@@ -24,10 +22,6 @@ function initProjects() {
 
   window.addEventListener('keydown', (event) => {
     if (document.querySelector('dialog[open]')) return; // keys belong to the open overlay
-    if (event.key === 'Escape') {
-      location.href = HOME_URL;
-      return;
-    }
     if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
     event.preventDefault();
     const at = cards.indexOf(document.activeElement);

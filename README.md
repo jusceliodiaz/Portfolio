@@ -26,8 +26,7 @@ Never edit `de/` by hand — it is overwritten.
 
 | File                 | What it is                                                                          |
 | -------------------- | ----------------------------------------------------------------------------------- |
-| `index.html`         | Home: full-screen reel, name, tagline, "enter"                                      |
-| `projects.html`      | The four project cards, corner links (home, CV, Instagram, LinkedIn), award overlay |
+| `index.html`         | Main page: the four project cards, corner links (CV, Instagram, LinkedIn), award overlay |
 | `automotive.html`    | Tile grid + lightbox                                                                |
 | `archviz.html`       | Tile grid + lightbox                                                                |
 | `vr-realtime.html`   | Showreel (Vimeo, plays on click), then Yacht / ArchViz Configurator + tool cards    |
@@ -41,11 +40,9 @@ Never edit `de/` by hand — it is overwritten.
 assets/
 ├── css/
 │   ├── base.css        tokens, reset, .knock (knockout button), .icon-btn — home, projects, 404
-│   ├── home.css        index.html
-│   ├── projects.css    projects.html (cards + award)
+│   ├── projects.css    index.html (cards + award)
 │   └── grid.css        the four project pages (from the "Lichtpult" Portfolio v2.css, unused rules removed)
 ├── js/
-│   ├── landing.js      home: reel play/pause, click / keys → projects
 │   ├── projects.js     projects: ←/→ between cards, Esc → home, award overlay
 │   ├── grid.js         project pages: gap-free tile packing, lightbox, VR galleries, cursor label
 │   └── main.js         entry point — runs whichever of the above the page loaded (keep it last)

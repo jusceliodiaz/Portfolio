@@ -1,6 +1,6 @@
 /* ==========================================================================
    Projects (projects.html)
-   1. Corner controls — home + CV / Instagram / LinkedIn stacked (top-left), language (top-right)
+   1. Corner controls — CV / Instagram / LinkedIn stacked (top-left), language (top-right)
    2. Four project cards — one row on desktop, 2×2 on phones
    3. Award — floating card on the Stills card + the overlay it opens
    ========================================================================== */
@@ -13,8 +13,8 @@
   display: flex;
   gap: 8px;
 }
-/* left column: home, then CV / Instagram / LinkedIn below it — one vertical pill,
-   same glass capsule as the language toggle (base.css), home filled like the active language */
+/* left column: CV / Instagram / LinkedIn — one vertical pill,
+   same glass capsule as the language toggle (base.css) */
 .corner-home {
   left: var(--edge);
   flex-direction: column;
@@ -52,14 +52,6 @@
 }
 .corner-home .icon-btn:focus-visible {
   outline-offset: 2px;
-}
-.corner-home nav:first-child .icon-btn {
-  background: var(--paper);
-  color: var(--black);
-}
-.corner-home nav:first-child .icon-btn:hover,
-.corner-home nav:first-child .icon-btn:focus-visible {
-  background: rgb(255 255 255 / 0.85);
 }
 /* right corner: language toggle */
 .corner-tools {

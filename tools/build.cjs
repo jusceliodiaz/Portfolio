@@ -21,7 +21,6 @@ const DE = JSON.parse(fs.readFileSync(path.join(ROOT, 'i18n/de.json'), 'utf8'));
 // page → social image (assets/img/og/*.jpg, 1200×630, made by tools/og-images.cjs)
 const PAGES = {
   index: 'og-home',
-  projects: 'og-projects',
   automotive: 'og-automotive',
   archviz: 'og-archviz',
   'vr-realtime': 'og-vr-realtime',

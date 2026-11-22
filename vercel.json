@@ -36,6 +36,16 @@
       "source": "/yacht",
       "destination": "/yacht/",
       "permanent": false
+    },
+    {
+      "source": "/projects.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/projects.html",
+      "destination": "/de/",
+      "permanent": true
     }
   ]
 }
