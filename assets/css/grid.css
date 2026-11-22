@@ -1826,3 +1826,22 @@ video::-webkit-media-controls-volume-control-container {
 .gal-spark-k-top {
   margin-top: 0;
 }
+
+/* Spark gallery: penthouse terrace — film on top, the 4 stills in one row under it (2 on tablets, 1 on phones) */
+.gal-cob-v {
+  margin: 0 0 clamp(10px, 1.2vw, 16px);
+  background: #000;
+  border: 1px solid var(--line);
+}
+.gal-cob-v video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+@media (min-width: 1001px) {
+  .gal-cob .gal-stills {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

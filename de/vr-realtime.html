@@ -228,6 +228,36 @@
               <span class="tx-link vr-dl vr-more" aria-hidden="true">Funktionen &amp; Download →</span>
             </article>
             <article class="vr-card">
+              <video
+                data-autoplay=""
+                muted
+                loop
+                playsinline
+                preload="none"
+                poster="../assets/img/vr/site_golf.jpg"
+                aria-label="Spark AI in 3ds Max: Ein Automodell im Viewport wird zum fotorealistischen Rendering"
+              >
+                <source media="(min-width: 901px)" src="../assets/video/vr/site_golf.mp4" type="video/mp4" />
+                <source src="../assets/video/vr/site_golf-m.mp4" type="video/mp4" />
+              </video>
+              <div class="vr-tx">
+                <p class="tx-l">3ds Max · Python · KI-Rendering</p>
+                <h2 class="vr-h">Spark AI für 3ds Max</h2>
+                <p class="vr-p">
+                  Mein 3ds-Max-Tool für hochpräzise KI-Renderings: Es scannt jeden Vertex der Szene, übersetzt
+                  die Geometrie in exakte Maße für den Prompt und veredelt sie zu einem fotorealistischen,
+                  hochauflösenden Bild – ohne den Viewport zu verlassen.
+                </p>
+              </div>
+              <button
+                type="button"
+                class="vr-open"
+                data-open-gal="galSpark"
+                aria-label="Galerie zu Spark AI für 3ds Max öffnen"
+              ></button>
+              <span class="tx-link vr-dl vr-more" aria-hidden="true">Workflow &amp; Renderings →</span>
+            </article>
+            <article class="vr-card">
               <img
                 src="../assets/img/vr/ue1.jpg"
                 srcset="../assets/img/vr/ue1-960.jpg 960w, ../assets/img/vr/ue1.jpg 2200w"
@@ -842,6 +872,555 @@
           <small>Google Drive</small>
         </a>
       </footer>
+    </dialog>
+    <dialog class="gal" id="galSpark" aria-labelledby="galSpark-t" tabindex="-1">
+      <header class="gal-h">
+        <div class="gal-h-t">
+          <p class="gal-k">3ds Max · Python · KI-Rendering</p>
+          <h2 id="galSpark-t" class="gal-t">Spark AI für 3ds Max</h2>
+        </div>
+        <div class="gal-h-a">
+          <button type="button" class="gal-close" aria-label="Schließen">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
+        </div>
+      </header>
+      <figure class="gal-main">
+        <video
+          controls
+          muted
+          loop
+          playsinline
+          preload="none"
+          data-poster="assets/img/vr/site_golf.jpg"
+          data-poster-m="../assets/img/vr/site_golf-960.jpg"
+          aria-label="Spark AI in 3ds Max: Das Automodell wird im Viewport gescannt und als fotorealistische 4K-Bilder gerendert"
+        >
+          <source media="(min-width: 901px)" src="../assets/video/vr/site_golf.webm" type="video/webm" />
+          <source media="(min-width: 901px)" src="../assets/video/vr/site_golf.mp4" type="video/mp4" />
+          <source src="../assets/video/vr/site_golf-m.mp4" type="video/mp4" />
+        </video>
+      </figure>
+      <div class="gal-intro">
+        <p class="gal-lead">
+          Spark AI ist mein 3ds-Max-Tool für hochpräzise KI-Renderings. Es scannt jeden Vertex der Szene und
+          übersetzt die Geometrie in exakte Maße für den Prompt, sodass das veredelte Bild die echten
+          Proportionen des Modells behält – und liefert ein fotorealistisches, hochauflösendes Rendering, ohne
+          den Viewport zu verlassen.
+        </p>
+        <dl class="gal-facts">
+          <div>
+            <dt>Host</dt>
+            <dd>3ds Max</dd>
+          </div>
+          <div>
+            <dt>Code</dt>
+            <dd>Python</dd>
+          </div>
+          <div>
+            <dt>Ausgabe</dt>
+            <dd>Natives 4K</dd>
+          </div>
+        </dl>
+      </div>
+      <section class="gal-feat gal-spark" aria-labelledby="galSpark-ab">
+        <header class="gal-sh">
+          <h3 id="galSpark-ab">Viewport → Rendering</h3>
+          <span>Gleiche Kamera</span>
+        </header>
+        <p class="gal-stills-p">
+          Das Viewport-Modell geht hinein, das KI-Rendering kommt heraus: Geometrie, Kamera und Proportionen
+          bleiben an die Szene gebunden.
+        </p>
+        <div class="gal-spark-m">
+          <figure class="gal-still">
+            <a class="gal-still-m" href="../assets/img/golf/golf_viewport.jpg" target="_blank" rel="noopener">
+              <img
+                src="../assets/img/golf/golf_viewport-960.jpg"
+                srcset="
+                  ../assets/img/golf/golf_viewport-960.jpg  960w,
+                  ../assets/img/golf/golf_viewport.jpg     2200w
+                "
+                sizes="(max-width: 900px) 100vw, 50vw"
+                width="2200"
+                height="1015"
+                alt="Blaues Kompaktauto-Modell im 3ds-Max-Viewport"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <figcaption>
+              <span class="gal-no">A</span>
+              <b>3ds-Max-Viewport</b>
+            </figcaption>
+          </figure>
+          <figure class="gal-still">
+            <a class="gal-still-m" href="../assets/img/golf/golf_studio.jpg" target="_blank" rel="noopener">
+              <img
+                src="../assets/img/golf/golf_studio-960.jpg"
+                srcset="../assets/img/golf/golf_studio-960.jpg 960w, ../assets/img/golf/golf_studio.jpg 2200w"
+                sizes="(max-width: 900px) 100vw, 50vw"
+                width="2200"
+                height="1228"
+                alt="Dasselbe Kompaktauto fotorealistisch gerendert im Studio mit weißem Boden"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <figcaption>
+              <span class="gal-no">B</span>
+              <b>Spark-AI-Rendering</b>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="gal-feat gal-stills-s gal-cob" aria-labelledby="galSpark-c">
+        <header class="gal-sh">
+          <h3 id="galSpark-c">Penthouse-Terrasse</h3>
+          <span>Archviz</span>
+        </header>
+        <p class="gal-stills-p">
+          Ein graues 3ds-Max-Massenmodell einer Penthouse-Terrasse wird zu möblierten Renderings bei
+          Tageslicht und in der Dämmerung – Architektur, Kamera und Proportionen bleiben exakt wie modelliert.
+        </p>
+        <figure class="gal-cob-v">
+          <video
+            controls
+            muted
+            loop
+            playsinline
+            preload="none"
+            data-poster="assets/img/vr/site_cobertura.jpg"
+            data-poster-m="../assets/img/vr/site_cobertura-960.jpg"
+            aria-label="Spark AI in 3ds Max: Ein graues Modell einer Penthouse-Terrasse wird zu fotorealistischen Renderings"
+          >
+            <source
+              media="(min-width: 901px)"
+              src="../assets/video/vr/site_cobertura.webm"
+              type="video/webm"
+            />
+            <source media="(min-width: 901px)" src="../assets/video/vr/site_cobertura.mp4" type="video/mp4" />
+            <source src="../assets/video/vr/site_cobertura-m.mp4" type="video/mp4" />
+          </video>
+        </figure>
+        <div class="gal-stills">
+          <figure class="gal-still">
+            <a class="gal-still-m" href="../assets/img/golf/cob_01.jpg" target="_blank" rel="noopener">
+              <img
+                src="../assets/img/golf/cob_01-960.jpg"
+                srcset="../assets/img/golf/cob_01-960.jpg 960w, ../assets/img/golf/cob_01.jpg 2200w"
+                sizes="(max-width: 560px) 100vw, (max-width: 1000px) 50vw, 25vw"
+                width="2200"
+                height="1020"
+                alt="Graues Massenmodell einer Penthouse-Terrasse im 3ds-Max-Viewport"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <figcaption>
+              <span class="gal-no">01</span>
+              <b>3ds-Max-Viewport</b>
+              <span class="gal-d">Die Szene wie modelliert</span>
+            </figcaption>
+          </figure>
+          <figure class="gal-still">
+            <a class="gal-still-m" href="../assets/img/golf/cob_02.jpg" target="_blank" rel="noopener">
+              <img
+                src="../assets/img/golf/cob_02-960.jpg"
+                srcset="../assets/img/golf/cob_02-960.jpg 960w, ../assets/img/golf/cob_02.jpg 2200w"
+                sizes="(max-width: 560px) 100vw, (max-width: 1000px) 50vw, 25vw"
+                width="2200"
+                height="1228"
+                alt="Leere Penthouse-Terrasse mit Ziegeldach und Glastüren bei Tageslicht"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <figcaption>
+              <span class="gal-no">02</span>
+              <b>Tageslicht</b>
+              <span class="gal-d">Reine Architektur, ohne Möbel</span>
+            </figcaption>
+          </figure>
+          <figure class="gal-still">
+            <a class="gal-still-m" href="../assets/img/golf/cob_03.jpg" target="_blank" rel="noopener">
+              <img
+                src="../assets/img/golf/cob_03-960.jpg"
+                srcset="../assets/img/golf/cob_03-960.jpg 960w, ../assets/img/golf/cob_03.jpg 2200w"
+                sizes="(max-width: 560px) 100vw, (max-width: 1000px) 50vw, 25vw"
+                width="2200"
+                height="1228"
+                alt="Möblierte Penthouse-Terrasse mit Sofas, Zypressen und Gartenblick bei Tageslicht"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <figcaption>
+              <span class="gal-no">03</span>
+              <b>Möbliert</b>
+              <span class="gal-d">Outdoor-Lounge und Bepflanzung</span>
+            </figcaption>
+          </figure>
+          <figure class="gal-still">
+            <a class="gal-still-m" href="../assets/img/golf/cob_04.jpg" target="_blank" rel="noopener">
+              <img
+                src="../assets/img/golf/cob_04-960.jpg"
+                srcset="../assets/img/golf/cob_04-960.jpg 960w, ../assets/img/golf/cob_04.jpg 2200w"
+                sizes="(max-width: 560px) 100vw, (max-width: 1000px) 50vw, 25vw"
+                width="2200"
+                height="1228"
+                alt="Die möblierte Penthouse-Terrasse in der Dämmerung mit warmem Innenlicht"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <figcaption>
+              <span class="gal-no">04</span>
+              <b>Dämmerung</b>
+              <span class="gal-d">Blaue Stunde, warmes Innenlicht</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="gal-feat gal-stills-s" aria-labelledby="galSpark-s">
+        <header class="gal-sh">
+          <h3 id="galSpark-s">Standbilder</h3>
+          <span>03 Bilder</span>
+        </header>
+        <p class="gal-stills-p">
+          Native 4K-Renderings aus derselben 3ds-Max-Szene: ein Modell, neue Orte und neues Licht, jedes Bild
+          geometrietreu.
+        </p>
+        <div class="gal-stills">
+          <figure class="gal-still">
+            <a class="gal-still-m" href="../assets/img/golf/golf_hangar.jpg" target="_blank" rel="noopener">
+              <img
+                src="../assets/img/golf/golf_hangar-960.jpg"
+                srcset="../assets/img/golf/golf_hangar-960.jpg 960w, ../assets/img/golf/golf_hangar.jpg 2200w"
+                sizes="(max-width: 560px) 100vw, (max-width: 1000px) 50vw, 33vw"
+                width="2200"
+                height="1228"
+                alt="Blaues Kompaktauto in einem hellen Flugzeughangar neben einem Privatjet"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <figcaption>
+              <span class="gal-no">01</span>
+              <b>Hangar</b>
+              <span class="gal-d">Tageslicht durch die Hangarfenster</span>
+            </figcaption>
+          </figure>
+          <figure class="gal-still">
+            <a class="gal-still-m" href="../assets/img/golf/golf_day.jpg" target="_blank" rel="noopener">
+              <img
+                src="../assets/img/golf/golf_day-960.jpg"
+                srcset="../assets/img/golf/golf_day-960.jpg 960w, ../assets/img/golf/golf_day.jpg 2200w"
+                sizes="(max-width: 560px) 100vw, (max-width: 1000px) 50vw, 33vw"
+                width="2200"
+                height="1228"
+                alt="Blaues Kompaktauto auf einem Steinplatz vor einem Holzpavillon und historischen Gebäuden"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <figcaption>
+              <span class="gal-no">02</span>
+              <b>Stadtplatz</b>
+              <span class="gal-d">Bedecktes Tageslicht</span>
+            </figcaption>
+          </figure>
+          <figure class="gal-still">
+            <a class="gal-still-m" href="../assets/img/golf/golf_dusk.jpg" target="_blank" rel="noopener">
+              <img
+                src="../assets/img/golf/golf_dusk-960.jpg"
+                srcset="../assets/img/golf/golf_dusk-960.jpg 960w, ../assets/img/golf/golf_dusk.jpg 2200w"
+                sizes="(max-width: 560px) 100vw, (max-width: 1000px) 50vw, 33vw"
+                width="2200"
+                height="1228"
+                alt="Blaues Kompaktauto in der Dämmerung neben einem beleuchteten Holzpavillon und einem Wasserbecken"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <figcaption>
+              <span class="gal-no">03</span>
+              <b>Platz in der Dämmerung</b>
+              <span class="gal-d">Blaue Stunde, warmes Innenlicht</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="gal-feat" aria-labelledby="galSpark-f">
+        <header class="gal-sh">
+          <h3 id="galSpark-f">Funktionen</h3>
+          <span>04 Clips</span>
+        </header>
+        <div class="gal-clips">
+          <figure class="gal-clip">
+            <div class="gal-clip-m">
+              <video
+                muted
+                loop
+                playsinline
+                preload="none"
+                data-poster="assets/img/vr/site_golf_001.jpg"
+                data-poster-m="../assets/img/vr/site_golf_001-960.jpg"
+              >
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_golf_001.webm"
+                  type="video/webm"
+                />
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_golf_001.mp4"
+                  type="video/mp4"
+                />
+                <source src="../assets/video/vr/site_golf_001-m.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figcaption>
+              <span class="gal-no">01</span>
+              <b>Viewport-Scan</b>
+              <span class="gal-d"
+                >Die Szene wird im 3ds-Max-Viewport Vertex für Vertex gelesen, bevor der Prompt
+                entsteht.</span
+              >
+            </figcaption>
+          </figure>
+          <figure class="gal-clip">
+            <div class="gal-clip-m">
+              <video
+                muted
+                loop
+                playsinline
+                preload="none"
+                data-poster="assets/img/vr/site_golf_002.jpg"
+                data-poster-m="../assets/img/vr/site_golf_002-960.jpg"
+              >
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_golf_002.webm"
+                  type="video/webm"
+                />
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_golf_002.mp4"
+                  type="video/mp4"
+                />
+                <source src="../assets/video/vr/site_golf_002-m.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figcaption>
+              <span class="gal-no">02</span>
+              <b>Dämmerungs-Enhancement</b>
+              <span class="gal-d"
+                >Schieberegler ziehen: Aus dem Viewport wird ein Rendering zur blauen Stunde – aus derselben
+                Kamera.</span
+              >
+            </figcaption>
+          </figure>
+          <figure class="gal-clip">
+            <div class="gal-clip-m">
+              <video
+                muted
+                loop
+                playsinline
+                preload="none"
+                data-poster="assets/img/vr/site_golf_003.jpg"
+                data-poster-m="../assets/img/vr/site_golf_003-960.jpg"
+              >
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_golf_003.webm"
+                  type="video/webm"
+                />
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_golf_003.mp4"
+                  type="video/mp4"
+                />
+                <source src="../assets/video/vr/site_golf_003-m.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figcaption>
+              <span class="gal-no">03</span>
+              <b>Tageslicht-Enhancement</b>
+              <span class="gal-d"
+                >Gleiches Modell, gleicher Ausschnitt, neu beleuchtet als Stadtplatz bei bedecktem
+                Himmel.</span
+              >
+            </figcaption>
+          </figure>
+          <figure class="gal-clip">
+            <div class="gal-clip-m">
+              <video
+                muted
+                loop
+                playsinline
+                preload="none"
+                data-poster="assets/img/vr/site_golf_004.jpg"
+                data-poster-m="../assets/img/vr/site_golf_004-960.jpg"
+              >
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_golf_004.webm"
+                  type="video/webm"
+                />
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_golf_004.mp4"
+                  type="video/mp4"
+                />
+                <source src="../assets/video/vr/site_golf_004-m.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figcaption>
+              <span class="gal-no">04</span>
+              <b>Render-Galerie</b>
+              <span class="gal-d">Hangar, Platz und Dämmerung: native 4K-Ausgaben aus einer Szene.</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="gal-feat" aria-labelledby="galSpark-m">
+        <header class="gal-sh">
+          <h3 id="galSpark-m">Weitere Szenen</h3>
+          <span>04 Clips</span>
+        </header>
+        <p class="gal-stills-p">
+          Dasselbe Tool für Yachten, Autos und Innenräume: Jede 3ds-Max-Szene geht hinein, heraus kommt ein
+          geometrietreues Rendering.
+        </p>
+        <div class="gal-clips">
+          <figure class="gal-clip">
+            <div class="gal-clip-m">
+              <video
+                muted
+                loop
+                playsinline
+                preload="none"
+                data-poster="assets/img/vr/site_spark_001.jpg"
+                data-poster-m="../assets/img/vr/site_spark_001-960.jpg"
+              >
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_spark_001.webm"
+                  type="video/webm"
+                />
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_spark_001.mp4"
+                  type="video/mp4"
+                />
+                <source src="../assets/video/vr/site_spark_001-m.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figcaption>
+              <span class="gal-no">01</span>
+              <b>Segelyacht</b>
+              <span class="gal-d"
+                >Vom Viewport zum Rendering bei einer Segelyacht: Der Schieberegler legt das KI-Bild über das
+                3ds-Max-Modell.</span
+              >
+            </figcaption>
+          </figure>
+          <figure class="gal-clip">
+            <div class="gal-clip-m">
+              <video
+                muted
+                loop
+                playsinline
+                preload="none"
+                data-poster="assets/img/vr/site_spark_002.jpg"
+                data-poster-m="../assets/img/vr/site_spark_002-960.jpg"
+              >
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_spark_002.webm"
+                  type="video/webm"
+                />
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_spark_002.mp4"
+                  type="video/mp4"
+                />
+                <source src="../assets/video/vr/site_spark_002-m.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figcaption>
+              <span class="gal-no">02</span>
+              <b>Elektrischer Sportwagen</b>
+              <span class="gal-d"
+                >Seitenprofil im Viewport, dann ein Studio-Rendering mit denselben Proportionen.</span
+              >
+            </figcaption>
+          </figure>
+          <figure class="gal-clip">
+            <div class="gal-clip-m">
+              <video
+                muted
+                loop
+                playsinline
+                preload="none"
+                data-poster="assets/img/vr/site_spark_003.jpg"
+                data-poster-m="../assets/img/vr/site_spark_003-960.jpg"
+              >
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_spark_003.webm"
+                  type="video/webm"
+                />
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_spark_003.mp4"
+                  type="video/mp4"
+                />
+                <source src="../assets/video/vr/site_spark_003-m.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figcaption>
+              <span class="gal-no">03</span>
+              <b>Drei Szenen gleichzeitig</b>
+              <span class="gal-d"
+                >Ein Innenraum, eine Yacht und ein Auto, nebeneinander in 3ds Max verarbeitet.</span
+              >
+            </figcaption>
+          </figure>
+          <figure class="gal-clip">
+            <div class="gal-clip-m">
+              <video
+                muted
+                loop
+                playsinline
+                preload="none"
+                data-poster="assets/img/vr/site_spark_004.jpg"
+                data-poster-m="../assets/img/vr/site_spark_004-960.jpg"
+              >
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_spark_004.webm"
+                  type="video/webm"
+                />
+                <source
+                  media="(min-width: 901px)"
+                  src="../assets/video/vr/site_spark_004.mp4"
+                  type="video/mp4"
+                />
+                <source src="../assets/video/vr/site_spark_004-m.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <figcaption>
+              <span class="gal-no">04</span>
+              <b>Ergebnisse</b>
+              <span class="gal-d"
+                >Finale Renderings mit dem ursprünglichen Viewport als Einblendung zum Vergleich.</span
+              >
+            </figcaption>
+          </figure>
+        </div>
+      </section>
     </dialog>
     <dialog class="gal" id="galArchConf" aria-labelledby="galArchConf-t" tabindex="-1">
       <header class="gal-h">

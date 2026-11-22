@@ -2,7 +2,7 @@
    Projects (projects.html)
    1. Corner controls — home + CV / Instagram / LinkedIn stacked (top-left), language (top-right)
    2. Four project cards — one row on desktop, 2×2 on phones
-   3. Award — floating card on the VR | Realtime card + the overlay it opens
+   3. Award — floating card on the Stills card + the overlay it opens
    ========================================================================== */
 
 /* 1. Corner controls ------------------------------------------------------ */
@@ -455,19 +455,9 @@
     border-radius: 6px;
   }
 }
-/* The award rides on the first card (VR | Realtime), which also holds the fixed corner pill
-   (home / CV / Instagram / LinkedIn): sit beside the pill on desktop, under it on phones. */
-.card--vr .award-float {
-  right: 12px;
-  left: calc(var(--edge) + 56px);
-  width: auto;
-  max-width: 360px;
-  transform: none;
-}
+/* Phones: Stills is the bottom-left card of the 2×2 grid, clear of the corner controls. */
 @media (max-width: 700px) {
-  .card--vr .award-float {
-    top: calc(var(--top) + 172px);
-    right: 4vw;
-    left: 4vw;
+  .award-float {
+    width: calc(100% - 8vw);
   }
 }

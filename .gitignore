@@ -4,3 +4,6 @@ Thumbs.db
 *.log
 .vscode/*
 !.vscode/extensions.json
+
+# Spark AI source renders (4K PNG), kept locally only
+assets/img/golf/_src/
