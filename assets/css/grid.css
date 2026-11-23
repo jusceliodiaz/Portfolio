@@ -1845,3 +1845,11 @@ video::-webkit-media-controls-volume-control-container {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+/* Three clips in one row (Car Configurator features); phones keep the single column */
+@media (min-width: 761px) {
+  .gal-clips-3 .gal-clip,
+  .gal-clips-3 .gal-clip:nth-child(-n + 2) {
+    grid-column: span 2;
+  }
+}
