@@ -60,7 +60,7 @@ function initGrid() {
 
   /* Muted autoplay videos (tiles, VR cards): play only while visible and no overlay is open —
      on phones at most two at once */
-  const vids = $$('.grid video[data-autoplay], .vr-card video[data-autoplay], .work video[data-autoplay]');
+  const vids = $$('.grid video[data-autoplay], .grid-free video[data-autoplay], .vr-card video[data-autoplay], .work video[data-autoplay]');
   if (!reduce && 'IntersectionObserver' in window) {
     const seen = new Set();
     const sync = () => {

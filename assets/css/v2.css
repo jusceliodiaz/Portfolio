@@ -861,3 +861,19 @@ dialog.gal .gal-t,
     transition: none;
   }
 }
+
+/* Looping yacht renders inside the galleries: same frame as the stills they replace */
+.gal-spark-r video,
+.gal-still video {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  background: #000;
+}
+.gal-spark-r video {
+  aspect-ratio: 3 / 4;
+}
+.gal-tall .gal-still video {
+  aspect-ratio: 9 / 16;
+}
