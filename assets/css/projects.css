@@ -155,9 +155,6 @@
 }
 
 /* framing per cover */
-.card--automotive .card-media {
-  object-position: 65% 50%;
-}
 .card--ai .card-media {
   object-position: 50% 45%;
 }

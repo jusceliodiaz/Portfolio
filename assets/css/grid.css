@@ -679,7 +679,7 @@ dialog.gal:focus {
 /* Einleitung + Eckdaten */
 .gal-intro {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto; /* the facts keep their natural width, the lead takes the rest */
   gap: clamp(20px, 4vw, 64px);
   align-items: end;
   padding: clamp(28px, 4vw, 56px) var(--gp);
@@ -1851,5 +1851,38 @@ video::-webkit-media-controls-volume-control-container {
   .gal-clips-3 .gal-clip,
   .gal-clips-3 .gal-clip:nth-child(-n + 2) {
     grid-column: span 2;
+  }
+}
+
+/* Jet gallery: a still as the hero, portrait look-dev stills (six across on wide screens) */
+.gal-main-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.gal-tall .gal-still img {
+  aspect-ratio: 9 / 16;
+}
+@media (min-width: 1001px) {
+  .gal-tall .gal-stills {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .gal-tall .gal-stills {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1001px) {
+  .gal-tall-3 .gal-stills {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+/* Yacht gallery: 8 Spark AI renders in the top strip, 4 per row (2 on phones) */
+@media (min-width: 561px) {
+  .gal-spark-more-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }

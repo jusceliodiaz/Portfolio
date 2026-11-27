@@ -101,9 +101,10 @@ function initGrid() {
 
 /* ---------- Justified rows for .grid-free (Still page) ----------
    CSS alone (flex-grow by ratio) blows a lone tile up to the full width, so a single portrait on a
-   row became ~1500px tall. Here each row takes the next tile only if that brings its width (at the
-   target height) closer to the screen width, then scales to fit exactly. A short last row (under 75%
-   full) joins the row above. */
+   row became ~1500px tall. Here the list first picks a row count (total width at the target height
+   ÷ screen width, rounded), then fills each row up to an even share of that width, taking the next
+   tile only if that brings the row closer to its share. Every row then scales to fit exactly, so no
+   row ends up a thin strip or a giant. */
 function initJustified() {
   const lists = $$('.grid-free');
   if (!lists.length) return;
@@ -112,13 +113,15 @@ function initJustified() {
       const W = ul.clientWidth;
       if (!W) return;
       const H = W <= 640 ? W * 0.62 : Math.min(380, Math.max(200, innerWidth * 0.24)); // = --row in grid.css
-      const tiles = [...ul.children];
+      const tiles = [...ul.children].map((t) => [t, parseFloat(t.style.getPropertyValue('--r')) || 1]);
+      const total = tiles.reduce((s, [, r]) => s + r * H, 0);
+      const n = Math.max(1, Math.round(total / W));
+      const share = total / n;
       const rows = [];
       let row = [];
       let sum = 0;
-      tiles.forEach((t) => {
-        const r = parseFloat(t.style.getPropertyValue('--r')) || 1;
-        if (row.length && sum + r * H - W > W - sum) {
+      tiles.forEach(([t, r]) => {
+        if (row.length && rows.length < n - 1 && sum + r * H - share > share - sum) {
           rows.push(row);
           row = [];
           sum = 0;
@@ -126,10 +129,7 @@ function initJustified() {
         row.push([t, r]);
         sum += r * H;
       });
-      if (row.length) {
-        if (rows.length && sum < W * 0.75) rows[rows.length - 1].push(...row);
-        else rows.push(row);
-      }
+      if (row.length) rows.push(row);
       rows.forEach((items) => {
         const ratio = items.reduce((s, [, r]) => s + r, 0);
         const h = W / ratio; // row height that makes the row exactly W wide
