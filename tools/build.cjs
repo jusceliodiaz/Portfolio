@@ -38,8 +38,8 @@ const PERSON = (lang) => ({
   image: `${SITE}/assets/img/og/og-home.jpg`,
   jobTitle:
     lang === 'de'
-      ? '3D-Artist | KI-Creative | Unreal Engine Technical Art'
-      : '3D Artist | AI Creative | Unreal Engine Technical Art',
+      ? 'Echtzeit-3D-Entwickler | Unreal Engine Technical Artist'
+      : 'Real-time 3D Developer | Unreal Engine Technical Artist',
   address: { '@type': 'PostalAddress', addressLocality: 'Berlin', addressCountry: 'DE' },
   knowsLanguage: ['pt', 'en'],
   knowsAbout: [
@@ -56,7 +56,14 @@ const PERSON = (lang) => ({
 });
 
 const norm = (s) => s.replace(/\s+/g, ' ').trim();
-const tr = (s) => DE[norm(s)] ?? null;
+// strings with no German entry stay English; `npm run build -- --missing` lists them
+const MISSING = new Set();
+const tr = (s) => {
+  const k = norm(s);
+  if (k in DE) return DE[k];
+  if (/[A-Za-z]{3}/.test(k) && !/^(https?:|mailto:)/.test(k)) MISSING.add(k);
+  return null;
+};
 
 /* ---------- 1. SEO head ---------- */
 function seoHead(document, page, lang) {
@@ -254,3 +261,8 @@ ${Object.keys(PAGES)
 `,
 );
 console.log('built', Object.keys(PAGES).length, 'pages × 2 languages + sitemap.xml');
+if (process.argv.includes('--missing')) {
+  console.log(`
+${MISSING.size} strings without a German entry:`);
+  MISSING.forEach((k) => console.log(JSON.stringify(k)));
+}

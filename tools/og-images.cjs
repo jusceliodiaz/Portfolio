@@ -25,7 +25,7 @@ const IMAGES = [
   // projects: the four covers side by side, like the page
   {
     name: 'og-projects',
-    strips: ['automotive/6.jpg', 'archviz/render_001.jpg', 'vr/yatch_game.jpg', 'ai/simul.jpg'],
+    strips: ['automotive/6.jpg', 'archviz/render_001.jpg', 'vr/yatch_game.jpg', 'ai/ai_reel-poster.jpg'],
     sub: 'Automotive · Archviz · VR · AI',
   },
 ];

@@ -45,8 +45,9 @@ function initGrid() {
   // The bar wraps to two rows on narrow screens; reserve exactly its height so it never covers content.
   const bar = $('.bar');
   const main = $('main');
+  // (the home hero sits under the bar on purpose: main[data-under-bar])
   const fitBar = () => {
-    if (bar && main) main.style.paddingTop = bar.offsetHeight + 'px';
+    if (bar && main && !('underBar' in main.dataset)) main.style.paddingTop = bar.offsetHeight + 'px';
   };
   fitBar();
   addEventListener('resize', fitBar);
@@ -59,7 +60,7 @@ function initGrid() {
 
   /* Muted autoplay videos (tiles, VR cards): play only while visible and no overlay is open —
      on phones at most two at once */
-  const vids = $$('.grid video[data-autoplay], .vr-card video[data-autoplay]');
+  const vids = $$('.grid video[data-autoplay], .vr-card video[data-autoplay], .work video[data-autoplay]');
   if (!reduce && 'IntersectionObserver' in window) {
     const seen = new Set();
     const sync = () => {
@@ -93,10 +94,72 @@ function initGrid() {
   free.forEach((t, i) => (t.dataset.pos = (before(t) ? -1000 : 1000) + i));
   if (grid) initTiles(grid, tiles, free);
   initGalleries(reduce);
+  initHero(reduce);
   initFilms();
   initCursor();
   initDeepLink();
   initJustified();
+}
+
+/* ---------- Home hero: camera switcher ----------
+   Four real-time captures share one screen. Each channel plays once (at most MAX seconds), its
+   button fills like a progress bar, then the next channel takes over. Only the playing video and
+   the next one load; the HUD names what is on screen and links to its case study. */
+function initHero(reduce) {
+  const hero = $('.hero');
+  if (!hero) return;
+  const vids = $$('.hero-media video', hero);
+  const btns = $$('.hero-ch button', hero);
+  const tag = $('[data-hud-tag]', hero);
+  const link = $('[data-hud-link]', hero);
+  const MAX = 12;
+  let cur = 0;
+  let visible = true;
+  const show = (i) => {
+    cur = i;
+    vids.forEach((v, k) => {
+      if (k === i) {
+        v.preload = 'auto';
+        v.classList.add('is-on');
+        if (v.readyState > 0) v.currentTime = 0;
+        if (!reduce && visible) v.play().catch(() => {});
+      } else {
+        v.classList.remove('is-on');
+        setTimeout(() => k !== cur && v.pause(), 700);
+      }
+    });
+    btns.forEach((b, k) => {
+      b.setAttribute('aria-pressed', String(k === i));
+      b.style.setProperty('--p', 0);
+    });
+    const b = btns[i];
+    tag.textContent = $('[data-tag]', b).textContent; // a hidden span, so the German build translates it
+    tag.className = 'tag ' + (b.dataset.kind || '');
+    link.href = b.dataset.href;
+    const next = vids[(i + 1) % vids.length];
+    if (next.preload === 'none') next.preload = 'metadata';
+  };
+  const advance = (k) => k === cur && show((k + 1) % vids.length);
+  vids.forEach((v, k) => {
+    v.addEventListener('timeupdate', () => {
+      if (k !== cur) return;
+      const p = Math.min(v.currentTime / Math.min(v.duration || MAX, MAX), 1);
+      btns[k].style.setProperty('--p', p);
+      if (p >= 1) advance(k);
+    });
+    v.addEventListener('ended', () => advance(k));
+  });
+  btns.forEach((b, k) => b.addEventListener('click', () => show(k)));
+  new IntersectionObserver(
+    ([e]) => {
+      visible = e.isIntersecting;
+      const v = vids[cur];
+      if (visible && !reduce) v.play().catch(() => {});
+      else v.pause();
+    },
+    { threshold: 0.15 },
+  ).observe(hero);
+  show(0);
 }
 
 /* ---------- Justified rows for .grid-free (Still page) ----------

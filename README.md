@@ -26,10 +26,10 @@ Never edit `de/` by hand — it is overwritten.
 
 | File                 | What it is                                                                          |
 | -------------------- | ----------------------------------------------------------------------------------- |
-| `index.html`         | Main page: the four project cards, corner links (CV, Instagram, LinkedIn), award overlay |
+| `index.html`         | Home: real-time hero (four captures, camera switcher), real-time work, tools, renders, about |
 | `automotive.html`    | Tile grid + lightbox                                                                |
 | `archviz.html`       | Tile grid + lightbox                                                                |
-| `vr-realtime.html`   | Showreel (Vimeo, plays on click), then Yacht / ArchViz Configurator + tool cards    |
+| `vr-realtime.html`   | Real-time & development: showreel, configurators, tools, web 3D; case-study galleries |
 | `ai-generative.html` | Square tile grid (images + video) + lightbox                                        |
 | `cv.html`            | CV ("Download PDF" prints it as A4)                                                 |
 | `404.html`           | Not-found page (served by the host for missing URLs)                                |
@@ -39,14 +39,13 @@ Never edit `de/` by hand — it is overwritten.
 ```
 assets/
 ├── css/
-│   ├── base.css        tokens, reset, .knock (knockout button), .icon-btn — home, projects, 404
-│   ├── projects.css    index.html (cards + award)
-│   └── grid.css        the four project pages (from the "Lichtpult" Portfolio v2.css, unused rules removed)
+│   ├── base.css        tokens and reset for 404.html
+│   ├── grid.css        shared components: bar, tile grids, lightbox, case-study galleries
+│   └── v2.css          v2 design (loaded after grid.css): tokens, fonts, home hero, work cards, sections
 ├── js/
-│   ├── projects.js     projects: ←/→ between cards, Esc → home, award overlay
-│   ├── grid.js         project pages: gap-free tile packing, lightbox, VR galleries, cursor label
+│   ├── grid.js         every page: home hero switcher, autoplay, tile grids, lightbox, galleries
 │   └── main.js         entry point — runs whichever of the above the page loaded (keep it last)
-├── fonts/              Archivo + JetBrains Mono (project pages and CV)
+├── fonts/              Funnel Display + Funnel Sans + Geist Mono (v2); Archivo (CV)
 ├── img/<section>/      images; every grid thumbnail also has a <name>-960.jpg for srcset
 └── video/<section>/    videos: <name>.mp4 (desktop) + <name>-m.mp4 (phones); VR also has .webm
 ```
