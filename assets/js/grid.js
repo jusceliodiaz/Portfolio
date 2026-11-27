@@ -230,6 +230,8 @@ function initTiles(grid, tiles, free = []) {
   const span = (t, cols) => {
     const f = grid.dataset.f;
     if (f === 'figur' || f === 'auto') return cols >= 12 ? [4, 3] : [3, 2];
+    // portrait clips (making-of) keep their 4:7 shape; everything else is an equal square
+    if (f === 'comfy' && t.hasAttribute('data-tall')) return cols >= 12 ? [4, 7] : cols >= 6 ? [2, 4] : [3, 5];
     if (f === 'comfy') return cols >= 12 ? [4, 4] : cols >= 6 ? [2, 2] : [3, 3];
     const cs = getComputedStyle(t);
     const k = cols >= 12 ? ['--w', '--h'] : cols >= 6 ? ['--tw', '--th'] : ['--mw', '--mh'];
